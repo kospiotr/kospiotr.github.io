@@ -1,0 +1,5 @@
+name: Piotr Kosmowski site
+markdown: redcarpet
+safe: true
+lsi: false
+pygments: true
