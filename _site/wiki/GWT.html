@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="Piotr Kosmowski">
+	<link rel="shortcut icon" href="favicon.ico">
+
+	<title>Piotr Kosmowski page</title>
+
+	<!-- Fonts -->
+	<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro%3A400%2C400italic%2C700" rel="stylesheet">
+	<link href="http://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
+
+	<!-- Bootstrap core CSS -->
+	<link href="/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/css/font-awesome.min.css" rel="stylesheet">
+	<link href="/css/bootstrap-social.css" rel="stylesheet">
+
+	<!-- Styles -->
+	<link href="/css/main.css" rel="stylesheet">
+
+	<!-- Loading bar -->
+	<script src="/js/jquery-1.10.2.min.js"></script>
+	<script src="/js/jquery.stoc.js"></script>
+	
+	<!-- HTML5 shiv for IE8 support -->
+	<!--[if lt IE 9]>
+	  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+	<![endif]-->
+  </head>
+
+  <body>
+	<section id="sidebar" class="col-sm-3 sidebar" style="display: inline-block;">
+<header id="header">
+	<a href="/">
+	<img src="http://www.gravatar.com/avatar/a4e3f3d974bfdd573f2bb607617b82c1.png" alt="Piotr Kosmowski" id="gravatar"/>
+	<p id="author-full-name">Piotr Kosmowski</p>
+	<p id="slogan">Hi, I'm Piotr and I write code for food.</p>
+</a>
+</header>
+<nav id="navigation">
+	<div class="row">
+		<a href="http://twitter.com/kospiotr" class="btn btn-default">Twitter</a>
+		<a href="http://pl.linkedin.com/pub/piotr-kosmowski/25/379/467" class="btn btn-default">LinkedIn</a>
+		<a href="/blog" class="btn btn-default">Blog</a>
+	</div>
+	<div class="row">	
+		<a href="http://github.com/kospiotr" class="btn btn-default">Github</a>
+		<a href="/wiki" class="btn btn-default">Wiki</a>
+	</div>
+</nav>
+	</section>
+
+	<section id="main" class="col-sm-9">
+		<div id="main-container">
+<article id="main-article">
+	<header id="header">
+		<nav id="nav"><a href="/wiki" class="btn btn-default">Wiki index</a></nav>
+		<h1 id="page-title">Google Web Toolkit</h1>
+
+		
+			<div>
+				Everything about GWT environment
+			<div>
+		
+	</header>
+	<div id="article-body" class="markdown-body">
+
+
+	<div id="TOC"></div>
+
+
+<h1>Showcases</h1>
+
+<ul>
+<li>Homepage: <a href="https://developers.google.com/web-toolkit">https://developers.google.com/web-toolkit</a></li>
+<li>Documentation: <a href="https://developers.google.com/web-toolkit">https://developers.google.com/web-toolkit</a></li>
+<li>Showcase
+
+<ul>
+<li>Current: <a href="http://gwt.google.com/samples/Showcase/Showcase.html">http://gwt.google.com/samples/Showcase/Showcase.html</a></li>
+<li>For 1.6: <a href="https://developers.google.com/web-toolkit/doc/latest/RefWidgetGallery">https://developers.google.com/web-toolkit/doc/latest/RefWidgetGallery</a></li>
+<li>Sample mail: <a href="http://gwt.google.com/samples/Mail/Mail.html">http://gwt.google.com/samples/Mail/Mail.html</a></li>
+<li>Dynamic tables: <a href="http://gwt.google.com/samples/DynaTable/DynaTable.html">http://gwt.google.com/samples/DynaTable/DynaTable.html</a></li>
+</ul></li>
+</ul>
+
+<h1>Archetype</h1>
+
+<h2>GWT-Maven-Plugin</h2>
+
+<h3>Homepage</h3>
+
+<p><a href="http://mojo.codehaus.org/gwt-maven-plugin/user-guide/archetype.html">http://mojo.codehaus.org/gwt-maven-plugin/user-guide/archetype.html</a></p>
+
+<h3>Usage</h3>
+
+<p>Generate  archetype:</p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash">mvn archetype:generate <span class="se">\</span>
+   -DarchetypeGroupId<span class="o">=</span>org.codehaus.mojo <span class="se">\</span>
+   -DarchetypeArtifactId<span class="o">=</span>gwt-maven-plugin <span class="se">\</span>
+   -DarchetypeVersion<span class="o">=</span>2.5.0
+</code></pre></div>
+<h3>Configuration</h3>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash">mvn gwt:help
+</code></pre></div>
+<h3>Productivity</h3>
+
+<h3>Development mode</h3>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash">gwt:run
+</code></pre></div>
+<h3>Development mode with debug</h3>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash">gwt:debug //After that attach debugger on port 8000
+</code></pre></div>
+<h3>Super Development Mode</h3>
+
+<h2>TBroyer&#39;s archetype</h2>
+
+<h3>Homepage</h3>
+
+<p><a href="https://github.com/tbroyer/gwt-maven-archetypes">https://github.com/tbroyer/gwt-maven-archetypes</a></p>
+
+<h3>Usage</h3>
+
+<p>Generate archetype:</p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash">mvn archetype:generate <span class="se">\</span>
+   -DarchetypeCatalog<span class="o">=</span>https://oss.sonatype.org/content/repositories/snapshots/ <span class="se">\</span>
+   -DarchetypeGroupId<span class="o">=</span>net.ltgt.gwt.archetypes <span class="se">\</span>
+   -DarchetypeArtifactId<span class="o">=</span>modular-webapp <span class="se">\</span>
+   -DarchetypeVersion<span class="o">=</span>1.0-SNAPSHOT
+</code></pre></div>
+<h3>Productivity</h3>
+
+<h3>Development mode</h3>
+
+<ul>
+<li>Need first to compile client&#39;s project for server side run purposes - next step (execute it on the client project) </li>
+</ul>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash">mvn clean install -Dgwt.compiler.skip<span class="o">=</span><span class="nb">true</span>
+</code></pre></div>
+<ul>
+<li>Run server side on embedded Jetty8/Tomcat6/Tomcat7 (execute one of the followings lines on the server project):</li>
+</ul>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash">mvn jetty:start -Ddev //for Jetty
+mvn tomcat6:run -Ddev //for Tomcat 6
+mvn tomcat7:run -Ddev //for Tomcat 7
+</code></pre></div>
+<ul>
+<li>Run development mode server - needed only for client side (execute one of the followings lines on client the project)</li>
+</ul>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash">mvn gwt:run -Ddev
+mvn gwt:debug -Ddev //After that attach debugger on port 8000
+</code></pre></div>
+<h3>Super Development Mode</h3>
+
+<ul>
+<li>Configure development module. Add to module descriptor:</li>
+</ul>
+<div class="highlight"><pre><code class="xml language-xml" data-lang="xml">    <span class="nt">&lt;set-property</span> <span class="na">name=</span><span class="s">&quot;user.agent&quot;</span> <span class="na">value=</span><span class="s">&quot;safari&quot;</span> <span class="nt">/&gt;</span>
+    <span class="c">&lt;!-- enable the SuperDevMode book marklets  --&gt;</span>
+    <span class="nt">&lt;add-linker</span> <span class="na">name=</span><span class="s">&quot;xsiframe&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;set-configuration-property</span> <span class="na">name=</span><span class="s">&quot;devModeRedirectEnabled&quot;</span> <span class="na">value=</span><span class="s">&quot;true&quot;</span><span class="nt">/&gt;</span>
+
+    <span class="c">&lt;!--  enable source maps --&gt;</span>
+    <span class="nt">&lt;set-property</span> <span class="na">name=</span><span class="s">&quot;compiler.useSourceMaps&quot;</span> <span class="na">value=</span><span class="s">&quot;true&quot;</span> <span class="nt">/&gt;</span>
+</code></pre></div>
+<ul>
+<li>Clean all targets (execute it on the parent project):</li>
+</ul>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash">mvn clean 
+</code></pre></div>
+<ul>
+<li>Compile once client side in draft mode (execute it on the client project):</li>
+</ul>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash">mvn clean install -Pdev -Dgwt.module<span class="o">=</span>pl.pkosmowski.tdb.App_dev
+</code></pre></div>
+<ul>
+<li>Build server side in order to run it on embedded server (execute it on the server project):</li>
+</ul>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash">mvn clean install
+</code></pre></div>
+<ul>
+<li>Run server side on embedded server (execute one of the following lines on the server project):</li>
+</ul>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash">mvn jetty:start -Ddev //for Jetty
+mvn tomcat6:run -Ddev //for Tomcat 6
+mvn tomcat7:run -Ddev //for Tomcat 7
+</code></pre></div>
+<ul>
+<li>Run Super Development Mode:</li>
+</ul>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash">mvn.bat generate-sources gwt:run-codeserver  -Pdev -Dgwt.module<span class="o">=</span>pl.pkosmowski.tdb.App_dev
+</code></pre></div>
+<ul>
+<li>Add bookmarklet to favourite bar (only first time)
+Go to adress that was presented by Super Development&#39;s Mode console: <a href="http://localhost:9876/">http://localhost:9876/</a> and add presented bookmarklt to favourite bar</li>
+<li>Go to application
+Go to adress of the application. Usually it is: <a href="http://localhost:8080">http://localhost:8080</a></li>
+<li>Recompile client side
+Hit bookmarklet on the favourite bar and choose module to recompile. The page will refresh itselve.</li>
+</ul>
+
+<h1>Logging</h1>
+
+<p>Module Descriptor:</p>
+<div class="highlight"><pre><code class="xml language-xml" data-lang="xml">    <span class="nt">&lt;inherits</span> <span class="na">name=</span><span class="s">&quot;com.google.gwt.logging.Logging&quot;</span><span class="nt">/&gt;</span>
+    ...
+    <span class="c">&lt;!--  logging --&gt;</span>
+    <span class="nt">&lt;set-property</span> <span class="na">name=</span><span class="s">&quot;gwt.logging.logLevel&quot;</span> <span class="na">value=</span><span class="s">&quot;ALL&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;set-property</span> <span class="na">name=</span><span class="s">&quot;gwt.logging.popupHandler&quot;</span> <span class="na">value=</span><span class="s">&quot;DISABLED&quot;</span> <span class="nt">/&gt;</span>
+</code></pre></div>
+<h1>Request Factory</h1>
+
+<h2>Dependencies</h2>
+<div class="highlight"><pre><code class="xml language-xml" data-lang="xml">    <span class="nt">&lt;dependency&gt;</span>
+      <span class="nt">&lt;groupId&gt;</span>javax.validation<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>validation-api<span class="nt">&lt;/artifactId&gt;</span>
+      <span class="nt">&lt;version&gt;</span>1.0.0.GA<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+      <span class="nt">&lt;groupId&gt;</span>javax.validation<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>validation-api<span class="nt">&lt;/artifactId&gt;</span>
+      <span class="nt">&lt;version&gt;</span>1.0.0.GA<span class="nt">&lt;/version&gt;</span>
+      <span class="nt">&lt;classifier&gt;</span>sources<span class="nt">&lt;/classifier&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+      <span class="nt">&lt;groupId&gt;</span>com.google.web.bindery<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>requestfactory-server<span class="nt">&lt;/artifactId&gt;</span>
+      <span class="nt">&lt;version&gt;</span>2.4.0<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+      <span class="nt">&lt;groupId&gt;</span>com.google.web.bindery<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>requestfactory-apt<span class="nt">&lt;/artifactId&gt;</span>
+      <span class="nt">&lt;version&gt;</span>2.4.0<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+      <span class="nt">&lt;groupId&gt;</span>org.hibernate<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>hibernate-validator-annotation-processor<span class="nt">&lt;/artifactId&gt;</span>
+      <span class="nt">&lt;version&gt;</span>4.2.0.Final<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+      <span class="nt">&lt;groupId&gt;</span>log4j<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>log4j<span class="nt">&lt;/artifactId&gt;</span>
+      <span class="nt">&lt;version&gt;</span>1.2.16<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+    <span class="nt">&lt;dependency&gt;</span>
+      <span class="nt">&lt;groupId&gt;</span>org.slf4j<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>slf4j-log4j12<span class="nt">&lt;/artifactId&gt;</span>
+      <span class="nt">&lt;version&gt;</span>1.5.6<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div>
+<h2>Any side</h2>
+
+<h3>Model</h3>
+<div class="highlight"><pre><code class="java language-java" data-lang="java"><span class="kn">package</span> <span class="n">pl</span><span class="o">.</span><span class="na">pkosmowski</span><span class="o">.</span><span class="na">testrpcrequest</span><span class="o">.</span><span class="na">shared</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.io.Serializable</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Person</span> <span class="kd">implements</span> <span class="n">Serializable</span><span class="o">{</span>
+  <span class="n">Long</span> <span class="n">id</span><span class="o">;</span>
+  <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+  <span class="n">String</span> <span class="n">surname</span><span class="o">;</span>
+  <span class="n">String</span> <span class="n">displayName</span><span class="o">;</span>
+  <span class="n">Integer</span> <span class="n">version</span><span class="o">;</span>
+
+  <span class="kd">public</span> <span class="nf">Person</span><span class="o">()</span> <span class="o">{</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="nf">Person</span><span class="o">(</span><span class="n">Long</span> <span class="n">id</span><span class="o">,</span> <span class="n">String</span> <span class="n">name</span><span class="o">,</span> <span class="n">String</span> <span class="n">surname</span><span class="o">,</span> <span class="n">String</span> <span class="n">displayName</span><span class="o">,</span> <span class="n">Integer</span> <span class="n">version</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">id</span> <span class="o">=</span> <span class="n">id</span><span class="o">;</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">surname</span> <span class="o">=</span> <span class="n">surname</span><span class="o">;</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">displayName</span> <span class="o">=</span> <span class="n">displayName</span><span class="o">;</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">version</span> <span class="o">=</span> <span class="n">version</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="c1">// Getters and setters</span>
+<span class="o">}</span>
+</code></pre></div>
+<h2>Client side</h2>
+
+<h3>EntityLocator</h3>
+<div class="highlight"><pre><code class="java language-java" data-lang="java"><span class="kn">package</span> <span class="n">pl</span><span class="o">.</span><span class="na">pkosmowski</span><span class="o">.</span><span class="na">testrpcrequest</span><span class="o">.</span><span class="na">shared</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.google.web.bindery.requestfactory.shared.EntityProxy</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.google.web.bindery.requestfactory.shared.ProxyFor</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">pl.pkosmowski.testrpcrequest.server.PersonLocator</span><span class="o">;</span>
+
+<span class="nd">@ProxyFor</span><span class="o">(</span><span class="n">value</span><span class="o">=</span><span class="n">Person</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">locator</span><span class="o">=</span><span class="n">PersonLocator</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">PersonProxy</span>  <span class="kd">extends</span> <span class="n">EntityProxy</span><span class="o">{</span>
+
+  <span class="kd">public</span> <span class="n">String</span> <span class="nf">getDisplayName</span><span class="o">();</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setDisplayName</span><span class="o">(</span><span class="n">String</span> <span class="n">displayName</span><span class="o">);</span>
+  <span class="kd">public</span> <span class="n">Long</span> <span class="nf">getId</span><span class="o">();</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setId</span><span class="o">(</span><span class="n">Long</span> <span class="n">id</span><span class="o">);</span>
+  <span class="kd">public</span> <span class="n">String</span> <span class="nf">getName</span><span class="o">();</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setName</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">);</span>
+  <span class="kd">public</span> <span class="n">String</span> <span class="nf">getSurname</span><span class="o">();</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setSurname</span><span class="o">(</span><span class="n">String</span> <span class="n">surname</span><span class="o">);</span>
+  <span class="kd">public</span> <span class="n">Integer</span> <span class="nf">getVersion</span><span class="o">();</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setVersion</span><span class="o">(</span><span class="n">Integer</span> <span class="n">version</span><span class="o">);</span>
+
+<span class="o">}</span>
+</code></pre></div>
+<p>Server side:</p>
+<div class="highlight"><pre><code class="java language-java" data-lang="java"><span class="kn">package</span> <span class="n">pl</span><span class="o">.</span><span class="na">pkosmowski</span><span class="o">.</span><span class="na">testrpcrequest</span><span class="o">.</span><span class="na">server</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.google.web.bindery.requestfactory.shared.Locator</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">pl.pkosmowski.testrpcrequest.shared.Person</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">PersonLocator</span> <span class="kd">extends</span> <span class="n">Locator</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">,</span> <span class="n">Long</span><span class="o">&gt;</span> <span class="o">{</span>
+
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="n">Person</span> <span class="nf">create</span><span class="o">(</span><span class="n">Class</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">Person</span><span class="o">&gt;</span> <span class="n">clazz</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nf">Person</span><span class="o">();</span>
+  <span class="o">}</span>
+
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="n">Person</span> <span class="nf">find</span><span class="o">(</span><span class="n">Class</span><span class="o">&lt;?</span> <span class="kd">extends</span> <span class="n">Person</span><span class="o">&gt;</span> <span class="n">clazz</span><span class="o">,</span> <span class="n">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="n">Class</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="nf">getDomainType</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">Person</span><span class="o">.</span><span class="na">class</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="n">Long</span> <span class="nf">getId</span><span class="o">(</span><span class="n">Person</span> <span class="n">domainObject</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">domainObject</span><span class="o">.</span><span class="na">getId</span><span class="o">();</span>
+  <span class="o">}</span>
+
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="n">Class</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">&gt;</span> <span class="nf">getIdType</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">Long</span><span class="o">.</span><span class="na">class</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="n">Object</span> <span class="nf">getVersion</span><span class="o">(</span><span class="n">Person</span> <span class="n">domainObject</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+  <span class="o">}</span>
+
+<span class="o">}</span>
+</code></pre></div>
+<p>Main RequestFactory:</p>
+<div class="highlight"><pre><code class="java language-java" data-lang="java"><span class="kn">package</span> <span class="n">pl</span><span class="o">.</span><span class="na">pkosmowski</span><span class="o">.</span><span class="na">testrpcrequest</span><span class="o">.</span><span class="na">client</span><span class="o">.</span><span class="na">rf</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.google.web.bindery.requestfactory.shared.RequestFactory</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">MainRequestFactory</span>  <span class="kd">extends</span> <span class="n">RequestFactory</span> <span class="o">{</span>
+  <span class="n">PersonRf</span> <span class="nf">personRF</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div>
+<p>RequestContext:</p>
+<div class="highlight"><pre><code class="java language-java" data-lang="java"><span class="kn">package</span> <span class="n">pl</span><span class="o">.</span><span class="na">pkosmowski</span><span class="o">.</span><span class="na">testrpcrequest</span><span class="o">.</span><span class="na">client</span><span class="o">.</span><span class="na">rf</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.google.web.bindery.requestfactory.shared.Request</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.google.web.bindery.requestfactory.shared.RequestContext</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.google.web.bindery.requestfactory.shared.Service</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">pl.pkosmowski.testrpcrequest.server.EntityLocator</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">pl.pkosmowski.testrpcrequest.server.PersonRFServiceImpl</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">pl.pkosmowski.testrpcrequest.shared.PersonProxy</span><span class="o">;</span>
+
+<span class="nd">@Service</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="n">PersonRFServiceImpl</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">locator</span><span class="o">=</span><span class="n">EntityLocator</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">PersonRf</span> <span class="kd">extends</span> <span class="n">RequestContext</span><span class="o">{</span>
+
+  <span class="n">Request</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">PersonProxy</span><span class="o">&gt;&gt;</span> <span class="nf">getList</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div>
+<p>Code Execution:</p>
+<div class="highlight"><pre><code class="java language-java" data-lang="java"><span class="kn">package</span> <span class="n">pl</span><span class="o">.</span><span class="na">pkosmowski</span><span class="o">.</span><span class="na">testrpcrequest</span><span class="o">.</span><span class="na">client</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.google.gwt.core.client.EntryPoint</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.google.gwt.core.client.GWT</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.google.web.bindery.event.shared.EventBus</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.google.web.bindery.event.shared.SimpleEventBus</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.google.web.bindery.requestfactory.shared.Receiver</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">pl.pkosmowski.testrpcrequest.client.rf.MainRequestFactory</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">pl.pkosmowski.testrpcrequest.client.rf.PersonRf</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">pl.pkosmowski.testrpcrequest.shared.PersonProxy</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MainModule</span> <span class="kd">implements</span> <span class="n">EntryPoint</span> <span class="o">{</span>
+
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onModuleLoad</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">EventBus</span> <span class="n">eventBus</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SimpleEventBus</span><span class="o">();</span>
+    <span class="kd">final</span> <span class="n">MainRequestFactory</span> <span class="n">rfService</span> <span class="o">=</span> <span class="n">GWT</span><span class="o">.</span><span class="na">create</span><span class="o">(</span><span class="n">MainRequestFactory</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+    <span class="n">rfService</span><span class="o">.</span><span class="na">initialize</span><span class="o">(</span><span class="n">eventBus</span><span class="o">);</span>
+
+    <span class="n">PersonRf</span> <span class="n">personRfService</span> <span class="o">=</span> <span class="n">rfService</span><span class="o">.</span><span class="na">personRF</span><span class="o">();</span>
+    <span class="n">personRfService</span><span class="o">.</span><span class="na">getList</span><span class="o">().</span><span class="na">to</span><span class="o">(</span><span class="k">new</span> <span class="n">Receiver</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">PersonProxy</span><span class="o">&gt;&gt;()</span> <span class="o">{</span>
+
+      <span class="nd">@Override</span>
+      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onSuccess</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">PersonProxy</span><span class="o">&gt;</span> <span class="n">result</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">//do something with results</span>
+      <span class="o">}</span>
+    <span class="o">});</span>
+    <span class="n">personRfService</span><span class="o">.</span><span class="na">fire</span><span class="o">();</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>
+<p>Web.xml:</p>
+<div class="highlight"><pre><code class="xml language-xml" data-lang="xml">  <span class="nt">&lt;servlet&gt;</span>
+    <span class="nt">&lt;servlet-name&gt;</span>requestFactoryServlet<span class="nt">&lt;/servlet-name&gt;</span>
+    <span class="nt">&lt;servlet-class&gt;</span>com.google.web.bindery.requestfactory.server.RequestFactoryServlet<span class="nt">&lt;/servlet-class&gt;</span>
+    <span class="nt">&lt;init-param&gt;</span>
+      <span class="nt">&lt;param-name&gt;</span>symbolMapsDirectory<span class="nt">&lt;/param-name&gt;</span>
+      <span class="nt">&lt;param-value&gt;</span>WEB-INF/classes/symbolMaps/<span class="nt">&lt;/param-value&gt;</span>
+    <span class="nt">&lt;/init-param&gt;</span>
+  <span class="nt">&lt;/servlet&gt;</span>
+
+  <span class="nt">&lt;servlet-mapping&gt;</span>
+    <span class="nt">&lt;servlet-name&gt;</span>requestFactoryServlet<span class="nt">&lt;/servlet-name&gt;</span>
+    <span class="nt">&lt;url-pattern&gt;</span>/gwtRequest<span class="nt">&lt;/url-pattern&gt;</span>
+  <span class="nt">&lt;/servlet-mapping&gt;</span>
+</code></pre></div>
+<p>Server implementation:</p>
+<div class="highlight"><pre><code class="java language-java" data-lang="java"><span class="kn">package</span> <span class="n">pl</span><span class="o">.</span><span class="na">pkosmowski</span><span class="o">.</span><span class="na">testrpcrequest</span><span class="o">.</span><span class="na">server</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">pl.pkosmowski.testrpcrequest.shared.Person</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">PersonRFServiceImpl</span> <span class="o">{</span>
+
+  <span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="nf">getList</span><span class="o">()</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">DAO</span><span class="o">.</span><span class="na">getList</span><span class="o">();</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>
+<h1>Libraries</h1>
+
+<h2>Errai</h2>
+
+<h3>Configure</h3>
+
+<p>pom.xml</p>
+<div class="highlight"><pre><code class="xml language-xml" data-lang="xml">        <span class="nt">&lt;dependency&gt;</span>
+            <span class="nt">&lt;groupId&gt;</span>org.jboss.errai<span class="nt">&lt;/groupId&gt;</span>
+            <span class="nt">&lt;artifactId&gt;</span>errai-javaee-all<span class="nt">&lt;/artifactId&gt;</span>
+            <span class="nt">&lt;version&gt;</span>${errai.version}<span class="nt">&lt;/version&gt;</span>
+            <span class="nt">&lt;exclusions&gt;</span>
+                <span class="nt">&lt;exclusion&gt;</span>
+                    <span class="nt">&lt;artifactId&gt;</span>errai-jaxrs-client<span class="nt">&lt;/artifactId&gt;</span>
+                    <span class="nt">&lt;groupId&gt;</span>org.jboss.errai<span class="nt">&lt;/groupId&gt;</span>
+                <span class="nt">&lt;/exclusion&gt;</span>
+            <span class="nt">&lt;/exclusions&gt;</span>
+        <span class="nt">&lt;/dependency&gt;</span>
+        <span class="nt">&lt;dependency&gt;</span>
+            <span class="nt">&lt;groupId&gt;</span>javax<span class="nt">&lt;/groupId&gt;</span>
+            <span class="nt">&lt;artifactId&gt;</span>javaee-web-api<span class="nt">&lt;/artifactId&gt;</span>
+            <span class="nt">&lt;version&gt;</span>6.0<span class="nt">&lt;/version&gt;</span>
+            <span class="nt">&lt;scope&gt;</span>provided<span class="nt">&lt;/scope&gt;</span>
+        <span class="nt">&lt;/dependency&gt;</span>
+        <span class="nt">&lt;dependency&gt;</span>
+            <span class="nt">&lt;groupId&gt;</span>org.jboss.weld.servlet<span class="nt">&lt;/groupId&gt;</span>
+            <span class="nt">&lt;artifactId&gt;</span>weld-servlet<span class="nt">&lt;/artifactId&gt;</span>
+            <span class="nt">&lt;version&gt;</span>1.1.15.Final<span class="nt">&lt;/version&gt;</span>
+        <span class="nt">&lt;/dependency&gt;</span>
+        <span class="nt">&lt;dependency&gt;</span>
+            <span class="nt">&lt;groupId&gt;</span>org.jboss.errai<span class="nt">&lt;/groupId&gt;</span>
+            <span class="nt">&lt;artifactId&gt;</span>errai-weld-integration<span class="nt">&lt;/artifactId&gt;</span>
+            <span class="nt">&lt;version&gt;</span>2.4.0.Final<span class="nt">&lt;/version&gt;</span>
+        <span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div>
+<p>GWT Module Descriptor</p>
+<div class="highlight"><pre><code class="xml language-xml" data-lang="xml">    <span class="nt">&lt;inherits</span> <span class="na">name=</span><span class="s">&quot;org.jboss.errai.common.ErraiCommon&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;inherits</span> <span class="na">name=</span><span class="s">&quot;org.jboss.errai.bus.ErraiBus&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;inherits</span> <span class="na">name=</span><span class="s">&quot;org.jboss.errai.ioc.Container&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;inherits</span> <span class="na">name=</span><span class="s">&quot;org.jboss.errai.enterprise.CDI&quot;</span><span class="nt">/&gt;</span>
+</code></pre></div>
+<p>web.xml</p>
+<div class="highlight"><pre><code class="xml language-xml" data-lang="xml"><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+
+<span class="nt">&lt;web-app</span> <span class="na">xmlns=</span><span class="s">&quot;http://java.sun.com/xml/ns/javaee&quot;</span>
+         <span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
+         <span class="na">xsi:schemaLocation=</span><span class="s">&quot;http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd&quot;</span>
+         <span class="na">version=</span><span class="s">&quot;3.0&quot;</span><span class="nt">&gt;</span>
+
+    <span class="c">&lt;!-- Default page to serve --&gt;</span>
+    <span class="nt">&lt;welcome-file-list&gt;</span>
+        <span class="nt">&lt;welcome-file&gt;</span>index.html<span class="nt">&lt;/welcome-file&gt;</span>
+    <span class="nt">&lt;/welcome-file-list&gt;</span>
+
+    <span class="nt">&lt;listener&gt;</span>
+        <span class="nt">&lt;listener-class&gt;</span>org.jboss.weld.environment.servlet.Listener<span class="nt">&lt;/listener-class&gt;</span>
+    <span class="nt">&lt;/listener&gt;</span>
+    <span class="nt">&lt;servlet&gt;</span>
+        <span class="nt">&lt;servlet-name&gt;</span>ErraiServlet<span class="nt">&lt;/servlet-name&gt;</span>
+        <span class="nt">&lt;servlet-class&gt;</span>org.jboss.errai.bus.server.servlet.DefaultBlockingServlet<span class="nt">&lt;/servlet-class&gt;</span>
+        <span class="nt">&lt;init-param&gt;</span>
+            <span class="nt">&lt;param-name&gt;</span>service-locator<span class="nt">&lt;/param-name&gt;</span>
+            <span class="nt">&lt;param-value&gt;</span>org.jboss.errai.cdi.server.CDIServiceLocator<span class="nt">&lt;/param-value&gt;</span>
+        <span class="nt">&lt;/init-param&gt;</span>
+        <span class="nt">&lt;init-param&gt;</span>
+            <span class="nt">&lt;param-name&gt;</span>auto-discover-services<span class="nt">&lt;/param-name&gt;</span>
+            <span class="nt">&lt;param-value&gt;</span>true<span class="nt">&lt;/param-value&gt;</span>
+        <span class="nt">&lt;/init-param&gt;</span>
+        <span class="nt">&lt;load-on-startup&gt;</span>1<span class="nt">&lt;/load-on-startup&gt;</span>
+    <span class="nt">&lt;/servlet&gt;</span>
+
+    <span class="nt">&lt;servlet-mapping&gt;</span>
+        <span class="nt">&lt;servlet-name&gt;</span>ErraiServlet<span class="nt">&lt;/servlet-name&gt;</span>
+        <span class="nt">&lt;url-pattern&gt;</span>*.erraiBus<span class="nt">&lt;/url-pattern&gt;</span>
+    <span class="nt">&lt;/servlet-mapping&gt;</span>
+
+
+    <span class="nt">&lt;resource-env-ref&gt;</span>
+        <span class="nt">&lt;description&gt;</span>Object factory for the CDI Bean Manager<span class="nt">&lt;/description&gt;</span>
+        <span class="nt">&lt;resource-env-ref-name&gt;</span>BeanManager<span class="nt">&lt;/resource-env-ref-name&gt;</span>
+        <span class="nt">&lt;resource-env-ref-type&gt;</span>javax.enterprise.inject.spi.BeanManager<span class="nt">&lt;/resource-env-ref-type&gt;</span>
+    <span class="nt">&lt;/resource-env-ref&gt;</span>
+
+    <span class="nt">&lt;resource-env-ref&gt;</span>
+        <span class="nt">&lt;description&gt;</span>Object factory for the Errai Service<span class="nt">&lt;/description&gt;</span>
+        <span class="nt">&lt;resource-env-ref-name&gt;</span>ErraiService<span class="nt">&lt;/resource-env-ref-name&gt;</span>
+        <span class="nt">&lt;resource-env-ref-type&gt;</span>org.jboss.errai.bus.server.service.ErraiService<span class="nt">&lt;/resource-env-ref-type&gt;</span>
+    <span class="nt">&lt;/resource-env-ref&gt;</span>
+
+    <span class="nt">&lt;context-param&gt;</span>
+        <span class="nt">&lt;param-name&gt;</span>errai.properties<span class="nt">&lt;/param-name&gt;</span>
+        <span class="nt">&lt;param-value&gt;</span>/WEB-INF/errai.properties<span class="nt">&lt;/param-value&gt;</span>
+    <span class="nt">&lt;/context-param&gt;</span>
+<span class="nt">&lt;/web-app&gt;</span>
+</code></pre></div>
+<p>Context.xml</p>
+<div class="highlight"><pre><code class="xml language-xml" data-lang="xml"><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="nt">&lt;Context</span> <span class="na">antiJARLocking=</span><span class="s">&quot;true&quot;</span> <span class="na">path=</span><span class="s">&quot;/Errai&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;Resource</span> 
+        <span class="na">name=</span><span class="s">&quot;BeanManager&quot;</span> 
+        <span class="na">auth=</span><span class="s">&quot;Container&quot;</span> 
+        <span class="na">type=</span><span class="s">&quot;javax.enterprise.inject.spi.BeanManager&quot;</span> 
+        <span class="na">factory=</span><span class="s">&quot;org.jboss.weld.resources.ManagerObjectFactory&quot;</span><span class="nt">/&gt;</span>
+
+<span class="nt">&lt;/Context&gt;</span>
+</code></pre></div>
+<p>Add empty file beans.xml to WEB-INF
+Add empty file ErraiApp.properties to resource folder
+Add ErraiService.properties to resoure folder</p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash">errai.dispatcher_implementation<span class="o">=</span>org.jboss.errai.bus.server.SimpleDispatcher
+errai.async.thread_pool_size<span class="o">=</span>5
+</code></pre></div>
+<h2>GWTP</h2>
+
+<h2>Mvp4g</h2>
+
+<h3>Project info</h3>
+
+<ul>
+<li>Homepage <a href="https://code.google.com/p/mvp4g/">https://code.google.com/p/mvp4g/</a></li>
+</ul>
+
+<h3>Set up with Maven</h3>
+
+<p>Dependency:</p>
+<div class="highlight"><pre><code class="xml language-xml" data-lang="xml">    <span class="nt">&lt;dependency&gt;</span>
+      <span class="nt">&lt;groupId&gt;</span>com.googlecode.mvp4g<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId&gt;</span>mvp4g<span class="nt">&lt;/artifactId&gt;</span>
+      <span class="nt">&lt;version&gt;</span>1.4.0<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div>
+<p>Module Descriptor:</p>
+<div class="highlight"><pre><code class="xml language-xml" data-lang="xml"><span class="nt">&lt;inherits</span> <span class="na">name=</span><span class="s">&#39;com.sencha.gxt.ui.GXT&#39;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;entry-point</span> <span class="na">class=</span><span class="s">&#39;com.mvp4g.client.Mvp4gEntryPoint&#39;</span><span class="nt">/&gt;</span>
+</code></pre></div>
+<h2>GIN</h2>
+
+<h2>Command pattern</h2>
+
+<h2>GXT</h2>
+
+<h3>Project  info</h3>
+
+<p>UI component library</p>
+
+<ul>
+<li>Homepage </li>
+</ul>
+
+<h3>Set up with Maven</h3>
+
+<p>Dependency:</p>
+<div class="highlight"><pre><code class="xml language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span>
+<span class="nt">&lt;groupId&gt;</span>com.sencha.gxt<span class="nt">&lt;/groupId&gt;</span>
+<span class="nt">&lt;artifactId&gt;</span>gxt<span class="nt">&lt;/artifactId&gt;</span>
+<span class="nt">&lt;version&gt;</span>3.0.0<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div>
+<p>Module Descriptor:</p>
+<div class="highlight"><pre><code class="xml language-xml" data-lang="xml"><span class="nt">&lt;inherits</span> <span class="na">name=</span><span class="s">&#39;com.sencha.gxt.ui.GXT&#39;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;stylesheet</span> <span class="na">src=</span><span class="s">&quot;reset.css&quot;</span><span class="nt">/&gt;</span>
+</code></pre></div>
+<h2>Smartclient</h2>
+
+<h3>Project info</h3>
+
+<ul>
+<li>Showcase: <a href="http://www.smartclient.com/smartgwt/showcase">http://www.smartclient.com/smartgwt/showcase</a></li>
+</ul>
+
+<h2>GWT-Bootstrap</h2>
+
+<h3>Project  info</h3>
+
+<p>UI component library</p>
+
+<ul>
+<li>Homepage: <a href="http://gwtbootstrap.github.com/">http://gwtbootstrap.github.com/</a></li>
+<li>Sources on GitHub: <a href="https://github.com/gwtbootstrap">https://github.com/gwtbootstrap</a></li>
+<li>Example: <a href="https://github.com/gwtbootstrap/custom-theme-example">https://github.com/gwtbootstrap/custom-theme-example</a></li>
+<li>Java-Doc: <a href="http://gwtbootstrap.github.com/gwt-bootstrap/apidocs/">http://gwtbootstrap.github.com/gwt-bootstrap/apidocs/</a></li>
+<li>Downloads: <a href="https://github.com/gwtbootstrap/gwt-bootstrap/downloads">https://github.com/gwtbootstrap/gwt-bootstrap/downloads</a></li>
+<li>Group: <a href="https://groups.google.com/forum/#!forum/gwt-bootstrap">https://groups.google.com/forum/#!forum/gwt-bootstrap</a></li>
+<li>G+: <a href="https://plus.google.com/u/1/114813078723642511929/posts">https://plus.google.com/u/1/114813078723642511929/posts</a></li>
+<li>Committer blog: <a href="http://caarlos0.github.com/about.html">http://caarlos0.github.com/about.html</a></li>
+</ul>
+
+<h3>Set up with maven</h3>
+
+<p>Dependency:</p>
+<div class="highlight"><pre><code class="xml language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>com.github.gwtbootstrap<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>gwt-bootstrap<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>2.2.1.0-SNAPSHOT<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>provided<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div>
+<p>Repository:</p>
+<div class="highlight"><pre><code class="xml language-xml" data-lang="xml"><span class="nt">&lt;repository&gt;</span>
+     <span class="nt">&lt;id&gt;</span>sonatype<span class="nt">&lt;/id&gt;</span>
+     <span class="nt">&lt;url&gt;</span>http://oss.sonatype.org/content/repositories/snapshots<span class="nt">&lt;/url&gt;</span>
+     <span class="nt">&lt;snapshots&gt;&lt;enabled&gt;</span>true<span class="nt">&lt;/enabled&gt;&lt;/snapshots&gt;</span>
+     <span class="nt">&lt;releases&gt;&lt;enabled&gt;</span>false<span class="nt">&lt;/enabled&gt;&lt;/releases&gt;</span>
+<span class="nt">&lt;/repository&gt;</span>
+</code></pre></div>
+<p>GWT module descriptor:</p>
+<div class="highlight"><pre><code class="xml language-xml" data-lang="xml"><span class="nt">&lt;inherits</span> <span class="na">name=</span><span class="s">&quot;com.github.gwtbootstrap.Bootstrap&quot;</span><span class="nt">/&gt;</span>
+</code></pre></div>
+<h1>Tools</h1>
+
+	</div>
+
+
+	<script type="text/javascript">
+	$(function(){
+		$("#TOC").stoc({
+				search: "#article-body",
+				stocTitle: "<h1>Table of content</h1>"
+			});
+	});
+	</script>
+
+</article>
+
+﻿<footer class="footer">
+	<p>© Piotr Kosmowski. All right reserved. </p>
+</footer>
+		</div>
+	</section>
+  </body>
+</html>
