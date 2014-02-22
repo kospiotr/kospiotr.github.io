@@ -8,12 +8,12 @@ comments: true
 			{% if page.previous %}
 				<a href="{{ page.previous.url }}" title="Older: {{ page.previous.title }}" class="btn btn-default">←</a>
 			{% endif %}
-				<a href="/blog" class="btn btn-default">Blog index</a>
+				<a href="/blog" class="btn btn-default">Blog posts</a>
 			{% if page.next %}
 				<a href="{{ page.next.url }}" title="Newer: {{ page.next.title }}" class="btn btn-default">→</a>
 			{% endif %}
 		</nav>
-		<h1 id="title">{{ %page.title% }}</h1>
+		<h1 id="page-title">{{ %page.title% }}</h1>
 	</header>
 	{{ content }}
 {% if page.comments %}

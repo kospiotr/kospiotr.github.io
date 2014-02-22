@@ -24,15 +24,16 @@
 
 	<!-- Loading bar -->
 	<script src="/js/jquery-1.10.2.min.js"></script>
+	<script src="/js/jquery.stoc.js"></script>
 	
 	<!-- HTML5 shiv for IE8 support -->
 	<!--[if lt IE 9]>
 	  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-	<![endif]--> 
+	<![endif]-->
   </head>
 
   <body>
-  	<div id="main-hero" class="container">
+	<section id="sidebar" class="col-sm-3 sidebar" style="display: inline-block;">
 <header id="header">
 	<a href="/">
 	<img src="http://www.gravatar.com/avatar/a4e3f3d974bfdd573f2bb607617b82c1.png" alt="Piotr Kosmowski" id="gravatar"/>
@@ -51,6 +52,33 @@
 		<a href="/wiki" class="btn btn-default">Wiki</a>
 	</div>
 </nav>
-  	</div>
+	</section>
+
+	<section id="main" class="col-sm-9">
+		<div id="main-container">
+<article id="main-article">
+	<header id="header">
+		<nav id="nav"><a href="/wiki" class="btn btn-default">Wiki index</a></nav>
+		<h1 id="page-title">I/O</h1>
+	</header>
+	<div id="article-body" class="markdown-body">
+
+
+
+<h1>Write as file</h1>
+<div class="highlight"><pre><code class="java language-java" data-lang="java"><span class="n">java</span><span class="o">.</span><span class="na">io</span><span class="o">.</span><span class="na">PrintWriter</span> <span class="n">pw</span> <span class="o">=</span> <span class="k">new</span> <span class="n">java</span><span class="o">.</span><span class="na">io</span><span class="o">.</span><span class="na">PrintWriter</span><span class="o">(</span><span class="s">&quot;C:/debug.txt&quot;</span><span class="o">);</span>
+<span class="n">pw</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">text</span><span class="o">);</span>
+<span class="n">pw</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+</code></pre></div>
+	</div>
+
+
+</article>
+
+﻿<footer class="footer">
+	<p>© Piotr Kosmowski 2013. All right reserved. </p>
+</footer>
+		</div>
+	</section>
   </body>
 </html>

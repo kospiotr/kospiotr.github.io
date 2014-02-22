@@ -1,12 +1,11 @@
 ---
 layout: default
 ---
-<article>
-	<header class="header">
-	  <hgroup class="clear">
-		<h1 class="site-title"><a rel="home" href="index.html">{{ %page.title% }}</a>
-		</h1>
-	  </hgroup>
+<article id="main-article">
+	<header id="header">
+		<hgroup class="clear">
+			<h1 id="page-title">{{ %page.title% }}</h1>
+		</hgroup>
 	</header>
 	{{ content }}
 {% if page.comments %}

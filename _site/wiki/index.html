@@ -24,15 +24,16 @@
 
 	<!-- Loading bar -->
 	<script src="/js/jquery-1.10.2.min.js"></script>
+	<script src="/js/jquery.stoc.js"></script>
 	
 	<!-- HTML5 shiv for IE8 support -->
 	<!--[if lt IE 9]>
 	  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-	<![endif]--> 
+	<![endif]-->
   </head>
 
   <body>
-  	<div id="main-hero" class="container">
+	<section id="sidebar" class="col-sm-3 sidebar" style="display: inline-block;">
 <header id="header">
 	<a href="/">
 	<img src="http://www.gravatar.com/avatar/a4e3f3d974bfdd573f2bb607617b82c1.png" alt="Piotr Kosmowski" id="gravatar"/>
@@ -51,6 +52,30 @@
 		<a href="/wiki" class="btn btn-default">Wiki</a>
 	</div>
 </nav>
-  	</div>
+	</section>
+
+	<section id="main" class="col-sm-9">
+		<div id="main-container">
+<article id="main-article">
+	<header id="header">
+		<hgroup class="clear">
+			<h1 id="page-title">Wiki index</h1>
+		</hgroup>
+	</header>
+	<ul>
+<li><a href="/wiki/GWT.html">Google Web Toolkit</a> - everything about GWT environment</li>
+<li><a href="/wiki/serialization.html">Serialization / Deserialization</a></li>
+<li><a href="/wiki/io.html">Input / Output</a></li>
+<li><a href="/wiki/testing.html">Testing</a></li>
+<li><a href="/wiki/netbeans.html">Netbeans</a></li>
+</ul>
+
+
+</article>
+﻿<footer class="footer">
+	<p>© Piotr Kosmowski 2013. All right reserved. </p>
+</footer>
+		</div>
+	</section>
   </body>
 </html>

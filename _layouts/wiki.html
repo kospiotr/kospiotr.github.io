@@ -1,0 +1,30 @@
+---
+layout: default
+comments: false
+markdown: true
+---
+<article id="main-article">
+	<header id="header">
+		<nav id="nav"><a href="/wiki" class="btn btn-default">Wiki index</a></nav>
+		<h1 id="page-title">{{ %page.title% }}</h1>
+	</header>
+	<div id="article-body" class="markdown-body">
+
+{% if page.toc %}
+	<div id="TOC"></div>
+{% endif %}
+
+{{ content }}
+	</div>
+
+{% if page.toc %}
+	<script type="text/javascript">
+	$(function(){
+		$("#TOC").stoc({
+				search: "#article-body",
+				stocTitle: "<h1>Table of content</h1>"
+			});
+	});
+	</script>
+{% endif %}
+</article>

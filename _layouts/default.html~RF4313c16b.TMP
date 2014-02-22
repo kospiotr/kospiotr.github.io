@@ -1,3 +1,9 @@
+---
+comments: false
+toc: false
+markdown: false
+---
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -24,7 +30,7 @@
 
 	<!-- Loading bar -->
 	<script src="{{site.baseurl}}js/jquery-1.10.2.min.js"></script>
-	<script src="{{site.baseurl}}js/jquery.stoc.js"></script>
+	<script src="{{site.baseurl}}js/jquery.stoc.js" type="text/javascript" charset="utf-8"></script>
 	
 	<!-- HTML5 shiv for IE8 support -->
 	<!--[if lt IE 9]>
@@ -33,15 +39,39 @@
   </head>
 
   <body>
-	<section id="sidebar" class="col-sm-3 sidebar" style="display: inline-block;">
+	<section id="sidebar" class="col-sm-3 sidebar " style="display: inline-block;">
 {% include sidebar.html %}
 	</section>
 
 	<section id="main" class="col-sm-9">
 		<div id="main-container">
+
+			{% if page.markdown %}
+			<div class="markdown-body">
+			{% endif %}
+
+
+			{% if page.toc %}
+		aaaaaaaaa		<div id="TOC"></div>
+			{% endif %}
+
 {{ content }}
+			
+			{% if page.markdown %}
+			</div>
+			{% endif %}
+
 {% include footer.html %}
 		</div>
 	</section>
+
+	{% if page.toc %}
+	<script type="text/javascript" charset="utf-8">
+		$("#TOC").stoc({
+			search: "#main-container"
+		});
+	</script>
+	{% endif %}
+
   </body>
 </html>
