@@ -5,8 +5,16 @@ comments: false
 toc: false
 ---
 
- * [Google Web Toolkit]({{ site.url }}/wiki/GWT.html) - everything about GWT environment
- * [Serialization / Deserialization]({{ site.url }}/wiki/serialization.html)
- * [Input / Output]({{ site.url }}/wiki/io.html)
- * [Testing]({{ site.url }}/wiki/testing.html)
- * [Netbeans]({{ site.url }}/wiki/netbeans.html)
+<ul>
+	{% for page in site.pages %}
+		{% if page.layout == 'wiki' %}
+    		<li>
+    			<a href="{{ page.url }}">{{ page.title }}</a>
+    			{% if page.description %}
+    				 - 
+				{% endif %}
+    			{{ page.description }}
+    		</li>
+		{% endif %}
+	{% endfor %}
+</ul>

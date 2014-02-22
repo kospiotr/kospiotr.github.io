@@ -1,12 +1,17 @@
 ---
 layout: default
 comments: false
-markdown: true
 ---
 <article id="main-article">
 	<header id="header">
 		<nav id="nav"><a href="/wiki" class="btn btn-default">Wiki index</a></nav>
 		<h1 id="page-title">{{ %page.title% }}</h1>
+
+		{% if page.description %}
+			<div>
+				{{ %page.description% }}
+			<div>
+		{% endif %}
 	</header>
 	<div id="article-body" class="markdown-body">
 

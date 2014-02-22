@@ -1,6 +1,6 @@
 ---
 layout: wiki
-title: GWT
+title: Serialization / Deserialization
 comments: false
 ---
 #GSON

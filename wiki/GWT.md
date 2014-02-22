@@ -1,8 +1,9 @@
 ---
 layout: wiki
-title: GWT
+title: Google Web Toolkit
 comments: false
 toc: true
+description: Everything about GWT environment
 ---
 
 #Showcases
@@ -111,7 +112,7 @@ mvn clean
  * Compile once client side in draft mode (execute it on the client project):
 
 ```bash
-mvn clean install -Pdev -Dgwt.module=pl.xperios.tdb.App_dev
+mvn clean install -Pdev -Dgwt.module=pl.pkosmowski.tdb.App_dev
 ```
  * Build server side in order to run it on embedded server (execute it on the server project):
 
@@ -128,7 +129,7 @@ mvn tomcat7:run -Ddev //for Tomcat 7
  * Run Super Development Mode:
 
 ```bash
-mvn.bat generate-sources gwt:run-codeserver  -Pdev -Dgwt.module=pl.xperios.tdb.App_dev
+mvn.bat generate-sources gwt:run-codeserver  -Pdev -Dgwt.module=pl.pkosmowski.tdb.App_dev
 ```
  * Add bookmarklet to favourite bar (only first time)
 Go to adress that was presented by Super Development's Mode console: [http://localhost:9876/](http://localhost:9876/) and add presented bookmarklt to favourite bar
@@ -146,6 +147,251 @@ Module Descriptor:
     <!--  logging -->
     <set-property name="gwt.logging.logLevel" value="ALL"/>
     <set-property name="gwt.logging.popupHandler" value="DISABLED" />
+```
+
+#Request Factory
+
+##Dependencies
+
+```xml
+    <dependency>
+      <groupId>javax.validation</groupId>
+      <artifactId>validation-api</artifactId>
+      <version>1.0.0.GA</version>
+    </dependency>
+    <dependency>
+      <groupId>javax.validation</groupId>
+      <artifactId>validation-api</artifactId>
+      <version>1.0.0.GA</version>
+      <classifier>sources</classifier>
+    </dependency>
+    <dependency>
+      <groupId>com.google.web.bindery</groupId>
+      <artifactId>requestfactory-server</artifactId>
+      <version>2.4.0</version>
+    </dependency>
+    <dependency>
+      <groupId>com.google.web.bindery</groupId>
+      <artifactId>requestfactory-apt</artifactId>
+      <version>2.4.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-validator-annotation-processor</artifactId>
+      <version>4.2.0.Final</version>
+    </dependency>
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+      <version>1.2.16</version>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-log4j12</artifactId>
+      <version>1.5.6</version>
+    </dependency>
+```
+
+##Any side
+
+###Model
+
+```java
+package pl.pkosmowski.testrpcrequest.shared;
+
+import java.io.Serializable;
+
+public class Person implements Serializable{
+  Long id;
+  String name;
+  String surname;
+  String displayName;
+  Integer version;
+
+  public Person() {
+  }
+
+  public Person(Long id, String name, String surname, String displayName, Integer version) {
+    this.id = id;
+    this.name = name;
+    this.surname = surname;
+    this.displayName = displayName;
+    this.version = version;
+  }
+// Getters and setters
+}
+```
+
+##Client side
+
+###EntityLocator
+
+```java
+package pl.pkosmowski.testrpcrequest.shared;
+import com.google.web.bindery.requestfactory.shared.EntityProxy;
+import com.google.web.bindery.requestfactory.shared.ProxyFor;
+import pl.pkosmowski.testrpcrequest.server.PersonLocator;
+
+@ProxyFor(value=Person.class, locator=PersonLocator.class)
+public interface PersonProxy  extends EntityProxy{
+
+  public String getDisplayName();
+  public void setDisplayName(String displayName);
+  public Long getId();
+  public void setId(Long id);
+  public String getName();
+  public void setName(String name);
+  public String getSurname();
+  public void setSurname(String surname);
+  public Integer getVersion();
+  public void setVersion(Integer version);
+  
+}
+```
+
+Server side:
+
+```java
+package pl.pkosmowski.testrpcrequest.server;
+
+import com.google.web.bindery.requestfactory.shared.Locator;
+import pl.pkosmowski.testrpcrequest.shared.Person;
+
+public class PersonLocator extends Locator<Person, Long> {
+
+  @Override
+  public Person create(Class<? extends Person> clazz) {
+    return new Person();
+  }
+
+  @Override
+  public Person find(Class<? extends Person> clazz, Long id) {
+    return null;
+  }
+
+  @Override
+  public Class<Person> getDomainType() {
+    return Person.class;
+  }
+
+  @Override
+  public Long getId(Person domainObject) {
+    return domainObject.getId();
+  }
+
+  @Override
+  public Class<Long> getIdType() {
+    return Long.class;
+  }
+
+  @Override
+  public Object getVersion(Person domainObject) {
+    return -1;
+  }
+  
+}
+```
+
+Main RequestFactory:
+
+```java
+package pl.pkosmowski.testrpcrequest.client.rf;
+
+import com.google.web.bindery.requestfactory.shared.RequestFactory;
+
+public interface MainRequestFactory  extends RequestFactory {
+  PersonRf personRF();
+}
+```
+
+RequestContext:
+
+```java
+package pl.pkosmowski.testrpcrequest.client.rf;
+
+import com.google.web.bindery.requestfactory.shared.Request;
+import com.google.web.bindery.requestfactory.shared.RequestContext;
+import com.google.web.bindery.requestfactory.shared.Service;
+import java.util.List;
+import pl.pkosmowski.testrpcrequest.server.EntityLocator;
+import pl.pkosmowski.testrpcrequest.server.PersonRFServiceImpl;
+import pl.pkosmowski.testrpcrequest.shared.PersonProxy;
+
+@Service(value = PersonRFServiceImpl.class, locator=EntityLocator.class)
+public interface PersonRf extends RequestContext{
+
+  Request<List<PersonProxy>> getList();
+}
+```
+
+Code Execution:
+
+```java
+package pl.pkosmowski.testrpcrequest.client;
+
+import com.google.gwt.core.client.EntryPoint;
+import com.google.gwt.core.client.GWT;
+import com.google.web.bindery.event.shared.EventBus;
+import com.google.web.bindery.event.shared.SimpleEventBus;
+import com.google.web.bindery.requestfactory.shared.Receiver;
+import java.util.List;
+import pl.pkosmowski.testrpcrequest.client.rf.MainRequestFactory;
+import pl.pkosmowski.testrpcrequest.client.rf.PersonRf;
+import pl.pkosmowski.testrpcrequest.shared.PersonProxy;
+
+public class MainModule implements EntryPoint {
+
+  @Override
+  public void onModuleLoad() {
+    EventBus eventBus = new SimpleEventBus();
+    final MainRequestFactory rfService = GWT.create(MainRequestFactory.class);
+    rfService.initialize(eventBus);
+
+    PersonRf personRfService = rfService.personRF();
+    personRfService.getList().to(new Receiver<List<PersonProxy>>() {
+
+      @Override
+      public void onSuccess(List<PersonProxy> result) {
+        //do something with results
+      }
+    });
+    personRfService.fire();
+  }
+}
+```
+
+Web.xml:
+
+```xml
+  <servlet>
+    <servlet-name>requestFactoryServlet</servlet-name>
+    <servlet-class>com.google.web.bindery.requestfactory.server.RequestFactoryServlet</servlet-class>
+    <init-param>
+      <param-name>symbolMapsDirectory</param-name>
+      <param-value>WEB-INF/classes/symbolMaps/</param-value>
+    </init-param>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>requestFactoryServlet</servlet-name>
+    <url-pattern>/gwtRequest</url-pattern>
+  </servlet-mapping>
+```
+
+Server implementation:
+
+```java
+package pl.pkosmowski.testrpcrequest.server;
+
+import java.util.List;
+import pl.pkosmowski.testrpcrequest.shared.Person;
+
+public class PersonRFServiceImpl {
+
+  public List<Person> getList() {
+  return DAO.getList();
+  }
+}
 ```
 
 #Libraries
