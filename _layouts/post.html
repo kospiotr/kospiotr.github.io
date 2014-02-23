@@ -14,8 +14,27 @@ comments: true
 			{% endif %}
 		</nav>
 		<h1 id="page-title">{{ %page.title% }}</h1>
+		{% if page.description %}
+			<h2 id="page-description">
+				{{ %page.description% }}
+			</h2>
+		{% endif %}
+		<h3> {{ page.date | date_to_string }}</h3>
 	</header>
-	{{ content }}
+	<div id="article-body" class="markdown-body">
+
+{{ content }}
+
+	</div>
+	<nav id="nav-bottom">
+		{% if page.previous %}
+			<a href="{{ page.previous.url }}" title="Older: {{ page.previous.title }}" class="btn btn-default">←</a>
+		{% endif %}
+			<a href="/blog" class="btn btn-default">Blog posts</a>
+		{% if page.next %}
+			<a href="{{ page.next.url }}" title="Newer: {{ page.next.title }}" class="btn btn-default">→</a>
+		{% endif %}
+	</nav>
 {% if page.comments %}
 	<footer id="comments">
 		<header>

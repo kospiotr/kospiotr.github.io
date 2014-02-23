@@ -74,13 +74,40 @@ a, a:focus, a:hover {
 	right: 0;
 }
 
-#page-title{
+#nav-bottom{
+	padding-top: 20px;
+	position: absolute;
+	right: 0;
+}
+
+#page-title {
 	margin: 0 0 10px 0;
 	padding: 0px;
 	margin-right: 150px;
 	font-size: 4em;
 	font-weight: bold;
 }
+
+.post-title{
+	font-size: 21px;;
+	font-weight: bold;
+}
+
+.post-time{
+	position: absolute;
+	right: 0;
+	font-size: 16px;
+}
+.post-description{
+	font-size: 16px;
+}
+
+.post-list{
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+
 .footer {
 	margin: 0 auto;
 	padding: 1em;
@@ -135,6 +162,11 @@ a, a:focus, a:hover {
 
 	#main{
 		padding: 0 10px 0 10px;
+	}
+
+	.post-time{
+		position: relative;
+		clear: left;
 	}
 
 }
