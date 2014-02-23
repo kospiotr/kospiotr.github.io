@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="Piotr Kosmowski">
+	<link rel="shortcut icon" href="favicon.ico">
+
+	<title>Piotr Kosmowski page</title>
+
+	<!-- Fonts -->
+	<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro%3A400%2C400italic%2C700" rel="stylesheet">
+	<link href="http://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
+
+	<!-- Bootstrap core CSS -->
+	<link href="/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/css/font-awesome.min.css" rel="stylesheet">
+	<link href="/css/bootstrap-social.css" rel="stylesheet">
+
+	<!-- Styles -->
+	<link href="/css/main.css" rel="stylesheet">
+
+	<!-- Loading bar -->
+	<script src="/js/jquery-1.10.2.min.js"></script>
+	<script src="/js/jquery.stoc.js"></script>
+	
+
+	
+	<!-- Gallery -->
+	<link rel="stylesheet" href="/css/blueimp-gallery.min.css">
+	<link rel="stylesheet" href="/css/bootstrap-image-gallery.min.css">
+	<script src="/js/jquery.blueimp-gallery.min.js"></script>
+	<script src="/js/bootstrap-image-gallery.js"></script>
+	
+	<!-- HTML5 shiv for IE8 support -->
+	<!--[if lt IE 9]>
+	  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+	<![endif]-->
+  </head>
+
+  <body>
+	
+	<div id="blueimp-gallery" class="blueimp-gallery">
+		<!-- The container for the modal slides -->
+		<div class="slides"></div>
+		<!-- Controls for the borderless lightbox -->
+		<h3 class="title"></h3>
+		<a class="prev">‹</a>
+		<a class="next">›</a>
+		<a class="close">×</a>
+		<a class="play-pause"></a>
+		<ol class="indicator"></ol>
+		<!-- The modal dialog, which will be used to wrap the lightbox content -->
+		<div class="modal fade">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" aria-hidden="true">&times;</button>
+						<h4 class="modal-title"></h4>
+					</div>
+					<div class="modal-body next"></div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default pull-left prev">
+							<i class="glyphicon glyphicon-chevron-left"></i>
+							Previous
+						</button>
+						<button type="button" class="btn btn-primary next">
+							Next
+							<i class="glyphicon glyphicon-chevron-right"></i>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+
+	<section id="sidebar" class="col-sm-3 sidebar" style="display: inline-block;">
+<header id="header">
+	<a href="/">
+	<img src="http://www.gravatar.com/avatar/a4e3f3d974bfdd573f2bb607617b82c1.png" alt="Piotr Kosmowski" id="gravatar"/>
+	<p id="author-full-name">Piotr Kosmowski</p>
+	<p id="slogan">Hi, I'm Piotr and I write code for food.</p>
+</a>
+</header>
+<nav id="navigation">
+	<div class="row">
+		<a href="http://twitter.com/kospiotr" class="btn btn-default">Twitter</a>
+		<a href="http://pl.linkedin.com/pub/piotr-kosmowski/25/379/467" class="btn btn-default">LinkedIn</a>
+		<a href="/blog" class="btn btn-default">Blog</a>
+	</div>
+	<div class="row">	
+		<a href="http://github.com/kospiotr" class="btn btn-default">Github</a>
+		<a href="/wiki" class="btn btn-default">Wiki</a>
+	</div>
+</nav>
+	</section>
+
+	<section id="main" class="col-sm-9">
+		<div id="main-container">
+<article id="main-article">
+	<header id="header">
+		<nav id="nav">
+			
+				<a href="/2014/02/05/own-maven-repository-on-google-code.html" title="Older: Prywatne repozytorium Maven na code.google.pl" class="btn btn-default">←</a>
+			
+				<a href="/blog" class="btn btn-default">Blog posts</a>
+			
+		</nav>
+		<h1 id="page-title">Maven site</h1>
+		
+			<h2 id="page-description">
+				Tworzenie dokumentacji projektu przy pomocy mechanizmu site z Mavena (in Polish)
+			</h2>
+		
+		<h3> 06 Feb 2014</h3>
+	</header>
+	<div id="article-body" class="markdown-body">
+
+<p>Jak wiadomo kolejnym etapem po, a jeszcze lepiej w trakcie realizacji projektu należy przedstawić klientowi dokumentację zarówno użytkownika jak i techniczną. Abstrahując zupełnie od dokumentacji użytkownika dokumentacja techniczna powinna zawierać przynajmniej takie podstawowe elementy jak:</p>
+
+<ul>
+<li>javadoc,</li>
+<li>FAQ,</li>
+<li>opis użycia,</li>
+<li>pokrycie kotu testami,</li>
+<li>wyniki testów,</li>
+</ul>
+
+<p>i wiele innych zależących od wymogów klientów, góry czy własnych wymagań.</p>
+
+<p>Oprócz części opisowej, którą prowadzić programista musi samodzielnie, w większości powyższych przypadków może wyręczyć nas maven. Dokumentacja generowana jest do postaci strony HTML, którą później można udostępnić w internecie bądź intranecie podobnie jak robi to dosyć spora rzesza producentów oprogramowania w tym sam twórca mavena – apache.</p>
+
+<p>Struktura strony</p>
+
+<p>Definicja struktury strony musi znajdować się w pliku: <code>\src\site\site.xml</code> i powinna mieć strukturę zgonie z dokumentacją:</p>
+<div class="highlight"><pre><code class="xml language-xml" data-lang="xml"><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;</span>
+<span class="nt">&lt;project</span> <span class="na">name=</span><span class="s">&quot;Maven&quot;</span><span class="nt">&gt;</span>
+
+    <span class="nt">&lt;bannerLeft&gt;</span>
+        <span class="nt">&lt;name&gt;</span>Maven<span class="nt">&lt;/name&gt;</span>
+        <span class="nt">&lt;src&gt;</span>http://maven.apache.org/images/apache-maven-project.png<span class="nt">&lt;/src&gt;</span>
+        <span class="nt">&lt;href&gt;</span>http://maven.apache.org/<span class="nt">&lt;/href&gt;</span>
+    <span class="nt">&lt;/bannerLeft&gt;</span>
+    <span class="nt">&lt;bannerRight&gt;</span>
+        <span class="nt">&lt;src&gt;</span>http://maven.apache.org/images/maven-small.gif<span class="nt">&lt;/src&gt;</span>
+    <span class="nt">&lt;/bannerRight&gt;</span>
+    <span class="nt">&lt;body&gt;</span>
+        <span class="nt">&lt;links&gt;</span>
+            <span class="nt">&lt;item</span> <span class="na">name=</span><span class="s">&quot;Project Name&quot;</span> <span class="na">href=</span><span class="s">&quot;http://www.project_name.company_name.com/&quot;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;/links&gt;</span>
+
+        <span class="nt">&lt;menu</span> <span class="na">name=</span><span class="s">&quot;Maven 2.0&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;item</span> <span class="na">name=</span><span class="s">&quot;Introduction&quot;</span> <span class="na">href=</span><span class="s">&quot;index.html&quot;</span><span class="nt">/&gt;</span>
+            <span class="nt">&lt;item</span> <span class="na">name=</span><span class="s">&quot;Download&quot;</span> <span class="na">href=</span><span class="s">&quot;download.html&quot;</span><span class="nt">/&gt;</span>
+            <span class="nt">&lt;item</span> <span class="na">name=</span><span class="s">&quot;Release Notes&quot;</span> <span class="na">href=</span><span class="s">&quot;release-notes.html&quot;</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;item</span> <span class="na">name=</span><span class="s">&quot;General Information&quot;</span> <span class="na">href=</span><span class="s">&quot;about.html&quot;</span><span class="nt">/&gt;</span>
+            <span class="nt">&lt;item</span> <span class="na">name=</span><span class="s">&quot;For Maven 1.x Users&quot;</span> <span class="na">href=</span><span class="s">&quot;maven1.html&quot;</span><span class="nt">/&gt;</span>
+            <span class="nt">&lt;item</span> <span class="na">name=</span><span class="s">&quot;Road Map&quot;</span> <span class="na">href=</span><span class="s">&quot;roadmap.html&quot;</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;item</span> <span class="na">name=</span><span class="s">&quot;FAQ&quot;</span> <span class="na">href=</span><span class="s">&quot;faq.html&quot;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;/menu&gt;</span>
+
+        <span class="nt">&lt;menu</span> <span class="na">ref=</span><span class="s">&quot;modules&quot;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;menu</span> <span class="na">ref=</span><span class="s">&quot;reports&quot;</span><span class="nt">/&gt;</span>
+
+    <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/project&gt;</span>
+</code></pre></div>
+<p>Niestety od czasu mavena 2 wprowadzono reorganizację struktury projektu co zaowocowało zmianą filozofii wykorzystywania niektórych modułów w tym generowania site-ów. Tym sposobem dokumentacja przeznaczona dla wcześniejszych wersji, której jest ogromna ilość w internecie może powodować zamęt i błędy podczas próby generowania strony. W wersji <code>3.0.x</code> należy dodać następujący plugin w pliku pom.xml:</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">&lt;plugins&gt;
+    &lt;plugin&gt;
+        &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+        &lt;artifactId&gt;maven-site-plugin&lt;/artifactId&gt;
+        &lt;version&gt;3.0-beta-2&lt;/version&gt;
+    &lt;/plugin&gt;
+&lt;/plugins&gt;
+</code></pre></div>
+<p>Aby przetestować działanie pluginu należy wydać polecenie: <code>clean:clean site:site</code></p>
+
+<p>Po uruchomieniu strony znajdującej się w <code>target\site\index.html</code> naszym oczom ukaże się strona jak na załączonym zrzucie:</p>
+
+<p><a href="/img/site_page.jpg" data-gallery>
+        <img src="/img/site_page.jpg" >
+</a></p>
+
+<p>Strona HTML czyli site może zostać wygenerowany domyślnie z kilku typów źródeł danych takich jak:</p>
+
+<ul>
+<li>apt - Almost Plain Text (strony statyczne)</li>
+<li>xdoc (strony statyczne)</li>
+<li>fml - FAQ</li>
+</ul>
+
+<p>oraz poprzez dostarczenie dodatkowych treści poprzez pluginy. Stronę taką można internacjonalizować oraz zmieniać jej wygląd poprzez skórki. Więcej informacji na temat pluginu oraz jego możliwości dostępnych jest na oficjalnej stronie wygenerowanej również przy pomocy mavena.</p>
+
+<p>Ostatnią rzeczą jaką będziemy chcieli zrobić to umieszczenie naszego site-a na serwerze, do którego będą mieli dostęp użytkownicy naszego projektu. W tym celu musimy do naszego pliku pom.xml dodać wpis gdzie chcemy ją umieścić:</p>
+<div class="highlight"><pre><code class="xml language-xml" data-lang="xml"><span class="nt">&lt;distributionManagement&gt;</span>
+    <span class="nt">&lt;site&gt;</span>
+        <span class="nt">&lt;id&gt;</span>mycompany<span class="nt">&lt;/id&gt;</span>
+        <span class="nt">&lt;url&gt;</span>ftp://mycompany.com/public_html/site/my_product_site<span class="nt">&lt;/url&gt;</span>
+    <span class="nt">&lt;/site&gt;</span>
+<span class="nt">&lt;/distributionManagement&gt;</span>
+</code></pre></div>
+<p>oraz należy stworzyć plik settings.xml obok pom.xml, w którym podamy dane niezbędne do logowania się przez protokół ftp:</p>
+<div class="highlight"><pre><code class="xml language-xml" data-lang="xml"><span class="nt">&lt;servers&gt;</span>
+    <span class="nt">&lt;server&gt;</span>
+        <span class="nt">&lt;id&gt;</span>mycompany<span class="nt">&lt;/id&gt;</span>
+        <span class="nt">&lt;username&gt;</span>username<span class="nt">&lt;/username&gt;</span>
+        <span class="nt">&lt;password&gt;</span>password<span class="nt">&lt;/password&gt;</span>
+        <span class="nt">&lt;filePermissions&gt;</span>775<span class="nt">&lt;/filePermissions&gt;</span>
+        <span class="nt">&lt;directoryPermissions&gt;</span>775<span class="nt">&lt;/directoryPermissions&gt;</span>
+    <span class="nt">&lt;/server&gt;</span>
+<span class="nt">&lt;/servers&gt;</span>
+</code></pre></div>
+<p>Hasło niestety należy podać w postaci jawnej, dlatego nie należy pliku settings.xml wysyłać do repozytorium. Każdy użytkownik, który jest odpowiedzialny za publikację site-a powinien mieć zdefiniowany własny login i hasło poza udostępnionymi elementami.</p>
+
+<p>Oczywiście nie jest to wciąż najbezpieczniejsza metoda przechowywania hasła przed nieporządanym dostępem dlatego można hasła szyfrować za pomocą tej metody.</p>
+
+<p>Aby umieścić stronę na zdalnym serwerze należy wydać polecenie: <code>site:deploy</code></p>
+
+
+	</div>
+	<nav id="nav-bottom">
+		
+			<a href="/2014/02/05/own-maven-repository-on-google-code.html" title="Older: Prywatne repozytorium Maven na code.google.pl" class="btn btn-default">←</a>
+		
+			<a href="/blog" class="btn btn-default">Blog posts</a>
+		
+	</nav>
+
+	<footer id="comments">
+		<header>
+			<h1>Comments</h1>
+		</header>
+		<div id="disqus_thread"></div>
+		<script type="text/javascript">
+			var disqus_shortname = 'piotr-kosmowski-site'; // required: replace example with your forum shortname
+
+			(function() {
+				var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+				dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+				(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+			})();
+		</script>
+		<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+		<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+	</footer>
+
+</article>
+﻿<footer class="footer">
+	<p>© Piotr Kosmowski. All right reserved. </p>
+</footer>
+		</div>
+	</section>
+  </body>
+</html>

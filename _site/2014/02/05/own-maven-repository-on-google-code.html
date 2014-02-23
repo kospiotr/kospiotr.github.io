@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="Piotr Kosmowski">
+	<link rel="shortcut icon" href="favicon.ico">
+
+	<title>Piotr Kosmowski page</title>
+
+	<!-- Fonts -->
+	<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro%3A400%2C400italic%2C700" rel="stylesheet">
+	<link href="http://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
+
+	<!-- Bootstrap core CSS -->
+	<link href="/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/css/font-awesome.min.css" rel="stylesheet">
+	<link href="/css/bootstrap-social.css" rel="stylesheet">
+
+	<!-- Styles -->
+	<link href="/css/main.css" rel="stylesheet">
+
+	<!-- Loading bar -->
+	<script src="/js/jquery-1.10.2.min.js"></script>
+	<script src="/js/jquery.stoc.js"></script>
+	
+
+	
+	<!-- HTML5 shiv for IE8 support -->
+	<!--[if lt IE 9]>
+	  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+	<![endif]-->
+  </head>
+
+  <body>
+	
+
+	<section id="sidebar" class="col-sm-3 sidebar" style="display: inline-block;">
+<header id="header">
+	<a href="/">
+	<img src="http://www.gravatar.com/avatar/a4e3f3d974bfdd573f2bb607617b82c1.png" alt="Piotr Kosmowski" id="gravatar"/>
+	<p id="author-full-name">Piotr Kosmowski</p>
+	<p id="slogan">Hi, I'm Piotr and I write code for food.</p>
+</a>
+</header>
+<nav id="navigation">
+	<div class="row">
+		<a href="http://twitter.com/kospiotr" class="btn btn-default">Twitter</a>
+		<a href="http://pl.linkedin.com/pub/piotr-kosmowski/25/379/467" class="btn btn-default">LinkedIn</a>
+		<a href="/blog" class="btn btn-default">Blog</a>
+	</div>
+	<div class="row">	
+		<a href="http://github.com/kospiotr" class="btn btn-default">Github</a>
+		<a href="/wiki" class="btn btn-default">Wiki</a>
+	</div>
+</nav>
+	</section>
+
+	<section id="main" class="col-sm-9">
+		<div id="main-container">
+<article id="main-article">
+	<header id="header">
+		<nav id="nav">
+			
+				<a href="/2014/02/04/c3p0-proper-closing-application.html" title="Older: C3P0 - poprawne zamykanie" class="btn btn-default">←</a>
+			
+				<a href="/blog" class="btn btn-default">Blog posts</a>
+			
+				<a href="/2014/02/06/maven-site.html" title="Newer: Maven site" class="btn btn-default">→</a>
+			
+		</nav>
+		<h1 id="page-title">Prywatne repozytorium Maven na code.google.pl</h1>
+		
+			<h2 id="page-description">
+				Tworzenie i konfiguracja prywatnego repozytorium Maven (in Polish)
+			</h2>
+		
+		<h3> 05 Feb 2014</h3>
+	</header>
+	<div id="article-body" class="markdown-body">
+
+<p>Często tworząc nowy projekt (z reguły opensource) w naszym przypadku wykorzystujemy jako repozytorium popularny <code>Github</code>, <code>Bitbucket</code> lub  <code>code.google.com</code>. Aby podnieść walor biznesowy i jakość świadczonych usług normalnym jest częste wydawanie nowej wersji naszej aplikacji klientom / społeczności. Proces ten czasmi jest dosyć tendencyjny i uciążliwy. Powtarzające się procesy oczywiście dociekliwy programista jest w stanie sobie zautomatyzować w bardzo zwinny sposób.</p>
+
+<p>Dzisiaj pokażemy jak posiadając projekt na <code>code.google.com</code> stworzyć z niego własne repozytorium wykorzystując do tego mavena w wersji <code>3.0.3</code>.</p>
+
+<p>plik pom.xml</p>
+<div class="highlight"><pre><code class="xml language-xml" data-lang="xml"><span class="nt">&lt;project&gt;</span>
+
+    <span class="nt">&lt;repositories&gt;</span>
+        <span class="nt">&lt;repository&gt;</span>
+            <span class="nt">&lt;id&gt;</span>google<span class="nt">&lt;/id&gt;</span>
+            <span class="nt">&lt;name&gt;</span>[Project Name] Maven Repository<span class="nt">&lt;/name&gt;</span>
+            <span class="nt">&lt;url&gt;</span>https://[project-name].googlecode.com/svn/maven-repo/releases<span class="nt">&lt;/url&gt;</span>
+        <span class="nt">&lt;/repository&gt;</span>
+    <span class="nt">&lt;/repositories&gt;</span>
+
+    <span class="nt">&lt;distributionManagement&gt;</span>
+        <span class="nt">&lt;repository&gt;</span>
+            <span class="nt">&lt;id&gt;</span>google<span class="nt">&lt;/id&gt;</span>
+            <span class="nt">&lt;name&gt;</span>Maven Repository for Config Processor Plugin (releases)<span class="nt">&lt;/name&gt;</span>
+            <span class="nt">&lt;url&gt;</span>dav:https://[project-name].googlecode.com/svn/maven-repo/releases<span class="nt">&lt;/url&gt;</span>
+            <span class="nt">&lt;uniqueVersion&gt;</span>false<span class="nt">&lt;/uniqueVersion&gt;</span>
+        <span class="nt">&lt;/repository&gt;</span>
+        <span class="nt">&lt;snapshotRepository&gt;</span>
+            <span class="nt">&lt;id&gt;</span>google<span class="nt">&lt;/id&gt;</span>
+            <span class="nt">&lt;name&gt;</span>Maven Repository for Config Processor Plugin (snapshots)<span class="nt">&lt;/name&gt;</span>
+            <span class="nt">&lt;url&gt;</span>dav:https://[project-name].googlecode.com/svn/maven-repo/snapshots<span class="nt">&lt;/url&gt;</span>
+            <span class="nt">&lt;uniqueVersion&gt;</span>false<span class="nt">&lt;/uniqueVersion&gt;</span>
+        <span class="nt">&lt;/snapshotRepository&gt;</span>
+    <span class="nt">&lt;/distributionManagement&gt;</span>
+
+    <span class="nt">&lt;build&gt;</span>
+        <span class="nt">&lt;extensions&gt;</span>
+            <span class="nt">&lt;extension&gt;</span>
+                <span class="nt">&lt;groupId&gt;</span>org.apache.maven.wagon<span class="nt">&lt;/groupId&gt;</span>
+                <span class="nt">&lt;artifactId&gt;</span>wagon-webdav<span class="nt">&lt;/artifactId&gt;</span>
+                <span class="nt">&lt;version&gt;</span>1.0-beta-2<span class="nt">&lt;/version&gt;</span>
+            <span class="nt">&lt;/extension&gt;</span>
+        <span class="nt">&lt;/extensions&gt;</span>
+    <span class="nt">&lt;/build&gt;</span>
+</code></pre></div>
+<p>i dodatkowo w pliku settings.xml:</p>
+<div class="highlight"><pre><code class="xml language-xml" data-lang="xml"><span class="nt">&lt;servers&gt;</span>
+    <span class="nt">&lt;server&gt;</span>
+        <span class="nt">&lt;id&gt;</span>google<span class="nt">&lt;/id&gt;</span>
+        <span class="nt">&lt;username&gt;</span>[my-login]<span class="nt">&lt;/username&gt;</span>
+        <span class="nt">&lt;password&gt;</span>[my password]<span class="nt">&lt;/password&gt;</span>
+        <span class="nt">&lt;filePermissions&gt;</span>775<span class="nt">&lt;/filePermissions&gt;</span>
+        <span class="nt">&lt;directoryPermissions&gt;</span>775<span class="nt">&lt;/directoryPermissions&gt;</span>
+    <span class="nt">&lt;/server&gt;</span>
+<span class="nt">&lt;/servers&gt;</span>
+</code></pre></div>
+<p>Objaśnienia poszczególnych elementów w pliku pom.xml:</p>
+
+<ul>
+<li><p><strong>repositories -&gt; repository</strong> – wskazuje miejsce wyszukiwania artefaktów umieszczonych z innych projektów
+distributionManagement -&gt; repository – wskazuje miejsce, gdzie nowo skompilowane wersje zostaną uploadowane w fazie deploy; w tym miejscu pojawią się jedynie wersje, które nie są opatrzone suffixem SNAPSHOT w wersji projektu np: <code>&lt;version&gt;1.0.1&lt;/version&gt;</code></p></li>
+<li><p><strong>distributionManagement -&gt; snapshotRepository</strong> – wskazuje miejsce, gdzie nowo skompilowane wersje zostaną uploadowane w fazie deploy; w tym miejscu pojawią się jedynie wersje, które są opatrzone suffixem SNAPSHOT w wersji projektu np: <code>&lt;version&gt;1.0.1-SNAPSHOT&lt;/version&gt;</code></p></li>
+<li><p><strong>extension</strong> - dodany connector, który obsługuje protokół webDav, który jest implementowany przez subversion wykorzystywany przez code.google.com</p></li>
+</ul>
+
+<p>Objaśnienia poszczególnych elementów w pliku settings.xml:</p>
+
+<ul>
+<li><strong>servers -&gt; server</strong> – definiuje loginy i hasła do konta dostępowego z prawami zapisu do projektu</li>
+</ul>
+
+<p>Jeżeli występuje błąd 401 oznacza to błąd autoryzacji dla powyższych danych.</p>
+
+<p>Projekt zostanie uploadowany na serwer w fazie deploy dlatego aby przetestować nową funkcjonalność wydajemy polecenie:</p>
+
+<p><code>mvn clean install deploy:deploy</code></p>
+
+
+	</div>
+	<nav id="nav-bottom">
+		
+			<a href="/2014/02/04/c3p0-proper-closing-application.html" title="Older: C3P0 - poprawne zamykanie" class="btn btn-default">←</a>
+		
+			<a href="/blog" class="btn btn-default">Blog posts</a>
+		
+			<a href="/2014/02/06/maven-site.html" title="Newer: Maven site" class="btn btn-default">→</a>
+		
+	</nav>
+
+	<footer id="comments">
+		<header>
+			<h1>Comments</h1>
+		</header>
+		<div id="disqus_thread"></div>
+		<script type="text/javascript">
+			var disqus_shortname = 'piotr-kosmowski-site'; // required: replace example with your forum shortname
+
+			(function() {
+				var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+				dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+				(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+			})();
+		</script>
+		<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+		<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+	</footer>
+
+</article>
+﻿<footer class="footer">
+	<p>© Piotr Kosmowski. All right reserved. </p>
+</footer>
+		</div>
+	</section>
+  </body>
+</html>
