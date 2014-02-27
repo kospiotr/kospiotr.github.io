@@ -20,7 +20,7 @@ Oprócz części opisowej, którą prowadzić programista musi samodzielnie, w w
 
 Struktura strony
 
-Definicja struktury strony musi znajdować się w pliku: ```\src\site\site.xml``` i powinna mieć strukturę zgonie z dokumentacją:
+Definicja struktury strony musi znajdować się w pliku: ```\src\site\site.xml``` i powinna mieć strukturę zgonie z [dokumentacją](http://maven.apache.org/guides/mini/guide-site.html):
 
 ```xml
 <?xml version="1.0" encoding="ISO-8859-1"?>
@@ -77,11 +77,11 @@ Po uruchomieniu strony znajdującej się w ```target\site\index.html``` naszym o
 
 Strona HTML czyli site może zostać wygenerowany domyślnie z kilku typów źródeł danych takich jak:
 
-* apt - Almost Plain Text (strony statyczne)
-* xdoc (strony statyczne)
-* fml - FAQ
+* [apt](http://maven.apache.org/doxia/references/apt-format.html) - Almost Plain Text (strony statyczne)
+* [xdoc](http://maven.apache.org/doxia/references/xdoc-format.html) (strony statyczne)
+* [fml](http://maven.apache.org/doxia/references/fml-format.html) - FAQ
 
-oraz poprzez dostarczenie dodatkowych treści poprzez pluginy. Stronę taką można internacjonalizować oraz zmieniać jej wygląd poprzez skórki. Więcej informacji na temat pluginu oraz jego możliwości dostępnych jest na oficjalnej stronie wygenerowanej również przy pomocy mavena.
+oraz poprzez dostarczenie dodatkowych treści poprzez [pluginy](http://maven.apache.org/plugins/maven-site-plugin/maven-3.html). Stronę taką można [internacjonalizować](http://maven.apache.org/plugins/maven-site-plugin/i18n.html) oraz zmieniać jej wygląd poprzez [skórki](http://maven.apache.org/plugins/maven-site-plugin/examples/templatefile.html). Więcej informacji na temat pluginu oraz jego możliwości dostępnych jest na [oficjalnej stronie](http://maven.apache.org/plugins/maven-site-plugin/index.html) wygenerowanej również przy pomocy mavena.
 
 Ostatnią rzeczą jaką będziemy chcieli zrobić to umieszczenie naszego site-a na serwerze, do którego będą mieli dostęp użytkownicy naszego projektu. W tym celu musimy do naszego pliku pom.xml dodać wpis gdzie chcemy ją umieścić:
 
@@ -109,6 +109,6 @@ oraz należy stworzyć plik settings.xml obok pom.xml, w którym podamy dane nie
 
 Hasło niestety należy podać w postaci jawnej, dlatego nie należy pliku settings.xml wysyłać do repozytorium. Każdy użytkownik, który jest odpowiedzialny za publikację site-a powinien mieć zdefiniowany własny login i hasło poza udostępnionymi elementami.
 
-Oczywiście nie jest to wciąż najbezpieczniejsza metoda przechowywania hasła przed nieporządanym dostępem dlatego można hasła szyfrować za pomocą tej metody.
+Oczywiście nie jest to wciąż najbezpieczniejsza metoda przechowywania hasła przed nieporządanym dostępem dlatego można hasła szyfrować za pomocą [tej](http://maven.apache.org/guides/mini/guide-encryption.html#How_to_encrypt_server_passwords) metody.
 
 Aby umieścić stronę na zdalnym serwerze należy wydać polecenie: ```site:deploy```
