@@ -1,0 +1,40 @@
+---
+layout: nil
+title: Piotr Kosmowski pages
+baseurl: http://kospiotr.github.io/blog
+---
+<feed xmlns="http://www.w3.org/2005/Atom" xml:base="{{ page.baseurl }}">
+<title type="html">{{ page.title | xml_escape }}</title>
+<link href="/" />
+<link rel="self" href="{{ page.baseurl }}/rss.xml" />
+<updated>{{ site.time | date_to_xmlschema }}</updated>
+<author>
+  <name>Piotr Kosmowski</name>
+  <uri>https://plus.google.com/+PiotrKosmowski</uri>
+</author>
+<id>{{ page.baseurl }}/rss.xml</id>
+<link rel="license" type="application/rdf+xml"
+      href="http://creativecommons.org/licenses/by/3.0/rdf" />
+<rights type="html"><![CDATA[
+Copyright © {{ site.time | date: "%Y" }} Piotr Kosmowski. Except as noted, {{ page.title }} by <a href="https://plus.google.com/+PiotrKosmowski">Piotr Kosmowski</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 Unported License</a>.
+]]></rights>
+
+{% for post in site.posts limit:10 %}
+<entry>
+  <title type="html">{{ post.title | xml_escape }}</title>
+  <link href="{{ post.url }}" />
+  <published>{{ post.date | date_to_xmlschema }}</published>
+  <updated>{{ post.date | date_to_xmlschema }}</updated>
+  <id>{{ page.baseurl }}{{ post.url }}</id>
+  {% for category in post.categories %}
+    <category term="{{ category }}" />
+  {% endfor %}
+  {% if post.discuss_url %}
+    <link rel="replies" href="{{ post.discuss_url }}" />
+  {% endif %}
+  <content type="html" xml:base="{{ post.url }}"><![CDATA[
+    {{ post.content }}
+  ]]></content>
+</entry>
+{% endfor %}
+</feed>
