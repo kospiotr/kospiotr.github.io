@@ -5,6 +5,7 @@ description: "Zautomatyzowane wydanie projektu w formie archiwum zip przy pomocy
 date:   2014-02-07 22:16:00
 gallery: false
 ---
+
 Jednym z elementów cyklu życia projektu jest wydanie jego wersji. W zależności co tak na prawdę tworzymy efektem końcowym jest aplikacja gotowa do uruchomienia przez klienta, bądź biblioteka wykorzystywana w innych projektach. Oto czym się głównie charakteryzują:
 
  * aplikacja – posiada strukturę dostosowaną do projektu (jednakowa nazwa artefaktu np.: aplikacja.jar, zależności umieszczone w folderze lib, zasoby porozmieszczane w oddzielnych folderach np.: Pomoc, Img, Log, Raporty itp.), dokumentacja użytkownika, przykładowe pliki konfiguracyjne, dołączone jedynie binaria
