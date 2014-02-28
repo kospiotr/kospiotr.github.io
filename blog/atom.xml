@@ -1,15 +1,14 @@
 ---
 title: Piotr Kosmowski pages
-baseurl: http://kospiotr.github.io/blog
 ---
 <?xml version="1.0"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
  
   <title>{{ page.title }}</title>
-  <link href="{{ page.baseurl }}"/>
-  <link type="application/atom+xml" rel="self" href="{{ page.baseurl }}/atom.xml"/>
+  <link href="{{ site.baseurl }}"/>
+  <link type="application/atom+xml" rel="self" href="{{ site.baseurl }}/atom.xml"/>
   <updated>{{ site.time | date_to_xmlschema }}</updated>
-  <id>{{ page.baseurl }}</id>
+  <id>{{ site.baseurl }}</id>
   <author>
     <name>Piotr Kosmowski</name>
     <email>kospiotr@tlen.pl</email>
@@ -17,8 +16,8 @@ baseurl: http://kospiotr.github.io/blog
 
   {% for post in site.posts %}
   <entry>
-    <id>{{ page.baseurl }}{{ post.id }}</id>
-    <link type="text/html" rel="alternate" href="{{ page.baseurl }}/{{ post.url }}"/>
+    <id>{{ site.baseurl }}{{ post.id }}</id>
+    <link type="text/html" rel="alternate" href="{{ site.baseurl }}/{{ post.url }}"/>
     <title>{{ post.title }}</title>
     <published>{{ post.date | date_to_xmlschema }}</published>
     <updated>{{ post.date | date_to_xmlschema }}</updated>
