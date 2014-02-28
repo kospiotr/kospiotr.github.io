@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Wdrożenie aplikacji na Tomcata"
-description: "Zautomatyzowane wdrozenia aplikacji na serwer Tomcat z uzyciem Mavena i pluginu Cargo"
+description: "Zautomatyzowane wdrożenia aplikacji na serwer Tomcat z uzyciem Mavena i pluginu Cargo"
 date:   2014-02-08 22:16:00
 gallery: false
 ---
