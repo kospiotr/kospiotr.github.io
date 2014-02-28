@@ -4,3 +4,4 @@ safe: true
 lsi: false
 pygments: true
 encoding: utf-8
+permalink: /blog/:year/:month/:day/:title/
