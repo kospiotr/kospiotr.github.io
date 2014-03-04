@@ -19,3 +19,7 @@ To exclude certains directories and files you need to place them in ```.gitignor
 The purpose of gitignore files is to ensure that certain files not tracked by Git remain untracked.
 To ignore uncommitted changes in a file that is already tracked, use ```git update-index --assume-unchanged```.
 To stop tracking a file that is currently tracked, use ```git rm --cached```.
+
+# Branching
+
+ * ```git branch -a``` - display branches
