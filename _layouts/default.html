@@ -26,6 +26,7 @@
 
 	<!-- Loading bar -->
 	<script src="{{site.baseurl}}/js/jquery-1.10.2.min.js"></script>
+	<script src="{{site.baseurl}}/js/jquery.cookie.js"></script>
 	<script src="{{site.baseurl}}/js/jquery.stoc.js"></script>
 	
 
@@ -78,7 +79,8 @@
 		</div>
 	</div>
 	{% endif %}
-
+	
+	<img id="toggle-sidebar-button" src="/img/toogle-sidebar.png" alt="toogle sidebar button"/>
 	<section id="sidebar" class="col-sm-3 sidebar" style="display: inline-block;">
 {% include sidebar.html %}
 	</section>
@@ -90,4 +92,64 @@
 		</div>
 	</section>
   </body>
+	<script type="text/javascript">
+		var layoutConfig = {
+			'mainPaddingWithSidebar': $('#main').css('padding-right'),
+			'mainPaddingWithoutSidebar': '0px',
+			'fadeTime': 1000,
+			'cookieToogleSidebarName': 'sidebar-colapsed'
+		};
+		
+		function saveSidebarCollapseState(isCollapsed){
+			if(isCollapsed){
+				$.cookie('sidebar-colapsed', true, { path: '/' });
+			}else{
+				$.removeCookie(layoutConfig.cookieToogleSidebarName, { path: '/' });
+			}
+		};
+		
+		function isSidebarPersistedAsCollapsed(){
+			return $.cookie(layoutConfig.cookieToogleSidebarName );
+		};
+		
+		function isSidebarCollapsed(){
+			return $('#sidebar').is(':visible');
+		};
+		
+		function toogleSidebarWithAnimation(){
+			var isCollapsed = isSidebarCollapsed();
+			if(isCollapsed){
+				$('#sidebar').fadeOut(layoutConfig.fadeTime);
+				$('#main').animate({ 
+					'padding-right' : layoutConfig.mainPaddingWithoutSidebar,
+				  }, 'slow');
+			}else{
+				$('#sidebar').fadeIn(layoutConfig.fadeTime);
+				$('#main').animate({ 
+					'padding-right' : layoutConfig.mainPaddingWithSidebar,
+				  }, 'slow');
+			}
+			saveSidebarCollapseState(isCollapsed);
+		};
+		
+		function setToggleButtonMinimizing(){
+			
+		};
+		
+		function setToggleButtonMaximizing(){
+		
+		};
+		
+		$('#toggle-sidebar-button').click(function(){
+			toogleSidebarWithAnimation();
+		});
+		
+		$().ready(function(){
+			if(isSidebarPersistedAsCollapsed()){
+				$('#main').css('padding-right', layoutConfig.mainPaddingWithoutSidebar);
+				$('#sidebar').hide();
+			}
+		});
+
+	</script>
 </html>

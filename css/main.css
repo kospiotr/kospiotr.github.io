@@ -34,6 +34,14 @@ a, a:focus, a:hover {
 	text-align: center;
 }
 
+#toggle-sidebar-button{
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	color: yellow;
+	z-index: 200;
+}
+
 #sidebar{
 	background-color: #000000;
 	height: 100%;
@@ -162,6 +170,9 @@ a, a:focus, a:hover {
 
 	#main{
 		padding: 0 10px 0 10px;
+	}
+	#toggle-sidebar-button{
+		display: none;
 	}
 
 	.post-time{
