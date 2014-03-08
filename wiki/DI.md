@@ -313,12 +313,10 @@ public class RealBillingService implements BillingService {
 }
 ```
 
-#DI Frameworks
- 
- * [Spring Framework](http://projects.spring.io/spring-framework/)
- * [Guice](https://code.google.com/p/google-guice/)
- * [Pico Container](http://picocontainer.codehaus.org/)
- * [Weld](http://weld.cdi-spec.org/)
+# Beans types
+
+ * Singleton
+ * Prototype
 
 #Application configuration
 
@@ -338,11 +336,12 @@ Dependency Injection design pattern requires that all child dependencies must be
 
 When dependencies graph is getting bigger it is worth to use some kind of framework to manage its dependencies configuration.
 
-
-# Beans types
-
- * Singleton
- * Prototype
+#DI Frameworks
+ 
+ * [Spring Framework](http://projects.spring.io/spring-framework/)
+ * [Guice](https://code.google.com/p/google-guice/)
+ * [Pico Container](http://picocontainer.codehaus.org/)
+ * [Weld](http://weld.cdi-spec.org/)
   
 #References
 
