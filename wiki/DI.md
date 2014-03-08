@@ -95,6 +95,7 @@ This code poses problems for modularity and testability. In fact this code is no
  * If we would like to test ```RealBillingService``` with unit tests the ```PaypalCreditCardProcessor``` will be created and we would perform operations on the real card creditCardProcessor. It means that we will the code will charge a real credit card during testing! In the tests we should operate on a ```FakeCreditCardProcessor```.
  * When using other providers like ```VisaCreditCardProcessor``` for ```CreditCardProcessor``` or ```BitCoinTransactionLog``` for ```TransactionLog``` will require code changes in the ```RealBillingService```.
  * It's also awkward to test what happens when the charge is declined or when the service is unavailable.
+ * This method often leads to Spaghetti Monster code 
 
 #Inversion of control implementations
 The problem with above example is that those dependencies are created directly by the ```RealBillingService```. Instead the ready to use objects should be prepared externally and be delivered to the object that operates on them. This object delivery from external place is called Inversion of Control as control over the object creation has been inverted. 
@@ -312,7 +313,36 @@ public class RealBillingService implements BillingService {
 }
 ```
 
+#DI Frameworks
+ 
+ * [Spring Framework](http://projects.spring.io/spring-framework/)
+ * [Guice](https://code.google.com/p/google-guice/)
+ * [Pico Container](http://picocontainer.codehaus.org/)
+ * [Weld](http://weld.cdi-spec.org/)
 
+#Application configuration
+
+Dependency Injection design pattern requires that all child dependencies must be resolved / instantiated before injection to the object. In the `RealBillingService` example recursive injection 
+
+```
++RealBillingService (BillingService)
+     |    |
+     |    +PaypalCreditCardProcessor (CreditCardProcessor)
+     |        |
+	 |        +PaypalWebService
+	 |
+     +DatabaseTransactionLog (TransactionLog)
+	      |
+		  +DatabaseAccess
+```
+
+When dependencies graph is getting bigger it is worth to use some kind of framework to manage its dependencies configuration.
+
+
+# Beans types
+
+ * Singleton
+ * Prototype
   
 #References
 
