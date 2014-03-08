@@ -96,7 +96,7 @@
 		var layoutConfig = {
 			'mainPaddingWithSidebar': $('#main').css('padding-right'),
 			'mainPaddingWithoutSidebar': '0px',
-			'fadeTime': 1000,
+			'fadeTime': 500,
 			'cookieToogleSidebarName': 'sidebar-colapsed'
 		};
 		
@@ -119,15 +119,14 @@
 		function toogleSidebarWithAnimation(){
 			var isCollapsed = isSidebarCollapsed();
 			if(isCollapsed){
-				$('#sidebar').fadeOut(layoutConfig.fadeTime);
-				$('#main').animate({ 
-					'padding-right' : layoutConfig.mainPaddingWithoutSidebar,
-				  }, 'slow');
+				$('#sidebar').fadeOut(layoutConfig.fadeTime, function(){
+					$('#main').animate({'padding-right' : layoutConfig.mainPaddingWithoutSidebar,}, 'slow');
+				});				
 			}else{
-				$('#sidebar').fadeIn(layoutConfig.fadeTime);
-				$('#main').animate({ 
-					'padding-right' : layoutConfig.mainPaddingWithSidebar,
-				  }, 'slow');
+				$('#main').animate({'padding-right' : layoutConfig.mainPaddingWithSidebar}, 'slow', function(){
+					$('#sidebar').fadeIn(layoutConfig.fadeTime);
+				});
+								
 			}
 			saveSidebarCollapseState(isCollapsed);
 		};

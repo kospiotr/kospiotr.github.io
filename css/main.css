@@ -40,6 +40,7 @@ a, a:focus, a:hover {
 	bottom: 0;
 	color: yellow;
 	z-index: 200;
+	cursor: pointer;
 }
 
 #sidebar{

@@ -66,16 +66,16 @@ public interface BillingService {
 }
 ```
 
-Here's what the code looks like when we just new up the credit card processor and transaction logger:
+Here's what the code looks like when we just new up the credit card creditCardProcessor and transaction logger:
 
 ```java
 public class RealBillingService implements BillingService {
   public Receipt chargeOrder(PizzaOrder order, CreditCard creditCard) {
-    CreditCardProcessor processor = new PaypalCreditCardProcessor();
+    CreditCardProcessor creditCardProcessor = new PaypalCreditCardProcessor();
     TransactionLog transactionLog = new DatabaseTransactionLog();
 
     try {
-      ChargeResult result = processor.charge(creditCard, order.getAmount());
+      ChargeResult result = creditCardProcessor.charge(creditCard, order.getAmount());
       transactionLog.logChargeResult(result);
 
       return result.wasSuccessful()
@@ -92,7 +92,7 @@ public class RealBillingService implements BillingService {
 This code poses problems for modularity and testability. In fact this code is not testable because of the following reasons:
 
  * If ```PaypalCreditCardProcessr``` or ```DatabaseTransactionLog``` has any dependencies like ```DatabaseConnection``` or ```RemoteTransactionArchiverWebService``` they will create them as well.
- * If we would like to test ```RealBillingService``` with unit tests the ```PaypalCreditCardProcessor``` will be created and we would perform operations on the real card processor. It means that we will the code will charge a real credit card during testing! In the tests we should operate on a ```FakeCreditCardProcessor```.
+ * If we would like to test ```RealBillingService``` with unit tests the ```PaypalCreditCardProcessor``` will be created and we would perform operations on the real card creditCardProcessor. It means that we will the code will charge a real credit card during testing! In the tests we should operate on a ```FakeCreditCardProcessor```.
  * When using other providers like ```VisaCreditCardProcessor``` for ```CreditCardProcessor``` or ```BitCoinTransactionLog``` for ```TransactionLog``` will require code changes in the ```RealBillingService```.
  * It's also awkward to test what happens when the charge is declined or when the service is unavailable.
 
@@ -113,7 +113,207 @@ There are few implementations of Inversion of Control:
  * Contextualized lookup
  * Template method design pattern
  * Strategy design pattern
+ 
+##Factories
+A factory class decouples the client and implementing class. A simple factory uses static methods to obtain implementation of the given interface. In our client code, we just replace the new calls with factory lookups:
 
+```java
+public class RealBillingService implements BillingService {
+  public Receipt chargeOrder(PizzaOrder order, CreditCard creditCard) {
+    CreditCardProcessor creditCardProcessor = CreditCardProcessorFactory.getInstance();
+    TransactionLog transactionLog = TransactionLogFactory.getInstance();
+
+    try {
+      ChargeResult result = creditCardProcessor.charge(creditCard, order.getAmount());
+      transactionLog.logChargeResult(result);
+
+      return result.wasSuccessful()
+          ? Receipt.forSuccessfulCharge(order.getAmount())
+          : Receipt.forDeclinedCharge(result.getDeclineMessage());
+     } catch (UnreachableException e) {
+      transactionLog.logConnectException(e);
+      return Receipt.forSystemFailure(e.getMessage());
+    }
+  }
+}
+```
+
+Then the ```CreditCardProcessorFactory``` might look like that:
+
+```java
+
+public class CreditCardProcessorFactory {
+  
+  private static CreditCardProcessor instance;
+  
+  public static void setInstance(CreditCardProcessor creditCardProcessor) {
+    instance = creditCardProcessor;
+  }
+
+  public static CreditCardProcessor getInstance() {
+    if (instance == null) {
+      return new SquareCreditCardProcessor();
+    }
+    
+    return instance;
+  }
+}
+```
+
+The factory makes it possible to write a unit test:
+
+```java
+public class RealBillingServiceTest extends TestCase {
+
+  private final PizzaOrder order = new PizzaOrder(100);
+  private final CreditCard creditCard = new CreditCard("1234", 11, 2010);
+
+  private final InMemoryTransactionLog transactionLog = new InMemoryTransactionLog();
+  private final FakeCreditCardProcessor creditCardProcessor = new FakeCreditCardProcessor();
+
+  @Override public void setUp() {
+    TransactionLogFactory.setInstance(transactionLog);
+    CreditCardProcessorFactory.setInstance(creditCardProcessor);
+  }
+
+  @Override public void tearDown() {
+    TransactionLogFactory.setInstance(null);
+    CreditCardProcessorFactory.setInstance(null);
+  }
+
+  public void testSuccessfulCharge() {
+    RealBillingService billingService = new RealBillingService();
+    Receipt receipt = billingService.chargeOrder(order, creditCard);
+
+    assertTrue(receipt.hasSuccessfulCharge());
+    assertEquals(100, receipt.getAmountOfCharge());
+    assertEquals(creditCard, creditCardProcessor.getCardOfOnlyCharge());
+    assertEquals(100, creditCardProcessor.getAmountOfOnlyCharge());
+    assertTrue(transactionLog.wasSuccessLogged());
+  }
+}
+```
+
+This code is clumsy as:
+
+ * A global variable holds the mock implementation, so we need to be careful about setting it up and tearing it down. Should the ```tearDown``` fail, the global variable continues to point at our test instance. This could cause problems for other tests. It also prevents us from running multiple tests in parallel.
+ 
+ * All the static member variables are kept on the special area on heap memory - Permanent Generation which can cause some memory and Garbage Collector issues.
+
+ * The dependencies are hidden in the code. If we add a dependency on a ```CreditCardFraudTracker```, we have to re-run the tests to find out which ones will break. Should we forget to initialize a factory for a production service, we don't find out until a charge is attempted. As the application grows, babysitting factories becomes a growing drain on productivity.
+
+Quality problems will be caught by QA or acceptance tests. That may be sufficient, but we can certainly do better.
+
+##Dependency Injection
+Like the factory, dependency injection is just a design pattern. The core principal is to separate behaviour from dependency resolution. In our example, the ```RealBillingService``` is not responsible for looking up the ```TransactionLog``` and ```CreditCardProcessor```. Instead, they're passed via constructor or setter.
+
+###Constructor Injection
+
+Here is an example how to inject both dependencies with constructor:
+
+```java
+public class RealBillingService implements BillingService {
+  private final CreditCardProcessor creditCardProcessor;
+  private final TransactionLog transactionLog;
+
+  public RealBillingService(CreditCardProcessor creditCardProcessor, 
+      TransactionLog transactionLog) {
+    this.creditCardProcessor = creditCardProcessor;
+    this.transactionLog = transactionLog;
+  }
+
+  public Receipt chargeOrder(PizzaOrder order, CreditCard creditCard) {
+    try {
+      ChargeResult result = creditCardProcessor.charge(creditCard, order.getAmount());
+      transactionLog.logChargeResult(result);
+
+      return result.wasSuccessful()
+          ? Receipt.forSuccessfulCharge(order.getAmount())
+          : Receipt.forDeclinedCharge(result.getDeclineMessage());
+     } catch (UnreachableException e) {
+      transactionLog.logConnectException(e);
+      return Receipt.forSystemFailure(e.getMessage());
+    }
+  }
+}
+```
+
+We don't need any factories, and we can simplify the testcase by removing the ```setUp``` and ```tearDown``` boilerplate:
+
+
+```java
+public class RealBillingServiceTest extends TestCase {
+
+  private final PizzaOrder order = new PizzaOrder(100);
+  private final CreditCard creditCard = new CreditCard("1234", 11, 2010);
+
+  private final InMemoryTransactionLog transactionLog = new InMemoryTransactionLog();
+  private final FakeCreditCardProcessor creditCardProcessor = new FakeCreditCardProcessor();
+
+  public void testSuccessfulCharge() {
+    RealBillingService billingService
+        = new RealBillingService(creditCardProcessor, transactionLog);
+    Receipt receipt = billingService.chargeOrder(order, creditCard);
+
+    assertTrue(receipt.hasSuccessfulCharge());
+    assertEquals(100, receipt.getAmountOfCharge());
+    assertEquals(creditCard, creditCardProcessor.getCardOfOnlyCharge());
+    assertEquals(100, creditCardProcessor.getAmountOfOnlyCharge());
+    assertTrue(transactionLog.wasSuccessLogged());
+  }
+}
+```
+
+Now, whenever we add or remove dependencies, the compiler will remind us what tests need to be fixed. The dependency is exposed in the API signature.
+
+Unfortunately, now the clients of ```BillingService``` need to lookup its dependencies. We can fix some of these by applying the pattern again! Classes that depend on it can accept a ```BillingService``` in their constructor. For top-level classes, it's useful to have a framework. Otherwise you'll need to construct dependencies recursively when you need to use a service:
+
+
+```java
+  public static void main(String[] args) {
+    CreditCardProcessor creditCardProcessor = new PaypalCreditCardProcessor();
+    TransactionLog transactionLog = new DatabaseTransactionLog();
+    BillingService billingService
+        = new RealBillingService(creditCardProcessor, transactionLog);
+    ...
+  }
+```
+
+### Setter injection
+
+As you can imagine you can inject dependencies also by using setters:
+
+```java
+public class RealBillingService implements BillingService {
+  private final CreditCardProcessor creditCardProcessor;
+  private final TransactionLog transactionLog;
+
+  public void setCreditCardProcessor(CreditCardProcessor creditCardProcessor){
+	this.creditCardProcessor = creditCardProcessor;
+  }
+  
+  public void setCreditCardProcessor(TransactionLog transactionLog){
+	this.transactionLog = transactionLog;
+  }
+  
+  public Receipt chargeOrder(PizzaOrder order, CreditCard creditCard) {
+    try {
+      ChargeResult result = creditCardProcessor.charge(creditCard, order.getAmount());
+      transactionLog.logChargeResult(result);
+
+      return result.wasSuccessful()
+          ? Receipt.forSuccessfulCharge(order.getAmount())
+          : Receipt.forDeclinedCharge(result.getDeclineMessage());
+     } catch (UnreachableException e) {
+      transactionLog.logConnectException(e);
+      return Receipt.forSystemFailure(e.getMessage());
+    }
+  }
+}
+```
+
+
+  
 #References
 
  * [http://martinfowler.com/articles/injection.html](http://martinfowler.com/articles/injection.html)
