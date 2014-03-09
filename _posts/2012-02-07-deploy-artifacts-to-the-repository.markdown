@@ -2,7 +2,7 @@
 layout: post
 title:  "Instalacja artefaktu w zdalnym repozytorium Mavena"
 description: "Prezentacja sposobu instalacji artefaktu w zdalnym repozytorium z użyciem pluginu wagon"
-date:   2014-02-13 22:16:00
+date:   2012-02-07 22:16:00
 ---
 
 W jednym z poprzednich wpisów pokazaliśmy jak zdeployować stworzoną zależność po skompilowaniu projektu. Dzisiejszy wpis poświęcony jest umieszczaniu zależności w repozytorium przy pomocy linii komend.

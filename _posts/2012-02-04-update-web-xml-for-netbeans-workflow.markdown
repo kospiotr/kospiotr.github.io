@@ -2,7 +2,7 @@
 layout: post
 title:  "Aktualizacja web.xml dla Netbeans"
 description: "Wprowadzenie zmian w deskrypotrze wdrożenia w celu wyeliminowania błędów w Netbeans"
-date:   2014-02-11 22:16:00
+date:   2012-02-04 22:16:00
 gallery: true
 ---
 Tworząc nowy projekt czy to za pomocą kreatora dołączonego do IDE czy za pomocą archetypu Maven zdarza się, że utworzona wersja deskryptora wdrożenia jest dość nieaktualna.

@@ -2,7 +2,7 @@
 layout: post
 title:  "C3P0 - poprawne zamykanie"
 description: "Naprawa zamykania puli (in Polish)"
-date:   2014-02-04 22:16:00
+date:   2011-05-21 22:16:00
 ---
 
 W przypadku, gdy aplikacja do przechowywania danych wykorzystuje relacyjną bazę danych bardzo często się zdarza, że korzysta z takich narzędzi wspomagających jak Hibernate czy MyBatis (określenie “narzędzie” jest tu celowe, ponieważ najczęściej o tej warstwie mówi się skrótowo ORM, przy czym MyBatis ORM-em nie jest).

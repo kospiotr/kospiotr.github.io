@@ -2,7 +2,7 @@
 layout: post
 title:  "Prywatne repozytorium Maven na code.google.pl"
 description: "Tworzenie i konfiguracja prywatnego repozytorium Maven (in Polish)"
-date:   2014-02-05 22:16:00
+date:   2011-10-21 22:16:00
 ---
 Często tworząc nowy projekt (z reguły opensource) w naszym przypadku wykorzystujemy jako repozytorium popularny ```Github```, ```Bitbucket``` lub  ```code.google.com```. Aby podnieść walor biznesowy i jakość świadczonych usług normalnym jest częste wydawanie nowej wersji naszej aplikacji klientom / społeczności. Proces ten czasmi jest dosyć tendencyjny i uciążliwy. Powtarzające się procesy oczywiście dociekliwy programista jest w stanie sobie zautomatyzować w bardzo zwinny sposób.
 

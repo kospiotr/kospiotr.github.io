@@ -2,7 +2,7 @@
 layout: post
 title:  "Hibernate + Guice"
 description: "Instalacja, konfiguracja oraz zestawienie z Guicem (in Polish)"
-date:   2014-02-03 22:16:00
+date:   2010-12-16 22:16:00
 ---
 
 Hibernate – framework do realizacji warstwy dostępu do danych (ang. persistance layer). Zapewnia on przede wszystkim translację danych pomiędzy relacyjną bazą danych, a światem obiektowym (ang. O/R mapping). Opiera się na wykorzystaniu opisu struktury danych za pomocą języka XML, dzięki czemu można “rzutować” obiekty, stosowane w obiektowych językach programowania, takich jak Java bezpośrednio na istniejące tabele bazy danych. Dodatkowo Hibernate zwiększa wydajność operacji na bazie danych dzięki buforowaniu i minimalizacji liczby przesyłanych zapytań. Jest to projekt rozwijany jako open source. (wikipedia.pl)

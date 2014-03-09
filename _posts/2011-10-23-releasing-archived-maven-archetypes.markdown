@@ -2,7 +2,7 @@
 layout: post
 title:  "Wydawanie aplikacji w formie zarchiwizowanej"
 description: "Zautomatyzowane wydanie projektu w formie archiwum zip przy pomocy Mavena"
-date:   2014-02-07 22:16:00
+date:   2011-10-23 22:16:00
 gallery: false
 ---
 

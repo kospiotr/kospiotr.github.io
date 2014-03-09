@@ -2,7 +2,7 @@
 layout: post
 title:  "Szablony w Netbeans"
 description: "Prezentacja możliwości szablonów w Netbeans na przykładzie tworzenia modyfikatorów dla GXT"
-date:   2014-02-12 22:16:00
+date:   2012-02-05 22:16:00
 ---
 Podczas pracy z różnymi bibliotekami bywa, że pewne czynności są powtarzane nader często. Popularne biblioteki posiadają rozszerzenia, bądź natywne wsparcie ze strony IDE jak np. kreatory.
 Niestety nie wszystkie biblioteki posiadają tak ogromne wsparcie jak choćby Spring czy Hibernate, co nie oznacza że są gorsze.

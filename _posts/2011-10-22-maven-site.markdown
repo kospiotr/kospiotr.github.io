@@ -2,7 +2,7 @@
 layout: post
 title:  "Maven site"
 description: "Tworzenie dokumentacji projektu przy pomocy mechanizmu site z Mavena (in Polish)"
-date:   2014-02-06 22:16:00
+date:   2011-10-22 22:16:00
 gallery: true
 ---
 

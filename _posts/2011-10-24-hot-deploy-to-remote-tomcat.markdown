@@ -2,7 +2,7 @@
 layout: post
 title:  "Wdrożenie aplikacji na Tomcata"
 description: "Zautomatyzowane wdrożenia aplikacji na serwer Tomcat z uzyciem Mavena i pluginu Cargo"
-date:   2014-02-08 22:16:00
+date:   2011-10-24 22:16:00
 gallery: false
 ---
 W pewnym punkcie pracy z projektem J2EE, (projekt webowy) dochodzimy do punktu, w którym przychodzi potrzeba umieszczenia go na serwerze czy to kontenerze aplikacji. Po umieszczeniu na serwerze można przetestować jego działanie ale również uruchomić np testy integracyjne.

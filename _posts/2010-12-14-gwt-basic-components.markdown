@@ -2,7 +2,7 @@
 layout: post
 title:  "Google Web Toolkit"
 description: "Opis i podstawowe elementy (in Polish)"
-date:   2014-02-01 22:16:00
+date:   2010-12-14 22:16:00
 ---
 
 Google Web Toolkit (GWT) jest szkieletem do tworzenia aplikacji AJAX w oparciu o język Java. Pozwala on na tworzenie kodu bez ręcznego kodowania i łączenia elementów języka Java oraz JavaScript. Po napisaniu kodu aplikacji następuje kompilacja części klienckiej do JavaScriptu, CSS oraz HTML. Część serwerowa zostaje skompilowana przez standardowy kompilator Javy. Framework w standardzie zapewnia poprawne wyświetlanie komponentów w przeglądarkach: Firefox, Opera, IE, Safari, Google Chrome. (Wikipedia.pl)

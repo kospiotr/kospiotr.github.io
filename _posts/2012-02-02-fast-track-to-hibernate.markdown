@@ -2,7 +2,7 @@
 layout: post
 title:  "Podstawowy projekt z użyciem Hibernate"
 description: "Prezentacja Hibernate jako narzędzia do utrwalania danych"
-date:   2014-02-10 22:16:00
+date:   2012-02-02 22:16:00
 toc: true
 ---
 W dzisiejszym poście zaprezentujemy jak stworzyć projekt, który może stanowić wejście dla przyszłych projektów wykorzystujących Hibernate oraz Mavena. Do zamockowania bazy danych posłużymy się wbudowaną (embeded) bazą danych – Derby.

@@ -2,7 +2,7 @@
 layout: post
 title:  "Google Web Toolkit + Guice"
 description: "Instalacja, konfiguracja oraz zestawienie z Google Web Toolkit (in Polish)"
-date:   2014-02-02 22:16:00
+date:   2010-10-15 22:16:00
 ---
 Guice jest frameworkiem dostarczającym tzn. wstrzykiwania zależności w naszej części serwerowej aplikacji.
 Gdybyśmy rozważali aplikację typu desktop poniższa konfiguracja w zupełności by wystarczyła:
