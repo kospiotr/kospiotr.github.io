@@ -9,6 +9,7 @@ toc: false
 
 * `ctrl + alt + t` - open test / testing class
 * `ctrl + shift + r` - rectangular selection
+* `alt + shift + .` - select around
 
 # Templates
 * Test method (tm):
