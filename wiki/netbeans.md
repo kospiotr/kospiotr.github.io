@@ -5,6 +5,11 @@ comments: false
 toc: false
 ---
 
+# Shortcuts
+
+* `ctrl + alt + t` - open test / testing class
+* `ctrl + shift + r` - rectangular selection
+
 # Templates
 * Test method (tm):
 
