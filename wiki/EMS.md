@@ -7,6 +7,7 @@ comments: false
 
 1. Based on queue name, find the consumer id and connection id.
 show  consumers queue=TEST.CIB.1LST.LTD.RequestReply.ReferenceData.2 full
+
 ```bash
       Id   Conn     Sess User      T Queue                                              
 53675650 383273 55949126 1lst_lstm Q TEST.CIB.1LST.LTD.RequestReply.ReferenceData.2
