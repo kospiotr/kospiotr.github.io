@@ -6,10 +6,11 @@ comments: false
 # TIBCO EMS Troubleshooting-How to find consumer and producers for EMS destinations?
 
 1. Based on queue name, find the consumer id and connection id.
-show  consumers queue=TEST.CIB.1LST.LTD.RequestReply.ReferenceData.2 full
+2. 
+`show  consumers queue=TEST.CIB.1LST.LTD.RequestReply.ReferenceData.2 full`
 
  ```bash
-      Id   Conn     Sess User      T Queue                                              
+      Id Conn   Sess     User      T Queue                                              
 53675650 383273 55949126 1lst_lstm Q TEST.CIB.1LST.LTD.RequestReply.ReferenceData.2
 53675651 383273 55949127 1lst_lstm Q TEST.CIB.1LST.LTD.RequestReply.ReferenceData.2
 ```
