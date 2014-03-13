@@ -10,6 +10,7 @@ description: Java Script notes
 
 * `JSON.stringify(value[, replacer [, space]])` - serialize JS object to JSON
  Examples:
+
  ```javascript
 JSON.stringify({});                  // '{}'
 JSON.stringify(true);                // 'true'
