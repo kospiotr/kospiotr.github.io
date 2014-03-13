@@ -26,6 +26,21 @@ JSON.stringify({ uno: 1, dos : 2 }, null, '\t')
 // }'
  ```
 
+* `JSON.parse(text[, reviver])` - deserialize JS object from string
+ Examples:
+
+ ```javascript
+try {
+  JSON.parse('{}');              // {}
+  JSON.parse('true');            // true
+  JSON.parse('"foo"');           // "foo"
+  JSON.parse('[1, 5, "false"]'); // [1, 5, "false"]
+  JSON.parse('null');            // null
+} catch (e) {
+  console.error("Parsing error:", e); 
+}
+ ```
+
 #Debugger
 
 * `debugger;` - stops debugger while execution this line of the code
