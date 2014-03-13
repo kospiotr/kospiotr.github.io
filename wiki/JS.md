@@ -2,7 +2,7 @@
 layout: wiki
 title: JavaScript
 comments: false
-toc: false
+toc: true
 description: Java Script notes
 ---
 
