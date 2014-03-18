@@ -12,6 +12,7 @@ comments: false
  * ```git commit -m "Commit message"``` - performs commit of added files to the local repository
  * ```git remote add origin https://github.com/kospiotr/sample-repo.git``` - add remote repository link to local repository
  * ```git push origin master``` - transfers changes from local to remote repositories
+ * ```git reset --hard``` - all changes will be reverted
  
 # Excluding files from repository
   Reference: [http://git-scm.com/docs/gitignore](http://git-scm.com/docs/gitignore)
