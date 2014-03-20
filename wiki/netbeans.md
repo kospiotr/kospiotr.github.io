@@ -8,6 +8,7 @@ toc: false
 # Shortcuts
 
 * `ctrl + alt + t` - open test / testing class
+* `ctrl + shift + u` - create test for given class
 * `ctrl + shift + r` - rectangular selection
 * `alt + shift + .` - select around
 
