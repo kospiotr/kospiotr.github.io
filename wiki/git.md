@@ -8,10 +8,12 @@ comments: false
 
  * ```git init``` - Init local repo
  * ```git status``` - displays status of the repository
+ * ```git diff --staged``` - diff to staged (commited) files to local repo
  * ```git add -all``` - Add all changed, new and removed files
  * ```git commit -m "Commit message"``` - performs commit of added files to the local repository
  * ```git remote add origin https://github.com/kospiotr/sample-repo.git``` - add remote repository link to local repository
  * ```git push origin master``` - transfers changes from local to remote repositories
+ * ```git push -u origin master``` - remember settings that next time you can use only ```git push```
  * ```git reset --hard``` - all changes will be reverted
  
 # Excluding files from repository
