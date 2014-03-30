@@ -6,9 +6,22 @@ gallery: true
 toc: true
 ---
 
-#What is dependency?
-Wa are talking about dependency when one object relates on another one.
+# Motivation - how to write good code?
 
+ * Clean code
+ * Object Oriented
+ * High cohesion
+ * **SOLID** principles
+  * **S** (SRP) - Single responsibility principle
+  * **O** (OCP) - Open/closed principle
+  * **L** (LSP) - Liskov substitution principle
+  * **I** (ISP) - Interface segregation principle
+  * **D** (DIP) - Dependency inversion principle
+ * DRY - dont't repeat yourself (code reuse)
+ * SoC - separation of concerns
+
+# What is dependency?
+Wa are talking about dependency when one object relates on another one.
 
 <a href="{{ site.url }}/img/dependency.png" data-gallery>
         <img src="{{ site.url }}/img/dependency.png" >
@@ -18,13 +31,13 @@ Code example:
 
 ```java
 public class A{
-	
+
 	private B objB;
-	
+
 	public A {
 		this.objB = new B();
 	}
-	
+
 }
 ```
 
@@ -40,9 +53,9 @@ Example implementation of Web Action:
 
 ```java
 public class DisplayActiveUsersWebAction{
-	
+
 	protected UsersDAO usersDAO = new UsersDAO();
-	
+
 }
 ```
 
@@ -95,13 +108,13 @@ This code poses problems for modularity and testability. In fact this code is no
  * If we would like to test ```RealBillingService``` with unit tests the ```PaypalCreditCardProcessor``` will be created and we would perform operations on the real card creditCardProcessor. It means that we will the code will charge a real credit card during testing! In the tests we should operate on a ```FakeCreditCardProcessor```.
  * When using other providers like ```VisaCreditCardProcessor``` for ```CreditCardProcessor``` or ```BitCoinTransactionLog``` for ```TransactionLog``` will require code changes in the ```RealBillingService```.
  * It's also awkward to test what happens when the charge is declined or when the service is unavailable.
- * This method often leads to Spaghetti Monster code 
+ * This method often leads to Spaghetti Monster code
 
 #Inversion of control implementations
-The problem with above example is that those dependencies are created directly by the ```RealBillingService```. Instead the ready to use objects should be prepared externally and be delivered to the object that operates on them. This object delivery from external place is called Inversion of Control as control over the object creation has been inverted. 
+The problem with above example is that those dependencies are created directly by the ```RealBillingService```. Instead the ready to use objects should be prepared externally and be delivered to the object that operates on them. This object delivery from external place is called Inversion of Control as control over the object creation has been inverted.
 
 <blockquote>Inversion of control is sometimes facetiously referred to as the "Hollywood Principle: Don't call us, we'll call you".</blockquote>
- 
+
 There are few implementations of Inversion of Control:
 
  * Factory pattern
@@ -114,7 +127,7 @@ There are few implementations of Inversion of Control:
  * Contextualized lookup
  * Template method design pattern
  * Strategy design pattern
- 
+
 ##Factories
 A factory class decouples the client and implementing class. A simple factory uses static methods to obtain implementation of the given interface. In our client code, we just replace the new calls with factory lookups:
 
@@ -144,9 +157,9 @@ Then the ```CreditCardProcessorFactory``` might look like that:
 ```java
 
 public class CreditCardProcessorFactory {
-  
+
   private static CreditCardProcessor instance;
-  
+
   public static void setInstance(CreditCardProcessor creditCardProcessor) {
     instance = creditCardProcessor;
   }
@@ -155,7 +168,7 @@ public class CreditCardProcessorFactory {
     if (instance == null) {
       return new SquareCreditCardProcessor();
     }
-    
+
     return instance;
   }
 }
@@ -198,7 +211,7 @@ public class RealBillingServiceTest extends TestCase {
 This code is clumsy as:
 
  * A global variable holds the mock implementation, so we need to be careful about setting it up and tearing it down. Should the ```tearDown``` fail, the global variable continues to point at our test instance. This could cause problems for other tests. It also prevents us from running multiple tests in parallel.
- 
+
  * All the static member variables are kept on the special area on heap memory - Permanent Generation which can cause some memory and Garbage Collector issues.
 
  * The dependencies are hidden in the code. If we add a dependency on a ```CreditCardFraudTracker```, we have to re-run the tests to find out which ones will break. Should we forget to initialize a factory for a production service, we don't find out until a charge is attempted. As the application grows, babysitting factories becomes a growing drain on productivity.
@@ -217,7 +230,7 @@ public class RealBillingService implements BillingService {
   private final CreditCardProcessor creditCardProcessor;
   private final TransactionLog transactionLog;
 
-  public RealBillingService(CreditCardProcessor creditCardProcessor, 
+  public RealBillingService(CreditCardProcessor creditCardProcessor,
       TransactionLog transactionLog) {
     this.creditCardProcessor = creditCardProcessor;
     this.transactionLog = transactionLog;
@@ -292,11 +305,11 @@ public class RealBillingService implements BillingService {
   public void setCreditCardProcessor(CreditCardProcessor creditCardProcessor){
 	this.creditCardProcessor = creditCardProcessor;
   }
-  
+
   public void setCreditCardProcessor(TransactionLog transactionLog){
 	this.transactionLog = transactionLog;
   }
-  
+
   public Receipt chargeOrder(PizzaOrder order, CreditCard creditCard) {
     try {
       ChargeResult result = creditCardProcessor.charge(creditCard, order.getAmount());
@@ -318,9 +331,11 @@ public class RealBillingService implements BillingService {
  * Singleton
  * Prototype
 
-#Application configuration
+# Application configuration
 
-Dependency Injection design pattern requires that all child dependencies must be resolved / instantiated before injection to the object. In the `RealBillingService` example recursive injection 
+aaa
+
+Dependency Injection design pattern requires that all child dependencies must be resolved / instantiated before injection to the object. In the `RealBillingService` example recursive injection
 
 ```
 +RealBillingService (BillingService)
@@ -337,12 +352,12 @@ Dependency Injection design pattern requires that all child dependencies must be
 When dependencies graph is getting bigger it is worth to use some kind of framework to manage its dependencies configuration.
 
 #DI Frameworks
- 
+
  * [Spring Framework](http://projects.spring.io/spring-framework/)
  * [Guice](https://code.google.com/p/google-guice/)
  * [Pico Container](http://picocontainer.codehaus.org/)
  * [Weld](http://weld.cdi-spec.org/)
-  
+
 #References
 
  * [http://martinfowler.com/articles/injection.html](http://martinfowler.com/articles/injection.html)
