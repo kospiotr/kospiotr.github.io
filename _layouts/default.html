@@ -89,11 +89,6 @@
         <section id="main" class="col-sm-9">
             <div id="main-container">
                 {{ content }}
-                {% if page.editurl %}
-                <div id="edit-link-section">
-                    <a href="{{site.basesourceurl}}/{{page.editurl}}">Edit page</a>
-                </div>
-                {% endif %}
                 {% include footer.html %}
             </div>
         </section>
