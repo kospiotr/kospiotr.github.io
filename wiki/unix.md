@@ -3,6 +3,7 @@ layout: wiki
 title: Unix
 comments: false
 toc: false
+editurl: wiki/unix.md
 ---
 
 # Commands

@@ -3,6 +3,7 @@ layout: wiki
 title: DB connectors
 comments: false
 toc: true
+editurl: wiki/db-connectors.md
 ---
 #Links
 

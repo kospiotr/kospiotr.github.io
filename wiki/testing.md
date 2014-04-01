@@ -3,6 +3,7 @@ layout: wiki
 title: Testing
 comments: false
 toc: true
+editurl: wiki/testing.md
 ---
 #Maven
 
@@ -59,8 +60,8 @@ mockito-core
 ```xml
 <!-- needs extra dependencies: objenesis & hamcrest -->
 <groupId>org.mockito</groupId>
-<artifactId>mockito-core</artifactId>  
-<version>1.9.5</version> 
+<artifactId>mockito-core</artifactId>
+<version>1.9.5</version>
 <scope>test</scope>
 ```
 
@@ -90,7 +91,7 @@ Matchers
 <dependency>
     <groupId>org.hamcrest</groupId>
     <artifactId>hamcrest-all</artifactId>
-    <version>1.3</version> 
+    <version>1.3</version>
     <scope>test</scope>
 </dependency>
 ```

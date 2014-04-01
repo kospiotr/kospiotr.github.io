@@ -4,6 +4,7 @@ title: JavaScript
 comments: false
 toc: true
 description: Java Script notes
+editurl: wiki/JS.md
 ---
 
 #JSON
@@ -37,7 +38,7 @@ try {
   JSON.parse('[1, 5, "false"]'); // [1, 5, "false"]
   JSON.parse('null');            // null
 } catch (e) {
-  console.error("Parsing error:", e); 
+  console.error("Parsing error:", e);
 }
  ```
 

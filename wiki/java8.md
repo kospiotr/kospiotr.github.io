@@ -4,6 +4,7 @@ title: Java8
 comments: false
 toc: false
 description: What's new in Java 8
+editurl: wiki/java8.md
 ---
 
 #External resources

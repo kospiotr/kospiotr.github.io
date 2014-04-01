@@ -3,6 +3,7 @@ layout: page
 title: Wiki index
 comments: false
 toc: false
+editurl: wiki/index.md
 ---
 
 <ul>
@@ -11,7 +12,7 @@ toc: false
     		<li>
     			<a href="{{ page.url }}">{{ page.title }}</a>
     			{% if page.description %}
-    				 - 
+    				 -
 				{% endif %}
     			{{ page.description }}
     		</li>

@@ -3,10 +3,11 @@ layout: wiki
 title: Jetty
 comments: false
 toc: true
+editurl: wiki/jetty.md
 ---
 #Versions
 
-This document is about Jetty 8 version 
+This document is about Jetty 8 version
 
 * Jetty 6 [http://docs.codehaus.org/display/JETTY/Jetty%20Documentation](http://docs.codehaus.org/display/JETTY/Jetty%20Documentation)
 * Jetty 7 [http://wiki.eclipse.org/Jetty](http://wiki.eclipse.org/Jetty)

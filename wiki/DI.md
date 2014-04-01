@@ -4,6 +4,7 @@ title: Dependency Injection
 comments: false
 gallery: true
 toc: true
+editurl: wiki/DI.md
 ---
 
 # Motivation - how to write good code?

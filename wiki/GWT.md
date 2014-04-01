@@ -4,6 +4,7 @@ title: Google Web Toolkit
 comments: false
 toc: true
 description: Everything about GWT environment
+editurl: wiki/GWT.md
 ---
 
 #Showcases
@@ -14,7 +15,7 @@ description: Everything about GWT environment
  * For 1.6: [https://developers.google.com/web-toolkit/doc/latest/RefWidgetGallery](https://developers.google.com/web-toolkit/doc/latest/RefWidgetGallery)
  * Sample mail: [http://gwt.google.com/samples/Mail/Mail.html](http://gwt.google.com/samples/Mail/Mail.html)
  * Dynamic tables: [http://gwt.google.com/samples/DynaTable/DynaTable.html](http://gwt.google.com/samples/DynaTable/DynaTable.html)
- 
+
 #Archetype#
 
 ##GWT-Maven-Plugin
@@ -72,7 +73,7 @@ mvn archetype:generate \
 ###Productivity
 
 ###Development mode
- * Need first to compile client's project for server side run purposes - next step (execute it on the client project) 
+ * Need first to compile client's project for server side run purposes - next step (execute it on the client project)
 
 ```bash
 mvn clean install -Dgwt.compiler.skip=true
@@ -107,7 +108,7 @@ mvn gwt:debug -Ddev //After that attach debugger on port 8000
  * Clean all targets (execute it on the parent project):
 
 ```bash
-mvn clean 
+mvn clean
 ```
  * Compile once client side in draft mode (execute it on the client project):
 
@@ -245,7 +246,7 @@ public interface PersonProxy  extends EntityProxy{
   public void setSurname(String surname);
   public Integer getVersion();
   public void setVersion(Integer version);
-  
+
 }
 ```
 
@@ -288,7 +289,7 @@ public class PersonLocator extends Locator<Person, Long> {
   public Object getVersion(Person domainObject) {
     return -1;
   }
-  
+
 }
 ```
 
@@ -504,12 +505,12 @@ Context.xml
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <Context antiJARLocking="true" path="/Errai">
-    <Resource 
-        name="BeanManager" 
-        auth="Container" 
-        type="javax.enterprise.inject.spi.BeanManager" 
+    <Resource
+        name="BeanManager"
+        auth="Container"
+        type="javax.enterprise.inject.spi.BeanManager"
         factory="org.jboss.weld.resources.ManagerObjectFactory"/>
-    
+
 </Context>
 ```
 
@@ -558,7 +559,7 @@ Module Descriptor:
 
 UI component library
 
- * Homepage 
+ * Homepage
 
 ###Set up with Maven
 

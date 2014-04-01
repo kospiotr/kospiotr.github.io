@@ -2,6 +2,7 @@
 layout: wiki
 title: GIT
 comments: false
+editurl: wiki/git.md
 ---
 
 #Basic commands
@@ -15,7 +16,7 @@ comments: false
  * ```git push origin master``` - transfers changes from local to remote repositories
  * ```git push -u origin master``` - remember settings that next time you can use only ```git push```
  * ```git reset --hard``` - all changes will be reverted
- 
+
 # Excluding files from repository
   Reference: [http://git-scm.com/docs/gitignore](http://git-scm.com/docs/gitignore)
 To exclude certains directories and files you need to place them in ```.gitignore``` file. Here you can find some examples for popular project structures: [https://github.com/github/gitignore](https://github.com/github/gitignore)

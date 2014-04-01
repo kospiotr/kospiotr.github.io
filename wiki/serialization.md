@@ -2,6 +2,7 @@
 layout: wiki
 title: Serialization / Deserialization
 comments: false
+editurl: wiki/serialization.md
 ---
 #GSON
 
@@ -15,5 +16,5 @@ Reference: [https://sites.google.com/site/gson/gson-user-guide](https://sites.go
 
 ```java
 new com.fasterxml.jackson.databind.ObjectMapper().writeValueAsString(var); //serialization
-new com.fasterxml.jackson.databind.ObjectMapper().readValue(obj, MyObjectClass.class); //deserialization 
+new com.fasterxml.jackson.databind.ObjectMapper().readValue(obj, MyObjectClass.class); //deserialization
 ```

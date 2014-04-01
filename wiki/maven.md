@@ -3,6 +3,7 @@ layout: wiki
 title: Maven
 comments: false
 toc: false
+editurl: wiki/maven.md
 ---
 #Testing
 ##Skipping tests

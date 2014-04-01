@@ -134,6 +134,9 @@ a, a:focus, a:hover
 {
     margin-top: 50px;
 }
+#edit-link-section{
+    text-align: center;
+}
 @media (max-width: 767px)
 {
     #sidebar

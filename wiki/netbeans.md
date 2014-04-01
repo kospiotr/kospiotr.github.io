@@ -3,6 +3,7 @@ layout: wiki
 title: Netbeans
 comments: false
 toc: false
+editurl: wiki/netbeans.md
 ---
 
 # Shortcuts

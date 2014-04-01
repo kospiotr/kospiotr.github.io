@@ -2,6 +2,7 @@
 layout: wiki
 title: Generics
 comments: false
+editurl: wiki/generics.md
 ---
 To obtainn generic type from the current class:
 

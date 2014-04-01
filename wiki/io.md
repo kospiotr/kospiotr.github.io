@@ -2,6 +2,7 @@
 layout: wiki
 title: I/O
 comments: false
+editurl: wiki/io.md
 ---
 #Write as file
 ```java

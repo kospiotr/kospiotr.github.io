@@ -4,6 +4,7 @@ title: Spring Framework
 comments: false
 gallery: true
 toc: true
+editurl: wiki/SpringFramework.md
 ---
 
 #Quick start using maven
