@@ -7,6 +7,52 @@ toc: true
 editurl: wiki/SpringFramework.md
 ---
 
+#Introduction
+##History
+###Java Enterprise Edition
+Before Spring Framework Enterprise applications has been developed using JavaEE (EJB2). Some major drawbacks:
+
+ * very complicated
+ * unclear workflow
+ * many XML files with configuration
+ * environment poluted logic (had to extends abstract classes, implement JavaEE interfaces)
+ * hard to write unit tests
+ * very weak Time To Market
+ * requires Application Server - special container where Enterprise applications can be deployed
+  * different servers (open, commercial)
+  * they differently implement specification
+
+<center>
+![JEE](http://www.ibm.com/developerworks/websphere/library/techarticles/0707_barcia/0707_barcia_images/figure1a.gif)
+</center>
+
+###The book
+Rod Johnson between 1997 and 2002 was dealing with J2EE applications as a consultant. He identified many problems during his carrere and described them in his book "Expert One-on-One J2EE Design and Development".
+
+<center>
+![Expert One-on-One J2EE Design and Development](http://ecx.images-amazon.com/images/I/51D67wYiL8L._BO2,204,203,200_PIsitb-sticker-arrow-click,TopRight,35,-76_AA300_SH20_OU01_.jpg)
+
+"Expert One-on-One J2EE Design and Development" - Rod Johnson, Jurgen Hoeller (2002)
+</center>
+
+He published there analysys of the problems with the code that implements framework *Interface21* which was demonstrating how to solve those problems. This framework we would call today injection container.
+
+###Spring Framewor versions
+
+<center>
+![Spring Logo](http://upload.wikimedia.org/wikipedia/de/9/9d/Spring_Logo.png)
+</center>
+
+ * Spring 1.0 – 2004
+ * Spring 2.0 – 2006
+ * Spring 2.5 – 2007
+ * Spring 3.0 – 2009
+ * Spring 3.1 - 2011
+ * Spring 3.2 - 2013
+ * Spring 4.0 - 2013
+
+Very stable and frequent release plan.
+
 #Quick start using maven
 
 ##Prerequires
