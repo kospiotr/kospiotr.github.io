@@ -6,7 +6,7 @@ gallery: true
 toc: true
 editurl: wiki/DI.md
 ---
-test
+
 # Motivation - how to write good code?
 
  * Clean code
