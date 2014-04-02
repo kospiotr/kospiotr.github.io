@@ -24,9 +24,9 @@ editurl: wiki/DI.md
 # What is dependency?
 Wa are talking about dependency when one object relates on another one.
 
-<a href="{{ site.url }}/img/dependency.png" data-gallery>
-        <img src="{{ site.url }}/img/dependency.png" >
-</a>
+<center>
+![Dependency]({{ site.url }}/img/dependency.png)
+</center>
 
 Code example:
 
@@ -44,11 +44,9 @@ public class A{
 
 From real life example Web Action may need Data Access Object (DAO) to retrieve or save data to Data Base. Data Base actions is hidden in the DAO object (encapsulated).
 
-
-<a href="{{ site.url }}/img/dependency.png" data-gallery class="pagination-centered">
-        <img src="{{ site.url }}/img/dependency-example.png" class="pagination-centered">
-</a>
-
+<center>
+![Dependency example]({{ site.url }}/img/dependency-example.png)
+</center>
 
 Example implementation of Web Action:
 
