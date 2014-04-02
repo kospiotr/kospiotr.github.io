@@ -28,7 +28,6 @@ Wa are talking about dependency when one object relates on another one.
 ![Dependency]({{ site.url }}/img/dependency.png)
 </center>
 
-test
 Code example:
 
 ```java
@@ -332,8 +331,6 @@ public class RealBillingService implements BillingService {
  * Prototype
 
 # Application configuration
-
-aaa
 
 Dependency Injection design pattern requires that all child dependencies must be resolved / instantiated before injection to the object. In the `RealBillingService` example recursive injection
 
