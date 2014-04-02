@@ -37,7 +37,7 @@ Rod Johnson between 1997 and 2002 was dealing with J2EE applications as a consul
 
 He published there analysys of the problems with the code that implements framework *Interface21* which was demonstrating how to solve those problems. This framework we would call today injection container.
 
-###Spring Framewor versions
+###Versions
 
 <center>
 ![Spring Logo](http://upload.wikimedia.org/wikipedia/de/9/9d/Spring_Logo.png)
@@ -53,16 +53,38 @@ He published there analysys of the problems with the code that implements framew
 
 Very stable and frequent release plan.
 
-#Quick start using maven
+##Mission
+
+* The main aim is to **simplifying application development**.
+* Spring support application development on all levels / layers
+* There are many modules and extensions with other popular frameworks eg.
+ * Struts, JSF, WebWork
+ * Hibernate, TopLink, JPA
+ * JDBC, JTA
+* Spring doesn't competete with other solutions and technologies which are good. Instead of that it supports theirs integration.
+* Spring doesn't forces to be installed on the application server, it doesn't forces speciality API to be used.
+* Spring is easy to be used
+* Spring enhances developers productivity
+* Spring supports in writing high quality software
+* Spring supports in writing testable code
+
+##Construction
+Spring is made of the following modules:
+
+<center>
+![Sprin Components](http://docs.spring.io/spring/docs/4.0.3.RELEASE/spring-framework-reference/htmlsingle/images/spring-overview.png)
+</center>
+
+[http://docs.spring.io/spring/docs/4.0.3.RELEASE/spring-framework-reference/htmlsingle/#overview-modules](http://docs.spring.io/spring/docs/4.0.3.RELEASE/spring-framework-reference/htmlsingle/#overview-modules)
+
+
+#Empty Maven project
 
 ##Prerequires
  * JDK > 1.6
  * Maven >= 3
 
-##Step by step
-[http://projects.spring.io/spring-framework/#quick-start](http://projects.spring.io/spring-framework/#quick-start)
-
-**Create empty Maven project from archetype**
+##Maven project from archetype
 
 Command:
 
@@ -132,7 +154,7 @@ Structure:
 
 ```
 
-**Add Maven dependendency for Spring**
+##Spring dependencies
 
 `pom.xml`:
 
