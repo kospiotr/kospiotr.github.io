@@ -37,3 +37,4 @@ C:\>clip <  Users\Piotr\.ssh\id_rsa.pub
 ```
 #External resources
 * [Cheat cheet](../resources/git-cheat-sheet.svg)
+* [Git Recipes - Wlodzimierz Gajda](../resources/Git Recipes - Wlodzimierz Gajda.pdf)
