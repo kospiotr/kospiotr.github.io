@@ -153,7 +153,10 @@ Structure:
 </project>
 
 ```
-#Spring container
+#Inversion of Control container
+> Configuration of application components and lifecycle management of Java objects, done mainly via dependency injection
+source: [Wikipedia](en.wikipedia.org/wiki/Spring_Framework#Inversion_of_control_container_.28dependency_injection.29)
+
 ##Spring Factory Bean
 
 
