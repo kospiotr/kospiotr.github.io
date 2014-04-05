@@ -5,6 +5,7 @@ comments: false
 gallery: true
 toc: true
 editurl: wiki/DI.md
+res: ../resources/wiki/di
 ---
 
 # Motivation - how to write good code?
@@ -25,7 +26,7 @@ editurl: wiki/DI.md
 Wa are talking about dependency when one object relates on another one.
 
 <center>
-![Dependency]({{ site.url }}/img/dependency.png)
+![Dependency]({{ page.res }}/dependency.png)
 </center>
 
 Code example:
@@ -45,7 +46,7 @@ public class A{
 From real life example Web Action may need Data Access Object (DAO) to retrieve or save data to Data Base. Data Base actions is hidden in the DAO object (encapsulated).
 
 <center>
-![Dependency example]({{ site.url }}/img/dependency-example.png)
+![Dependency example]({{ page.res }}/dependency-example.png)
 </center>
 
 Example implementation of Web Action:

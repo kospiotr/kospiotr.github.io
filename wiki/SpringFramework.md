@@ -5,6 +5,7 @@ comments: false
 gallery: true
 toc: true
 editurl: wiki/SpringFramework.md
+res: ../resources/wiki/spring
 ---
 
 #Introduction
@@ -154,8 +155,88 @@ Structure:
 
 ```
 #Inversion of Control container
-> Configuration of application components and lifecycle management of Java objects, done mainly via dependency injection
-source: [Wikipedia](en.wikipedia.org/wiki/Spring_Framework#Inversion_of_control_container_.28dependency_injection.29)
+Central to the Spring Framework is its Inversion of Control (IoC) container, which provides a consistent means of configuring and managing Java objects using **reflection**. The container is responsible for managing object lifecycles of specific objects:
+
+ * creating these objects,
+ * configuring these objects by wiring them together,
+ * calling their initialization methods.
+
+##Purpose
+Without special container, components initilaisation may look like as follow:
+
+```java
+    /**
+     * Manual BillingService object lifecycle maintenance and its dependencies
+     */
+    public static void main(String[] args){
+        //object creation
+        BillingService billingService = new BillingService();
+        PaymentProcessor cardProcessor = new PaymentProcessor();
+        TransactionLog transactionLog = new TransactionLog();
+
+        //configuring these objects by wiring them together
+        billingService.setCardProcessor(cardProcessor);
+        billingService.setTransactionLog(transactionLog);
+
+        //calling their initialization methods
+        billingService.registerBillingServiceToCreditCardVendor();
+    }
+```
+Above code is boilerplate and hard to maintain. How above code would look like for the below application configuration:
+
+<center>![Huge dependency graph]({{page.res}}/sample-dependency-graph.png)</center>
+
+##Bean Factory
+Bean Factory is a core element of the Spring Inversion of Control container that creates requested objects and resolves dependencies by the given configuration:
+
+<center>![Huge dependency graph]({{page.res}}/bean-factory.png)</center>
+
+ * Application `App.java`:
+
+```java
+
+    public static void main(String[] args) {
+        //create Inversion of Control container
+        DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
+
+        //create configuration and populate Inversion of Control container with it
+        XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(beanFactory);
+        reader.loadBeanDefinitions(new ClassPathResource("spring-configuration.xml"));
+
+        //requesting bean from the container by the id
+        BillingService billingService = beanFactory.getBean("ruleBillingService", BillingService.class);
+        billingService.charge(100);
+    }
+```
+
+ * Configuration file `spring-configuration.xml`:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="ruleBillingService" class="com.github.pkosmowski.hellospring.BillingService"/>
+
+</beans>
+```
+
+The Bean Factory creates objects (Factory pattern) and if the object require dependency it searches them in the registry (Lookup pattern) and inject them to the object (Dependency Injection pattern).
+
+If the dependency is not yet created, the whole above process applies to the child (recursive lookup):
+
+<center>![Bean Factory]({{page.res}}/bean-factory-with-dependencies.png)</center>
+
+##ApplicationContext
+
+<center>![ApplicationContext]({{page.res}}/application-context.png)</center>
+Objects created by the container are also called managed objects or beans. The container can be configured by loading XML files or detecting specific Java annotations on configuration classes. These data sources contain the bean definitions which provide the information required to create the beans.
+
+Objects can be obtained by means of either dependency lookup or dependency injection.[7] Dependency lookup is a pattern where a caller asks the container object for an object with a specific name or of a specific type. Dependency injection is a pattern where the container passes objects by name to other objects, via either constructors, properties, or factory methods.
+
+In many cases one need not use the container when using other parts of the Spring Framework, although using it will likely make an application easier to configure and customize. The Spring container provides a consistent mechanism to configure applications and integrates with almost all Java environments, from small-scale applications to large enterprise applications.
 
 ##Spring Factory Bean
 
