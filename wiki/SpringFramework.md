@@ -153,6 +153,12 @@ If the dependency is not yet created, the whole above process applies to the chi
 
 <center>![Bean Factory]({{page.res}}/bean-factory-with-dependencies.png)</center>
 
+Objects can be obtained by means of either dependency lookup or dependency injection.
+
+* **Dependency lookup** is a pattern where a caller asks the container object for an object with a specific name or of a specific type.
+
+* **Dependency injection** is a pattern where the container passes objects by name to other objects, via either constructors, properties, or factory methods.
+
 ##ApplicationContext
 
 `ApplicationContext` extends `BeanFactory` and adds some extra features to it.
@@ -206,12 +212,88 @@ The container can be configured by loading XML files or detecting specific Java 
  ```java
  ApplicationContext applicationContext = new ClassPathXmlApplicationContext("main.xml","common.xml","rest.xml");
  ```
-
 * Java way:
 
+ Configuratino file `AppConfig.java`:
+
+  ```java
+  @Configuration
+  public class AppConfig {
+
+      @Bean(name = "ruleBillingService")
+      public BillingService billingServiceBean() {
+          return new BillingService();
+      }
+
+  }
+  ```
+
+ ApplicationContext initialization `App.java`:
+
+ ```java
+ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
+
+ ```
+
 ##Beans
-Objects created by the container (BeanFactory or ApplicationContext) are also called managed objects or beans.
+Objects created by the container (`BeanFactory` or `ApplicationContext`) are also called managed objects or beans. Only managed objects can be controlled by Spring (injecting dependencies, lifecycle management).
 
-Objects can be obtained by means of either dependency lookup or dependency injection.[7] Dependency lookup is a pattern where a caller asks the container object for an object with a specific name or of a specific type. Dependency injection is a pattern where the container passes objects by name to other objects, via either constructors, properties, or factory methods.
+#Container basis
+##Bean declaration
+Simple bean declaration:
 
-In many cases one need not use the container when using other parts of the Spring Framework, although using it will likely make an application easier to configure and customize. The Spring container provides a consistent mechanism to configure applications and integrates with almost all Java environments, from small-scale applications to large enterprise applications.
+```xml
+<bean id="ruleBillingService" class="com.github.pkosmowski.spring.BillingService"/>
+```
+
+* Obtain bean by id:
+
+ ```java
+BillingService billingService = applicationContext.getBean("test", BillingService.class);
+```
+
+* Obtaining bean by type (if unique bean class is definied in configuration):
+
+ ```java
+BillingService billingService = applicationContext.getBean(BillingService.class);
+```
+
+If multiple beans with given class declared:
+
+```xml
+    <bean id="ruleBillingService" class="com.github.pkosmowski.spring.BillingService"/>
+    <bean id="ruleBillingService2" class="com.github.pkosmowski.spring.BillingService"/>
+```
+
+They can be lookup from container as a map where bean id is a map key:
+
+```java
+Map<String, BillingService> billingService = applicationContext.getBeansOfType(BillingService.class);
+```
+
+
+##Bean alias
+The bean can have more ids thanks to aliases
+
+```xml
+    <bean id="ruleBillingService" class="com.github.pkosmowski.spring.BillingService"/>
+    <alias name="ruleBillingService" alias="service"/>
+```
+
+Obtain bean by alias is achieved in a same way as by id:
+
+ ```java
+BillingService service = applicationContext.getBean("service", BillingService.class);
+
+```
+
+##Dependency injection
+###Property
+###Constructor
+##Injection type
+###By reference
+###By value
+####Simple value
+####Collection
+##Lifecycle
+##Autowiring
