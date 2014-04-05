@@ -78,82 +78,6 @@ Spring is made of the following modules:
 
 [http://docs.spring.io/spring/docs/4.0.3.RELEASE/spring-framework-reference/htmlsingle/#overview-modules](http://docs.spring.io/spring/docs/4.0.3.RELEASE/spring-framework-reference/htmlsingle/#overview-modules)
 
-
-#Empty Maven project
-
-##Prerequires
- * JDK > 1.6
- * Maven >= 3
-
-##Maven project from archetype
-
-Command:
-
-```
-mvn
-    -DarchetypeGroupId=org.apache.maven.archetypes
-    -DarchetypeArtifactId=maven-archetype-quickstart
-    -DarchetypeVersion=1.1
-    -DgroupId=com.github.pkosmowski
-    -DartifactId=01-HelloSpring
-    -Dversion=1.0-SNAPSHOT
-    -Dpackage=com.github.pkosmowski.hellospring
-```
-
-Structure:
-
-```
-01-HELLOSPRING
-│   pom.xml
-│
-└───src
-    ├───main
-    │   └───java
-    │       └───com
-    │           └───github
-    │               └───pkosmowski
-    │                   └───hellospring
-    │                           App.java
-    │
-    └───test
-        └───java
-            └───com
-                └───github
-                    └───pkosmowski
-                        └───hellospring
-                                AppTest.java
-```
-
-`pom.xml`:
-
-```xml
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-
-    <groupId>com.github.pkosmowski</groupId>
-    <artifactId>01-HelloSpring</artifactId>
-    <version>1.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
-
-    <name>01-HelloSpring</name>
-    <url>http://maven.apache.org</url>
-
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
-
-    <dependencies>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>3.8.1</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
-</project>
-
-```
 #Inversion of Control container
 Central to the Spring Framework is its Inversion of Control (IoC) container, which provides a consistent means of configuring and managing Java objects using **reflection**. The container is responsible for managing object lifecycles of specific objects:
 
@@ -231,74 +155,63 @@ If the dependency is not yet created, the whole above process applies to the chi
 
 ##ApplicationContext
 
+`ApplicationContext` extends `BeanFactory` and adds some extra features to it.
+
+* **Bean Factory**
+ * *Bean instantiation/wiring*
+
+* **Application Context**
+ * *Bean instantiation/wiring*
+ * Automatic BeanPostProcessor registration
+ * Automatic BeanFactoryPostProcessor registration
+ * Convenient MessageSource access (for i18n)
+ * ApplicationEvent publication
+
 <center>![ApplicationContext]({{page.res}}/application-context.png)</center>
-Objects created by the container are also called managed objects or beans. The container can be configured by loading XML files or detecting specific Java annotations on configuration classes. These data sources contain the bean definitions which provide the information required to create the beans.
 
-Objects can be obtained by means of either dependency lookup or dependency injection.[7] Dependency lookup is a pattern where a caller asks the container object for an object with a specific name or of a specific type. Dependency injection is a pattern where the container passes objects by name to other objects, via either constructors, properties, or factory methods.
-
-In many cases one need not use the container when using other parts of the Spring Framework, although using it will likely make an application easier to configure and customize. The Spring container provides a consistent mechanism to configure applications and integrates with almost all Java environments, from small-scale applications to large enterprise applications.
-
-##Spring Factory Bean
-
-
-##Spring dependencies
-
-`pom.xml`:
-
-```xml
-<dependencies>
-    <dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-context</artifactId>
-        <version>4.0.3.RELEASE</version>
-    </dependency>
-</dependencies>
-```
-
-**Create sample entry point to the application**
+Then initialisation and configuration changes (simplifies), as ApplicationContext is being used more widely:
 
 ```java
-package com.github.pkosmowski.hellospring;
-
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-public class App {
-
     public static void main(String[] args) {
-        ApplicationContext context = new ClassPathXmlApplicationContext(
-                new String[]{"spring.xml"}
-        );
+        //create Inversion of Control container
+        //create configuration and populate Inversion of Control container with it
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring-configuration.xml");
 
-        BankingApp bankingApp = context.getBean("bankingApp", BankingApp.class);
-        System.out.println("bankingApp account balance= " + bankingApp.getAccountBalance());
+        //requesting bean from the container by the id
+        BillingService billingService = applicationContext.getBean("ruleBillingService", BillingService.class);
+        billingService.charge(100);
     }
-
-    public static class BankingApp {
-
-        double accountBalance = 100;
-
-        public double getAccountBalance() {
-            return accountBalance;
-        }
-    }
-}
-
-
 ```
 
-**Create Spring configuration in the classath**
+##Configuration
+The container can be configured by loading XML files or detecting specific Java annotations on configuration classes. These data sources contain the bean definitions which provide the information required to create the beans.
 
-`spring.xml`:
+* XML way:
 
-```xml
+ Configuratino file `spring-configuration.xml`:
+
+  ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="bankingApp" class="com.github.pkosmowski.hellospring.BankingApp"/>
-
+    <bean id="ruleBillingService" class="com.github.pkosmowski.hellospring.BillingService"/>
 </beans>
-```
+  ```
+
+ ApplicationContext initialization `App.java`:
+
+ ```java
+ ApplicationContext applicationContext = new ClassPathXmlApplicationContext("main.xml","common.xml","rest.xml");
+ ```
+
+* Java way:
+
+##Beans
+Objects created by the container (BeanFactory or ApplicationContext) are also called managed objects or beans.
+
+Objects can be obtained by means of either dependency lookup or dependency injection.[7] Dependency lookup is a pattern where a caller asks the container object for an object with a specific name or of a specific type. Dependency injection is a pattern where the container passes objects by name to other objects, via either constructors, properties, or factory methods.
+
+In many cases one need not use the container when using other parts of the Spring Framework, although using it will likely make an application easier to configure and customize. The Spring container provides a consistent mechanism to configure applications and integrates with almost all Java environments, from small-scale applications to large enterprise applications.
