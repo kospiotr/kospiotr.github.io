@@ -4,7 +4,7 @@ title: Spring Framework
 comments: false
 gallery: true
 toc: true
-editurl: wiki/SpringFramework.md
+editurl: wiki/spring-framework.md
 res: ../resources/wiki/spring
 ---
 
@@ -542,6 +542,9 @@ public class BillingServiceJsr330LifecycleAware {
  ```
 
 ##Dependency injection methods
+
+To get know what Dependency Injection is please refer to this wiki: [Dependecy Injection](dependency-injection.html)
+
 ###Property
 ###Constructor
 ##Injection types

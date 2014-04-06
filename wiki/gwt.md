@@ -4,7 +4,7 @@ title: Google Web Toolkit
 comments: false
 toc: true
 description: Everything about GWT environment
-editurl: wiki/GWT.md
+editurl: wiki/gwt.md
 ---
 
 #Showcases

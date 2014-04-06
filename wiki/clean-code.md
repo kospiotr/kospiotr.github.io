@@ -5,7 +5,7 @@ description: How to write good quality code?
 comments: false
 gallery: true
 toc: true
-editurl: wiki/CleanCode.md
+editurl: wiki/clean-code.md
 ---
 
 

@@ -3,7 +3,7 @@ layout: wiki
 title: NodeJS
 comments: false
 toc: true
-editurl: wiki/NodeJs.md
+editurl: wiki/node-js.md
 ---
 
 #Extra resources

@@ -2,7 +2,7 @@
 layout: wiki
 title: GIT
 comments: false
-editurl: wiki/GIT.md
+editurl: wiki/git.md
 ---
 
 #Basic commands

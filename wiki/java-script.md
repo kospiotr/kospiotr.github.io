@@ -4,7 +4,7 @@ title: JavaScript
 comments: false
 toc: true
 description: Java Script notes
-editurl: wiki/JS.md
+editurl: wiki/java-script.md
 ---
 
 #JSON

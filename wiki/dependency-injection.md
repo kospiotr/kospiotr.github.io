@@ -4,8 +4,8 @@ title: Dependency Injection
 comments: false
 gallery: true
 toc: true
-editurl: wiki/DI.md
-res: ../resources/wiki/di
+editurl: wiki/di.md
+res: ../resources/wiki/dependency-injection
 ---
 
 # Motivation - how to write good code?

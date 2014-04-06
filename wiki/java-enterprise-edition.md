@@ -4,7 +4,7 @@ title: Java EE
 comments: false
 gallery: true
 toc: true
-editurl: wiki/JavaEE.md
+editurl: wiki/java-enterprise-edition.md
 ---
 
 #Introduction

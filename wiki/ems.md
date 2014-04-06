@@ -2,7 +2,7 @@
 layout: wiki
 title: EMS
 comments: false
-editurl: wiki/EMS.md
+editurl: wiki/ems.md
 ---
 # TIBCO EMS Troubleshooting-How to find consumer and producers for EMS destinations?
 
