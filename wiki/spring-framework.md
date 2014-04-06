@@ -544,23 +544,31 @@ public class BillingServiceJsr330LifecycleAware {
 
  ```
 
-
 > The most recommended way is using plain configuration, then JSR-330 annotations, and in the end implementing interfaces. Interfaces will tight coupled your code to Spring and annotations bind the code with JSR-330. JSR-330 is pretty common now and this is straightforward convention to configure lifecycle in the application. For libraries development I would suggest using plain configuration.
 
 
 
-##Dependency injection methods
+##Dependency Injection
 
-To get know what Dependency Injection is please refer to this wiki: [Dependecy Injection](dependency-injection.html)
-
-###Property
-To inject bean to another with
-###Constructor
-##Injection types
-###By reference
+##Types (injecting objects)
 ###By value
 ####Simple value
+
 ####Collection
+###By reference
+
+###Methods (how objects are being injected)
+To get know what Dependency Injection is please refer to this wiki: [Dependecy Injection](dependency-injection.html)
+
+##Property
+To inject bean to another bean by the property:
+
+```xml
+
+```
+
+##Constructor
+
 ##Autowiring
 #References
 * Spring documentation
