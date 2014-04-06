@@ -24,7 +24,7 @@ Before Spring Framework Enterprise applications has been developed using JavaEE 
   * they differently implement specification
 
 <center>
-![JEE](http://www.ibm.com/developerworks/websphere/library/techarticles/0707_barcia/0707_barcia_images/figure1a.gif)
+![JEE]({{page.res}}/ejb-development.png)
 </center>
 
 ###The book
@@ -142,7 +142,7 @@ Bean Factory is a core element of the Spring Inversion of Control container that
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="ruleBillingService" class="com.github.pkosmowski.hellospring.BillingService"/>
+    <bean id="ruleBillingService" class="com.github.kospiotr.hellospring.BillingService"/>
 
 </beans>
 ```
@@ -203,7 +203,7 @@ The container can be configured by loading XML files or detecting specific Java 
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="ruleBillingService" class="com.github.pkosmowski.hellospring.BillingService"/>
+    <bean id="ruleBillingService" class="com.github.kospiotr.hellospring.BillingService"/>
 </beans>
   ```
 
@@ -243,7 +243,7 @@ Objects created by the container (`BeanFactory` or `ApplicationContext`) are als
 Simple bean declaration:
 
 ```xml
-<bean id="ruleBillingService" class="com.github.pkosmowski.spring.BillingService"/>
+<bean id="ruleBillingService" class="com.github.kospiotr.spring.BillingService"/>
 ```
 
 * Obtain bean by id:
@@ -261,8 +261,8 @@ BillingService billingService = applicationContext.getBean(BillingService.class)
 If multiple beans with given class declared:
 
 ```xml
-    <bean id="ruleBillingService" class="com.github.pkosmowski.spring.BillingService"/>
-    <bean id="ruleBillingService2" class="com.github.pkosmowski.spring.BillingService"/>
+    <bean id="ruleBillingService" class="com.github.kospiotr.spring.BillingService"/>
+    <bean id="ruleBillingService2" class="com.github.kospiotr.spring.BillingService"/>
 ```
 
 They can be lookup from container as a map where bean id is a map key:
@@ -276,7 +276,7 @@ Map<String, BillingService> billingService = applicationContext.getBeansOfType(B
 The bean can have more ids thanks to aliases
 
 ```xml
-    <bean id="ruleBillingService" class="com.github.pkosmowski.spring.BillingService"/>
+    <bean id="ruleBillingService" class="com.github.kospiotr.spring.BillingService"/>
     <alias name="ruleBillingService" alias="service"/>
 ```
 
@@ -287,6 +287,200 @@ BillingService service = applicationContext.getBean("service", BillingService.cl
 
 ```
 
+##Scopes
+Basic scopes:
+
+ * **singleton** - (default) scopes a single bean definition to a single object instance per Spring IoC container.
+ * **prototype** - scopes a single bean definition to any number of object instances.
+
+Only valid in the context of a web-aware Spring ApplicationContext:
+
+ * **request** - scopes a single bean definition to the lifecycle of a single HTTP request; that is each and every HTTP request will have its own instance of a bean created off the back of a single bean definition.
+ * **session** - scopes a single bean definition to the lifecycle of a HTTP Session.
+ * **global** - session Scopes a single bean definition to the lifecycle of a global HTTP Session. Typically only valid when used in a portlet context.
+
+Examples:
+
+Given `BillingService.java`:
+
+```java
+public class BillingService {
+
+    public BillingService() {
+        System.out.println("Constructed BillingService");
+    }
+
+}
+```
+
+* Singleton example:
+
+ Configuration:
+
+ ```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="ruleBillingService" class="com.github.kospiotr.spring.BillingService" scope="singleton"/>
+</beans>
+ ```
+
+ Application:
+
+ ```java
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring-configuration-singleton.xml");
+
+        BillingService service1 = applicationContext.getBean(BillingService.class);
+        BillingService service2 = applicationContext.getBean(BillingService.class);
+        BillingService service3 = applicationContext.getBean(BillingService.class);
+ ```
+
+ Result:
+
+ ```
+> Constructed BillingService
+ ```
+* Prototype example:
+
+ Configuration:
+
+ ```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="ruleBillingService" class="com.github.kospiotr.spring.BillingService" scope="singleton"/>
+</beans>
+ ```
+
+ Application:
+
+ ```java
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring-configuration-singleton.xml");
+
+        BillingService service1 = applicationContext.getBean(BillingService.class);
+        BillingService service2 = applicationContext.getBean(BillingService.class);
+        BillingService service3 = applicationContext.getBean(BillingService.class);
+ ```
+
+ Result:
+
+ ```
+> Constructed BillingService
+> Constructed BillingService
+> Constructed BillingService
+ ```
+
+##Lifecycle
+Spring helps to mange the lifecycle of the objects. It is possible to perform actions:
+
+* after object has been initialized (after all properties has been set up),
+* before it will be destroyed (when context goes down).
+
+There are 3 methods how it can be achieved by Spring:
+
+* In the configuration
+* By implementing interfaces
+* By marking methods with annotations
+
+Examples:
+
+* **Configuration driven**
+
+ Configuration:
+
+ ```xml
+    <bean id="ruleBillingService" class="com.github.kospiotr.spring.BillingService"
+          init-method="init" destroy-method="cleanUp"/>
+ ```
+
+ Bean:
+
+ ```java
+public class BillingService {
+
+    public BillingService() {
+        System.out.println("Constructed BillingService");
+    }
+
+    public void init() {
+        System.out.println("BillingService initialized");
+    }
+
+    public void cleanUp() {
+        System.out.println("BillingService clean up");
+    }
+}
+ ```
+
+ Application:
+
+ ```java
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring-configuration-configuration-driven-lifecycle.xml");
+
+        BillingService service1 = applicationContext.getBean(BillingService.class);
+
+        ((ConfigurableApplicationContext) applicationContext).close(); //forces context to shut down
+ ```
+
+ Result:
+
+ ```
+>Constructed BillingService
+>BillingService initialized
+>BillingService clean up
+ ```
+* **Interface driven**
+
+ Configuration:
+
+ ```xml
+    <bean id="ruleBillingService" class="com.github.pkosmowski.spring.BillingSpringLifecycleAware"/>
+ ```
+
+ Bean:
+
+ ```java
+public class BillingServiceLifecycleAware implements InitializingBean, DisposableBean {
+
+    public BillingServiceLifecycleAware() {
+        System.out.println("Constructed BillingService");
+    }
+
+    public void afterPropertiesSet() throws Exception {
+        System.out.println("BillingService initialized");
+    }
+
+    public void destroy() throws Exception {
+        System.out.println("BillingService destroyed");
+    }
+}
+ ```
+
+ Application:
+
+ ```java
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring-configuration-interface-driven-lifecycle.xml");
+
+        //requesting bean from the container by the type
+        BillingService service1 = applicationContext.getBean(BillingService.class);
+
+        ((ConfigurableApplicationContext) applicationContext).close(); //forces context to shut down
+ ```
+
+ Result:
+
+ ```
+>Constructed BillingService
+>BillingService initialized
+>BillingService clean up
+ ```
+
 ##Dependency injection
 ###Property
 ###Constructor
@@ -295,5 +489,9 @@ BillingService service = applicationContext.getBean("service", BillingService.cl
 ###By value
 ####Simple value
 ####Collection
-##Lifecycle
 ##Autowiring
+#References
+* Spring documentation
+* Koushik
+* Mykyong
+* Guice
