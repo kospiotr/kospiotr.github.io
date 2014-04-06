@@ -238,8 +238,9 @@ ApplicationContext applicationContext = new AnnotationConfigApplicationContext(A
 ##Beans
 Objects created by the container (`BeanFactory` or `ApplicationContext`) are also called managed objects or beans. Only managed objects can be controlled by Spring (injecting dependencies, lifecycle management).
 
-#Container basis
-##Bean declaration
+#Container basis (XML way)
+##Object management
+###Bean declaration
 Simple bean declaration:
 
 ```xml
@@ -272,7 +273,7 @@ Map<String, BillingService> billingService = applicationContext.getBeansOfType(B
 ```
 
 
-##Bean alias
+###Bean alias
 The bean can have more ids thanks to aliases
 
 ```xml
@@ -287,7 +288,7 @@ BillingService service = applicationContext.getBean("service", BillingService.cl
 
 ```
 
-##Scopes
+###Scopes
 Basic scopes:
 
  * **singleton** - (default) scopes a single bean definition to a single object instance per Spring IoC container.
@@ -376,7 +377,7 @@ public class BillingService {
 > Constructed BillingService
  ```
 
-##Lifecycle
+###Lifecycle
 Spring helps to mange the lifecycle of the objects. It is possible to perform actions:
 
 * after object has been initialized (after all properties has been set up),
@@ -537,10 +538,10 @@ public class BillingServiceJsr330LifecycleAware {
 
  ```
 
-##Dependency injection
+##Dependency injection methods
 ###Property
 ###Constructor
-##Injection type
+##Injection types
 ###By reference
 ###By value
 ####Simple value
