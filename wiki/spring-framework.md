@@ -290,6 +290,9 @@ Obtain bean by alias is achieved in a same way as by id:
 BillingService service = applicationContext.getBean("service", BillingService.class);
 
 ```
+##Factory method
+Objects can be manually created by other bean via factory method:
+
 
 ###Scopes
 Basic scopes:
@@ -541,11 +544,17 @@ public class BillingServiceJsr330LifecycleAware {
 
  ```
 
+
+> The most recommended way is using plain configuration, then JSR-330 annotations, and in the end implementing interfaces. Interfaces will tight coupled your code to Spring and annotations bind the code with JSR-330. JSR-330 is pretty common now and this is straightforward convention to configure lifecycle in the application. For libraries development I would suggest using plain configuration.
+
+
+
 ##Dependency injection methods
 
 To get know what Dependency Injection is please refer to this wiki: [Dependecy Injection](dependency-injection.html)
 
 ###Property
+To inject bean to another with
 ###Constructor
 ##Injection types
 ###By reference
