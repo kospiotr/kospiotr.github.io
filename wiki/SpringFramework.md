@@ -431,16 +431,17 @@ public class BillingService {
  Result:
 
  ```
->Constructed BillingService
->BillingService initialized
->BillingService clean up
+> Constructed BillingService
+> BillingService initialized
+> BillingService clean up
  ```
+
 * **Interface driven**
 
  Configuration:
 
  ```xml
-    <bean id="ruleBillingService" class="com.github.pkosmowski.spring.BillingSpringLifecycleAware"/>
+    <bean id="ruleBillingService" class="com.github.kospiotr.spring.BillingServiceLifecycleAware"/>
  ```
 
  Bean:
@@ -467,8 +468,7 @@ public class BillingServiceLifecycleAware implements InitializingBean, Disposabl
  ```java
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring-configuration-interface-driven-lifecycle.xml");
 
-        //requesting bean from the container by the type
-        BillingService service1 = applicationContext.getBean(BillingService.class);
+        BillingServiceLifecycleAware service1 = applicationContext.getBean(BillingServiceLifecycleAware.class);
 
         ((ConfigurableApplicationContext) applicationContext).close(); //forces context to shut down
  ```
@@ -476,9 +476,54 @@ public class BillingServiceLifecycleAware implements InitializingBean, Disposabl
  Result:
 
  ```
->Constructed BillingService
->BillingService initialized
->BillingService clean up
+Constructed BillingService
+BillingService initialized
+BillingService destroyed
+ ```
+
+* **Annotation driven**
+
+ Configuration:
+
+ ```xml
+    <bean id="ruleBillingService" class="com.github.kospiotr.spring.BillingServiceLifecycleAware"/>
+ ```
+
+ Bean:
+
+ ```java
+public class BillingServiceLifecycleAware implements InitializingBean, DisposableBean {
+
+    public BillingServiceLifecycleAware() {
+        System.out.println("Constructed BillingService");
+    }
+
+    public void afterPropertiesSet() throws Exception {
+        System.out.println("BillingService initialized");
+    }
+
+    public void destroy() throws Exception {
+        System.out.println("BillingService destroyed");
+    }
+}
+ ```
+
+ Application:
+
+ ```java
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring-configuration-interface-driven-lifecycle.xml");
+
+        BillingServiceLifecycleAware service1 = applicationContext.getBean(BillingServiceLifecycleAware.class);
+
+        ((ConfigurableApplicationContext) applicationContext).close(); //forces context to shut down
+ ```
+
+ Result:
+
+ ```
+Constructed BillingService
+BillingService initialized
+BillingService destroyed
  ```
 
 ##Dependency injection
