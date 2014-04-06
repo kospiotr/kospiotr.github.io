@@ -30,12 +30,26 @@ To stop tracking a file that is currently tracked, use ```git rm --cached```.
  * ```git branch -a``` - display branches
 
 #Certificates
+##Generate private / public keys
+
+```
+Generating public/private rsa key pair.
+Enter file in which to save the key (//.ssh/id_rsa): C:\Users\Piotr\.ssh\id_rsa
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in C:\Users\Piotr\.ssh\id_rsa.
+Your public key has been saved in C:\Users\Piotr\.ssh\id_rsa.pub.
+The key fingerprint is:
+84:ea:b5:95:bd:a6:e9:73:83:9d:34:af:f7:15:04:a7 kospiotr@tlen.pl
+```
+
 To use ssh with remote repositories you need to publish your public key to this services. It can be localized here:
 
 ```bash
-C:\>clip <  Users\Piotr\.ssh\id_rsa.pub
+C:\>clip <  C:\Users\Piotr\.ssh\id_rsa.pub
 ```
 #External resources
 * [Cheat cheet](../resources/git-cheat-sheet.svg)
 * [Git Recipes - Wlodzimierz Gajda](../resources/books/Git Recipes - Wlodzimierz Gajda.pdf)
 * [http://try.github.io](http://try.github.io)
+* [https://help.github.com/articles/generating-ssh-keys](https://help.github.com/articles/generating-ssh-keys)
