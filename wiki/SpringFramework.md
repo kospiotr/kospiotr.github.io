@@ -238,6 +238,9 @@ ApplicationContext applicationContext = new AnnotationConfigApplicationContext(A
 ##Beans
 Objects created by the container (`BeanFactory` or `ApplicationContext`) are also called managed objects or beans. Only managed objects can be controlled by Spring (injecting dependencies, lifecycle management).
 
+<center>![Bans vs Object instances]({{page.res}}/beans.png)</center>
+
+
 #Container basis (XML way)
 ##Object management
 ###Bean declaration
