@@ -550,24 +550,109 @@ public class BillingServiceJsr330LifecycleAware {
 
 ##Dependency Injection
 
-##Types (injecting objects)
-###By value
-####Simple value
+###Object initialisation
+####Value
 
-####Collection
-###By reference
-
-###Methods (how objects are being injected)
-To get know what Dependency Injection is please refer to this wiki: [Dependecy Injection](dependency-injection.html)
-
-##Property
-To inject bean to another bean by the property:
+ * Simple values:
 
 ```xml
-
+        <property name="sampleString" value="TestingString"/>
+        <property name="sampleIntiger" value="100"/>
+        <property name="sampleDouble" value="99.99"/>
 ```
 
-##Constructor
+ * List:
+
+ ```xml
+         <property name="sampleList">
+             <list>
+                 <value>pechorin@hero.org</value>
+                 <value>raskolnikov@slums.org</value>
+                 <value>stavrogin@gov.org</value>
+                 <value>porfiry@gov.org</value>
+             </list>
+         </property>
+ ```
+
+ * Set:
+
+ ```xml
+         <property name="sampleSet">
+             <set>
+                 <value>pechorin@hero.org</value>
+                 <value>raskolnikov@slums.org</value>
+                 <value>stavrogin@gov.org</value>
+                 <value>porfiry@gov.org</value>
+             </set>
+         </property>
+ ```
+
+ * Map:
+
+ ```xml
+         <property name="sampleMap">
+             <map>
+                 <entry key="pechorin" value="pechorin@hero.org"/>
+                 <entry key="raskolnikov" value="raskolnikov@slums.org"/>
+                 <entry key="stavrogin" value="stavrogin@gov.org"/>
+                 <entry key="porfiry" value="porfiry@gov.org"/>
+             </map>
+         </property>
+ ```
+
+####Inner bean
+
+```xml
+    <bean id="billingService1" class="com.github.kospiotr.spring.BillingService">
+        <property name="creditCardProcessor">
+            <bean id="creditCardProcessor" class="com.github.kospiotr.spring.CreditCardProcessor"/>
+        </property>
+        <property name="transactionLogger">
+            <bean id="transactionLogger" class="com.github.kospiotr.spring.TransactionLogger"/>
+        </property>
+    </bean>
+```
+
+####By reference
+
+```xml
+    <bean id="creditCardProcessor" class="com.github.kospiotr.spring.CreditCardProcessor"/>
+    <bean id="transactionLogger" class="com.github.kospiotr.spring.TransactionLogger"/>
+    <bean id="billingService1" class="com.github.kospiotr.spring.BillingService">
+        <property name="creditCardProcessor" ref="creditCardProcessor"/>
+        <property name="transactionLogger" ref="transactionLogger"/>
+    </bean>
+```
+
+###Injecting methods
+
+To get know what Dependency Injection is please refer to this wiki: [Dependecy Injection](dependency-injection.html)
+
+####Setter based dependency injection
+
+Setter-based DI is accomplished by the container calling setter methods on your beans after invoking a no-argument constructor or no-argument static factory method to instantiate your bean.
+
+```xml
+    <bean id="creditCardProcessor" class="com.github.kospiotr.spring.CreditCardProcessor"/>
+    <bean id="transactionLogger" class="com.github.kospiotr.spring.TransactionLogger"/>
+    <bean id="billingService" class="com.github.kospiotr.spring.BillingService">
+        <property name="creditCardProcessor" ref="creditCardProcessor"/>
+        <property name="transactionLogger" ref="transactionLogger"/>
+    </bean>
+```
+
+####Constructor based dependency injection
+
+Constructor-based DI is accomplished when the container invokes a class constructor with a number of arguments, each representing a dependency on other class.
+
+```xml
+    <bean id="creditCardProcessor" class="com.github.kospiotr.spring.CreditCardProcessor"/>
+    <bean id="transactionLogger" class="com.github.kospiotr.spring.TransactionLogger"/>
+    <bean id="billingService" class="com.github.kospiotr.spring.BillingService">
+        <constructor-arg name="creditCardProcessor" ref="creditCardProcessor"/>
+        <constructor-arg name="transactionLogger" ref="transactionLogger"/>
+    </bean>
+```
 
 ##Autowiring
 #References
