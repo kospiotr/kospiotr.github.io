@@ -654,7 +654,114 @@ Constructor-based DI is accomplished when the container invokes a class construc
     </bean>
 ```
 
-##Autowiring
+###Autowiring
+
+Given application:
+
+```java
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring-configuration-autowire-by-type.xml");
+
+        Payment payment = new Payment("Pizza payment", "123", "321", 20);
+
+        //requesting bean from the container by the id
+        BillingService billingService1 = applicationContext.getBean("billingService1", BillingService.class);
+        billingService1.processPayment(payment);
+```
+
+* no autowiring
+
+ This is default setting which means no autowiring and you should use explicit bean reference for wiring. You have nothing to do special for this wiring. This is what you already have seen in Dependency Injection chapter.
+
+ Configuration:
+
+ ```xml
+    <bean id="creditCardProcessor" class="com.github.kospiotr.spring.CreditCardProcessor"/>
+    <bean id="transactionLogger" class="com.github.kospiotr.spring.TransactionLogger"/>
+
+    <bean id="billingService1" class="com.github.kospiotr.spring.BillingService">
+        <property name="creditCardProcessor" ref="creditCardProcessor"/>
+        <property name="transactionLogger" ref="transactionLogger"/>
+    </bean>
+ ```
+
+ Result:
+
+ ```
+> Constructed CreditCardProcessor
+> Constructed TransactionLogger
+> Constructed BillingService
+> Injected CreditCardProcessor to BillingService
+> Injected TransactionLogger to BillingService
+> Constructed BillingService, and injected CreditCardProcessor and TransactionLogger
+ ```
+
+* `byName`
+
+ Autowiring by property name. Spring container looks at the properties of the beans on which autowire attribute is set to byName in the XML configuration file. It then tries to match and wire its properties with the beans defined by the same names in the configuration file.
+
+ Configuration:
+
+ ```xml
+    <bean id="creditCardProcessor" class="com.github.kospiotr.spring.CreditCardProcessor"/>
+    <bean id="transactionLogger" class="com.github.kospiotr.spring.TransactionLogger"/>
+
+    <bean id="billingService1" class="com.github.kospiotr.spring.BillingService" autowire="byName"/>
+ ```
+
+ Result:
+
+ ```
+> Constructed CreditCardProcessor
+> Constructed TransactionLogger
+> Constructed BillingService
+> Injected CreditCardProcessor to BillingService
+> Injected TransactionLogger to BillingService
+ ```
+
+* `byType`
+
+ Autowiring by property datatype. Spring container looks at the properties of the beans on which autowire attribute is set to byType in the XML configuration file. It then tries to match and wire a property if its type matches with exactly one of the beans name in configuration file. If more than one such beans exists, a fatal exception is thrown.
+
+ Configuration:
+
+ ```xml
+    <bean id="cp" class="com.github.kospiotr.spring.CreditCardProcessor"/>
+    <bean id="tl" class="com.github.kospiotr.spring.TransactionLogger"/>
+
+    <bean id="billingService1" class="com.github.kospiotr.spring.BillingService" autowire="byType"/>
+ ```
+
+ Result:
+
+ ```
+> Constructed CreditCardProcessor
+> Constructed TransactionLogger
+> Constructed BillingService
+> Injected CreditCardProcessor to BillingService
+> Injected TransactionLogger to BillingService
+ ```
+
+* `constructor`
+
+ Similar to byType, but type applies to constructor arguments. If there is not exactly one bean of the constructor argument type in the container, a fatal error is raised.
+
+ Configuration:
+
+ ```xml
+    <bean id="creditCardProcessor" class="com.github.kospiotr.spring.CreditCardProcessor"/>
+    <bean id="transactionLogger" class="com.github.kospiotr.spring.TransactionLogger"/>
+
+    <bean id="billingService1" class="com.github.kospiotr.spring.BillingService" autowire="constructor"/>
+ ```
+
+ Result:
+
+ ```
+> Constructed CreditCardProcessor
+> Constructed TransactionLogger
+> Constructed BillingService, and injected CreditCardProcessor and TransactionLogger
+ ```
+
 #References
 * Spring documentation
 * Koushik
