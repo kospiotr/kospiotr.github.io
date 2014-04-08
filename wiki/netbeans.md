@@ -9,11 +9,14 @@ editurl: wiki/netbeans.md
 # Shortcuts
 
 Editing:
-* `ctrl + alt + t` - open test / testing class
-* `ctrl + shift + u` - create test for given class
 * `ctrl + shift + r` - rectangular selection
 * `alt + shift + .` - select around
- 
+
+Working with tests:
+* `ctrl + alt + t` - open test / testing class
+* `ctrl + shift + u` - create test for given class
+* `ctrl + F6` - execute tests for the given file
+
 Windows:
 * `shift + Esc` - maximize current editor
 * `ctrl + shift + Enter` - show only editor
