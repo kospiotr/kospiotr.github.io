@@ -18,6 +18,7 @@ Working with tests:
 * `ctrl + alt + t` - open test / testing class
 * `ctrl + shift + u` - create test for given class
 * `ctrl + F6` - execute tests for the given file
+* `ctrl + shift + F6` - debug tests for the given file
 
 Windows:
 
