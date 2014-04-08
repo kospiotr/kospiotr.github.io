@@ -12,9 +12,14 @@ editurl: wiki/netbeans.md
 * `ctrl + shift + u` - create test for given class
 * `ctrl + shift + r` - rectangular selection
 * `alt + shift + .` - select around
+
 * `shift + Esc` - maximize current editor
 * `ctrl + shift + Enter` - show only editor
 * `alt + shift + Enter` - full screen
+
+* `ctrl + shift + m` - toogle bookmark
+* `ctrl + shift + ,` - previous bookmark
+* `ctrl + shift + .` - next bookmark
 
 # Templates
 * Test method (tm):
