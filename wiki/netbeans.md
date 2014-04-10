@@ -8,10 +8,29 @@ editurl: wiki/netbeans.md
 
 # Shortcuts
 
-* `ctrl + alt + t` - open test / testing class
-* `ctrl + shift + u` - create test for given class
+Editing:
+
 * `ctrl + shift + r` - rectangular selection
 * `alt + shift + .` - select around
+
+Working with tests:
+
+* `ctrl + alt + t` - open test / testing class
+* `ctrl + shift + u` - create test for given class
+* `ctrl + F6` - execute tests for the given file
+* `ctrl + shift + F6` - debug tests for the given file
+
+Windows:
+
+* `shift + Esc` - maximize current editor
+* `ctrl + shift + Enter` - show only editor
+* `alt + shift + Enter` - full screen
+ 
+Bookmarks:
+
+* `ctrl + shift + m` - toogle bookmark
+* `ctrl + shift + ,` - previous bookmark
+* `ctrl + shift + .` - next bookmark
 
 # Templates
 * Test method (tm):
