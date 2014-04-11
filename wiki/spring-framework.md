@@ -763,7 +763,8 @@ Result:
 ```
 
 
-#Container basis (Annotation way)
+#Annotation-based container configuration
+An alternative to XML setups is provided by annotation-based configuration which rely on the bytecode metadata for wiring up components instead of angle-bracket declarations. Instead of using XML to describe a bean wiring, the developer moves the configuration into the component class itself by using annotations on the relevant class, method, or field declaration.
 
 
 #References
