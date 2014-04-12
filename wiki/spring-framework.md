@@ -762,6 +762,152 @@ Result:
 > Constructed BillingService, and injected CreditCardProcessor and TransactionLogger
 ```
 
+##Container Extension Points
+
+###BeanPostProcessor
+The `BeanPostProcessor` interface defines callback methods that you can implement to provide your own (or override the container’s default) instantiation logic, dependency-resolution logic, and so forth. If you want to implement some custom logic after the Spring container finishes instantiating, configuring, and initializing a bean, you can plug in one or more `BeanPostProcessor` implementations.
+
+Definition of custom `BeanPostProcessor`:
+
+```java
+public class SimpleBeanPostProcessor implements BeanPostProcessor {
+
+    public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
+        System.out.println("before bean init = " + beanName);
+        return bean;
+    }
+
+    public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+        System.out.println("after bean init = " + beanName);
+        return bean;
+    }
+
+}
+```
+
+Registration:
+
+```xml
+    <bean id="creditCardProcessor" class="com.github.kospiotr.spring.CreditCardProcessor"/>
+    <bean id="transactionLogger" class="com.github.kospiotr.spring.TransactionLogger"/>
+
+    <bean id="billingService1" class="com.github.kospiotr.spring.BillingService">
+        <property name="creditCardProcessor" ref="creditCardProcessor"/>
+        <property name="transactionLogger" ref="transactionLogger"/>
+    </bean>
+
+    <bean class="com.github.kospiotr.spring.SimpleBeanPostProcessor"/>
+```
+
+Result:
+
+```
+> Constructed CreditCardProcessor
+> before bean init = creditCardProcessor
+> after bean init = creditCardProcessor
+> Constructed TransactionLogger
+> before bean init = transactionLogger
+> after bean init = transactionLogger
+> Constructed BillingService
+> Injected CreditCardProcessor to BillingService
+> Injected TransactionLogger to BillingService
+> before bean init = billingService1
+> after bean init = billingService1
+```
+
+###BeanPostProcessorFactory
+The next extension point that we will look at is the `org.springframework.beans.factory.config.BeanFactoryPostProcessor`. The semantics of this interface are similar to those of the `BeanPostProcessor`, with one major difference: `BeanFactoryPostProcessor` operates on the bean configuration metadata; that is, the Spring IoC container allows a `BeanFactoryPostProcessor` to read the configuration metadata and potentially change it before the container instantiates any beans other than `BeanFactoryPostProcessors`.
+
+
+Definition of custom `BeanFactoryPostProcessor`:
+
+```java
+public class SimpleBeanFactoryPostProcessor implements BeanFactoryPostProcessor {
+
+    public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
+        System.out.println("PostProcess: " + Arrays.toString(beanFactory.getBeanDefinitionNames()));
+    }
+
+}
+```
+
+Registration:
+
+```xml
+    <bean id="creditCardProcessor" class="com.github.kospiotr.spring.CreditCardProcessor"/>
+    <bean id="transactionLogger" class="com.github.kospiotr.spring.TransactionLogger"/>
+
+    <bean id="billingService1" class="com.github.kospiotr.spring.BillingService">
+        <property name="creditCardProcessor" ref="creditCardProcessor"/>
+        <property name="transactionLogger" ref="transactionLogger"/>
+    </bean>
+
+    <bean class="com.github.kospiotr.spring.SimpleBeanFactoryPostProcessor"/>
+```
+
+Result:
+
+```
+> PostProcess: [creditCardProcessor, transactionLogger, billingService1, com.github.kospiotr.spring.S impleBeanFactoryPostProcessor#0]
+> Constructed CreditCardProcessor
+> Constructed TransactionLogger
+> Constructed BillingService
+> Injected CreditCardProcessor to BillingService
+> Injected TransactionLogger to BillingService
+```
+
+###Placeholders
+You use the PropertyPlaceholderConfigurer to externalize property values from a bean definition in a separate file using the standard Java Properties format. Doing so enables the person deploying an application to customize environment-specific properties such as database URLs and passwords, without the complexity or risk of modifying the main XML definition file or files for the container.
+
+Configuration:
+
+```xml
+    <bean id="payment1" class="com.github.kospiotr.spring.Payment">
+        <property name="paymentTitle" value="${paymentTitle1}"/>
+        <property name="accountFrom" value="${accountFrom1}"/>
+        <property name="accountTo" value="${accountTo1}"/>
+        <property name="amount" value="${amount1}"/>
+    </bean>
+    <bean id="payment2" class="com.github.kospiotr.spring.Payment">
+        <property name="paymentTitle" value="${paymentTitle1}"/>
+        <property name="accountFrom" value="${accountFrom1}"/>
+        <property name="accountTo" value="${accountTo1}"/>
+        <property name="amount" value="${amount1}"/>
+    </bean>
+
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations" value="classpath:config.properties"/>
+    </bean>
+```
+
+Properties file `config.properties`:
+
+```
+paymentTitle1=Pizza Payment
+accountFrom1=12345
+accountTo1=54321
+amount1=100
+paymentTitle2=Shoppings
+accountFrom2=98765
+accountTo2=56789
+amount2=200
+```
+
+Application:
+
+```java
+Payment payment1 = applicationContext.getBean("payment1", Payment.class);
+System.out.println("payment1 = " + payment1);
+Payment payment2 = applicationContext.getBean("payment2", Payment.class);
+System.out.println("payment2 = " + payment2);
+```
+
+Result:
+
+```
+payment1 = Payment{paymentTitle=Pizza Payment, accountFrom=12345, accountTo=54321, amount=100.0}
+payment2 = Payment{paymentTitle=Pizza Payment, accountFrom=12345, accountTo=54321, amount=100.0}
+```
 
 #Annotation-based container configuration
 An alternative to XML setups is provided by annotation-based configuration which rely on the bytecode metadata for wiring up components instead of angle-bracket declarations. Instead of using XML to describe a bean wiring, the developer moves the configuration into the component class itself by using annotations on the relevant class, method, or field declaration.
@@ -782,7 +928,7 @@ Configuration doesn't contains information about component wiring:
 ###@Inject and @Autowired
 
 1. Matches by Type
-2. Restricts by Qualifiers
+2. Restricts by Qualifiers (@Named or custom Qualifier annotation)
 3. Matches by Name
 
 * **Constructor**
@@ -866,73 +1012,9 @@ Source: [http://stackoverflow.com/questions/7142622/what-is-the-difference-betwe
 2. Matches by Type
 3. Restricts by Qualifiers (ignored if match is found by name)
 
-* **Constructor**
+@Resource takes a name attribute, and by default Spring interprets that value as the bean name to be injected. In other words, it follows by-name semantics.
 
- Annotation:
 
- ```java
-    @Autowired
-    public BillingServiceAutowireConstructor(CreditCardProcessor creditCardProcessor, TransactionLogger transactionLogger) {
-        this.creditCardProcessor = creditCardProcessor;
-        this.transactionLogger = transactionLogger;
-        System.out.println("Constructed BillingService, and injected CreditCardProcessor and TransactionLogger");
-    }
- ```
-
- Result:
-
- ```
-> Constructed CreditCardProcessor
-> Constructed TransactionLogger
-> Constructed BillingService, and injected CreditCardProcessor and TransactionLogger
- ```
-
-* **Setter**
-
- Annotation:
-
- ```java
-    @Autowired
-    public void setCreditCardProcessor(CreditCardProcessor creditCardProcessor) {
-        System.out.println("Injected CreditCardProcessor to BillingService");
-        this.creditCardProcessor = creditCardProcessor;
-    }
-
-    @Autowired
-    public void setTransactionLogger(TransactionLogger transactionLogger) {
-        System.out.println("Injected TransactionLogger to BillingService");
-        this.transactionLogger = transactionLogger;
-    }
- ```
-
- Result:
-
- ```
-> Constructed BillingService
-> Constructed CreditCardProcessor
-> Injected CreditCardProcessor to BillingService
-> Constructed TransactionLogger
-> Injected TransactionLogger to BillingService
- ```
-
-* **Property**
-
- Annotation:
-
-  ```java
-    @Autowired
-    private CreditCardProcessor creditCardProcessor;
-    @Autowired
-    private TransactionLogger transactionLogger;
-  ```
-
- Result:
-
- ```
-> Constructed BillingService
-> Constructed CreditCardProcessor
-> Constructed TransactionLogger
- ```
 
 #References
 * Spring documentation
