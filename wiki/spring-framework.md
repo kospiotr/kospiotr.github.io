@@ -862,9 +862,9 @@ Source: [http://stackoverflow.com/questions/7142622/what-is-the-difference-betwe
 
 ###@Resource
 
-1. Matches by Type
-2. Restricts by Qualifiers
-3. Matches by Name
+1. Matches by Name
+2. Matches by Type
+3. Restricts by Qualifiers (ignored if match is found by name)
 
 * **Constructor**
 
