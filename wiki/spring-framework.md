@@ -766,6 +766,173 @@ Result:
 #Annotation-based container configuration
 An alternative to XML setups is provided by annotation-based configuration which rely on the bytecode metadata for wiring up components instead of angle-bracket declarations. Instead of using XML to describe a bean wiring, the developer moves the configuration into the component class itself by using annotations on the relevant class, method, or field declaration.
 
+##Dependency Injection
+
+Components might be tied by following annotations: `@Autowired`, `@Resource`, `@Inject`. Great detailed explination what is the difference can be found in [the article](http://blogs.sourceallies.com/2011/08/spring-injection-with-resource-and-autowired).
+
+
+Configuration doesn't contains information about component wiring:
+
+```xml
+    <bean id="billingService" class="com.github.kospiotr.spring.BillingServiceAutowireConstructor"/>
+    <bean id="creditCardProcessor" class="com.github.kospiotr.spring.CreditCardProcessor"/>
+    <bean id="transactionLogger" class="com.github.kospiotr.spring.TransactionLogger"/>
+```
+
+###@Inject and @Autowired
+
+1. Matches by Type
+2. Restricts by Qualifiers
+3. Matches by Name
+
+* **Constructor**
+
+ Annotation:
+
+ ```java
+    @Inject
+    public BillingServiceAutowireConstructor(CreditCardProcessor creditCardProcessor, TransactionLogger transactionLogger) {
+        this.creditCardProcessor = creditCardProcessor;
+        this.transactionLogger = transactionLogger;
+        System.out.println("Constructed BillingService, and injected CreditCardProcessor and TransactionLogger");
+    }
+ ```
+
+ Result:
+
+ ```
+> Constructed CreditCardProcessor
+> Constructed TransactionLogger
+> Constructed BillingService, and injected CreditCardProcessor and TransactionLogger
+ ```
+
+* **Setter**
+
+ Annotation:
+
+ ```java
+    @Inject
+    public void setCreditCardProcessor(CreditCardProcessor creditCardProcessor) {
+        System.out.println("Injected CreditCardProcessor to BillingService");
+        this.creditCardProcessor = creditCardProcessor;
+    }
+
+    @Inject
+    public void setTransactionLogger(TransactionLogger transactionLogger) {
+        System.out.println("Injected TransactionLogger to BillingService");
+        this.transactionLogger = transactionLogger;
+    }
+ ```
+
+ Result:
+
+ ```
+> Constructed BillingService
+> Constructed CreditCardProcessor
+> Injected CreditCardProcessor to BillingService
+> Constructed TransactionLogger
+> Injected TransactionLogger to BillingService
+ ```
+
+* **Property**
+
+ Annotation:
+
+  ```java
+    @Inject
+    private CreditCardProcessor creditCardProcessor;
+    @Inject
+    private TransactionLogger transactionLogger;
+  ```
+
+ Result:
+
+ ```
+> Constructed BillingService
+> Constructed CreditCardProcessor
+> Constructed TransactionLogger
+ ```
+
+**@Inject vs @Autowired**
+> @Inject is part of the Java CDI standard introduced in Java EE 6 (JSR-299), read more. Spring has chosen to support using @Inject synonymously with their own @Autowired annotation.
+
+> @Autowired is Spring's own (legacy) annotation. @Inject is part of a new Java technology called CDI that defines a standard for dependency injection similar to Spring. In a Spring application, the two annotations works the same way as Spring has decided to support some JSR-299 annotations in addition to their own.
+
+Source: [http://stackoverflow.com/questions/7142622/what-is-the-difference-between-inject-and-autowired-in-spring-framework-which](http://stackoverflow.com/questions/7142622/what-is-the-difference-between-inject-and-autowired-in-spring-framework-which)
+
+###@Resource
+
+1. Matches by Type
+2. Restricts by Qualifiers
+3. Matches by Name
+
+* **Constructor**
+
+ Annotation:
+
+ ```java
+    @Autowired
+    public BillingServiceAutowireConstructor(CreditCardProcessor creditCardProcessor, TransactionLogger transactionLogger) {
+        this.creditCardProcessor = creditCardProcessor;
+        this.transactionLogger = transactionLogger;
+        System.out.println("Constructed BillingService, and injected CreditCardProcessor and TransactionLogger");
+    }
+ ```
+
+ Result:
+
+ ```
+> Constructed CreditCardProcessor
+> Constructed TransactionLogger
+> Constructed BillingService, and injected CreditCardProcessor and TransactionLogger
+ ```
+
+* **Setter**
+
+ Annotation:
+
+ ```java
+    @Autowired
+    public void setCreditCardProcessor(CreditCardProcessor creditCardProcessor) {
+        System.out.println("Injected CreditCardProcessor to BillingService");
+        this.creditCardProcessor = creditCardProcessor;
+    }
+
+    @Autowired
+    public void setTransactionLogger(TransactionLogger transactionLogger) {
+        System.out.println("Injected TransactionLogger to BillingService");
+        this.transactionLogger = transactionLogger;
+    }
+ ```
+
+ Result:
+
+ ```
+> Constructed BillingService
+> Constructed CreditCardProcessor
+> Injected CreditCardProcessor to BillingService
+> Constructed TransactionLogger
+> Injected TransactionLogger to BillingService
+ ```
+
+* **Property**
+
+ Annotation:
+
+  ```java
+    @Autowired
+    private CreditCardProcessor creditCardProcessor;
+    @Autowired
+    private TransactionLogger transactionLogger;
+  ```
+
+ Result:
+
+ ```
+> Constructed BillingService
+> Constructed CreditCardProcessor
+> Constructed TransactionLogger
+ ```
 
 #References
 * Spring documentation
