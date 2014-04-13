@@ -241,7 +241,7 @@ Objects created by the container (`BeanFactory` or `ApplicationContext`) are als
 <center>![Bans vs Object instances]({{page.res}}/beans.png)</center>
 
 
-#Container basis (XML way)
+#XML-based container configuration
 ##Object management
 ###Bean declaration
 Simple bean declaration:
@@ -486,62 +486,6 @@ public class BillingServiceLifecycleAware implements InitializingBean, Disposabl
 > Constructed BillingService
 > BillingService initialized
 > BillingService destroyed
- ```
-
-* **Annotation driven**
-
- Configuration:
-
- ```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
-
-    <context:component-scan base-package="com.github.kospiotr.spring" />
-    <bean id="ruleBillingService" class="com.github.kospiotr.spring.BillingServiceJsr330LifecycleAware"/>
-</beans>
- ```
-
- Bean:
-
- ```java
-public class BillingServiceJsr330LifecycleAware {
-
-    public BillingServiceJsr330LifecycleAware() {
-        System.out.println("Constructed BillingService");
-    }
-
-    @PostConstruct
-    public void afterPropertiesSet() {
-        System.out.println("BillingService initialized");
-    }
-
-    @PreDestroy
-    public void destroy() {
-        System.out.println("BillingService destroyed");
-    }
-}
- ```
-
- Application:
-
- ```java
-        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring-configuration-annotation-driven-lifecycle.xml");
-
-        BillingServiceJsr330LifecycleAware service1 = applicationContext.getBean(BillingServiceJsr330LifecycleAware.class);
-
-        ((ConfigurableApplicationContext) applicationContext).close(); //forces context to shut down
- ```
-
- Result:
-
- ```
-> Constructed BillingService
-> BillingService initialized
-> BillingService destroyed
-
  ```
 
 > The most recommended way is using plain configuration, then JSR-330 annotations, and in the end implementing interfaces. Interfaces will tight coupled your code to Spring and annotations bind the code with JSR-330. JSR-330 is pretty common now and this is straightforward convention to configure lifecycle in the application. For libraries development I would suggest using plain configuration.
@@ -855,8 +799,54 @@ Result:
 > Injected CreditCardProcessor to BillingService
 > Injected TransactionLogger to BillingService
 ```
+###Sample implementations
 
-###Placeholders
+Some of those extensions are core that are enabled by default by `ApplicationContext`.
+
+PostProcessors:
+
+* `AdvisorAdapterRegistrationManager`,
+* `AnnotationAwareAspectJAutoProxyCreator`,
+* `AspectJAwareAdvisorAutoProxyCreator`,
+* `AsyncAnnotationBeanPostProcessor`,
+* `AutowiredAnnotationBeanPostProcessor`,
+* `BeanNameAutoProxyCreator`,
+* `BeanValidationPostProcessor`,
+* `CommonAnnotationBeanPostProcessor`,
+* `DefaultAdvisorAutoProxyCreator`,
+* `InfrastructureAdvisorAutoProxyCreator`,
+* `InitDestroyAnnotationBeanPostProcessor`,
+* `InstantiationAwareBeanPostProcessorAdapter`,
+* `LoadTimeWeaverAwareProcessor`,
+* `MethodValidationPostProcessor`,
+* `PersistenceAnnotationBeanPostProcessor`,
+* `PersistenceExceptionTranslationPostProcessor`,
+* `PortletContextAwareProcessor`,
+* `RequiredAnnotationBeanPostProcessor`,
+* `ScheduledAnnotationBeanPostProcessor`,
+* `ScriptFactoryPostProcessor`,
+* `ServerEndpointExporter`,
+* `ServletContextAwareProcessor`,
+* `SimplePortletPostProcessor`,
+* `SimpleServletPostProcessor`
+
+BeanFactoryPostProcessor:
+
+* `AspectJWeavingEnabler`,
+* `ConfigurationClassPostProcessor`,
+* `CustomAutowireConfigurer`,
+* `CustomEditorConfigurer`,
+* `CustomScopeConfigurer`,
+* `DeprecatedBeanWarner`,
+* `PlaceholderConfigurerSupport`,
+* `PreferencesPlaceholderConfigurer`,
+* `PropertyOverrideConfigurer`,
+* `PropertyPlaceholderConfigurer`,
+* `PropertyResourceConfigurer`,
+* `PropertySourcesPlaceholderConfigurer`,
+* `ServletContextPropertyPlaceholderConfigurer`
+
+####Placeholders
 You use the PropertyPlaceholderConfigurer to externalize property values from a bean definition in a separate file using the standard Java Properties format. Doing so enables the person deploying an application to customize environment-specific properties such as database URLs and passwords, without the complexity or risk of modifying the main XML definition file or files for the container.
 
 Configuration:
@@ -1114,7 +1104,65 @@ Result:
 > Constructed TransactionLogger
 ```
 
+##Lifecycle
+
+Configuration:
+
+```xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="com.github.kospiotr.spring" />
+    <bean id="ruleBillingService" class="com.github.kospiotr.spring.BillingServiceJsr330LifecycleAware"/>
+</beans>
+
+```
+
+Bean:
+
+```java
+public class BillingServiceJsr330LifecycleAware {
+
+    public BillingServiceJsr330LifecycleAware() {
+        System.out.println("Constructed BillingService");
+    }
+
+    @PostConstruct
+    public void afterPropertiesSet() {
+        System.out.println("BillingService initialized");
+    }
+
+    @PreDestroy
+    public void destroy() {
+        System.out.println("BillingService destroyed");
+    }
+}
+```
+
+Application:
+
+```java
+ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring-configuration-annotation-driven-lifecycle.xml");
+BillingServiceJsr330LifecycleAware service1 = applicationContext.getBean(BillingServiceJsr330LifecycleAware.class);
+((ConfigurableApplicationContext) applicationContext).close(); //forces context to shut down
+```
+
+Result:
+
+```
+> Constructed BillingService
+> BillingService initialized
+> BillingService destroyed
+
+```
+
 ##Component scanning
+
+Annotations can be also used for
 
 
 
