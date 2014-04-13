@@ -1012,6 +1012,8 @@ Source: [http://stackoverflow.com/questions/7142622/what-is-the-difference-betwe
 2. Matches by Type
 3. Restricts by Qualifiers (ignored if match is found by name)
 
+Behaves similary to @Autowired and @Inject
+
 @Resource takes a name attribute, and by default Spring interprets that value as the bean name to be injected. In other words, it follows by-name semantics.
 
 
