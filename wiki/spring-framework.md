@@ -902,6 +902,12 @@ payment2 = Payment{paymentTitle=Pizza Payment, accountFrom=12345, accountTo=5432
 #Annotation-based container configuration
 An alternative to XML setups is provided by annotation-based configuration which rely on the bytecode metadata for wiring up components instead of angle-bracket declarations. Instead of using XML to describe a bean wiring, the developer moves the configuration into the component class itself by using annotations on the relevant class, method, or field declaration.
 
+To be able to use annotations you need to add to the configuration following directive:
+
+```xml
+<context:annotation-config/>
+```
+
 ##Dependency Injection
 
 Spring has mechanism for automated wiring objects called autowiring. It reduces need of explicit wiring and boilerplate code.
@@ -912,6 +918,8 @@ Components might be tied by following annotations: `@Autowired`, `@Resource`, `@
 Configuration doesn't contains information about component wiring:
 
 ```xml
+    <context:annotation-config/>
+
     <bean id="billingService" class="com.github.kospiotr.spring.BillingServiceAutowireConstructor"/>
     <bean id="creditCardProcessor" class="com.github.kospiotr.spring.CreditCardProcessor"/>
     <bean id="transactionLogger" class="com.github.kospiotr.spring.TransactionLogger"/>
@@ -1162,8 +1170,76 @@ Result:
 
 ##Component scanning
 
-Annotations can be also used for
+This section describes an option for implicitly detecting the candidate components by scanning the classpath. Candidate components are classes that match against a filter criteria and have a corresponding bean definition registered with the container. This removes the need to use XML to perform bean registration, instead you can use annotations (for example @Component).
 
+To be able to use annotated classes you need to perform scanning them on Spring bootstrap. The scanning is being confugured as follow:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="com.github.kospiotr.spring"/>
+
+</beans>
+```
+
+>The use of <context:component-scan> implicitly enables the functionality of <context:annotation-config>. There is usually no need to include the <context:annotation-config> element when using <context:component-scan>.
+
+Then beans must be marked:
+
+```java
+@Component
+public class BillingService {
+
+    @Inject
+    private CreditCardProcessor creditCardProcessor;
+
+    @Inject
+    private TransactionLogger transactionLogger;
+
+    ...
+}
+```
+
+#Testing
+
+* Annotation `@RunWith(SpringJUnit4ClassRunner.class)` makes test class as a manageable component. It allows to inject components.
+
+* `@ContextConfiguration` allows to load existing configuration(XML, JavaConfig)
+
+```java
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration({"/spring-configuration.xml"})
+public class BillingServiceTest {
+
+    @Inject
+    BillingService billingService;
+
+    @Test
+    public void shouldNotProcessPaymentWithNegativeAmount() {
+        Payment payment = new Payment("Test", "123", "321", -10);
+
+        boolean result = billingService.processPayment(payment);
+
+        assertFalse(result);
+    }
+
+    @Test
+    public void shouldNotProcessPaymentWithoutDescription() {
+        Payment payment = new Payment(null, "123", "321", 10);
+
+        boolean result = billingService.processPayment(payment);
+
+        assertFalse(result);
+    }
+}
+```
 
 
 #Spring with in web applications
