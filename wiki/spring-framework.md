@@ -1207,11 +1207,32 @@ public class BillingService {
 }
 ```
 
+Components might be marked with following stereotype annotations:
+
+* `@Service` - Annotate all your service classes with `@Service`. All your business logic will be in Service classes.
+* `@Repository` - Annotate all your DAO classes with `@Repository`. All your database access logic should be in DAO classes.
+* `@Component` - Annotate your other components (for example REST resource classes) with component stereotype.
+
+> `@Component` is a generic stereotype for any Spring-managed component. `@Repository`, `@Service`, and `@Controller` are specializations of `@Component` for more specific use cases, for example, in the persistence, service, and presentation layers, respectively.
+
 #Testing
 
 * Annotation `@RunWith(SpringJUnit4ClassRunner.class)` makes test class as a manageable component. It allows to inject components.
 
 * `@ContextConfiguration` allows to load existing configuration(XML, JavaConfig)
+
+Maven dependency:
+
+```xml
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>4.0.3.RELEASE</version>
+            <scope>test</scope>
+        </dependency>
+```
+
+Integration test:
 
 ```java
 @RunWith(SpringJUnit4ClassRunner.class)
