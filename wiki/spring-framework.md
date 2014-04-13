@@ -914,6 +914,8 @@ An alternative to XML setups is provided by annotation-based configuration which
 
 ##Dependency Injection
 
+Spring has mechanism for automated wiring objects called autowiring. It reduces need of explicit wiring and boilerplate code.
+
 Components might be tied by following annotations: `@Autowired`, `@Resource`, `@Inject`. Great detailed explination what is the difference can be found in [the article](http://blogs.sourceallies.com/2011/08/spring-injection-with-resource-and-autowired).
 
 
@@ -930,6 +932,8 @@ Configuration doesn't contains information about component wiring:
 1. Matches by Type
 2. Restricts by Qualifiers (@Named or custom Qualifier annotation)
 3. Matches by Name
+
+Can mark field, setter or constructor.
 
 * **Constructor**
 
@@ -1004,19 +1008,117 @@ Configuration doesn't contains information about component wiring:
 
 > @Autowired is Spring's own (legacy) annotation. @Inject is part of a new Java technology called CDI that defines a standard for dependency injection similar to Spring. In a Spring application, the two annotations works the same way as Spring has decided to support some JSR-299 annotations in addition to their own.
 
+> Inect guarantee code portability between different Dependency Injectionframeworks ike Spring, Guice, CDI.
+
 Source: [http://stackoverflow.com/questions/7142622/what-is-the-difference-between-inject-and-autowired-in-spring-framework-which](http://stackoverflow.com/questions/7142622/what-is-the-difference-between-inject-and-autowired-in-spring-framework-which)
 
 ###@Resource
 
-1. Matches by Name
+1. Matches by property Name
 2. Matches by Type
 3. Restricts by Qualifiers (ignored if match is found by name)
 
-Behaves similary to @Autowired and @Inject
+Behaves similary to @Autowired and @Inject apart that it ties components first by name then by type.
 
-@Resource takes a name attribute, and by default Spring interprets that value as the bean name to be injected. In other words, it follows by-name semantics.
+@Resource optionally takes a name attribute, and by default Spring interprets that value as the bean name to be injected. In other words, it follows by-name semantics.
+
+Configuration:
+
+```xml
+    <bean id="billingService" class="com.github.kospiotr.spring.BillingServiceResourceNamed"/>
+    <bean id="creditCardProcessor1" class="com.github.kospiotr.spring.CreditCardProcessor"/>
+    <bean id="creditCardProcessor2" class="com.github.kospiotr.spring.CreditCardProcessor"/>
+    <bean id="transactionLogger1" class="com.github.kospiotr.spring.TransactionLogger"/>
+    <bean id="transactionLogger2" class="com.github.kospiotr.spring.TransactionLogger"/>
+```
+
+Annotation:
+
+```java
+    @Resource(name = "creditCardProcessor1")
+    public void setCreditCardProcessor(CreditCardProcessor creditCardProcessor) {
+        System.out.println("Injected CreditCardProcessor to BillingService");
+        this.creditCardProcessor = creditCardProcessor;
+    }
+
+    public BillingServiceResourceNamed() {
+        System.out.println("Constructed BillingService");
+    }
+
+    @Resource(name = "transactionLogger1")
+    public void setTransactionLogger(TransactionLogger transactionLogger) {
+        System.out.println("Injected TransactionLogger to BillingService");
+        this.transactionLogger = transactionLogger;
+    }
+```
+
+Application:
+
+```java
+BillingServiceResourceNamed billingService1 = applicationContext.getBean("billingService", BillingServiceResourceNamed.class);
+```
+
+Result:
+
+```
+> Constructed BillingService
+> Constructed CreditCardProcessor
+> Injected CreditCardProcessor to BillingService
+> Constructed TransactionLogger
+> Injected TransactionLogger to BillingService
+> Constructed CreditCardProcessor
+> Constructed TransactionLogger
+```
+
+###Qualifiers
+
+When using `@Inject` or `@Autowire` annotations and wiring by type or by name is not possible `@Named` or `@Qualifier` might be used:
+
+Configuration:
+
+```xml
+    <bean id="billingService" class="com.github.kospiotr.spring.BillingServiceResourceNamed"/>
+    <bean id="creditCardProcessor1" class="com.github.kospiotr.spring.CreditCardProcessor"/>
+    <bean id="creditCardProcessor2" class="com.github.kospiotr.spring.CreditCardProcessor"/>
+    <bean id="transactionLogger1" class="com.github.kospiotr.spring.TransactionLogger"/>
+    <bean id="transactionLogger2" class="com.github.kospiotr.spring.TransactionLogger"/>
+```
+
+Annotation:
+
+```java
+    @Inject
+    @Named("creditCardProcessor1")
+    public void setCreditCardProcessor(CreditCardProcessor creditCardProcessor) {
+        System.out.println("Injected CreditCardProcessor to BillingService");
+        this.creditCardProcessor = creditCardProcessor;
+    }
+
+    @Inject
+    @Named("transactionLogger1")
+    public void setTransactionLogger(TransactionLogger transactionLogger) {
+        System.out.println("Injected TransactionLogger to BillingService");
+        this.transactionLogger = transactionLogger;
+    }
+```
+
+Result:
+
+```
+> Constructed BillingService
+> Constructed CreditCardProcessor
+> Injected CreditCardProcessor to BillingService
+> Constructed TransactionLogger
+> Injected TransactionLogger to BillingService
+> Constructed CreditCardProcessor
+> Constructed TransactionLogger
+```
+
+##Component scanning
 
 
+
+#Spring with in web applications
 
 #References
 * Spring documentation
