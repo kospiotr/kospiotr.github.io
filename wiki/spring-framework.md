@@ -361,7 +361,7 @@ public class BillingService {
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="ruleBillingService" class="com.github.kospiotr.spring.BillingService" scope="singleton"/>
+    <bean id="ruleBillingService" class="com.github.kospiotr.spring.BillingService" scope="prototype"/>
 </beans>
  ```
 
