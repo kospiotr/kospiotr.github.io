@@ -46,6 +46,7 @@ module.exports = function(grunt) {
 ```
 
 dev-dependency:
+
 * `npm install grunt-contrib-connect --save-dev`
 
 #Extra resources
