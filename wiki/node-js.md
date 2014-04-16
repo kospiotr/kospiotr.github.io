@@ -45,9 +45,9 @@ module.exports = function(grunt) {
 };
 ```
 
-dev-dependency:
+* dev-dependency:
 
-* `npm install grunt-contrib-connect --save-dev`
+ * `npm install grunt-contrib-connect --save-dev`
 
 #Extra resources
  * [Refcard](../resources/nodejs.pdf)
