@@ -19,7 +19,34 @@ editurl: wiki/node-js.md
 
 #Yeoman
 
+#Examples
+##Grunt + Http server
 
+* `Gruntfile.js`:
+
+```js
+module.exports = function(grunt) {
+
+  grunt.initConfig({
+	connect: {
+	  client: {
+		options: {
+		  port: 9000,
+		  base:'public',
+		  keepalive: true
+		}
+	  }
+	}
+  });
+
+  grunt.loadNpmTasks('grunt-contrib-connect');
+  grunt.registerTask('default', ['connect']);
+
+};
+```
+
+dev-dependency:
+* `npm install grunt-contrib-connect --save-dev`
 
 #Extra resources
  * [Refcard](../resources/nodejs.pdf)
