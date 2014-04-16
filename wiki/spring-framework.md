@@ -293,6 +293,23 @@ BillingService service = applicationContext.getBean("service", BillingService.cl
 ##Factory method
 Objects can be manually created by other bean via factory method:
 
+###Static Factory method
+
+```xml
+<bean id="ruleBillingService„
+	class="com.github.kospiotr.spring.BillingServiceStaticFactory" 
+	factory-method="createBillingService"/>
+```
+
+###Non static Factory method
+
+```xml
+<bean id="ruleBillingServiceFactory„
+	class="com.github.kospiotr.spring.BillingServiceFactory"/>
+<bean id="ruleBillingService„
+	factory-bean="ruleBillingServiceFactory" 
+	factory-method="createBillingService"/>
+```
 
 ###Scopes
 Basic scopes:
