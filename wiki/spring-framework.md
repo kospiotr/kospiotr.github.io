@@ -296,7 +296,7 @@ Objects can be manually created by other bean via factory method:
 ###Static Factory method
 
 ```xml
-<bean id="ruleBillingService„
+<bean id="ruleBillingService"
 	class="com.github.kospiotr.spring.BillingServiceStaticFactory" 
 	factory-method="createBillingService"/>
 ```
@@ -304,14 +304,14 @@ Objects can be manually created by other bean via factory method:
 ###Non static Factory method
 
 ```xml
-<bean id="ruleBillingServiceFactory„
+<bean id="ruleBillingServiceFactory"
 	class="com.github.kospiotr.spring.BillingServiceFactory"/>
-<bean id="ruleBillingService„
+<bean id="ruleBillingService"
 	factory-bean="ruleBillingServiceFactory" 
 	factory-method="createBillingService"/>
 ```
 
-###Scopes
+##Scopes
 Basic scopes:
 
  * **singleton** - (default) scopes a single bean definition to a single object instance per Spring IoC container.
@@ -400,7 +400,7 @@ public class BillingService {
 > Constructed BillingService
  ```
 
-###Lifecycle
+##Lifecycle
 Spring helps to mange the lifecycle of the objects. It is possible to perform actions:
 
 * after object has been initialized (after all properties has been set up),
