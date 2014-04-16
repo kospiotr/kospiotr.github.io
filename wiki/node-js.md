@@ -22,7 +22,7 @@ editurl: wiki/node-js.md
 #Examples
 ##Grunt + Http server
 
-* `Gruntfile.js`:
+* Grunt configuration `Gruntfile.js`:
 
 ```js
 module.exports = function(grunt) {
