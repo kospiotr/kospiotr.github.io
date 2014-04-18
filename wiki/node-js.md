@@ -6,5 +6,49 @@ toc: true
 editurl: wiki/node-js.md
 ---
 
+#Node
+
+* `npm init` - initialize nodejs project
+
+#Grunt
+
+* `npm install -g grunt-cli` - install grunt
+* `npm install --save-dev grunt` - install grunt as dev dependency to the project configuration
+
+#Bower
+
+#Yeoman
+
+#Examples
+##Grunt + Http server
+
+* Grunt configuration `Gruntfile.js`:
+
+```js
+module.exports = function(grunt) {
+
+  grunt.initConfig({
+	connect: {
+	  client: {
+		options: {
+		  port: 9000,
+		  base:'public',
+		  keepalive: true
+		}
+	  }
+	}
+  });
+
+  grunt.loadNpmTasks('grunt-contrib-connect');
+  grunt.registerTask('default', ['connect']);
+
+};
+```
+
+* dev-dependency:
+
+ * `npm install grunt-contrib-connect --save-dev`
+
 #Extra resources
  * [Refcard](../resources/nodejs.pdf)
+ * [Getting Started With Grunt and Bower/](http://www.nitinh.com/2013/05/getting-started-with-grunt-bower/)
