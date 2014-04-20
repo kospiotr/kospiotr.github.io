@@ -69,6 +69,7 @@ module.exports = function(grunt) {
 ```
 
 Grunt-cli: `sudo npm install -g grunt-cli`
+
 Install dependencies: `npm install`
 
 * **Structure**:
