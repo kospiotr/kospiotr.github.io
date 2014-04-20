@@ -53,7 +53,7 @@ module.exports = function(grunt) {
 
 * **Dependencies** (`package.json`):
 
-```java-script
+```js
 {
   "name": "my-project-name",
   "version": "0.0.1",
@@ -92,7 +92,7 @@ Install dependencies: `npm install`
 
 * **Grunt coniguration**:
 
-```
+```js
 module.exports = function(grunt) {
  
   grunt.registerTask('watch', [ 'watch' ]);
