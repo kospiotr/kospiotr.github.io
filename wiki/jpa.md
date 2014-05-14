@@ -23,6 +23,7 @@ Example:
 Annotation: `@Lob`
 
 Two types:
+
 * CLOB - character large objects (char[], Character[], and String)
 * BLOB - binary large objects (byte[], Byte[] and Serializable types)
 
