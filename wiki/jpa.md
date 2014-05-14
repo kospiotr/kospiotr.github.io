@@ -61,6 +61,23 @@ public class Employee {
 } 
 ```
 
+##Temporal Types
+Temporal types are the set of time-based types that can be used in persistent state mappings.
+Supported formats:
+
+* `java.sql.Date`
+* `java.sql.Time`
+* `java.sql.Timestamp`
+
+Supported formats that needs extra annotation explaination:
+
+* `java.util.Date`
+* `java.util.Calendar`
+
+An annotation `@Temporal` needs to explain what specific kind of value it stores:
+
+* `TemporalType.DATE`
+* `TemporalType.TIME`
 
 
 
