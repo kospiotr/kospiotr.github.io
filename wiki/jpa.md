@@ -79,5 +79,7 @@ An annotation `@Temporal` needs to explain what specific kind of value it stores
 * `TemporalType.DATE`
 * `TemporalType.TIME`
 
-
+##Transient State 
+Attributes that are part of a persistent entity but not intended to be persistent can either be modified 
+with the `transient` modifier in Java or be annotated with the `@Transient` annotation.
 
