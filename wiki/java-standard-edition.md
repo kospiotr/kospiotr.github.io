@@ -1,9 +1,13 @@
 ---
 layout: wiki
-title: Generics
+title: Java SE
 comments: false
+description: Java Standard Edition
 editurl: wiki/generics.md
 ---
+
+#Generics
+
 To obtainn generic type from the current class:
 
 ```java
