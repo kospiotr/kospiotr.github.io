@@ -63,3 +63,41 @@ org.apache.derby.jdbc.ClientDriver
  * URL
 
 ##Embeded
+
+#Postgres
+##Server configuration
+
+* Download server in zip from [http://www.postgresql.org/](http://www.postgresql.org/)
+* Extract it to `opt` dir
+* Init database: `./bin/initdb.exe -D /home/username/jpa-db`
+* Run server: `"./bin/postgres" -D "/home/username/jpa-db"`
+
+##JDBC 
+###Driver dependency
+
+```xml
+<dependency>
+    <groupId>org.postgresql</groupId>
+    <artifactId>postgresql</artifactId>
+    <version>9.2-1002-jdbc4</version>
+</dependency>
+```
+
+###Driver name
+
+```
+org.postgresql.Driver
+```
+
+###Url
+
+```
+jdbc:postgresql://localhost:5433/postgres
+```
+
+###Hibernate dialect
+
+```
+org.hibernate.dialect.PostgreSQLDialect
+```
+
