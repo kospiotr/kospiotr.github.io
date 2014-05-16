@@ -2,21 +2,21 @@
 layout: wiki
 title: JPA
 comments: false
-toc: false
+toc: true
 description: Java Persistence API
 editurl: wiki/jpa.md
 ---
 
-  
+
 ##Lazy loading
 The default is to load all basic mappings eagerly
 
 Example:
 
 ```java
- @Basic(fetch=FetchType.LAZY) 
- @Column(name="COMM") 
- private String comments; 
+ @Basic(fetch=FetchType.LAZY)
+ @Column(name="COMM")
+ private String comments;
 ```
 
 ##Large Objects
@@ -30,14 +30,14 @@ Two types:
 Example:
 
 ```java
-@Entity 
-public class Employee { 
- @Id 
- private int id; 
- @Basic(fetch=FetchType.LAZY) 
- @Lob @Column(name="PIC") 
- private byte[] picture; 
- // ... 
+@Entity
+public class Employee {
+ @Id
+ private int id;
+ @Basic(fetch=FetchType.LAZY)
+ @Lob @Column(name="PIC")
+ private byte[] picture;
+ // ...
 }
 ```
 
@@ -51,14 +51,14 @@ It is possible to change this behaviour by adding `@Enumerated` annotation with 
 Example:
 
 ```java
-@Entity 
-public class Employee { 
- @Id 
- private int id; 
- @Enumerated(EnumType.STRING) 
- private EmployeeType type; 
- // ... 
-} 
+@Entity
+public class Employee {
+ @Id
+ private int id;
+ @Enumerated(EnumType.STRING)
+ private EmployeeType type;
+ // ...
+}
 ```
 
 ##Temporal Types
@@ -79,7 +79,46 @@ An annotation `@Temporal` needs to explain what specific kind of value it stores
 * `TemporalType.DATE`
 * `TemporalType.TIME`
 
-##Transient State 
-Attributes that are part of a persistent entity but not intended to be persistent can either be modified 
+##Transient State
+Attributes that are part of a persistent entity but not intended to be persistent can either be modified
 with the `transient` modifier in Java or be annotated with the `@Transient` annotation.
+
+#Relations
+
+##OneToOne
+##ManyToOne
+##OneToMany
+##ManyToMany
+
+```java
+@Entity
+public class Employee {
+
+    @Id
+    Long id;
+    String name;
+
+    @ManyToMany
+    List<Department> department;
+
+}
+```
+
+```java
+@Entity
+public class Department {
+
+    @Id
+    Long id;
+    String name;
+
+    @ManyToMany(mappedBy = "department")
+    List<Employee> employee;
+}
+
+```
+
+|name1|name2|name3|
+|-----|-----|-----|
+|valu1|valu2|valu3|
 
