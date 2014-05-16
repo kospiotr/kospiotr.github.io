@@ -5,6 +5,7 @@ comments: false
 toc: true
 description: Java Persistence API
 editurl: wiki/jpa.md
+res: ../resources/wiki/jpa
 ---
 
 
@@ -86,10 +87,184 @@ with the `transient` modifier in Java or be annotated with the `@Transient` anno
 #Relations
 
 ##OneToOne
+###Unidirectional
+
+The owning side is definied by `@OneToOne` annotation.
+
+####Employee owning side
+
+```java
+@Entity
+public class Employee {
+
+    @Id
+    Long id;
+    String name;
+
+    @OneToOne
+    Department department;
+
+}
+```
+
+```java
+@Entity
+public class Department {
+
+    @Id
+    Long id;
+    String name;
+
+}
+```
+
+<center>
+![JEE]({{page.res}}/one-to-one-4.png)
+</center>
+
+####Department owning side
+
+```java
+@Entity
+public class Employee {
+
+    @Id
+    Long id;
+    String name;
+
+}
+```
+
+```java
+@Entity
+public class Department {
+
+    @Id
+    Long id;
+    String name;
+    @OneToOne
+    Employee employee;
+
+}
+```
+
+<center>
+![JEE]({{page.res}}/one-to-one-5.png)
+</center>
+
+
+###Bidirectional
+
+The inverse side is definied with mappedBy parameter in `@OneToOne` annotation.
+
+####No owning side
+
+```java
+@Entity
+public class Employee {
+
+    @Id
+    Long id;
+    String name;
+
+    @OneToOne
+    Department department;
+
+}
+```
+
+```java
+@Entity
+public class Department {
+
+    @Id
+    Long id;
+    String name;
+
+    @OneToOne
+    Employee employee;
+}
+```
+
+<center>
+![JEE]({{page.res}}/one-to-one-1.png)
+</center>
+
+####Employee owning side
+
+```java
+@Entity
+public class Employee {
+
+    @Id
+    Long id;
+    String name;
+
+    @OneToOne
+    Department department;
+
+}
+```
+
+```java
+@Entity
+public class Department {
+
+    @Id
+    Long id;
+    String name;
+
+    @OneToOne(mappedBy = "department")
+    Employee employee;
+}
+```
+
+<center>
+![JEE]({{page.res}}/one-to-one-2.png)
+</center>
+
+
+####Department owning side
+
+```java
+@Entity
+public class Employee {
+
+    @Id
+    Long id;
+    String name;
+
+    @OneToOne(mappedBy = "employee")
+    Department department;
+
+}
+```
+
+```java
+@Entity
+public class Department {
+
+    @Id
+    Long id;
+    String name;
+
+    @OneToOne
+    Employee employee;
+}
+```
+
+<center>
+![JEE]({{page.res}}/one-to-one-3.png)
+</center>
+
+
+
 ##ManyToOne
 ##OneToMany
 ##ManyToMany
 
+
+###Bidirectional, Employee owning side
 ```java
 @Entity
 public class Employee {
@@ -104,6 +279,7 @@ public class Employee {
 }
 ```
 
+
 ```java
 @Entity
 public class Department {
@@ -115,10 +291,39 @@ public class Department {
     @ManyToMany(mappedBy = "department")
     List<Employee> employee;
 }
+```
+<center>
+![JEE]({{page.res}}/many-to-many-bi-1.png)
+</center>
 
+###Bidirectional, Department owning side
+```java
+@Entity
+public class Employee {
+
+    @Id
+    Long id;
+    String name;
+
+    @ManyToMany
+    List<Department> department;
+
+}
 ```
 
-|name1|name2|name3|
-|-----|-----|-----|
-|valu1|valu2|valu3|
 
+```java
+@Entity
+public class Department {
+
+    @Id
+    Long id;
+    String name;
+
+    @ManyToMany(mappedBy = "department")
+    List<Employee> employee;
+}
+```
+<center>
+![JEE]({{page.res}}/many-to-many-bi-2.png)
+</center>
