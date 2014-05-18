@@ -259,12 +259,77 @@ public class Department {
 
 
 
-##ManyToOne
+## ManyToOne and OneToMany
+### Bidirectional
+#### No owning side
+
+```java
+@Entity
+public class Employee {
+
+    @Id
+    Long id;
+    String name;
+    @ManyToOne
+    Department department;
+
+}
+```
+
+```java
+@Entity
+public class Department {
+
+    @Id
+    Long id;
+    String name;
+    @OneToMany
+    List<Employee> employee;
+
+}
+```
+
+<center>
+![JEE]({{page.res}}/one-with-many-bi-1.png)
+</center>
+#### Employee owning side
+
+```java
+@Entity
+public class Employee {
+
+    @Id
+    Long id;
+    String name;
+    @ManyToOne
+    Department department;
+
+}
+```
+
+```java
+@Entity
+public class Department {
+
+    @Id
+    Long id;
+    String name;
+    @OneToMany(mappedBy = "department")
+    List<Employee> employee;
+
+}
+```
+
+<center>
+![JEE]({{page.res}}/one-with-many-bi-2.png)
+</center>
+
+
 ##OneToMany
 ##ManyToMany
 
-
-###Bidirectional, Employee owning side
+###Bidirectional
+####Employee owning side
 ```java
 @Entity
 public class Employee {
@@ -296,7 +361,7 @@ public class Department {
 ![JEE]({{page.res}}/many-to-many-bi-1.png)
 </center>
 
-###Bidirectional, Department owning side
+####Department owning side
 ```java
 @Entity
 public class Employee {
