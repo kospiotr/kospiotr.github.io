@@ -260,8 +260,20 @@ public class Department {
 
 
 ## ManyToOne and OneToMany
+The one-to-many association is almost always bidirectional and never the owning side.
+The only difference between the many-to-one and this one is that we are now implementing the inverse side of the relationship.
+
+There are two important points to remember when defining bidirectional one-to-many (or many-to-one) relationships:
+
+* The many-to-one side is the owning side, so the join column is defined on that side.
+* The one-to-many mapping is the inverse side, so the mappedBy element must be used.
+
+Failing to specify the `mappedBy` element in the @OneToMany annotation will cause the provider to treat it as a unidirectional one-to-many relationship that is defined to use a join table (described later). This is an easy mistake to make and should be the first thing you look for if you see a missing table error with a name that has two entity names concatenated together.
+
+
 ### Unidirectional
 #### Employee owning side
+
 
 ```java
 @Entity
@@ -288,7 +300,40 @@ public class Department {
 ```
 
 <center>
-![JEE]({{page.res}}/one-with-many-bi-3.png)
+![JEE]({{page.res}}/one-with-many-4.png)
+</center>
+
+
+
+#### Depatment owning side without mappedBy attribute
+
+```java
+@Entity
+public class Employee {
+
+    @Id
+    Long id;
+    String name;
+    Department department;
+
+}
+```
+
+```java
+@Entity
+public class Department {
+
+    @Id
+    Long id;
+    String name;
+    @OneToMany
+    List<Employee> employee;
+
+}
+```
+
+<center>
+![JEE]({{page.res}}/one-with-many-5.png)
 </center>
 
 
@@ -323,8 +368,9 @@ public class Department {
 ```
 
 <center>
-![JEE]({{page.res}}/one-with-many-bi-1.png)
+![JEE]({{page.res}}/one-with-many-1.png)
 </center>
+
 #### Employee owning side
 
 ```java
@@ -354,7 +400,7 @@ public class Department {
 ```
 
 <center>
-![JEE]({{page.res}}/one-with-many-bi-2.png)
+![JEE]({{page.res}}/one-with-many-2.png)
 </center>
 
 
@@ -391,7 +437,7 @@ public class Department {
 }
 ```
 <center>
-![JEE]({{page.res}}/many-to-many-bi-1.png)
+![JEE]({{page.res}}/many-to-many-1.png)
 </center>
 
 ####Department owning side
@@ -423,5 +469,5 @@ public class Department {
 }
 ```
 <center>
-![JEE]({{page.res}}/many-to-many-bi-2.png)
+![JEE]({{page.res}}/many-to-many-2.png)
 </center>
