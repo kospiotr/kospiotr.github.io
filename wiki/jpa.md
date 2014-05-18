@@ -272,7 +272,7 @@ Failing to specify the `mappedBy` element in the @OneToMany annotation will caus
 
 
 ### Unidirectional
-#### Employee owning side
+#### Employee owning side with annotation on Employee side
 
 
 ```java
@@ -305,7 +305,7 @@ public class Department {
 
 
 
-#### Depatment owning side without mappedBy attribute
+#### Employee owning side with annotation on Department side (wrong)
 
 ```java
 @Entity
@@ -337,9 +337,9 @@ public class Department {
 </center>
 
 
-###Bidirectional
+### Bidirectional
 
-####No owning side
+#### Employee owning side without mappingBy attribute (wrong)
 
 ```java
 @Entity
@@ -371,7 +371,8 @@ public class Department {
 ![JEE]({{page.res}}/one-with-many-1.png)
 </center>
 
-#### Employee owning side
+
+#### Employee owning side with mappingBy attribute
 
 ```java
 @Entity
@@ -404,7 +405,6 @@ public class Department {
 </center>
 
 
-##OneToMany
 ##ManyToMany
 
 ###Bidirectional
