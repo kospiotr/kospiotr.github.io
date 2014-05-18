@@ -260,8 +260,41 @@ public class Department {
 
 
 ## ManyToOne and OneToMany
-### Bidirectional
-#### No owning side
+### Unidirectional
+#### Employee owning side
+
+```java
+@Entity
+public class Employee {
+
+    @Id
+    Long id;
+    String name;
+    @ManyToOne
+    Department department;
+
+}
+```
+
+```java
+@Entity
+public class Department {
+
+    @Id
+    Long id;
+    String name;
+
+}
+```
+
+<center>
+![JEE]({{page.res}}/one-with-many-bi-3.png)
+</center>
+
+
+###Bidirectional
+
+####No owning side
 
 ```java
 @Entity
