@@ -471,3 +471,5 @@ public class Department {
 <center>
 ![JEE]({{page.res}}/many-to-many-2.png)
 </center>
+
+#Collection Mapping
