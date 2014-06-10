@@ -17,6 +17,7 @@ editurl: wiki/git.md
  * ```git push -u origin master``` - remember settings that next time you can use only ```git push```
  * ```git add --all & git commit -m "Update" & git push``` - add all, commit and push together
  * ```git reset --hard``` - all changes will be reverted
+ * ```git clean -df``` - clean all untracked directories and files
 
 # Excluding files from repository
   Reference: [http://git-scm.com/docs/gitignore](http://git-scm.com/docs/gitignore)
