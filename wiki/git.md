@@ -16,6 +16,7 @@ editurl: wiki/git.md
  * ```git push origin master``` - transfers changes from local to remote repositories
  * ```git push -u origin master``` - remember settings that next time you can use only ```git push```
  * ```git add --all & git commit -m "Update" & git push``` - add all, commit and push together
+ * ```git checkout``` discard changes in working directory
  * ```git reset --hard``` - all changes will be reverted
  * ```git clean -df``` - clean all untracked directories and files
 
