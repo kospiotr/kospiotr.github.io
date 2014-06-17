@@ -153,6 +153,148 @@ module.exports = function(grunt) {
 };
 ```
 
+##Simple app Grunt + Watch + Live reload + compile less + build release
+
+Structure:
+
+```
+src
+├───frontend
+│   │   index.html
+│   │
+│   ├───css
+│   ├───js
+│   │       app.js
+│   │
+│   └───less
+│           style.less
+│
+└───shared
+```
+
+Dependencies:
+
+```
+{
+  "name": "SpintenseJS",
+  "version": "0.0.1",
+  "dependencies": {},
+  "devDependencies": {
+    "grunt-cli": "~0.1.13",
+    "grunt-contrib-concat": "~0.4.0",
+    "grunt-contrib-connect": "~0.8.0",
+    "grunt-contrib-uglify": "~0.5.0",
+    "grunt-contrib-less": "~0.11.2",
+    "grunt-contrib-watch": "~0.6.1",
+    "grunt-express": "~1.3.5",
+    "grunt-contrib-copy": "~0.5.0",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-jshint": "~0.10.0"
+  }
+}
+
+```
+
+Grunt configuration:
+```
+module.exports = function (grunt) {
+
+    grunt.registerTask('simple-build',
+        [ 'clean:build', 'concat:js', 'copy:html', 'copy:css', 'less:style']);
+
+    grunt.registerTask('watch-dev',
+        [ 'simple-build', 'connect', 'watch' ]);
+
+    grunt.registerTask('watch-build',
+        [ 'connect', 'watch' ]);
+
+    grunt.registerTask('build',
+        [ 'simple-build', 'uglify:js' ]);
+
+    grunt.initConfig({
+        connect: {
+            server: {
+                options: {
+                    port: 8080,
+                    base: 'build/public',
+                    livereload: true
+                }
+            }
+        },
+        watch: {
+            js: {
+                files: 'src/frontend/js/**/*.js',
+                tasks: ['concat:js']
+            },
+            html: {
+                files: 'src/frontend/**/*.html',
+                tasks: ['copy:html']
+            },
+            css: {
+                files: 'src/frontend/**/*.css',
+                tasks: ['copy:css']
+            },
+            less: {
+                files: 'src/frontend/**/*.less',
+                tasks: ['less:style']
+            },
+            devLiveReload:{
+                options: {
+                    livereload: true
+                },
+                files: 'build/**/*.*'
+            }
+        },
+        clean: {
+            build:['build']
+        },
+        concat: {
+            js: {
+                src: ['src/frontend/js/**/*.js'],
+                dest: 'build/public/js/app.js'
+            }
+        },
+        copy: {
+            html: {
+                expand: true, flatten: true,
+                src: 'src/frontend/*.html',
+                dest: 'build/public/'
+            },
+            css: {
+                expand: true, flatten: true,
+                src: 'src/frontend/css/*.css',
+                dest: 'build/public/css/'
+            }
+        },
+        uglify: {
+            options: {
+                mangle: false
+            },
+            js: {
+                files: {
+                    'build/public/js/app.js': ['build/public/js/app.js']
+                }
+            }
+        },
+        less: {
+            style: {
+                files: {
+                    "build/public/css/style.css": "src/frontend/less/style.less"
+                }
+            }
+        }
+    });
+
+    grunt.loadNpmTasks('grunt-contrib-connect');
+    grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-less');
+};
+```
+
 ##Popular modules
 
 #Extra resources
