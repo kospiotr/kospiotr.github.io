@@ -300,3 +300,4 @@ module.exports = function (grunt) {
 #Extra resources
  * [Refcard](../resources/nodejs.pdf)
  * [Getting Started With Grunt and Bower/](http://www.nitinh.com/2013/05/getting-started-with-grunt-bower/)
+ * [Bower notes](http://code.tutsplus.com/tutorials/meet-bower-a-package-manager-for-the-web--net-27774)
