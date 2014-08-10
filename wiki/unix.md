@@ -13,3 +13,4 @@ editurl: wiki/unix.md
 * `tar - xvf archived-file.tar` - untar directory to file
 * `scp file.zip username@host:/home/target/path/` - copy file to remote host with scp
 * `ps aux | grep java` - display all services with java string
+* `python -m SimpleHTTPServer 8000` - very light HTTP server with Python
