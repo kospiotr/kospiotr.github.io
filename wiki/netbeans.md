@@ -31,6 +31,10 @@ Bookmarks:
 * `ctrl + shift + m` - toogle bookmark
 * `ctrl + shift + ,` - previous bookmark
 * `ctrl + shift + .` - next bookmark
+ 
+Case:
+* `ctrl + U U` - to uppercase
+* `ctrl + U L` - to lowercase
 
 # Templates
 * Test method (tm):
