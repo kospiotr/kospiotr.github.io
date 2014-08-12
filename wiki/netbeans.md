@@ -33,6 +33,7 @@ Bookmarks:
 * `ctrl + shift + .` - next bookmark
  
 Case:
+
 * `ctrl + U U` - to uppercase
 * `ctrl + U L` - to lowercase
 
