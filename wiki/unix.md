@@ -14,3 +14,4 @@ editurl: wiki/unix.md
 * `scp file.zip username@host:/home/target/path/` - copy file to remote host with scp
 * `ps aux | grep java` - display all services with java string
 * `python -m SimpleHTTPServer 8000` - very light HTTP server with Python
+* `du -h * | sort -rh | head -50` - 50 heaviest subdirectories with size
