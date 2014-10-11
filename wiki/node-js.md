@@ -20,6 +20,45 @@ editurl: wiki/node-js.md
 #Yeoman
 
 #Examples
+##Express
+
+* `package.json`:
+
+```js
+{
+	"name": "sample-express",
+	"main": "server.js",
+	"dependencies": {
+		"express": "~4.0.0"
+	}
+}
+```
+
+* `server.js`:
+
+```js
+// BASE SETUP
+// ==============================================
+
+var express = require('express');
+var app = express();
+var port = process.env.PORT || 8080;
+
+// ROUTES
+// ==============================================
+
+// sample route with a route the way we're used to seeing it
+app.get('/sample', function (req, res) {
+  res.send('this is a sample!');
+});
+
+// START THE SERVER
+// ==============================================
+app.listen(port);
+console.log('App started on port ' + port);
+```
+
+
 ##Grunt + Http server
 
 * Grunt configuration `Gruntfile.js`:
