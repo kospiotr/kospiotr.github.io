@@ -17,7 +17,6 @@ editurl: wiki/node-js.md
 
 * `npm install -g grunt-cli` - install grunt
 * `npm install --save-dev grunt` - install grunt as dev dependency to the project configuration
-* 
 
 # Express
 ## Minimalistic Express app
