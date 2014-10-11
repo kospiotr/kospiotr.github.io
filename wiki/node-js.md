@@ -9,6 +9,9 @@ editurl: wiki/node-js.md
 #Node
 
 * `npm init` - initialize nodejs project
+* `node server.js` - starts node app from server.js file
+* `nodemon server.js` - starts node app from server.js file and when detects changes restarts server
+* `npm install -g nodemon` - installs globally nodemon
 
 #Grunt
 
