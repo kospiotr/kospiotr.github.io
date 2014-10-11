@@ -17,13 +17,10 @@ editurl: wiki/node-js.md
 
 * `npm install -g grunt-cli` - install grunt
 * `npm install --save-dev grunt` - install grunt as dev dependency to the project configuration
+* 
 
-#Bower
-
-#Yeoman
-
-#Examples
-##Express
+# Express
+## Minimalistic Express app
 
 * `package.json`:
 
@@ -60,6 +57,12 @@ app.get('/sample', function (req, res) {
 app.listen(port);
 console.log('App started on port ' + port);
 ```
+
+#Bower
+
+#Yeoman
+
+#Examples
 
 
 ##Grunt + Http server
