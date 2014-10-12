@@ -18,6 +18,25 @@ editurl: wiki/node-js.md
 * `npm install -g grunt-cli` - install grunt
 * `npm install --save-dev grunt` - install grunt as dev dependency to the project configuration
 
+## Load all grunt tasks automatically
+Install `load-grunt-tasks` plugin with: `npm install --save-dev load-grunt-tasks`, then instead:
+
+```js
+grunt.loadNpmTasks('grunt-shell');
+grunt.loadNpmTasks('grunt-sass');
+grunt.loadNpmTasks('grunt-recess');
+grunt.loadNpmTasks('grunt-sizediff');
+grunt.loadNpmTasks('grunt-svgmin');
+```
+
+You got:
+
+```js
+module.exports = function (grunt) {
+  require('load-grunt-tasks')(grunt);
+}
+```
+
 # Express
 ## Minimalistic Express app
 
