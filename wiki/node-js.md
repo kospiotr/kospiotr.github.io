@@ -67,6 +67,54 @@ $ export NODE_ENV=production
 $ node my-app.js
 ```
 
+##Logging
+Install `node-logg` plugin with: `npm install logg --save`.
+Usage:
+
+```js
+var logging = require('logg');
+
+var logger = logging.getLogger('my.class');
+logger.setLogLevel(logging.Level.WARN);
+logger.info('This will not show up');
+logger.warn('But warnings will', new Error('aargg'));
+```
+
+Then emitting messages:
+
+```js
+logg.on('', function(logRecord) { /* ... */});
+```
+
+For storing logs in system directory `node-syslog` can be used:
+
+```js
+var logg = require('logg');
+var syslog = require('node-syslog');
+
+// setup syslog
+syslog.init('kickq', syslog.LOG_PID | syslog.LOG_ODELAY, syslog.LOG_LOCAL0);
+
+// do not log to console.
+logg.removeConsole();
+
+// listen for log messages
+logg.on('', function(logRecord) {
+
+  // format the message
+  var message = logg.formatRecord(logRecord, true);
+
+  // relay to syslog using LOG_INFO for WARN and above messages
+  // LOG_DEBUG for the test
+  if (logg.Level.WARN <= logRecord.level) {
+    syslog.log(syslog.LOG_INFO, message);
+  } else {
+    syslog.log(syslog.LOG_DEBUG, message);
+  }
+});
+```
+
+
 #Grunt
 
 * `npm install -g grunt-cli` - install grunt
