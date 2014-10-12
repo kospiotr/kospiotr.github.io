@@ -37,6 +37,30 @@ module.exports = function (grunt) {
 }
 ```
 
+## Load grunt tasks from external files
+In `Gruntfile.js`:
+
+```js
+module.exports = function (grunt) {
+  grunt.loadTasks('grunt-tasks'); // load per-task config from separate files from directory grunt-tasks
+}
+```
+
+Then place in directory task file: `grunt-tasks/clean.task.js`:
+
+```js
+/**
+ * @fileOverview The clean task operation.
+ */
+module.exports = function (grunt) {
+  grunt.config('clean', {
+    build: ['build']
+  });
+  grunt.loadNpmTasks('grunt-contrib-clean'); // this line can be skipped if load-grunt-tasks plugin is being used
+
+};
+```
+
 # Express
 ## Minimalistic Express app
 
