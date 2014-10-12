@@ -15,6 +15,7 @@ editurl: wiki/node-js.md
 
 ## Configuration
 Install `config` plugin: `npm install config`, and then store configuration in `config` directory in separated files (it supports different file types):
+
 `config/default.js`:
 
 ```js
