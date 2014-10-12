@@ -13,6 +13,59 @@ editurl: wiki/node-js.md
 * `nodemon server.js` - starts node app from server.js file and when detects changes restarts server
 * `npm install -g nodemon` - installs globally nodemon
 
+## Configuration
+Install `config` plugin: `npm install config`, and then store configuration in `config` directory in separated files (it supports different file types):
+`config/default.js`:
+
+```js
+{
+  // Customer module configs
+  "Customer": {
+    "dbConfig": {
+      "host": "localhost",
+      "port": 5984,
+      "dbName": "customers"
+    },
+    "credit": {
+      "initialLimit": 100,
+      // Set low for development
+      "initialDays": 1
+    }
+  }
+}
+```
+
+`config/production.js`:
+
+```js
+{
+  "Customer": {
+    "dbConfig": {
+      "host": "prod-db-server"
+    },
+    "credit": {
+      "initialDays": 30
+    }
+  }
+}
+```
+
+Use the configuration in the code:
+
+```js
+var config = require('config');
+...
+var dbConfig = config.get('Customer.dbConfig');
+db.connect(dbConfig, ...);
+```
+
+Run application with global variable defining configuration:
+
+```js
+$ export NODE_ENV=production
+$ node my-app.js
+```
+
 #Grunt
 
 * `npm install -g grunt-cli` - install grunt
