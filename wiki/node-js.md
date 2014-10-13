@@ -14,7 +14,7 @@ editurl: wiki/node-js.md
 * `npm install -g nodemon` - installs globally nodemon
 
 ## Configuration
-Install `config` plugin: `npm install config`, and then store configuration in `config` directory in separated files (it supports different file types):
+Install `config` plugin: `npm install config --save`, and then store configuration in `config` directory in separated files (it supports different file types):
 
 `config/default.json`:
 
