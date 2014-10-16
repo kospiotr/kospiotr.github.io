@@ -15,3 +15,4 @@ editurl: wiki/unix.md
 * `ps aux | grep java` - display all services with java string
 * `python -m SimpleHTTPServer 8000` - very light HTTP server with Python
 * `du -h * | sort -rh | head -50` - 50 heaviest subdirectories with size
+* `netstat -tulpn | grep 8080` - return process which process listen on port 8080
