@@ -3,8 +3,12 @@ layout: wiki
 title: Java SE
 comments: false
 description: Java Standard Edition
-editurl: wiki/generics.md
+editurl: wiki/java-standard-edition.md
 ---
+
+#General
+
+`jar tvf jarfile.jar` - display content of file
 
 #Generics
 
