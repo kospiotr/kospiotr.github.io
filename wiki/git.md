@@ -28,6 +28,29 @@ The purpose of gitignore files is to ensure that certain files not tracked by Gi
 To ignore uncommitted changes in a file that is already tracked, use ```git update-index --assume-unchanged```.
 To stop tracking a file that is currently tracked, use ```git rm --cached```.
 
+# Push to all git remotes with the one command
+Create an all remote with several repo URLs to its name:
+
+```
+git remote add all [url1]
+git remote set-url --add all [url2]
+git remote set-url --add all [url3]
+```
+
+Then just `git push all --all`.
+
+This is how it looks in .git/config:
+
+```
+  [remote "all"]
+  url = [url1]
+  url = [url2]
+  url = [url3]
+```
+
+Source: [http://stackoverflow.com/a/5785618/276948](http://stackoverflow.com/a/5785618/276948)
+
+
 # Branching
 
  * ```git branch -a``` - display branches
