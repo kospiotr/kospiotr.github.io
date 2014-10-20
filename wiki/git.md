@@ -79,3 +79,4 @@ C:\>clip <  C:\Users\Piotr\.ssh\id_rsa.pub
 * [Git Recipes - Wlodzimierz Gajda](../resources/books/Git Recipes - Wlodzimierz Gajda.pdf)
 * [http://try.github.io](http://try.github.io)
 * [https://help.github.com/articles/generating-ssh-keys](https://help.github.com/articles/generating-ssh-keys)
+* Pro GIT book [pdf](https://github.s3.amazonaws.com/media/progit.en.pdf) [epub](https://github.s3.amazonaws.com/media/progit.epub)
