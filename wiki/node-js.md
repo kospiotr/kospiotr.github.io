@@ -195,6 +195,7 @@ var port = process.env.PORT || 8080;
 // ==============================================
 
 // sample route with a route the way we're used to seeing it
+app.use("/", express.static(__dirname + '/public'));
 app.get('/sample', function (req, res) {
   res.send('this is a sample!');
 });
