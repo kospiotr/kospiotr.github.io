@@ -119,6 +119,9 @@ logg.on('', function(logRecord) {
 
 * `npm install -g grunt-cli` - install grunt
 * `npm install --save-dev grunt` - install grunt as dev dependency to the project configuration
+* `npm install -g grunt-init` - install grunt-init which is a scaffolding tool used to automate project creation
+* `git clone https://github.com/gruntjs/grunt-init-gruntfile.git ~/.grunt-init/gruntfile` - installs `gruntfile` template for grunt-init
+* `grunt-init gruntfile` - generate Grunt / NodeJS project
 
 ## Load all grunt tasks automatically
 Install `load-grunt-tasks` plugin with: `npm install --save-dev load-grunt-tasks`, then instead:
