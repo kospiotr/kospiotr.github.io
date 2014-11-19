@@ -74,9 +74,18 @@ To use ssh with remote repositories you need to publish your public key to this 
 ```bash
 C:\>clip <  C:\Users\Piotr\.ssh\id_rsa.pub
 ```
+
+#Github tools
+* Travis - CI
+* waffle.io - Stories board
+* shields.io - icons
+* coveralls.io - Test Coverage History & Statistics
+
 #External resources
 * [Cheat cheet](../resources/git-cheat-sheet.svg)
 * [Git Recipes - Wlodzimierz Gajda](../resources/books/Git Recipes - Wlodzimierz Gajda.pdf)
 * [http://try.github.io](http://try.github.io)
 * [https://help.github.com/articles/generating-ssh-keys](https://help.github.com/articles/generating-ssh-keys)
 * Pro GIT book [pdf](https://github.s3.amazonaws.com/media/progit.en.pdf) [epub](https://github.s3.amazonaws.com/media/progit.epub)
+
+
