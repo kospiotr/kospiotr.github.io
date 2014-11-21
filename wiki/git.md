@@ -15,6 +15,7 @@ editurl: wiki/git.md
  * ```git remote add origin https://github.com/kospiotr/sample-repo.git``` - add remote repository link to local repository
  * ```git push origin master``` - transfers changes from local to remote repositories
  * ```git push -u origin master``` - remember settings that next time you can use only ```git push```
+ * ```git push origin --all``` - push everything to remote repository including branches
  * ```git add --all & git commit -m "Update" & git push``` - add all, commit and push together
  * ```git checkout``` discard changes in working directory
  * ```git reset --hard``` - all changes will be reverted
