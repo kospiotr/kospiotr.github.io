@@ -67,6 +67,12 @@ $ export NODE_ENV=production
 $ node my-app.js
 ```
 
+##Debugging
+Install `node-inspector`: `npm install node-inspector -g`
+Run it: `node-inspector`
+Visit http://127.0.0.1:8080/debug?port=5858 to start debugging.
+Start an app with flag: `--debug`
+
 ##Logging
 Install `node-logg` plugin with: `npm install logg --save`.
 Usage:
