@@ -211,6 +211,93 @@ app.get('/sample', function (req, res) {
 app.listen(port);
 console.log('App started on port ' + port);
 ```
+## Minimalistic Express app with Grunt and watch
+
+* `package.json`:
+
+```js
+{
+    "name": "sample-express",
+    "main": "server.js",
+    "engines": {
+        "node": ">= 0.10.0"
+    },
+    "dependencies": {
+        "express": "~4.0.0"
+    },
+    "devDependencies": {
+        "grunt": "~0.4.5",
+        "grunt-contrib-watch": "^0.6.1",
+        "grunt-express-server": "^0.4.19"
+    }
+}
+
+```
+
+* `Gruntfile.js`:
+
+```js
+module.exports = function (grunt) {
+
+    grunt.initConfig({
+        express: {
+            dev: {
+                options: {
+                    script: 'server.js',
+                    debug: true,
+                }
+            },
+            prod: {
+                options: {
+                    script: 'server.js',
+                    background: false
+                }
+            }
+        },
+        watch: {
+            express: {
+                files: ['**/*.js'],
+                tasks: ['express:dev'],
+                options: {
+                    spawn: false
+                }
+            }
+        }
+    });
+    
+    grunt.loadNpmTasks('grunt-express-server');
+    grunt.loadNpmTasks('grunt-contrib-watch');
+    
+    grunt.registerTask('default', ['express:prod']);
+    grunt.registerTask('dev', ['express:dev', 'watch']);
+
+};
+```
+
+* `server.js`:
+
+```js
+// BASE SETUP
+// ==============================================
+
+var express = require('express');
+var app = express();
+var port = process.env.PORT || 8080;
+
+// ROUTES
+// ==============================================
+
+// sample route with a route the way we're used to seeing it
+app.use("/", express.static(__dirname + '/public'));
+app.get('/sample', function (req, res) {
+  res.send('this is a sample!');
+});
+
+// START THE SERVER
+// ==============================================
+app.listen(port);
+console.log('App started on port ' + port);
+```
 
 #Bower
 
