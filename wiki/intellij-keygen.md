@@ -7,6 +7,8 @@ editurl: wiki/intellij-keygen.md
 
 # Idea 14
 
+```java
+
 import java.math.BigInteger;
 import java.util.Date;
 import java.util.Random;
@@ -141,3 +143,4 @@ public class keygen
        System.out.println(MakeKey(args[0], 0, r.nextInt(100000)));
    }
 }
+```
