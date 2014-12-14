@@ -482,6 +482,7 @@ Dependencies:
 ```
 
 Grunt configuration:
+
 ```
 module.exports = function (grunt) {
 
@@ -588,3 +589,4 @@ module.exports = function (grunt) {
  * [Getting Started With Grunt and Bower/](http://www.nitinh.com/2013/05/getting-started-with-grunt-bower/)
  * [Bower notes](http://code.tutsplus.com/tutorials/meet-bower-a-package-manager-for-the-web--net-27774)
  * [Bower notes](http://bob.yexley.net/creating-and-maintaining-your-own-bower-package/)
+ * [NodeJS modules](http://nodejs.org/api/modules.html#loading_from_node_modules_Folders)
