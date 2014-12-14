@@ -2,6 +2,7 @@
 layout: wiki
 title: GIT
 comments: false
+toc: true
 editurl: wiki/git.md
 ---
 
@@ -74,6 +75,16 @@ To use ssh with remote repositories you need to publish your public key to this 
 
 ```bash
 C:\>clip <  C:\Users\Piotr\.ssh\id_rsa.pub
+```
+#Git tools
+
+##Smartgit
+[SmartGit] is a graphical Git and Mercurial client. It runs on Linux, Mac OS X (10.5 or newer) and Windows (XP or newer).
+
+```
+sudo add-apt-repository ppa:eugenesan/ppa
+sudo apt-get update
+sudo apt-get install smartgithg
 ```
 
 #Github tools
