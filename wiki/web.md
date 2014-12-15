@@ -1,6 +1,6 @@
 ---
 layout: wiki
-title: Testing
+title: Web
 comments: false
 toc: true
 editurl: wiki/web.md
