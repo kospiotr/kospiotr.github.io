@@ -121,6 +121,43 @@ public void testMain() {
     assertThat(dummyList).containsOnly("a","c","b");
 }
 ```
+
+#Code coverage:
+Configure maven:
+
+```xml
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <version>0.7.0.201403182114</version>
+            <executions>
+                <execution>
+                    <goals>
+                        <goal>prepare-agent</goal>
+                    </goals>
+                </execution>
+                <execution>
+                    <id>report</id>
+                    <phase>prepare-package</phase>
+                    <goals>
+                        <goal>report</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+    </plugins>
+</build>
+```
+
+Run one of:
+
+```bash
+verify
+test-compile org.jacoco:jacoco-maven-plugin:prepare-agent surefire:test org.jacoco:jacoco-maven-plugin:report
+```
+
 Reference:
 
 * [https://code.google.com/p/fest/](https://code.google.com/p/fest/)
