@@ -19,6 +19,7 @@ Navigating:
 * `ctrl + n` - find class
 * `ctrl + shift + n` - find file
 * `ctrl + shift + t` - navigate between test and implementation
+* `ctrl + shift + i` - object definition popup
 * `shift + ESC` - close last non center panel
 
 Editing:
