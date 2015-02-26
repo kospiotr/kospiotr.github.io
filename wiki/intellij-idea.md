@@ -24,6 +24,7 @@ Navigating:
 Editing:
 
 Execution:
+
 * `shift + F10` - run current configuration
 * `shift + F10` - execute current test class / tests for the current class
 
