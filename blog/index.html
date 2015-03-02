@@ -4,7 +4,8 @@ title: Blog posts
 comments: false
 ---
 <div class="posts">
-{% for post in site.posts %}
+{% assign posts = site.posts | where:'draft', false %}
+{% for post in posts %}
 	<article class="post-list">
 		<header>
 			<span class="post-title">
