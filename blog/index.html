@@ -4,8 +4,9 @@ title: Blog posts
 comments: false
 ---
 <div class="posts">
-{% assign posts = site.posts | where:'draft', false %}
+
 {% for post in posts %}
+	{% if post.draft == false %}
 	<article class="post-list">
 		<header>
 			<span class="post-title">
@@ -15,5 +16,6 @@ comments: false
 		</header>
 		<p class="post-description">{{ post.description }}</p>
 	</article>
+	{% endif %}
 {% endfor %}
 </div>
