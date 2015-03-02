@@ -15,6 +15,7 @@ title: Piotr Kosmowski pages
   </author>
 
   {% for post in site.posts %}
+  {% if post.draft != true %}
   <entry>
     <id>{{ site.baseurl }}{{ post.id }}</id>
     <link type="text/html" rel="alternate" href="{{ site.baseurl }}/{{ post.url }}"/>
@@ -27,6 +28,7 @@ title: Piotr Kosmowski pages
     </author>
     <content type="html">{{ post.content | xml_escape }}</content>
   </entry>
+  {% endif %}
   {% endfor %}
  
 </feed>
