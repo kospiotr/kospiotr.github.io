@@ -4,16 +4,17 @@ title:  "Integration tests with Intern and Node"
 description: "How to configure server with Intern and ExpressJS"
 date:   2015-03-01 22:16:00
 toc: true
-draft: true
 ---
 
-{:toc}
+#Introduction
 
 In JS world, regressions may appear at every change without any warning, so tests are equally important as production code. The same rule applies to every non static typed languages, but let's stay on JS. 
 
 Intern is a complete framework for testing JavaScript Web sites and applications. I will use it to demostrate how to test REST endpoints with the unit test speed.
 
-Create NodeJS project with Grunt support:
+# Create Node project
+
+Create NodeJS project:
 
 ```
 mkdir intern-integration-tests
@@ -29,7 +30,7 @@ Create init package.json:
 }
 ```
 
-Lets implement now REST endpoint using ExpressJS.
+# Implementing REST endpoint using ExpressJS.
 
 Install ExpressJS:
 
@@ -58,6 +59,9 @@ module.exports = app;
 ```
 
 Above application hosts ```/test``` endpoint which returns JSON: ```{status: 'ok'}``` and logs activity each activity.
+
+# Hosting application on the server
+
 To host that application we will need server.
 
 Create file: ```src/server.js```:
@@ -90,6 +94,8 @@ And when hitting: ```http://localhost:8080/test``` in the browser you should get
 }
 ```
 
+#Install and initialize Grunt
+
 Before we start writing tests we need some test executor. For this purpose I use Grunt.
 
 Install Grunt globally first:
@@ -121,6 +127,8 @@ Now if you execute: ```grunt``` you should have such console output:
 Done, without errors.
 ```
 
+# Install and configure Intern
+
 Install Intern dependency:
 
 ```
@@ -139,7 +147,7 @@ Prepare intern configuration by copying example from intern directory:
 cp node_modules/intern/tests/example.intern.js test/intern-config.js
 ```
 
-Create first unit test:
+# Create first unit test with Intern
 
 ```
 mkdir
@@ -161,6 +169,8 @@ define(function (require) {
     });
 });
 ```
+
+# Configure Grunt to execute Intern tests
 
 Now we are ready to prepare test executor. Lets modify ```Gruntfile.js```:
 
@@ -187,6 +197,8 @@ module.exports = function (grunt) {
 
 ```
 This configuration loads ```intern``` task, configures ```intern:unit_testing``` task and assignes it to ```test``` alias task.
+
+# Executing Intern tests
 
 Lets execute first unit task:
 
