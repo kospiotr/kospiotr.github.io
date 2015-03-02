@@ -3,6 +3,7 @@ layout: post
 title:  "Testing Node applications with Intern framework"
 date:   2015-03-01 22:16:00
 toc: true
+draft: true
 ---
 
 #Introduction
@@ -495,3 +496,15 @@ The next step is to test if our integration was success, but this will be covere
 
 
 Source code: [https://github.com/kospiotr/hello-js/tree/master/intern-unit-tests](https://github.com/kospiotr/hello-js/tree/master/intern-unit-tests)
+In this post I demonstrated how to set up WNodeJS project 
+
+Now we will change that unit test to actually test REST endpoint. But what actually we will be testing?
+We will check if ```status``` is ```ok``` if we use ```/test``` enpoint. In order to do that we have to perform such steps:
+
+* Prepare application endpoints configuration
+* Start local application on server on ```8080``` port
+* Execute http call to ```http://localhost:8080/test``` endpoint
+* Check if result status is ```200```
+* Check if body text is JSON
+* Check if body text JSON is: ```{status: 'ok'}```
+
