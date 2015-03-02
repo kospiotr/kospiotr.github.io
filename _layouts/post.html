@@ -40,14 +40,7 @@ toc: false
 		{% endif %}
 	</nav>
 {% if page.toc %}
-	<script type="text/javascript">
-	$(function(){
-		$("#TOC").stoc({
-				search: "#article-body",
-				stocTitle: "<h1>Table of content</h1>"
-			});
-	});
-	</script>
+	toc
 {% endif %}
 
 {% if page.comments %}
