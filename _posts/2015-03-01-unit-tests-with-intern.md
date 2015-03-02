@@ -2,7 +2,6 @@
 layout: post
 title:  "Testing Node applications with Intern framework"
 date:   2015-03-01 22:16:00
-draft: true
 toc: true
 ---
 
