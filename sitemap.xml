@@ -6,7 +6,7 @@ layout: nil
   
   
   {% for post in site.posts %}
-    {% if post.draft == false%}
+    
       <url>
         <loc>{{ site.baseurl }}{{ post.url }}</loc>
         {% if post.lastmod == null %}
@@ -17,7 +17,7 @@ layout: nil
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
       </url>
-    {% endif %}
+    
   {% endfor %}
   {% for page in site.pages %}
     {% if page.layout != nil %}
