@@ -19,6 +19,7 @@ Copyright © {{ site.time | date: "%Y" }} Piotr Kosmowski. Except as noted, {{ p
 ]]></rights>
 
 {% for post in site.posts limit:10 %}
+{% if post.draft != true %}
 <entry>
   <title type="html">{{ post.title | xml_escape }}</title>
   <link href="{{ post.url }}" />
@@ -35,5 +36,6 @@ Copyright © {{ site.time | date: "%Y" }} Piotr Kosmowski. Except as noted, {{ p
     {{ post.content }}
   ]]></content>
 </entry>
+{% endif %}
 {% endfor %}
 </feed>
