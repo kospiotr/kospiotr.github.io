@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Testing Node applications with Intern framework"
+description: "Unit tests in TDD with Intern"
 date:   2015-03-01 22:16:00
 toc: true
 ---
