@@ -22,6 +22,9 @@ comments: true
 		<h3> {{ page.date | date_to_string }}</h3>
 	</header>
 	<div id="article-body" class="markdown-body">
+{% if page.toc %}
+	<div id="TOC"></div>
+{% endif %}
 
 {{ content }}
 
@@ -35,6 +38,17 @@ comments: true
 			<a href="{{ page.next.url }}" title="Newer: {{ page.next.title }}" class="btn btn-default">→</a>
 		{% endif %}
 	</nav>
+{% if page.toc %}
+	<script type="text/javascript">
+	$(function(){
+		$("#TOC").stoc({
+				search: "#article-body",
+				stocTitle: "<h1>Table of content</h1>"
+			});
+	});
+	</script>
+{% endif %}
+
 {% if page.comments %}
 	<footer id="comments">
 		<header>
