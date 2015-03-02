@@ -6,7 +6,7 @@ comments: false
 <div class="posts">
 
 {% for post in site.posts %}
-	{% if post.draft == false %}
+	{% if post.draft != true %}
 	<article class="post-list">
 		<header>
 			<span class="post-title">
