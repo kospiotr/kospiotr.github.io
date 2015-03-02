@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "Integration tests with Intern and Node"
-description: "How to configure server with Intern and ExpressJS"
+title:  "Testing Node applications with Intern framework"
 date:   2015-03-01 22:16:00
+draft: true
 toc: true
 ---
 
@@ -10,7 +10,7 @@ toc: true
 
 In JS world, regressions may appear at every change without any warning, so tests are equally important as production code. The same rule applies to every non static typed languages, but let's stay on JS. 
 
-Intern is a complete framework for testing JavaScript Web sites and applications. I will use it to demostrate how to test REST endpoints with the unit test speed.
+Intern is a complete framework for testing JavaScript Web sites and applications. I will use it to demostrate how to test NodeJS applications using intern framework.
 
 # Create Node project
 
@@ -214,6 +214,25 @@ Running "intern:unit_testing" (intern) task
 >> 0/1 tests failed
 >> 0/1 tests failed
 ```
+
+#Implement business logic
+
+At this point we have configured infrastructure that allows now to focus on business aspect of our application.
+We will implement simple calculator service that will be passing results of http call. Mind that this method is more like RPC now then REST, as REST focuses on resources.
+
+I will follow TDD method so the sequence is:
+
+1. Write interface that will deliver business contract / signature
+2. Write simple test which uses business signature but doesn't pass as the method is not implemented 
+3. Implement business method to pass existing test
+4. Write more complex test which doesn't pass
+5. Fix test by modifying implementation
+6. Refactor implementation
+
+## Write interface that will deliver business contract / signature
+Create file:
+
+#Summary
 
 At this point we have configure:
 * REST application with ```/test``` endpoint
