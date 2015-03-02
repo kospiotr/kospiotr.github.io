@@ -39,9 +39,6 @@ toc: false
 			<a href="{{ page.next.url }}" title="Newer: {{ page.next.title }}" class="btn btn-default">→</a>
 		{% endif %}
 	</nav>
-{% if page.toc %}
-	toc
-{% endif %}
 
 {% if page.comments %}
 	<footer id="comments">
@@ -61,5 +58,17 @@ toc: false
 		<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 		<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 	</footer>
+{% endif %}
+
+	
+{% if page.toc %}
+	<script type="text/javascript">
+	$(function(){
+		$("#TOC").stoc({
+				search: "#article-body",
+				stocTitle: "<h1>Table of content</h1>"
+			});
+	});
+	</script>
 {% endif %}
 </article>
