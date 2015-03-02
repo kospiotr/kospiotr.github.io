@@ -50,7 +50,7 @@ mkdir src
 
 Create file: ```src/app.js```:
 
-```
+```js
 var express = require('express');
 var app = express();
 
@@ -70,7 +70,7 @@ To host that application we will need server.
 
 Create file: ```src/server.js```:
 
-```
+```js
 var app = require('./app');
 app.listen(8080);
 console.log('Application is running on port 8080');
@@ -92,7 +92,7 @@ hitting test
 
 And when hitting: ```http://localhost:8080/test``` in the browser you should get:
 
-```
+```js
 {
 "status": "ok"
 }
@@ -120,7 +120,7 @@ npm install grunt --save-dev
 
 Configure grunt, create ```Gruntfile.js```:
 
-```
+```js
 module.exports = function (grunt) {
     grunt.initConfig({
     });
@@ -168,7 +168,7 @@ test/unit
 
 Create file, ```test/unit/app.js```:
 
-```
+```js
 define(function (require) {
     var suite = require('intern!object');
     var expect = require('intern/chai!expect');
@@ -186,7 +186,7 @@ define(function (require) {
 
 Now we are ready to prepare test executor. Lets modify ```Gruntfile.js```:
 
-```
+```js
 module.exports = function (grunt) {
 
     grunt.initConfig({
