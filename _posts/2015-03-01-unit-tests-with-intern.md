@@ -145,7 +145,7 @@ Install Intern dependency:
 npm install intern --save-dev
 ```
 
-## Intern configuration
+### Intern configuration
 
 Create tests directory:
 
@@ -182,9 +182,14 @@ define(function (require) {
 });
 ```
 
-## Configure Grunt to execute Intern tests
+## Execute Intern tests with Grunt
 
-Now we are ready to prepare test executor. Lets modify ```Gruntfile.js```:
+Now we are ready to prepare test executor. 
+
+
+### Configure Grunt
+
+Lets modify ```Gruntfile.js```:
 
 ```js
 module.exports = function (grunt) {
@@ -210,7 +215,7 @@ module.exports = function (grunt) {
 ```
 This configuration loads ```intern``` task, configures ```intern:unit_testing``` task and assignes it to ```test``` alias task.
 
-## Executing Intern tests
+### Executing Intern tests
 
 Lets execute first unit task:
 
