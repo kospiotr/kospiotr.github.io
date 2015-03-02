@@ -247,7 +247,20 @@ I will follow TDD method so the sequence is:
 6. Refactor implementation
 
 ## Write interface that will deliver business contract / signature
+
 Create file:
+
+## Write interface that will deliver business contract / signature
+
+## Write simple test which uses business signature but doesn't pass as the method is not implemented
+
+## Implement business method to pass existing test
+
+## Write more complex test which doesn't pass
+
+## Fix test by modifying implementation
+
+## Refactor implementation
 
 #Summary
 
