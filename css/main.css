@@ -91,11 +91,12 @@ a, a:focus, a:hover
 }
 #page-title
 {
-    font-size: 4em;
+    font-size: 2em;
     font-weight: bold;
     margin: 0 0 10px 0;
     margin-right: 150px;
     padding: 0px;
+    text-align: center;
 }
 .post-title
 {
