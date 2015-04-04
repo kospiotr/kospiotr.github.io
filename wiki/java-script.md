@@ -45,3 +45,20 @@ try {
 #Debugger
 
 * `debugger;` - stops debugger while execution this line of the code
+
+#Ajax
+##Sample post call
+
+```js
+
+xmlhttp=new XMLHttpRequest();
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    console.log("got reply: "+xmlhttp.responseText);
+    }
+  }
+xmlhttp.open("POST","/api/costumes",true); xmlhttp.send();
+
+```
