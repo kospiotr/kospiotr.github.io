@@ -21,6 +21,7 @@ Navigating:
 * `ctrl + shift + t` - navigate between test and implementation
 * `ctrl + shift + i` - object definition popup
 * `shift + ESC` - close last non center panel
+* `ctrl + F12` - file structure
 
 Editing:
 
