@@ -25,3 +25,9 @@ Here are tasks which we are using while testing:
 - `test-integration` - execute integration tests
 - `testing-integration` - as above in a watch loop, reexecutes tests when implementation or test sources changes 
 
+Require
+
+- `var suite = require('intern!object')` - require internal intern suite object
+- `var tester = require('../lib/restServerTester')` - require AMD styled file
+- `var express = require('intern/dojo/node!express')` - require CommonJS module
+- `var swagger = require('intern/dojo/node!../../index')` - require custom CommonJS module from relative path
