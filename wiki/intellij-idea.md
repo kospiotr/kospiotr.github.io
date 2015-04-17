@@ -32,12 +32,11 @@ Execution:
 
 Clean up on save (reformat code, organize imports):
 
-1. Code -> Reformat Code enter image description here
-2. Edit -> Macros -> Start Macro Recording
-3. Code -> Reformat Code
-3. Code -> Optimize imports
-4. File -> Save all
-5. Edit -> Macros -> Stop Macro Recording
-6. Name the macro (something like "formatted save")
-7. File -> Settings -> Keymap
-Right click on the macro. Add Keyboard Shortcut. Set the keyboard shortcut to Control + S. 
+1. `Code -> Reformat Code`
+2. `Edit -> Macros -> Start Macro Recording`
+3. `Code -> Reformat Code`
+3. `Code -> Optimize imports`
+4. `File -> Save all`
+5. `Edit -> Macros -> Stop Macro Recording`
+6. `Name the macro (something like "formatted save")
+7. `File -> Settings -> Keymap -> right click on the macro ->dd Keyboard Shortcut ->et the keyboard shortcut to `ctrl + s`. 
