@@ -31,6 +31,7 @@ Execution:
 * `shift + F10` - execute current test class / tests for the current class
 
 Clean up on save (reformat code, organize imports):
+
 1. Code -> Reformat Code enter image description here
 2. Edit -> Macros -> Start Macro Recording
 3. Code -> Reformat Code
