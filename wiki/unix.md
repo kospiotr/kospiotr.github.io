@@ -16,5 +16,6 @@ editurl: wiki/unix.md
 * `tar - xzvf archived-file.tar.gz` - untar.gz directory to file
 * `scp file.zip username@host:/home/target/path/` - copy file to remote host with scp
 * `ps aux | grep java` - display all services with java string
+* `kill $(ps aux | grep 'chrome' | awk '{print $2}')` - kill all processess with chrome phrase
 * `python -m SimpleHTTPServer 8000` - very light HTTP server with Python
 * `netstat -tulpn | grep 8080` - return process which process listen on port 8080
