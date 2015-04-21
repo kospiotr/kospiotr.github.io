@@ -46,3 +46,11 @@ sudo add-apt-repository ppa:git-core/ppa && \
 sudo apt-get update && \
 sudo apt-get install git
 ```
+
+## NodeJS
+
+```bash
+sudo add-apt-repository ppa:rwky/nodejs && \
+sudo apt-get update && \
+sudo apt-get install nodejs
+```
