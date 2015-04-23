@@ -55,3 +55,9 @@ sudo apt-get update && \
 sudo apt-get install nodejs && \
 sudo npm install -g grunt-cli
 ```
+
+## VLC
+
+```bash
+sudo apt-get install vlc browser-plugin-vlc
+```
