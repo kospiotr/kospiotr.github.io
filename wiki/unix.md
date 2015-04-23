@@ -52,5 +52,6 @@ sudo apt-get install git
 ```bash
 sudo add-apt-repository ppa:rwky/nodejs && \
 sudo apt-get update && \
-sudo apt-get install nodejs
+sudo apt-get install nodejs && \
+sudo npm install -g grunt-cli
 ```
