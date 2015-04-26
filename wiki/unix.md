@@ -20,6 +20,8 @@ editurl: wiki/unix.md
 * `python -m SimpleHTTPServer 8000` - very light HTTP server with Python
 * `netstat -tulpn | grep 8080` - return process which process listen on port 8080
 
+
+
 # Set up environment
 
 ## Chrome
@@ -61,3 +63,22 @@ sudo npm install -g grunt-cli
 ```bash
 sudo apt-get install vlc browser-plugin-vlc
 ```
+# Elementary OS
+
+* http://www.elementarynow.com/
+* https://plus.google.com/communities/104613975513761463450
+* https://oduso.com/
+
+## Tweaks
+
+```bash
+sudo add-apt-repository ppa:mpstark/elementary-tweaks-daily
+sudo apt-get update
+sudo apt-get install elementary-tweaks
+```
+
+
+
+# Recipes
+
+## Remove obsolate PPA
