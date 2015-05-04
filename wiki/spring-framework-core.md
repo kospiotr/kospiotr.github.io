@@ -1,10 +1,10 @@
 ---
 layout: wiki
-title: Spring Framework
+title: Spring Framework Core
 comments: false
 gallery: true
 toc: true
-editurl: wiki/spring-framework.md
+editurl: wiki/spring-framework-core.md
 res: ../resources/wiki/spring
 ---
 
