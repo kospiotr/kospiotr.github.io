@@ -2,7 +2,6 @@
 layout: wiki
 title: Java EE
 comments: false
-gallery: true
 toc: true
 editurl: wiki/java-enterprise-edition.md
 ---

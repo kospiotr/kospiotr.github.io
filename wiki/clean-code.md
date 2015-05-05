@@ -3,7 +3,6 @@ layout: wiki
 title: Clean Code
 description: How to write good quality code?
 comments: false
-gallery: true
 toc: true
 editurl: wiki/clean-code.md
 ---

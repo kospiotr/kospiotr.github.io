@@ -3,7 +3,6 @@ layout: post
 title:  "Stage Maven archetypes to Central Repository"
 description: "Using Sonatype tools for publishing Maven archetypes to Central Repository"
 date:   2014-02-27 22:16:00
-gallery: true
 ---
 
 In some future posts I will share how to configure environment for publishing archetypes to the Central Repositories. Basically most of the knowledge is present in the official documentation here: [https://docs.sonatype.org/display/Repository/Sonatype+OSS+Maven+Repository+Usage+Guide](https://docs.sonatype.org/display/Repository/Sonatype+OSS+Maven+Repository+Usage+Guide). 

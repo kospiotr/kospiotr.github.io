@@ -3,7 +3,6 @@ layout: post
 title:  "Wydawanie aplikacji w formie zarchiwizowanej"
 description: "Zautomatyzowane wydanie projektu w formie archiwum zip przy pomocy Mavena"
 date:   2011-10-23 22:16:00
-gallery: false
 ---
 
 Jednym z elementów cyklu życia projektu jest wydanie jego wersji. W zależności co tak na prawdę tworzymy efektem końcowym jest aplikacja gotowa do uruchomienia przez klienta, bądź biblioteka wykorzystywana w innych projektach. Oto czym się głównie charakteryzują:

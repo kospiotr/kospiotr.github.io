@@ -3,14 +3,11 @@ layout: post
 title:  "Aktualizacja web.xml dla Netbeans"
 description: "Wprowadzenie zmian w deskrypotrze wdrożenia w celu wyeliminowania błędów w Netbeans"
 date:   2012-02-04 22:16:00
-gallery: true
 ---
 Tworząc nowy projekt czy to za pomocą kreatora dołączonego do IDE czy za pomocą archetypu Maven zdarza się, że utworzona wersja deskryptora wdrożenia jest dość nieaktualna.
 Pracując z Netbeans chcąc dodać nowy servlet jeżeli deskryptor będzie w wersji 2.3 bądź starszej, zostaniemy poinformowani komunikatem, że nie jest to możliwe:
 
-<a href="{{ site.url }}/img/netbeans-web-xml-update.jpg" data-gallery>
-        <img src="{{ site.url }}/img/netbeans-web-xml-update.jpg" >
-</a>
+<a href="{{ site.url }}/img/netbeans-web-xml-update.jpg"><img src="{{ site.url }}/img/netbeans-web-xml-update.jpg" ></a>
 
 W tym celu należy w pliku ```web.xml``` skasować dotychczasowy schemat walidacji DTD:
 

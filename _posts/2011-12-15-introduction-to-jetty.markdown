@@ -3,7 +3,6 @@ layout: post
 title:  "Jetty - poręczny serwerek"
 description: "Jetty jako narzędzie ułatwiające życie programistom Java"
 date:   2011-12-15 22:16:00
-gallery: true
 ---
 W trakcie tworzenia aplikacji internetowych przychodzi moment kiedy należy go umieścić na jakimś serwerze. Do dyspozycji mamy naprawdę szeroką pulę począwszy od lekkiego Tomcata po serwery aplikacji takie jak GlassFish czy JBoss.
 Dzisiaj zaprezentujemy malutki i zgrabniutki kontener serwletów Jetty. Jego główną zaletą nad pozostałymi jest banalna konfiguracja oraz szybkość uruchamiania.

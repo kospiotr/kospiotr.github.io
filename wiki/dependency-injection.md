@@ -2,7 +2,6 @@
 layout: wiki
 title: Dependency Injection
 comments: false
-gallery: true
 toc: true
 editurl: wiki/di.md
 res: ../resources/wiki/dependency-injection

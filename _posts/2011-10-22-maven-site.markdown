@@ -3,7 +3,6 @@ layout: post
 title:  "Maven site"
 description: "Tworzenie dokumentacji projektu przy pomocy mechanizmu site z Mavena (in Polish)"
 date:   2011-10-22 22:16:00
-gallery: true
 ---
 
 Jak wiadomo kolejnym etapem po, a jeszcze lepiej w trakcie realizacji projektu należy przedstawić klientowi dokumentację zarówno użytkownika jak i techniczną. Abstrahując zupełnie od dokumentacji użytkownika dokumentacja techniczna powinna zawierać przynajmniej takie podstawowe elementy jak:
@@ -71,9 +70,7 @@ Aby przetestować działanie pluginu należy wydać polecenie: ```clean:clean si
 
 Po uruchomieniu strony znajdującej się w ```target\site\index.html``` naszym oczom ukaże się strona jak na załączonym zrzucie:
 
-<a href="{{ site.url }}/img/site_page.jpg" data-gallery>
-        <img src="{{ site.url }}/img/site_page.jpg" >
-</a>
+<a href="{{ site.url }}/img/site_page.jpg"><img src="{{ site.url }}/img/site_page.jpg" ></a>
 
 Strona HTML czyli site może zostać wygenerowany domyślnie z kilku typów źródeł danych takich jak:
 

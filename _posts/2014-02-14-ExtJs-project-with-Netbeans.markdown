@@ -16,27 +16,27 @@ For our purpose I will show how to develop simple application for Bids using Net
 
 Create new project:
 
-<img alt="screenshot" src="/img/2013-12-04-21_43_09-NetBeans-IDE-7.4.png" data-gallery/>
+<img alt="screenshot" src="/img/2013-12-04-21_43_09-NetBeans-IDE-7.4.png"/>
 
 Create HTML5 project:
 
-<img alt="screenshot" src="/img/2013-12-04-21_44_16-New-Project.png" data-gallery/>
+<img alt="screenshot" src="/img/2013-12-04-21_44_16-New-Project.png"/>
 
 And call it BidProject:
  
-<img alt="screenshot" src="/img/2013-12-04-21_45_21-New-HTML5-Application.png" data-gallery/>
+<img alt="screenshot" src="/img/2013-12-04-21_45_21-New-HTML5-Application.png"/>
 
 Next use empty template:
 
-<img alt="screenshot" src="/img/2013-12-04-21_46_27-New-HTML5-Application.png" data-gallery/>
+<img alt="screenshot" src="/img/2013-12-04-21_46_27-New-HTML5-Application.png"/>
 
 Don’t add existing ExtJS as you will find only version `3.4.1`. Netbeans uses external CdnJS service that allows to shuttle JS libraries to the project:
 
-<img alt="screenshot" src="/img/2013-12-04-21_52_57-NetBeans-IDE-7.4.png" data-gallery/>
+<img alt="screenshot" src="/img/2013-12-04-21_52_57-NetBeans-IDE-7.4.png"/>
 
 The project now is ready:
 
-<img alt="screenshot" src="/img/2013-12-04-21_58_37-BidProject-NetBeans-IDE-7.4.png" data-gallery/>
+<img alt="screenshot" src="/img/2013-12-04-21_58_37-BidProject-NetBeans-IDE-7.4.png"/>
 
 #Add ExtJS library
 
@@ -50,7 +50,7 @@ Lets prepare project structure:
  4. Create empty file app.js inside public_html folder
  5. The structure should look like this:
 
-<img alt="screenshot" src="/img/2013-12-04-22_27_46-BidProject-NetBeans-IDE-7.4.png" data-gallery/>
+<img alt="screenshot" src="/img/2013-12-04-22_27_46-BidProject-NetBeans-IDE-7.4.png"/>
 
 Now we need to add ExtJS and prepare an Entry point of our application:
 
@@ -119,11 +119,11 @@ We are done now with configuring ExtJS
 
 From the toolbar menu choose destination, where you would like to preview application (in my case embedded browser that is the best for fast prototyping):
 
-<img alt="screenshot" src="/img/2013-12-04-23_05_49-BidProject-NetBeans-IDE-7.4.png" data-gallery/>
+<img alt="screenshot" src="/img/2013-12-04-23_05_49-BidProject-NetBeans-IDE-7.4.png"/>
 
-Then on toolbar press play button <img src="/img/2013-12-04-23_07_28-BidProject-NetBeans-IDE-7.4.png" alt="Start Button" data-gallery/> to run server. Results will be displayed below the code:
+Then on toolbar press play button <img src="/img/2013-12-04-23_07_28-BidProject-NetBeans-IDE-7.4.png" alt="Start Button"/> to run server. Results will be displayed below the code:
 
-<img alt="screenshot" src="/img/2013-12-04-23_11_24-.png" data-gallery/>
+<img alt="screenshot" src="/img/2013-12-04-23_11_24-.png"/>
 
 #Entry point
 
