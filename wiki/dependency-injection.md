@@ -5,6 +5,7 @@ comments: false
 toc: true
 editurl: wiki/di.md
 res: ../resources/wiki/dependency-injection
+slideshow: true
 ---
 
 # Motivation - how to write good code?

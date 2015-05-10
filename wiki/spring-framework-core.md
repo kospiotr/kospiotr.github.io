@@ -5,6 +5,7 @@ comments: false
 toc: true
 editurl: wiki/spring-framework-core.md
 res: ../resources/wiki/spring
+slideshow: true
 ---
 
 #Introduction

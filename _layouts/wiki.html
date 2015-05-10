@@ -2,34 +2,54 @@
 layout: default
 comments: false
 ---
+
+<nav id="nav">
+    {% if page.slideshow %}<a href="javascript:$().slideshow();" class="btn btn-default">Slideshow</a>{% endif %}
+    <a href="/wiki" class="btn btn-default">Wiki index</a>
+</nav>
+
 <article id="main-article">
-	<header id="header">
-		<nav id="nav"><a href="/wiki" class="btn btn-default">Wiki index</a></nav>
-		<h1 id="page-title">{{ %page.title% }}</h1>
+    <header id="header">
+        <h1 id="page-title">{{ %page.title% }}</h1>
 
-		{% if page.description %}
-			<h2 id="page-description">
-				{{ %page.description% }}
-			</h2>
-		{% endif %}
-	</header>
-	<div id="article-body" class="markdown-body">
+        {% if page.description %}
+        <h2 id="page-description">
+            {{ %page.description% }}
+        </h2>
+        {% endif %}
+    </header>
 
-{% if page.toc %}
-	<div id="TOC"></div>
-{% endif %}
+    {% if page.toc %}
+    <div id="TOC" class="markdown-body"></div>
+    {% endif %}
 
-{{ content }}
-	</div>
+    <div id="article-body" class="markdown-body">
+        {{ content }}
+    </div>
 
-{% if page.toc %}
-	<script type="text/javascript">
-	$(function(){
-		$("#TOC").stoc({
-				search: "#article-body",
-				stocTitle: "<h1>Table of content</h1>"
-			});
-	});
-	</script>
-{% endif %}
 </article>
+
+{% if page.toc %}
+<script type="text/javascript">
+    $(function () {
+        $("#TOC").stoc({
+            search: "#article-body",
+            stocTitle: "<h1>Table of content</h1>"
+        });
+    });
+</script>
+{% endif %}
+
+
+{% if page.slideshow %}
+<script type="text/javascript">
+    $(function () {
+        var hash = window.location.hash;
+        var slideshowDetails = hash.match(/slide=(\d*)/);
+        if (slideshowDetails !== null) {
+            var slideNumber = parseInt(slideshowDetails[1]);
+            $().slideshow({slide: slideNumber});
+        }
+    });
+</script>
+{% endif %}
