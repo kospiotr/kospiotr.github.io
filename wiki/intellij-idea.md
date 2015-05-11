@@ -44,7 +44,8 @@ Clean up on save (reformat code, organize imports):
 Notes from workshops:
 
 alt + number
-ctrl + e - last actions
+ctrl + e - last visited places
+ctrl + shift + e - last edited places
 shift + escape - closes last tool window
 ctrl + shift + f12 - close all tool windows
 ctrl + shift + arrow - in tool window resize tool window, doesnt work in terminal (must remove capturing)
@@ -77,3 +78,14 @@ ctrl + y - deletes current line
 alt + insert - generate
 ctrl + ~ - quick list
 
+Templates:
+Surrounding
+
+Debugger:
+shift + F7 - smart step into
+ctrl + alt + 9 - force run to cursor
+alt + F8 - evaluate expression
+
+Bookmarks:
+F11 - toogle bookmarks
+shift + F11 - browse bookmarks
