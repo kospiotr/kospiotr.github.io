@@ -55,3 +55,6 @@ ctrl + shift + n - find file by file name
 ctrl + shift + alt + n - find by symbol
 shift + shift - find all above
 
+alt + shift + F9 - debug
+ctrl + w - expand selection
+ctrl + shift + w - reduce selection
