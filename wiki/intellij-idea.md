@@ -40,3 +40,18 @@ Clean up on save (reformat code, organize imports):
 5. `Edit -> Macros -> Stop Macro Recording`
 6. `Name the macro (something like "formatted save")
 7. `File -> Settings -> Keymap -> right click on the macro ->dd Keyboard Shortcut ->et the keyboard shortcut to `ctrl + s`. 
+
+Notes from workshops:
+
+alt + number
+ctrl + e - last actions
+shift + escape - closes last tool window
+ctrl + shift + f12 - close all tool windows
+ctrl + shift + arrow - in tool window resize tool window, doesnt work in terminal (must remove capturing)
+ctrl + shift + a - run action
+
+ctrl + n - find file by class name
+ctrl + shift + n - find file by file name
+ctrl + shift + alt + n - find by symbol
+shift + shift - find all above
+
