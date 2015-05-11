@@ -89,3 +89,7 @@ alt + F8 - evaluate expression
 Bookmarks:
 F11 - toogle bookmarks
 shift + F11 - browse bookmarks
+
+Scratches:
+ctrl + shift + alt - create scratches
+ctrl + shift + i - inspection
