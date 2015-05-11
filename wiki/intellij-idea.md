@@ -58,3 +58,21 @@ shift + shift - find all above
 alt + shift + F9 - debug
 ctrl + w - expand selection
 ctrl + shift + w - reduce selection
+
+ctrl + space - code completion
+ctrl + shift + space - smart code completion
+
+When changing method:
+tab - replaces current method
+enter - appends current method
+ctrl + shift + enter - encloses sentence in brackets
+ctrl + . - closes sentence and adds dot on the end
+
+ctrl + shift + arrow (up / down) - move properly class members
+shift + enter - add enter after current line and goes to that line
+ctrl + enter - add enter after current line but stays on that line
+
+ctrl + d - duplicates line or selected line
+ctrl + y - deletes current line
+alt + insert - generate
+
