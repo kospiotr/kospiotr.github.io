@@ -75,4 +75,5 @@ ctrl + enter - add enter after current line but stays on that line
 ctrl + d - duplicates line or selected line
 ctrl + y - deletes current line
 alt + insert - generate
+ctrl + ~ - quick list
 
