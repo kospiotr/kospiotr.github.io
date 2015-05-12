@@ -19404,3 +19404,7 @@ h3.conversation-list-heading strong {
     vertical-align: middle;
     padding-top: 100px;
 }
+
+.markdown-body > img {
+    text-align: center;
+}

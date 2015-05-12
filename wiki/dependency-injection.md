@@ -13,14 +13,14 @@ slideshow: true
  * Clean code
  * Object Oriented
  * High cohesion
+ * DRY - dont't repeat yourself (code reuse)
+ * SoC - separation of concerns
  * **SOLID** principles
   * **S** (SRP) - Single responsibility principle
   * **O** (OCP) - Open/closed principle
   * **L** (LSP) - Liskov substitution principle
   * **I** (ISP) - Interface segregation principle
-  * **D** (DIP) - Dependency inversion principle
- * DRY - dont't repeat yourself (code reuse)
- * SoC - separation of concerns
+  * **D** (DIP) - **Dependency inversion principle**
 
 # What is dependency?
 Wa are talking about dependency when one object relates on another one.
@@ -36,7 +36,7 @@ public class A{
 
 	private B objB;
 
-	public A {
+	public A() {
 		this.objB = new B();
 	}
 
@@ -62,42 +62,24 @@ public class DisplayActiveUsersWebAction{
 Above Web Action object instantiates dependant UsersDao object itself, which means that it satisfies its own dependency. In other words it configures itself.
 
 #What's wrong with direct constructor calls - Inversion of Control motivation
-Wiring everything together is a tedious part of application development. There are several approaches to connect data, service, and presentation classes to one another. To contrast these approaches, we'll write the billing code for a pizza ordering website:
 
 ```java
 public interface BillingService {
-
-  /**
-   * Attempts to charge the order to the credit card. Both successful and
-   * failed transactions will be recorded.
-   *
-   * @return a receipt of the transaction. If the charge was successful, the
-   *      receipt will be successful. Otherwise, the receipt will contain a
-   *      decline note describing why the charge failed.
-   */
   Receipt chargeOrder(PizzaOrder order, CreditCard creditCard);
 }
 ```
 
-Here's what the code looks like when we just new up the credit card creditCardProcessor and transaction logger:
-
 ```java
 public class RealBillingService implements BillingService {
+
   public Receipt chargeOrder(PizzaOrder order, CreditCard creditCard) {
+
     CreditCardProcessor creditCardProcessor = new PaypalCreditCardProcessor();
     TransactionLog transactionLog = new DatabaseTransactionLog();
 
-    try {
-      ChargeResult result = creditCardProcessor.charge(creditCard, order.getAmount());
-      transactionLog.logChargeResult(result);
-
-      return result.wasSuccessful()
-          ? Receipt.forSuccessfulCharge(order.getAmount())
-          : Receipt.forDeclinedCharge(result.getDeclineMessage());
-     } catch (UnreachableException e) {
-      transactionLog.logConnectException(e);
-      return Receipt.forSystemFailure(e.getMessage());
-    }
+    ChargeResult result = creditCardProcessor.charge(creditCard, order.getAmount());
+    transactionLog.logChargeResult(result);
+    ...
   }
 }
 ```
@@ -105,21 +87,26 @@ public class RealBillingService implements BillingService {
 This code poses problems for modularity and testability. In fact this code is not testable because of the following reasons:
 
  * If ```PaypalCreditCardProcessr``` or ```DatabaseTransactionLog``` has any dependencies like ```DatabaseConnection``` or ```RemoteTransactionArchiverWebService``` they will create them as well.
- * If we would like to test ```RealBillingService``` with unit tests the ```PaypalCreditCardProcessor``` will be created and we would perform operations on the real card creditCardProcessor. It means that we will the code will charge a real credit card during testing! In the tests we should operate on a ```FakeCreditCardProcessor```.
+ * If we would like to test ```RealBillingService``` with unit tests the ```PaypalCreditCardProcessor``` will be created and we would perform operations on the real card creditCardProcessor. It means that we will the code will charge a real credit card during testing! In the tests we should operate on a ```FakeCreditCardProcessor```!
  * When using other providers like ```VisaCreditCardProcessor``` for ```CreditCardProcessor``` or ```BitCoinTransactionLog``` for ```TransactionLog``` will require code changes in the ```RealBillingService```.
  * It's also awkward to test what happens when the charge is declined or when the service is unavailable.
- * This method often leads to Spaghetti Monster code
+ * This method often leads to Spaghetti Monster code.
+
+#Inversion of control principle
+The problem with above example is that those dependencies are created directly by the ```RealBillingService```. Instead the ready to use objects should be prepared externally and be delivered to the object that operates on them. 
+
+This object delivery from external place is called ***Inversion of Control*** as control over the object creation has been inverted.
+
+**IoC** is sometimes facetiously referred to as the:
+
+<blockquote> "Hollywood Principle: Don't call us, we'll call you".</blockquote>
+
 
 #Inversion of control implementations
-The problem with above example is that those dependencies are created directly by the ```RealBillingService```. Instead the ready to use objects should be prepared externally and be delivered to the object that operates on them. This object delivery from external place is called Inversion of Control as control over the object creation has been inverted.
-
-<blockquote>Inversion of control is sometimes facetiously referred to as the "Hollywood Principle: Don't call us, we'll call you".</blockquote>
-
-There are few implementations of Inversion of Control:
 
  * Factory pattern
  * Service locator pattern
- * Dependency injection
+ * **Dependency injection**
   * A constructor injection
   * Parameter injection
   * A setter injection
@@ -129,25 +116,20 @@ There are few implementations of Inversion of Control:
  * Strategy design pattern
 
 ##Factories
-A factory class decouples the client and implementing class. A simple factory uses static methods to obtain implementation of the given interface. In our client code, we just replace the new calls with factory lookups:
+A simple factory uses static methods to obtain implementation of the given class:
 
 ```java
 public class RealBillingService implements BillingService {
+
   public Receipt chargeOrder(PizzaOrder order, CreditCard creditCard) {
+
     CreditCardProcessor creditCardProcessor = CreditCardProcessorFactory.getInstance();
     TransactionLog transactionLog = TransactionLogFactory.getInstance();
 
-    try {
       ChargeResult result = creditCardProcessor.charge(creditCard, order.getAmount());
       transactionLog.logChargeResult(result);
 
-      return result.wasSuccessful()
-          ? Receipt.forSuccessfulCharge(order.getAmount())
-          : Receipt.forDeclinedCharge(result.getDeclineMessage());
-     } catch (UnreachableException e) {
-      transactionLog.logConnectException(e);
-      return Receipt.forSystemFailure(e.getMessage());
-    }
+      ...
   }
 }
 ```
@@ -190,11 +172,6 @@ public class RealBillingServiceTest extends TestCase {
     CreditCardProcessorFactory.setInstance(creditCardProcessor);
   }
 
-  @Override public void tearDown() {
-    TransactionLogFactory.setInstance(null);
-    CreditCardProcessorFactory.setInstance(null);
-  }
-
   public void testSuccessfulCharge() {
     RealBillingService billingService = new RealBillingService();
     Receipt receipt = billingService.chargeOrder(order, creditCard);
@@ -205,21 +182,36 @@ public class RealBillingServiceTest extends TestCase {
     assertEquals(100, creditCardProcessor.getAmountOfOnlyCharge());
     assertTrue(transactionLog.wasSuccessLogged());
   }
+
+  @Override public void tearDown() {
+    TransactionLogFactory.setInstance(null);
+    CreditCardProcessorFactory.setInstance(null);
+  }
 }
 ```
 
 This code is clumsy as:
 
- * A global variable holds the mock implementation, so we need to be careful about setting it up and tearing it down. Should the ```tearDown``` fail, the global variable continues to point at our test instance. This could cause problems for other tests. It also prevents us from running multiple tests in parallel.
-
- * All the static member variables are kept on the special area on heap memory - Permanent Generation which can cause some memory and Garbage Collector issues.
-
- * The dependencies are hidden in the code. If we add a dependency on a ```CreditCardFraudTracker```, we have to re-run the tests to find out which ones will break. Should we forget to initialize a factory for a production service, we don't find out until a charge is attempted. As the application grows, babysitting factories becomes a growing drain on productivity.
+* A global variable holds the mock implementation
+  * need to be careful about setting it up and tearing it down.
+  * could cause problems for other tests if initialization fails
+  * prevents from running multiple tests in parallel.
+* All the static member variables are kept on the special area on heap memory - Permanent Generation which can cause some memory and Garbage Collector issues.
+* The dependencies are hidden in the code.
+  * If we add a dependency on a ```CreditCardFraudTracker```, we have to re-run the tests to find out which ones will break.
+  * If forget to initialize a factory for a production service, we don't find out until a charge is attempted.
+* As the application grows, babysitting factories becomes a growing drain on productivity.
 
 Quality problems will be caught by QA or acceptance tests. That may be sufficient, but we can certainly do better.
 
 ##Dependency Injection
-Like the factory, dependency injection is just a design pattern. The core principal is to separate behaviour from dependency resolution. In our example, the ```RealBillingService``` is not responsible for looking up the ```TransactionLog``` and ```CreditCardProcessor```. Instead, they're passed via constructor or setter.
+Like the factory, dependency injection is just a design pattern (implementation for Inversion of Control principle). 
+
+The core principal is to separate behaviour from dependency resolution. 
+
+In our example, the ```RealBillingService``` is not responsible for looking up the ```TransactionLog``` and ```CreditCardProcessor```. 
+
+Instead, they're injected - passed via constructor or setter.
 
 ###Constructor Injection
 

@@ -10,18 +10,51 @@ slideshow: true
 
 #Introduction
 ##History
-###Java Enterprise Edition
-Before Spring Framework Enterprise applications has been developed using JavaEE (EJB2). Some major drawbacks:
+###Software application evolution
 
- * very complicated
- * unclear workflow
- * many XML files with configuration
+**Because of:**
+Human needs (laziness) -> process automation
+
+**Thanks to:**
+
+* Stronger hardware
+* New language features, like: Procedures, Function, Classess, O. O. Development, Layers, Modules, 
+* Libraries, Frameworks
+* Return to best practices: Design patterns, Anti patterns, Methodologies
+
+**We have:**
+
+<center>![application size](/img/size_of_large_projects.jpg)</center>
+
+###Enterprise Applications
+
+Enterprise applications is a software mostly for business that uses standarized mechanisms like:
+
+* Transactions
+* Security
+* Scalabity
+* Concurency
+* Messaging
+* Remote control
+* Persistence
+
+Compare:
+
+* personal/company website, blog, game
+* banking transaction system, powerplant management system
+
+###Early Java Enterprise Edition
+Before Spring Framework, Enterprise applications was being developed using JavaEE (EJB2). Some major drawbacks:
+
  * environment polluted logic (had to extends abstract classes, implement JavaEE interfaces)
- * hard to write unit tests
- * very weak Time To Market
  * requires Application Server - special container where Enterprise applications can be deployed
   * different servers (open, commercial)
   * they differently implement specification
+ * very complicated
+ * many XML files with configuration
+ * unclear workflow
+ * hard to write unit tests
+ * very weak Time To Market
 
 <center>
 ![JEE]({{page.res}}/ejb-development.png)
@@ -37,6 +70,10 @@ Rod Johnson between 1997 and 2002 was dealing with J2EE applications as a consul
 </center>
 
 He published there analysys of the problems with the code that implements framework *Interface21* which was demonstrating how to solve those problems. This framework we would call today injection container.
+
+###How to write good software?
+
+Reference: [Dependency injection?](dependency-injection.html)
 
 ###Versions
 
