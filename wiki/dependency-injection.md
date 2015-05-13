@@ -205,17 +205,15 @@ This code is clumsy as:
 Quality problems will be caught by QA or acceptance tests. That may be sufficient, but we can certainly do better.
 
 ##Dependency Injection
-Like the factory, dependency injection is just a design pattern (implementation for Inversion of Control principle). 
+The core principal is to separate behavior from dependency resolution.
 
-The core principal is to separate behaviour from dependency resolution. 
+In the example, the ```RealBillingService``` is not responsible for looking up the ```TransactionLog``` and ```CreditCardProcessor```.
 
-In our example, the ```RealBillingService``` is not responsible for looking up the ```TransactionLog``` and ```CreditCardProcessor```. 
-
-Instead, they're injected - passed via constructor or setter.
+Instead, they're passed via **constructor** or **setter**.
 
 ###Constructor Injection
 
-Here is an example how to inject both dependencies with constructor:
+Implementation:
 
 ```java
 public class RealBillingService implements BillingService {
@@ -229,23 +227,14 @@ public class RealBillingService implements BillingService {
   }
 
   public Receipt chargeOrder(PizzaOrder order, CreditCard creditCard) {
-    try {
-      ChargeResult result = creditCardProcessor.charge(creditCard, order.getAmount());
-      transactionLog.logChargeResult(result);
-
-      return result.wasSuccessful()
-          ? Receipt.forSuccessfulCharge(order.getAmount())
-          : Receipt.forDeclinedCharge(result.getDeclineMessage());
-     } catch (UnreachableException e) {
-      transactionLog.logConnectException(e);
-      return Receipt.forSystemFailure(e.getMessage());
-    }
+    ChargeResult result = creditCardProcessor.charge(creditCard, order.getAmount());
+    transactionLog.logChargeResult(result);
+    ...
   }
 }
 ```
 
-We don't need any factories, and we can simplify the testcase by removing the ```setUp``` and ```tearDown``` boilerplate:
-
+Test:
 
 ```java
 public class RealBillingServiceTest extends TestCase {
@@ -257,8 +246,7 @@ public class RealBillingServiceTest extends TestCase {
   private final FakeCreditCardProcessor creditCardProcessor = new FakeCreditCardProcessor();
 
   public void testSuccessfulCharge() {
-    RealBillingService billingService
-        = new RealBillingService(creditCardProcessor, transactionLog);
+    RealBillingService billingService = new RealBillingService(creditCardProcessor, transactionLog);
     Receipt receipt = billingService.chargeOrder(order, creditCard);
 
     assertTrue(receipt.hasSuccessfulCharge());
@@ -270,24 +258,11 @@ public class RealBillingServiceTest extends TestCase {
 }
 ```
 
-Now, whenever we add or remove dependencies, the compiler will remind us what tests need to be fixed. The dependency is exposed in the API signature.
-
-Unfortunately, now the clients of ```BillingService``` need to lookup its dependencies. We can fix some of these by applying the pattern again! Classes that depend on it can accept a ```BillingService``` in their constructor. For top-level classes, it's useful to have a framework. Otherwise you'll need to construct dependencies recursively when you need to use a service:
-
-
-```java
-  public static void main(String[] args) {
-    CreditCardProcessor creditCardProcessor = new PaypalCreditCardProcessor();
-    TransactionLog transactionLog = new DatabaseTransactionLog();
-    BillingService billingService
-        = new RealBillingService(creditCardProcessor, transactionLog);
-    ...
-  }
-```
+We don't need any factories, and we can simplify the testcase by removing the ```setUp``` and ```tearDown``` boilerplate:
 
 ### Setter injection
 
-As you can imagine you can inject dependencies also by using setters:
+Implementation:
 
 ```java
 public class RealBillingService implements BillingService {
@@ -303,25 +278,39 @@ public class RealBillingService implements BillingService {
   }
 
   public Receipt chargeOrder(PizzaOrder order, CreditCard creditCard) {
-    try {
-      ChargeResult result = creditCardProcessor.charge(creditCard, order.getAmount());
-      transactionLog.logChargeResult(result);
-
-      return result.wasSuccessful()
-          ? Receipt.forSuccessfulCharge(order.getAmount())
-          : Receipt.forDeclinedCharge(result.getDeclineMessage());
-     } catch (UnreachableException e) {
-      transactionLog.logConnectException(e);
-      return Receipt.forSystemFailure(e.getMessage());
-    }
+    ChargeResult result = creditCardProcessor.charge(creditCard, order.getAmount());
+    transactionLog.logChargeResult(result);
+    ...
   }
 }
 ```
 
-# Beans types
+Test:
 
- * Singleton
- * Prototype
+```java
+public class RealBillingServiceTest extends TestCase {
+
+  private final PizzaOrder order = new PizzaOrder(100);
+  private final CreditCard creditCard = new CreditCard("1234", 11, 2010);
+
+  private final InMemoryTransactionLog transactionLog = new InMemoryTransactionLog();
+  private final FakeCreditCardProcessor creditCardProcessor = new FakeCreditCardProcessor();
+
+  public void testSuccessfulCharge() {
+    RealBillingService billingService = new RealBillingService();
+    billingService.setTransactionLog(transactionLog);
+    billingService.setCreditCardProcessor(creditCardProcessor);
+    Receipt receipt = billingService.chargeOrder(order, creditCard);
+
+    assertTrue(receipt.hasSuccessfulCharge());
+    assertEquals(100, receipt.getAmountOfCharge());
+    assertEquals(creditCard, creditCardProcessor.getCardOfOnlyCharge());
+    assertEquals(100, creditCardProcessor.getAmountOfOnlyCharge());
+    assertTrue(transactionLog.wasSuccessLogged());
+  }
+}
+```
+
 
 # Application configuration
 
@@ -340,6 +329,41 @@ Dependency Injection design pattern requires that all child dependencies must be
 ```
 
 When dependencies graph is getting bigger it is worth to use some kind of framework to manage its dependencies configuration.
+
+# Profits - Maintainability
+
+Code now:
+
+* Is much more readable
+* Is much better fragmented and decoupled
+* Is much more cohesive
+* Is much better encapsulated
+* Has better responsibility, is reusable
+* Is better testable
+* Has explicit dependencies
+* Can be easier documented
+
+Are you convinced?
+
+# Real life
+
+Many folks don't realize that your dependencies chain can become nested, and it quickly
+becomes unwieldy to wire them up manually. Even with factories, the duplication of your code
+is just not worth it.
+
+
+The most valuable benefit of using an IoC container is that you can have a configuration switch
+in one place which lets you change between, say, test mode and production mode.
+
+
+Centralize the configuration of your dependencies.
+
+
+Polymorphism for plugability: with DI you can inject dependency into the code without explicitly knowing how the
+functionality is actually working. For example: your class might get a ```ILog``` interface injected
+so that it can write logs. Since the class works with the ```ILog``` interface, it would be possible to
+implement a ```FileLog```, ```MemoryLog``` or a ```DatabaseLog``` & inject this into your class. Any of these
+implementation will work fine as long as they implement the ```ILog``` interface
 
 #DI Frameworks
 

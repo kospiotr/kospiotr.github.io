@@ -116,7 +116,9 @@ Spring is made of the following modules:
 [http://docs.spring.io/spring/docs/4.0.3.RELEASE/spring-framework-reference/htmlsingle/#overview-modules](http://docs.spring.io/spring/docs/4.0.3.RELEASE/spring-framework-reference/htmlsingle/#overview-modules)
 
 #Inversion of Control container
-Central to the Spring Framework is its Inversion of Control (IoC) container, which provides a consistent means of configuring and managing Java objects using **reflection**. The container is responsible for managing object lifecycles of specific objects:
+Central to the Spring Framework is its Inversion of Control (IoC) container, which provides a consistent means of configuring and managing Java objects using **reflection**. 
+
+The container is responsible for managing object lifecycles of specific objects:
 
  * creating these objects,
  * configuring these objects by wiring them together,
@@ -152,7 +154,7 @@ Bean Factory is a core element of the Spring Inversion of Control container that
 
 <center>![Huge dependency graph]({{page.res}}/bean-factory.png)</center>
 
- * Application `App.java`:
+ * Initialization:
 
 ```java
 
@@ -170,7 +172,7 @@ Bean Factory is a core element of the Spring Inversion of Control container that
     }
 ```
 
- * Configuration file `spring-configuration.xml`:
+ * Configuration `spring-configuration.xml`:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -184,9 +186,12 @@ Bean Factory is a core element of the Spring Inversion of Control container that
 </beans>
 ```
 
-The Bean Factory creates objects (Factory pattern) and if the object require dependency it searches them in the registry (Lookup pattern) and inject them to the object (Dependency Injection pattern).
+Algorithm:
 
-If the dependency is not yet created, the whole above process applies to the child (recursive lookup):
+* The Bean Factory creates objects (Factory pattern).
+* If the object require dependency it searches them in the registry (Lookup pattern) 
+* inject them to the object (Dependency Injection pattern).
+* If the dependency is not yet created, the whole above process applies to the child (recursive lookup).
 
 <center>![Bean Factory]({{page.res}}/bean-factory-with-dependencies.png)</center>
 
@@ -200,38 +205,53 @@ Objects can be obtained by means of either dependency lookup or dependency injec
 
 `ApplicationContext` extends `BeanFactory` and adds some extra features to it.
 
-* **Bean Factory**
- * *Bean instantiation/wiring*
-
-* **Application Context**
- * *Bean instantiation/wiring*
- * Automatic BeanPostProcessor registration
- * Automatic BeanFactoryPostProcessor registration
- * Convenient MessageSource access (for i18n)
- * ApplicationEvent publication
 
 <center>![ApplicationContext]({{page.res}}/application-context.png)</center>
 
-Then initialisation and configuration changes (simplifies), as ApplicationContext is being used more widely:
+* ```Bean Factory```
+ * *Bean instantiation/wiring*
+
+* ```Application Context```
+ * *Bean instantiation/wiring*
+ * Automatic ```BeanPostProcessor``` registration
+ * Automatic ```BeanFactoryPostProcessor``` registration
+ * Convenient ```MessageSource``` access (for i18n)
+ * ```ApplicationEvent``` publication
+
+Then initialisation and configuration changes (simplifies), as ```ApplicationContext``` is being used more widely:
 
 ```java
     public static void main(String[] args) {
         //create Inversion of Control container
         //create configuration and populate Inversion of Control container with it
-        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring-configuration.xml");
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("spring-configuration.xml");
 
         //requesting bean from the container by the id
-        BillingService billingService = applicationContext.getBean("ruleBillingService", BillingService.class);
+        BillingService billingService = ctx.getBean("ruleBillingService", BillingService.class);
         billingService.charge(100);
     }
 ```
 
+And additionally we have extra features with minimal overhead.
+
+##Beans
+Objects created by the container (`BeanFactory` or `ApplicationContext`) are also called managed objects or beans. Only managed objects can be controlled by Spring (injecting dependencies, lifecycle management).
+
+<center>![Bans vs Object instances]({{page.res}}/beans.png)</center>
+
 ##Configuration
-The container can be configured by loading XML files or detecting specific Java annotations on configuration classes. These data sources contain the bean definitions which provide the information required to create the beans.
+The container can be configured by **XML files** or **Java classess**.
 
-* XML way:
+<center>![Configuration]({{page.res}}/matrix-choose.png)</center>
 
- Configuratino file `spring-configuration.xml`:
+These sources of data contain the bean definitions which provide the information required to create the beans.
+
+* Reference: [XML way](/wiki/spring-framework-core.html#xml-based-container-configuration)
+* Reference: [Java way](/wiki/spring-framework-core.html#java-based-container-configuration)
+
+#XML-based container configuration
+
+Configuration file `spring-configuration.xml`:
 
   ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -247,90 +267,58 @@ The container can be configured by loading XML files or detecting specific Java 
  ApplicationContext initialization `App.java`:
 
  ```java
- ApplicationContext applicationContext = new ClassPathXmlApplicationContext("main.xml","common.xml","rest.xml");
- ```
-* Java way:
-
- Configuratino file `AppConfig.java`:
-
-  ```java
-  @Configuration
-  public class AppConfig {
-
-      @Bean(name = "ruleBillingService")
-      public BillingService billingServiceBean() {
-          return new BillingService();
-      }
-
-  }
-  ```
-
- ApplicationContext initialization `App.java`:
-
- ```java
-ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
-
+ ApplicationContext ctx = new ClassPathXmlApplicationContext("main.xml","common.xml","rest.xml");
  ```
 
-##Beans
-Objects created by the container (`BeanFactory` or `ApplicationContext`) are also called managed objects or beans. Only managed objects can be controlled by Spring (injecting dependencies, lifecycle management).
-
-<center>![Bans vs Object instances]({{page.res}}/beans.png)</center>
-
-
-#XML-based container configuration
-##Object management
-###Bean declaration
+##Bean declaration
 Simple bean declaration:
 
 ```xml
 <bean id="ruleBillingService" class="com.github.kospiotr.spring.BillingService"/>
 ```
 
-* Obtain bean by id:
+Obtain bean by id:
 
  ```java
-BillingService billingService = applicationContext.getBean("test", BillingService.class);
+BillingService billingService = ctx.getBean("test", BillingService.class);
 ```
 
-* Obtaining bean by type (if unique bean class is definied in configuration):
+Obtaining bean by type (if unique bean class is definied in configuration):
 
  ```java
-BillingService billingService = applicationContext.getBean(BillingService.class);
+BillingService billingService = ctx.getBean(BillingService.class);
 ```
 
 If multiple beans with given class declared:
 
 ```xml
-    <bean id="ruleBillingService" class="com.github.kospiotr.spring.BillingService"/>
-    <bean id="ruleBillingService2" class="com.github.kospiotr.spring.BillingService"/>
+<bean id="ruleBillingService" class="com.github.kospiotr.spring.BillingService"/>
+<bean id="ruleBillingService2" class="com.github.kospiotr.spring.BillingService"/>
 ```
 
 They can be lookup from container as a map where bean id is a map key:
 
 ```java
-Map<String, BillingService> billingService = applicationContext.getBeansOfType(BillingService.class);
+Map<String, BillingService> billingService = ctx.getBeansOfType(BillingService.class);
 ```
 
-
-###Bean alias
-The bean can have more ids thanks to aliases
+Bean alias - the bean can have more ids thanks to aliases:
 
 ```xml
-    <bean id="ruleBillingService" class="com.github.kospiotr.spring.BillingService"/>
-    <alias name="ruleBillingService" alias="service"/>
+<bean id="ruleBillingService" class="com.github.kospiotr.spring.BillingService"/>
+<alias name="ruleBillingService" alias="service"/>
 ```
 
 Obtain bean by alias is achieved in a same way as by id:
 
  ```java
-BillingService service = applicationContext.getBean("service", BillingService.class);
+BillingService service = ctx.getBean("service", BillingService.class);
 
 ```
 ##Factory method
 Objects can be manually created by other bean via factory method:
 
-###Static Factory method
+**Static Factory method**:
 
 ```xml
 <bean id="ruleBillingService"
@@ -338,7 +326,13 @@ Objects can be manually created by other bean via factory method:
 	factory-method="createBillingService"/>
 ```
 
-###Non static Factory method
+Is equivalent to:
+
+```java
+Object ruleBillingService = BillingServiceStaticFactory.createBillingService();
+```
+
+**Non static Factory method**:
 
 ```xml
 <bean id="ruleBillingServiceFactory"
@@ -346,6 +340,13 @@ Objects can be manually created by other bean via factory method:
 <bean id="ruleBillingService"
 	factory-bean="ruleBillingServiceFactory" 
 	factory-method="createBillingService"/>
+```
+
+Is equivalent to:
+
+```java
+BillingServiceFactory ruleBillingServiceFactory = new BillingServiceFactory();
+Object ruleBillingService = ruleBillingServiceFactory.createBillingService();
 ```
 
 ##Scopes
@@ -360,8 +361,6 @@ Only valid in the context of a web-aware Spring ApplicationContext:
  * **session** - scopes a single bean definition to the lifecycle of a HTTP Session.
  * **global** - session Scopes a single bean definition to the lifecycle of a global HTTP Session. Typically only valid when used in a portlet context.
 
-Examples:
-
 Given `BillingService.java`:
 
 ```java
@@ -374,7 +373,7 @@ public class BillingService {
 }
 ```
 
-* Singleton example:
+***Singleton*** example:
 
  Configuration:
 
@@ -385,18 +384,19 @@ public class BillingService {
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="ruleBillingService" class="com.github.kospiotr.spring.BillingService" scope="singleton"/>
+    <bean id="ruleBillingService" class="com.github.kospiotr.spring.BillingService" 
+        scope="singleton"/>
 </beans>
  ```
 
  Application:
 
  ```java
-        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring-configuration-singleton.xml");
+ApplicationContext ctx = new ClassPathXmlApplicationContext("spring-configuration-singleton.xml");
 
-        BillingService service1 = applicationContext.getBean(BillingService.class);
-        BillingService service2 = applicationContext.getBean(BillingService.class);
-        BillingService service3 = applicationContext.getBean(BillingService.class);
+BillingService service1 = ctx.getBean(BillingService.class);
+BillingService service2 = ctx.getBean(BillingService.class);
+BillingService service3 = ctx.getBean(BillingService.class);
  ```
 
  Result:
@@ -404,7 +404,8 @@ public class BillingService {
  ```
 > Constructed BillingService
  ```
-* Prototype example:
+ 
+***Prototype*** example:
 
  Configuration:
 
@@ -415,18 +416,19 @@ public class BillingService {
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="ruleBillingService" class="com.github.kospiotr.spring.BillingService" scope="prototype"/>
+    <bean id="ruleBillingService" class="com.github.kospiotr.spring.BillingService" 
+        scope="prototype"/>
 </beans>
  ```
 
  Application:
 
  ```java
-        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring-configuration-singleton.xml");
+ApplicationContext ctx = new ClassPathXmlApplicationContext("spring-configuration-singleton.xml");
 
-        BillingService service1 = applicationContext.getBean(BillingService.class);
-        BillingService service2 = applicationContext.getBean(BillingService.class);
-        BillingService service3 = applicationContext.getBean(BillingService.class);
+BillingService service1 = ctx.getBean(BillingService.class);
+BillingService service2 = ctx.getBean(BillingService.class);
+BillingService service3 = ctx.getBean(BillingService.class);
  ```
 
  Result:
@@ -449,9 +451,8 @@ There are 3 methods how it can be achieved by Spring:
 * By implementing interfaces
 * By marking methods with annotations
 
-Examples:
 
-* **Configuration driven**
+Lifecycle definied in the **Configuration** example:
 
  Configuration:
 
@@ -482,11 +483,11 @@ public class BillingService {
  Application:
 
  ```java
-        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring-configuration-configuration-driven-lifecycle.xml");
+ApplicationContext ctx = new ClassPathXmlApplicationContext("spring-configuration-configuration-driven-lifecycle.xml");
 
-        BillingService service1 = applicationContext.getBean(BillingService.class);
+BillingService service1 = ctx.getBean(BillingService.class);
 
-        ((ConfigurableApplicationContext) applicationContext).close(); //forces context to shut down
+((ConfigurableApplicationContext) applicationContext).close(); //forces context to shut down
  ```
 
  Result:
@@ -497,12 +498,12 @@ public class BillingService {
 > BillingService clean up
  ```
 
-* **Interface driven**
+Lifecycle driven by the **interface** example:
 
  Configuration:
 
  ```xml
-    <bean id="ruleBillingService" class="com.github.kospiotr.spring.BillingServiceLifecycleAware"/>
+<bean id="ruleBillingService" class="com.github.kospiotr.spring.BillingServiceLifecycleAware"/>
  ```
 
  Bean:
@@ -527,11 +528,11 @@ public class BillingServiceLifecycleAware implements InitializingBean, Disposabl
  Application:
 
  ```java
-        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring-configuration-interface-driven-lifecycle.xml");
+ApplicationContext ctx = new ClassPathXmlApplicationContext("spring-configuration-interface-driven-lifecycle.xml");
 
-        BillingServiceLifecycleAware service1 = applicationContext.getBean(BillingServiceLifecycleAware.class);
+BillingServiceLifecycleAware service1 = ctx.getBean(BillingServiceLifecycleAware.class);
 
-        ((ConfigurableApplicationContext) applicationContext).close(); //forces context to shut down
+((ConfigurableApplicationContext) applicationContext).close(); //forces context to shut down
  ```
 
  Result:
@@ -541,6 +542,8 @@ public class BillingServiceLifecycleAware implements InitializingBean, Disposabl
 > BillingService initialized
 > BillingService destroyed
  ```
+
+Lifecycle driven by annotation reference: [Lifecycle with annotations](/wiki/spring-framework-core.html#lifecycle-with-annotations)
 
 > The most recommended way is using plain configuration, then JSR-330 annotations, and in the end implementing interfaces. Interfaces will tight coupled your code to Spring and annotations bind the code with JSR-330. JSR-330 is pretty common now and this is straightforward convention to configure lifecycle in the application. For libraries development I would suggest using plain configuration.
 
@@ -554,72 +557,72 @@ public class BillingServiceLifecycleAware implements InitializingBean, Disposabl
  * Simple values:
 
 ```xml
-        <property name="sampleString" value="TestingString"/>
-        <property name="sampleIntiger" value="100"/>
-        <property name="sampleDouble" value="99.99"/>
+<property name="sampleString" value="TestingString"/>
+<property name="sampleIntiger" value="100"/>
+<property name="sampleDouble" value="99.99"/>
 ```
 
  * List:
 
  ```xml
-         <property name="sampleList">
-             <list>
-                 <value>pechorin@hero.org</value>
-                 <value>raskolnikov@slums.org</value>
-                 <value>stavrogin@gov.org</value>
-                 <value>porfiry@gov.org</value>
-             </list>
-         </property>
+ <property name="sampleList">
+     <list>
+         <value>pechorin@hero.org</value>
+         <value>raskolnikov@slums.org</value>
+         <value>stavrogin@gov.org</value>
+         <value>porfiry@gov.org</value>
+     </list>
+ </property>
  ```
 
  * Set:
 
  ```xml
-         <property name="sampleSet">
-             <set>
-                 <value>pechorin@hero.org</value>
-                 <value>raskolnikov@slums.org</value>
-                 <value>stavrogin@gov.org</value>
-                 <value>porfiry@gov.org</value>
-             </set>
-         </property>
+ <property name="sampleSet">
+     <set>
+         <value>pechorin@hero.org</value>
+         <value>raskolnikov@slums.org</value>
+         <value>stavrogin@gov.org</value>
+         <value>porfiry@gov.org</value>
+     </set>
+ </property>
  ```
 
  * Map:
 
  ```xml
-         <property name="sampleMap">
-             <map>
-                 <entry key="pechorin" value="pechorin@hero.org"/>
-                 <entry key="raskolnikov" value="raskolnikov@slums.org"/>
-                 <entry key="stavrogin" value="stavrogin@gov.org"/>
-                 <entry key="porfiry" value="porfiry@gov.org"/>
-             </map>
-         </property>
+ <property name="sampleMap">
+     <map>
+         <entry key="pechorin" value="pechorin@hero.org"/>
+         <entry key="raskolnikov" value="raskolnikov@slums.org"/>
+         <entry key="stavrogin" value="stavrogin@gov.org"/>
+         <entry key="porfiry" value="porfiry@gov.org"/>
+     </map>
+ </property>
  ```
 
 ####Inner bean
 
 ```xml
-    <bean id="billingService1" class="com.github.kospiotr.spring.BillingService">
-        <property name="creditCardProcessor">
-            <bean id="creditCardProcessor" class="com.github.kospiotr.spring.CreditCardProcessor"/>
-        </property>
-        <property name="transactionLogger">
-            <bean id="transactionLogger" class="com.github.kospiotr.spring.TransactionLogger"/>
-        </property>
-    </bean>
+<bean id="billingService1" class="com.github.kospiotr.spring.BillingService">
+    <property name="creditCardProcessor">
+        <bean id="creditCardProcessor" class="com.github.kospiotr.spring.CreditCardProcessor"/>
+    </property>
+    <property name="transactionLogger">
+        <bean id="transactionLogger" class="com.github.kospiotr.spring.TransactionLogger"/>
+    </property>
+</bean>
 ```
 
 ####By reference
 
 ```xml
-    <bean id="creditCardProcessor" class="com.github.kospiotr.spring.CreditCardProcessor"/>
-    <bean id="transactionLogger" class="com.github.kospiotr.spring.TransactionLogger"/>
-    <bean id="billingService1" class="com.github.kospiotr.spring.BillingService">
-        <property name="creditCardProcessor" ref="creditCardProcessor"/>
-        <property name="transactionLogger" ref="transactionLogger"/>
-    </bean>
+<bean id="creditCardProcessor" class="com.github.kospiotr.spring.CreditCardProcessor"/>
+<bean id="transactionLogger" class="com.github.kospiotr.spring.TransactionLogger"/>
+<bean id="billingService1" class="com.github.kospiotr.spring.BillingService">
+    <property name="creditCardProcessor" ref="creditCardProcessor"/>
+    <property name="transactionLogger" ref="transactionLogger"/>
+</bean>
 ```
 
 ###Injecting methods
@@ -631,12 +634,12 @@ To get know what Dependency Injection is please refer to this wiki: [Dependecy I
 Setter-based DI is accomplished by the container calling setter methods on your beans after invoking a no-argument constructor or no-argument static factory method to instantiate your bean.
 
 ```xml
-    <bean id="creditCardProcessor" class="com.github.kospiotr.spring.CreditCardProcessor"/>
-    <bean id="transactionLogger" class="com.github.kospiotr.spring.TransactionLogger"/>
-    <bean id="billingService" class="com.github.kospiotr.spring.BillingService">
-        <property name="creditCardProcessor" ref="creditCardProcessor"/>
-        <property name="transactionLogger" ref="transactionLogger"/>
-    </bean>
+<bean id="creditCardProcessor" class="com.github.kospiotr.spring.CreditCardProcessor"/>
+<bean id="transactionLogger" class="com.github.kospiotr.spring.TransactionLogger"/>
+<bean id="billingService" class="com.github.kospiotr.spring.BillingService">
+    <property name="creditCardProcessor" ref="creditCardProcessor"/>
+    <property name="transactionLogger" ref="transactionLogger"/>
+</bean>
 ```
 
 ####Constructor based dependency injection
@@ -644,12 +647,12 @@ Setter-based DI is accomplished by the container calling setter methods on your 
 Constructor-based DI is accomplished when the container invokes a class constructor with a number of arguments, each representing a dependency on other class.
 
 ```xml
-    <bean id="creditCardProcessor" class="com.github.kospiotr.spring.CreditCardProcessor"/>
-    <bean id="transactionLogger" class="com.github.kospiotr.spring.TransactionLogger"/>
-    <bean id="billingService" class="com.github.kospiotr.spring.BillingService">
-        <constructor-arg name="creditCardProcessor" ref="creditCardProcessor"/>
-        <constructor-arg name="transactionLogger" ref="transactionLogger"/>
-    </bean>
+<bean id="creditCardProcessor" class="com.github.kospiotr.spring.CreditCardProcessor"/>
+<bean id="transactionLogger" class="com.github.kospiotr.spring.TransactionLogger"/>
+<bean id="billingService" class="com.github.kospiotr.spring.BillingService">
+    <constructor-arg name="creditCardProcessor" ref="creditCardProcessor"/>
+    <constructor-arg name="transactionLogger" ref="transactionLogger"/>
+</bean>
 ```
 
 ###Autowiring
@@ -657,13 +660,13 @@ Constructor-based DI is accomplished when the container invokes a class construc
 Given application:
 
 ```java
-        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring-configuration-autowire-by-type.xml");
+ApplicationContext ctx = new ClassPathXmlApplicationContext("spring-configuration-autowire-by-type.xml");
 
-        Payment payment = new Payment("Pizza payment", "123", "321", 20);
+Payment payment = new Payment("Pizza payment", "123", "321", 20);
 
-        //requesting bean from the container by the id
-        BillingService billingService1 = applicationContext.getBean("billingService1", BillingService.class);
-        billingService1.processPayment(payment);
+//requesting bean from the container by the id
+BillingService billingService1 = ctx.getBean("billingService1", BillingService.class);
+billingService1.processPayment(payment);
 ```
 
 ####no autowiring - manual wiring
@@ -673,13 +676,13 @@ Given application:
 Configuration:
 
 ```xml
-    <bean id="creditCardProcessor" class="com.github.kospiotr.spring.CreditCardProcessor"/>
-    <bean id="transactionLogger" class="com.github.kospiotr.spring.TransactionLogger"/>
+<bean id="creditCardProcessor" class="com.github.kospiotr.spring.CreditCardProcessor"/>
+<bean id="transactionLogger" class="com.github.kospiotr.spring.TransactionLogger"/>
 
-    <bean id="billingService1" class="com.github.kospiotr.spring.BillingService">
-        <property name="creditCardProcessor" ref="creditCardProcessor"/>
-        <property name="transactionLogger" ref="transactionLogger"/>
-    </bean>
+<bean id="billingService1" class="com.github.kospiotr.spring.BillingService">
+    <property name="creditCardProcessor" ref="creditCardProcessor"/>
+    <property name="transactionLogger" ref="transactionLogger"/>
+</bean>
 ```
 
 Result:
@@ -723,10 +726,10 @@ Result:
 Configuration:
 
 ```xml
-    <bean id="cp" class="com.github.kospiotr.spring.CreditCardProcessor"/>
-    <bean id="tl" class="com.github.kospiotr.spring.TransactionLogger"/>
+<bean id="cp" class="com.github.kospiotr.spring.CreditCardProcessor"/>
+<bean id="tl" class="com.github.kospiotr.spring.TransactionLogger"/>
 
-    <bean id="billingService1" class="com.github.kospiotr.spring.BillingService" autowire="byType"/>
+<bean id="billingService1" class="com.github.kospiotr.spring.BillingService" autowire="byType"/>
 ```
 
 Result:
@@ -786,15 +789,15 @@ public class SimpleBeanPostProcessor implements BeanPostProcessor {
 Registration:
 
 ```xml
-    <bean id="creditCardProcessor" class="com.github.kospiotr.spring.CreditCardProcessor"/>
-    <bean id="transactionLogger" class="com.github.kospiotr.spring.TransactionLogger"/>
+<bean id="creditCardProcessor" class="com.github.kospiotr.spring.CreditCardProcessor"/>
+<bean id="transactionLogger" class="com.github.kospiotr.spring.TransactionLogger"/>
 
-    <bean id="billingService1" class="com.github.kospiotr.spring.BillingService">
-        <property name="creditCardProcessor" ref="creditCardProcessor"/>
-        <property name="transactionLogger" ref="transactionLogger"/>
-    </bean>
+<bean id="billingService1" class="com.github.kospiotr.spring.BillingService">
+    <property name="creditCardProcessor" ref="creditCardProcessor"/>
+    <property name="transactionLogger" ref="transactionLogger"/>
+</bean>
 
-    <bean class="com.github.kospiotr.spring.SimpleBeanPostProcessor"/>
+<bean class="com.github.kospiotr.spring.SimpleBeanPostProcessor"/>
 ```
 
 Result:
@@ -832,15 +835,15 @@ public class SimpleBeanFactoryPostProcessor implements BeanFactoryPostProcessor 
 Registration:
 
 ```xml
-    <bean id="creditCardProcessor" class="com.github.kospiotr.spring.CreditCardProcessor"/>
-    <bean id="transactionLogger" class="com.github.kospiotr.spring.TransactionLogger"/>
+<bean id="creditCardProcessor" class="com.github.kospiotr.spring.CreditCardProcessor"/>
+<bean id="transactionLogger" class="com.github.kospiotr.spring.TransactionLogger"/>
 
-    <bean id="billingService1" class="com.github.kospiotr.spring.BillingService">
-        <property name="creditCardProcessor" ref="creditCardProcessor"/>
-        <property name="transactionLogger" ref="transactionLogger"/>
-    </bean>
+<bean id="billingService1" class="com.github.kospiotr.spring.BillingService">
+    <property name="creditCardProcessor" ref="creditCardProcessor"/>
+    <property name="transactionLogger" ref="transactionLogger"/>
+</bean>
 
-    <bean class="com.github.kospiotr.spring.SimpleBeanFactoryPostProcessor"/>
+<bean class="com.github.kospiotr.spring.SimpleBeanFactoryPostProcessor"/>
 ```
 
 Result:
@@ -906,22 +909,22 @@ You use the PropertyPlaceholderConfigurer to externalize property values from a 
 Configuration:
 
 ```xml
-    <bean id="payment1" class="com.github.kospiotr.spring.Payment">
-        <property name="paymentTitle" value="${paymentTitle1}"/>
-        <property name="accountFrom" value="${accountFrom1}"/>
-        <property name="accountTo" value="${accountTo1}"/>
-        <property name="amount" value="${amount1}"/>
-    </bean>
-    <bean id="payment2" class="com.github.kospiotr.spring.Payment">
-        <property name="paymentTitle" value="${paymentTitle1}"/>
-        <property name="accountFrom" value="${accountFrom1}"/>
-        <property name="accountTo" value="${accountTo1}"/>
-        <property name="amount" value="${amount1}"/>
-    </bean>
+<bean id="payment1" class="com.github.kospiotr.spring.Payment">
+    <property name="paymentTitle" value="${paymentTitle1}"/>
+    <property name="accountFrom" value="${accountFrom1}"/>
+    <property name="accountTo" value="${accountTo1}"/>
+    <property name="amount" value="${amount1}"/>
+</bean>
+<bean id="payment2" class="com.github.kospiotr.spring.Payment">
+    <property name="paymentTitle" value="${paymentTitle1}"/>
+    <property name="accountFrom" value="${accountFrom1}"/>
+    <property name="accountTo" value="${accountTo1}"/>
+    <property name="amount" value="${amount1}"/>
+</bean>
 
-    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="locations" value="classpath:config.properties"/>
-    </bean>
+<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    <property name="locations" value="classpath:config.properties"/>
+</bean>
 ```
 
 Properties file `config.properties`:
@@ -940,9 +943,9 @@ amount2=200
 Application:
 
 ```java
-Payment payment1 = applicationContext.getBean("payment1", Payment.class);
+Payment payment1 = ctx.getBean("payment1", Payment.class);
 System.out.println("payment1 = " + payment1);
-Payment payment2 = applicationContext.getBean("payment2", Payment.class);
+Payment payment2 = ctx.getBean("payment2", Payment.class);
 System.out.println("payment2 = " + payment2);
 ```
 
@@ -972,11 +975,11 @@ Components might be tied by following annotations: `@Autowired`, `@Resource`, `@
 Configuration doesn't contains information about component wiring:
 
 ```xml
-    <context:annotation-config/>
+<context:annotation-config/>
 
-    <bean id="billingService" class="com.github.kospiotr.spring.BillingServiceAutowireConstructor"/>
-    <bean id="creditCardProcessor" class="com.github.kospiotr.spring.CreditCardProcessor"/>
-    <bean id="transactionLogger" class="com.github.kospiotr.spring.TransactionLogger"/>
+<bean id="billingService" class="com.github.kospiotr.spring.BillingServiceAutowireConstructor"/>
+<bean id="creditCardProcessor" class="com.github.kospiotr.spring.CreditCardProcessor"/>
+<bean id="transactionLogger" class="com.github.kospiotr.spring.TransactionLogger"/>
 ```
 
 ###@Inject and @Autowired
@@ -1013,17 +1016,17 @@ Can mark field, setter or constructor.
  Annotation:
 
  ```java
-    @Inject
-    public void setCreditCardProcessor(CreditCardProcessor creditCardProcessor) {
-        System.out.println("Injected CreditCardProcessor to BillingService");
-        this.creditCardProcessor = creditCardProcessor;
-    }
+@Inject
+public void setCreditCardProcessor(CreditCardProcessor creditCardProcessor) {
+    System.out.println("Injected CreditCardProcessor to BillingService");
+    this.creditCardProcessor = creditCardProcessor;
+}
 
-    @Inject
-    public void setTransactionLogger(TransactionLogger transactionLogger) {
-        System.out.println("Injected TransactionLogger to BillingService");
-        this.transactionLogger = transactionLogger;
-    }
+@Inject
+public void setTransactionLogger(TransactionLogger transactionLogger) {
+    System.out.println("Injected TransactionLogger to BillingService");
+    this.transactionLogger = transactionLogger;
+}
  ```
 
  Result:
@@ -1077,37 +1080,37 @@ Behaves similary to @Autowired and @Inject apart that it ties components first b
 Configuration:
 
 ```xml
-    <bean id="billingService" class="com.github.kospiotr.spring.BillingServiceResourceNamed"/>
-    <bean id="creditCardProcessor1" class="com.github.kospiotr.spring.CreditCardProcessor"/>
-    <bean id="creditCardProcessor2" class="com.github.kospiotr.spring.CreditCardProcessor"/>
-    <bean id="transactionLogger1" class="com.github.kospiotr.spring.TransactionLogger"/>
-    <bean id="transactionLogger2" class="com.github.kospiotr.spring.TransactionLogger"/>
+<bean id="billingService" class="com.github.kospiotr.spring.BillingServiceResourceNamed"/>
+<bean id="creditCardProcessor1" class="com.github.kospiotr.spring.CreditCardProcessor"/>
+<bean id="creditCardProcessor2" class="com.github.kospiotr.spring.CreditCardProcessor"/>
+<bean id="transactionLogger1" class="com.github.kospiotr.spring.TransactionLogger"/>
+<bean id="transactionLogger2" class="com.github.kospiotr.spring.TransactionLogger"/>
 ```
 
 Annotation:
 
 ```java
-    @Resource(name = "creditCardProcessor1")
-    public void setCreditCardProcessor(CreditCardProcessor creditCardProcessor) {
-        System.out.println("Injected CreditCardProcessor to BillingService");
-        this.creditCardProcessor = creditCardProcessor;
-    }
+@Resource(name = "creditCardProcessor1")
+public void setCreditCardProcessor(CreditCardProcessor creditCardProcessor) {
+    System.out.println("Injected CreditCardProcessor to BillingService");
+    this.creditCardProcessor = creditCardProcessor;
+}
 
-    public BillingServiceResourceNamed() {
-        System.out.println("Constructed BillingService");
-    }
+public BillingServiceResourceNamed() {
+    System.out.println("Constructed BillingService");
+}
 
-    @Resource(name = "transactionLogger1")
-    public void setTransactionLogger(TransactionLogger transactionLogger) {
-        System.out.println("Injected TransactionLogger to BillingService");
-        this.transactionLogger = transactionLogger;
-    }
+@Resource(name = "transactionLogger1")
+public void setTransactionLogger(TransactionLogger transactionLogger) {
+    System.out.println("Injected TransactionLogger to BillingService");
+    this.transactionLogger = transactionLogger;
+}
 ```
 
 Application:
 
 ```java
-BillingServiceResourceNamed billingService1 = applicationContext.getBean("billingService", BillingServiceResourceNamed.class);
+BillingServiceResourceNamed billingService1 = ctx.getBean("billingService", BillingServiceResourceNamed.class);
 ```
 
 Result:
@@ -1129,29 +1132,29 @@ When using `@Inject` or `@Autowire` annotations and wiring by type or by name is
 Configuration:
 
 ```xml
-    <bean id="billingService" class="com.github.kospiotr.spring.BillingServiceResourceNamed"/>
-    <bean id="creditCardProcessor1" class="com.github.kospiotr.spring.CreditCardProcessor"/>
-    <bean id="creditCardProcessor2" class="com.github.kospiotr.spring.CreditCardProcessor"/>
-    <bean id="transactionLogger1" class="com.github.kospiotr.spring.TransactionLogger"/>
-    <bean id="transactionLogger2" class="com.github.kospiotr.spring.TransactionLogger"/>
+<bean id="billingService" class="com.github.kospiotr.spring.BillingServiceResourceNamed"/>
+<bean id="creditCardProcessor1" class="com.github.kospiotr.spring.CreditCardProcessor"/>
+<bean id="creditCardProcessor2" class="com.github.kospiotr.spring.CreditCardProcessor"/>
+<bean id="transactionLogger1" class="com.github.kospiotr.spring.TransactionLogger"/>
+<bean id="transactionLogger2" class="com.github.kospiotr.spring.TransactionLogger"/>
 ```
 
 Annotation:
 
 ```java
-    @Inject
-    @Named("creditCardProcessor1")
-    public void setCreditCardProcessor(CreditCardProcessor creditCardProcessor) {
-        System.out.println("Injected CreditCardProcessor to BillingService");
-        this.creditCardProcessor = creditCardProcessor;
-    }
+@Inject
+@Named("creditCardProcessor1")
+public void setCreditCardProcessor(CreditCardProcessor creditCardProcessor) {
+    System.out.println("Injected CreditCardProcessor to BillingService");
+    this.creditCardProcessor = creditCardProcessor;
+}
 
-    @Inject
-    @Named("transactionLogger1")
-    public void setTransactionLogger(TransactionLogger transactionLogger) {
-        System.out.println("Injected TransactionLogger to BillingService");
-        this.transactionLogger = transactionLogger;
-    }
+@Inject
+@Named("transactionLogger1")
+public void setTransactionLogger(TransactionLogger transactionLogger) {
+    System.out.println("Injected TransactionLogger to BillingService");
+    this.transactionLogger = transactionLogger;
+}
 ```
 
 Result:
@@ -1166,7 +1169,7 @@ Result:
 > Constructed TransactionLogger
 ```
 
-##Lifecycle
+##Lifecycle with annotations
 
 Configuration:
 
@@ -1208,8 +1211,8 @@ public class BillingServiceJsr330LifecycleAware {
 Application:
 
 ```java
-ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring-configuration-annotation-driven-lifecycle.xml");
-BillingServiceJsr330LifecycleAware service1 = applicationContext.getBean(BillingServiceJsr330LifecycleAware.class);
+ApplicationContext ctx = new ClassPathXmlApplicationContext("spring-configuration-annotation-driven-lifecycle.xml");
+BillingServiceJsr330LifecycleAware service1 = ctx.getBean(BillingServiceJsr330LifecycleAware.class);
 ((ConfigurableApplicationContext) applicationContext).close(); //forces context to shut down
 ```
 
@@ -1274,6 +1277,30 @@ Reasons to use them :
 > The main advantage of using `@Repository` or `@Service` over `@Component` is that it's easy to write an AOP pointcut that targets, for instance, all classes annotated with `@Repository`.
 > You don't have to write bean definitions in context xml file. Instead annotate classes and use those by autowiring.
 > Specialized annotations help to clearly demarcate application layers (in a standard 3 tiers application).
+
+#Java-based container configuration
+
+ Configuratino file `AppConfig.java`:
+
+  ```java
+@Configuration
+public class AppConfig {
+
+  @Bean(name = "ruleBillingService")
+  public BillingService billingServiceBean() {
+      return new BillingService();
+  }
+
+}
+  ```
+
+ ApplicationContext initialization `App.java`:
+
+ ```java
+ApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
+
+ ```
+
 
 #Testing
 
