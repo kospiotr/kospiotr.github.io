@@ -551,60 +551,69 @@ Lifecycle driven by annotation reference: [Lifecycle with annotations](/wiki/spr
 
 ##Dependency Injection
 
-###Object initialisation
-####Value
+**Injecting Value**
 
- * Simple values:
+Simple values:
 
 ```xml
-<property name="sampleString" value="TestingString"/>
-<property name="sampleIntiger" value="100"/>
-<property name="sampleDouble" value="99.99"/>
+<ben ...>
+    <property name="sampleString" value="TestingString"/>
+    <property name="sampleIntiger" value="100"/>
+    <property name="sampleDouble" value="99.99"/>
+</ben>
 ```
 
- * List:
-
- ```xml
- <property name="sampleList">
-     <list>
-         <value>pechorin@hero.org</value>
-         <value>raskolnikov@slums.org</value>
-         <value>stavrogin@gov.org</value>
-         <value>porfiry@gov.org</value>
-     </list>
- </property>
- ```
-
- * Set:
-
- ```xml
- <property name="sampleSet">
-     <set>
-         <value>pechorin@hero.org</value>
-         <value>raskolnikov@slums.org</value>
-         <value>stavrogin@gov.org</value>
-         <value>porfiry@gov.org</value>
-     </set>
- </property>
- ```
-
- * Map:
-
- ```xml
- <property name="sampleMap">
-     <map>
-         <entry key="pechorin" value="pechorin@hero.org"/>
-         <entry key="raskolnikov" value="raskolnikov@slums.org"/>
-         <entry key="stavrogin" value="stavrogin@gov.org"/>
-         <entry key="porfiry" value="porfiry@gov.org"/>
-     </map>
- </property>
- ```
-
-####Inner bean
+List:
 
 ```xml
-<bean id="billingService1" class="com.github.kospiotr.spring.BillingService">
+<ben ...>
+    <property name="sampleList">
+        <list>
+            <value>pechorin@hero.org</value>
+            <value>raskolnikov@slums.org</value>
+            <value>stavrogin@gov.org</value>
+            <value>porfiry@gov.org</value>
+        </list>
+    </property>
+</bean>
+```
+
+Set:
+
+```xml
+<ben ...>
+    <property name="sampleSet">
+        <set>
+            <value>pechorin@hero.org</value>
+            <value>raskolnikov@slums.org</value>
+            <value>stavrogin@gov.org</value>
+            <value>porfiry@gov.org</value>
+        </set>
+    </property>
+</bean>
+```
+
+Map:
+
+```xml
+<bean ...>
+    <property name="sampleMap">
+        <map>
+            <entry key="pechorin" value="pechorin@hero.org"/>
+            <entry key="raskolnikov" value="raskolnikov@slums.org"/>
+            <entry key="stavrogin" value="stavrogin@gov.org"/>
+            <entry key="porfiry" value="porfiry@gov.org"/>
+        </map>
+    </property>
+</bean>
+```
+
+**Injecting Bean**
+
+Inner bean:
+
+```xml
+<bean id="billingService" class="com.github.kospiotr.spring.BillingService">
     <property name="creditCardProcessor">
         <bean id="creditCardProcessor" class="com.github.kospiotr.spring.CreditCardProcessor"/>
     </property>
@@ -614,22 +623,20 @@ Lifecycle driven by annotation reference: [Lifecycle with annotations](/wiki/spr
 </bean>
 ```
 
-####By reference
+Bean reference:
 
 ```xml
 <bean id="creditCardProcessor" class="com.github.kospiotr.spring.CreditCardProcessor"/>
 <bean id="transactionLogger" class="com.github.kospiotr.spring.TransactionLogger"/>
-<bean id="billingService1" class="com.github.kospiotr.spring.BillingService">
+<bean id="billingService" class="com.github.kospiotr.spring.BillingService">
     <property name="creditCardProcessor" ref="creditCardProcessor"/>
     <property name="transactionLogger" ref="transactionLogger"/>
 </bean>
 ```
 
-###Injecting methods
+##Injecting methods
 
-To get know what Dependency Injection is please refer to this wiki: [Dependecy Injection](dependency-injection.html)
-
-####Setter based dependency injection
+**Modifier (setter)** based injection:
 
 Setter-based DI is accomplished by the container calling setter methods on your beans after invoking a no-argument constructor or no-argument static factory method to instantiate your bean.
 
@@ -642,7 +649,19 @@ Setter-based DI is accomplished by the container calling setter methods on your 
 </bean>
 ```
 
-####Constructor based dependency injection
+is equivalent to:
+
+```java
+CreditCardProcessor creditCardProcessor = new CreditCardProcessor();
+TransactionLogger transactionLogger = new TransactionLogger();
+
+BillingService billingService = new BillingService();
+billingService.setCreditCardProcessor(creditCardProcessor);
+billingService.setBillingService(transactionLogger);
+
+```
+
+**Constructor** based dependency injection:
 
 Constructor-based DI is accomplished when the container invokes a class constructor with a number of arguments, each representing a dependency on other class.
 
@@ -655,23 +674,61 @@ Constructor-based DI is accomplished when the container invokes a class construc
 </bean>
 ```
 
-###Autowiring
-
-Given application:
+is equivalent to:
 
 ```java
-ApplicationContext ctx = new ClassPathXmlApplicationContext("spring-configuration-autowire-by-type.xml");
+CreditCardProcessor creditCardProcessor = new CreditCardProcessor();
+TransactionLogger transactionLogger = new TransactionLogger();
 
-Payment payment = new Payment("Pizza payment", "123", "321", 20);
-
-//requesting bean from the container by the id
-BillingService billingService1 = ctx.getBean("billingService1", BillingService.class);
-billingService1.processPayment(payment);
+BillingService billingService = 
+        new BillingService(creditCardProcessor, transactionLogger);
 ```
 
-####no autowiring - manual wiring
 
- This is default setting which means no autowiring and you should use explicit bean reference for wiring. You have nothing to do special for this wiring. This is what you already have seen in Dependency Injection chapter.
+##Autowiring
+
+By default beans must be configured for wiring manually. There is mechanism which allows for doing this automatically – **autowiring**. 
+
+Beans can be autowired in 3 ways:
+
+* **byName** – autowiring by property name
+* **byType** – autowiring by the dependency type (must be unique)
+* **constructor** – similar to byType, but type applies to constructor arguments
+
+Given:
+
+```java
+class CreditCardProcessor{
+    CreditCardProcessor(){
+        System.out.println("Constructed CreditCardProcessor");
+    }
+}
+
+class TransactionLogger{
+    TransactionLogger(){
+        System.out.println("Constructed TransactionLogger");
+    }
+}
+
+class BillingService{
+    BillingService(){
+        System.out.println("Constructed BillingService");
+    }
+    
+    public void setCreditCardProcessor(CreditCardProcessor creditCardProcessor){
+        System.out.println("Injected CreditCardProcessor to BillingService");
+    }
+    
+    public void setTransactionLogger(TransactionLogger transactionLogger){
+        System.out.println("Injected TransactionLogger to BillingService");
+    }
+}
+
+```
+
+* **autowiring byName**:
+
+ Autowiring by property name. Spring container looks at the properties of the beans on which autowire attribute is set to byName in the XML configuration file. It then tries to match and wire its properties with the beans defined by the same names in the configuration file.
 
 Configuration:
 
@@ -679,49 +736,13 @@ Configuration:
 <bean id="creditCardProcessor" class="com.github.kospiotr.spring.CreditCardProcessor"/>
 <bean id="transactionLogger" class="com.github.kospiotr.spring.TransactionLogger"/>
 
-<bean id="billingService1" class="com.github.kospiotr.spring.BillingService">
-    <property name="creditCardProcessor" ref="creditCardProcessor"/>
-    <property name="transactionLogger" ref="transactionLogger"/>
-</bean>
+<bean id="billingService" class="com.github.kospiotr.spring.BillingService" 
+    autowire="byName"/>
 ```
 
-Result:
+* **autowiring byType**:
 
-```
-> Constructed CreditCardProcessor
-> Constructed TransactionLogger
-> Constructed BillingService
-> Injected CreditCardProcessor to BillingService
-> Injected TransactionLogger to BillingService
-> Constructed BillingService, and injected CreditCardProcessor and TransactionLogger
-```
-
-####byName
-
- Autowiring by property name. Spring container looks at the properties of the beans on which autowire attribute is set to byName in the XML configuration file. It then tries to match and wire its properties with the beans defined by the same names in the configuration file.
-
-Configuration:
-
-```xml
-    <bean id="creditCardProcessor" class="com.github.kospiotr.spring.CreditCardProcessor"/>
-    <bean id="transactionLogger" class="com.github.kospiotr.spring.TransactionLogger"/>
-
-    <bean id="billingService1" class="com.github.kospiotr.spring.BillingService" autowire="byName"/>
-```
-
-Result:
-
-```
-> Constructed CreditCardProcessor
-> Constructed TransactionLogger
-> Constructed BillingService
-> Injected CreditCardProcessor to BillingService
-> Injected TransactionLogger to BillingService
-```
-
-####byType
-
- Autowiring by property datatype. Spring container looks at the properties of the beans on which autowire attribute is set to byType in the XML configuration file. It then tries to match and wire a property if its type matches with exactly one of the beans name in configuration file. If more than one such beans exists, a fatal exception is thrown.
+Autowiring by property datatype. Spring container looks at the properties of the beans on which autowire attribute is set to byType in the XML configuration file. It then tries to match and wire a property if its type matches with exactly one of the beans name in configuration file. If more than one such beans exists, a fatal exception is thrown.
 
 Configuration:
 
@@ -729,10 +750,11 @@ Configuration:
 <bean id="cp" class="com.github.kospiotr.spring.CreditCardProcessor"/>
 <bean id="tl" class="com.github.kospiotr.spring.TransactionLogger"/>
 
-<bean id="billingService1" class="com.github.kospiotr.spring.BillingService" autowire="byType"/>
+<bean id="billingService" class="com.github.kospiotr.spring.BillingService" 
+    autowire="byType"/>
 ```
 
-Result:
+Result in above cases:
 
 ```
 > Constructed CreditCardProcessor
@@ -742,30 +764,10 @@ Result:
 > Injected TransactionLogger to BillingService
 ```
 
-####constructor
-
- Similar to byType, but type applies to constructor arguments. If there is not exactly one bean of the constructor argument type in the container, a fatal error is raised.
-
-Configuration:
-
-```xml
-    <bean id="creditCardProcessor" class="com.github.kospiotr.spring.CreditCardProcessor"/>
-    <bean id="transactionLogger" class="com.github.kospiotr.spring.TransactionLogger"/>
-
-    <bean id="billingService1" class="com.github.kospiotr.spring.BillingService" autowire="constructor"/>
-```
-
-Result:
-
-```
-> Constructed CreditCardProcessor
-> Constructed TransactionLogger
-> Constructed BillingService, and injected CreditCardProcessor and TransactionLogger
-```
-
 ##Container Extension Points
 
-###BeanPostProcessor
+**BeanPostProcessor**:
+
 The `BeanPostProcessor` interface defines callback methods that you can implement to provide your own (or override the container’s default) instantiation logic, dependency-resolution logic, and so forth. If you want to implement some custom logic after the Spring container finishes instantiating, configuring, and initializing a bean, you can plug in one or more `BeanPostProcessor` implementations.
 
 Definition of custom `BeanPostProcessor`:
@@ -792,7 +794,7 @@ Registration:
 <bean id="creditCardProcessor" class="com.github.kospiotr.spring.CreditCardProcessor"/>
 <bean id="transactionLogger" class="com.github.kospiotr.spring.TransactionLogger"/>
 
-<bean id="billingService1" class="com.github.kospiotr.spring.BillingService">
+<bean id="billingService" class="com.github.kospiotr.spring.BillingService">
     <property name="creditCardProcessor" ref="creditCardProcessor"/>
     <property name="transactionLogger" ref="transactionLogger"/>
 </bean>
@@ -812,11 +814,12 @@ Result:
 > Constructed BillingService
 > Injected CreditCardProcessor to BillingService
 > Injected TransactionLogger to BillingService
-> before bean init = billingService1
-> after bean init = billingService1
+> before bean init = billingService
+> after bean init = billingService
 ```
 
-###BeanPostProcessorFactory
+**BeanPostProcessorFactory**:
+
 The next extension point that we will look at is the `org.springframework.beans.factory.config.BeanFactoryPostProcessor`. The semantics of this interface are similar to those of the `BeanPostProcessor`, with one major difference: `BeanFactoryPostProcessor` operates on the bean configuration metadata; that is, the Spring IoC container allows a `BeanFactoryPostProcessor` to read the configuration metadata and potentially change it before the container instantiates any beans other than `BeanFactoryPostProcessors`.
 
 
@@ -826,7 +829,9 @@ Definition of custom `BeanFactoryPostProcessor`:
 public class SimpleBeanFactoryPostProcessor implements BeanFactoryPostProcessor {
 
     public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
-        System.out.println("PostProcess: " + Arrays.toString(beanFactory.getBeanDefinitionNames()));
+        System.out.println("PostProcess: " + 
+            Arrays.toString(beanFactory.getBeanDefinitionNames())
+        );
     }
 
 }
@@ -838,7 +843,7 @@ Registration:
 <bean id="creditCardProcessor" class="com.github.kospiotr.spring.CreditCardProcessor"/>
 <bean id="transactionLogger" class="com.github.kospiotr.spring.TransactionLogger"/>
 
-<bean id="billingService1" class="com.github.kospiotr.spring.BillingService">
+<bean id="billingService" class="com.github.kospiotr.spring.BillingService">
     <property name="creditCardProcessor" ref="creditCardProcessor"/>
     <property name="transactionLogger" ref="transactionLogger"/>
 </bean>
@@ -849,14 +854,15 @@ Registration:
 Result:
 
 ```
-> PostProcess: [creditCardProcessor, transactionLogger, billingService1, com.github.kospiotr.spring.S impleBeanFactoryPostProcessor#0]
+> PostProcess: [creditCardProcessor, transactionLogger, billingService, com.github.kospiotr.spring.S impleBeanFactoryPostProcessor#0]
 > Constructed CreditCardProcessor
 > Constructed TransactionLogger
 > Constructed BillingService
 > Injected CreditCardProcessor to BillingService
 > Injected TransactionLogger to BillingService
 ```
-###Sample implementations
+
+**Sample implementations**:
 
 Some of those extensions are core that are enabled by default by `ApplicationContext`.
 
@@ -903,8 +909,8 @@ BeanFactoryPostProcessor:
 * `PropertySourcesPlaceholderConfigurer`,
 * `ServletContextPropertyPlaceholderConfigurer`
 
-####Placeholders
-You use the PropertyPlaceholderConfigurer to externalize property values from a bean definition in a separate file using the standard Java Properties format. Doing so enables the person deploying an application to customize environment-specific properties such as database URLs and passwords, without the complexity or risk of modifying the main XML definition file or files for the container.
+##Placeholders
+You use the ```PropertyPlaceholderConfigurer``` to externalize property values from a bean definition in a separate file using the standard Java Properties format.
 
 Configuration:
 
@@ -915,13 +921,6 @@ Configuration:
     <property name="accountTo" value="${accountTo1}"/>
     <property name="amount" value="${amount1}"/>
 </bean>
-<bean id="payment2" class="com.github.kospiotr.spring.Payment">
-    <property name="paymentTitle" value="${paymentTitle1}"/>
-    <property name="accountFrom" value="${accountFrom1}"/>
-    <property name="accountTo" value="${accountTo1}"/>
-    <property name="amount" value="${amount1}"/>
-</bean>
-
 <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
     <property name="locations" value="classpath:config.properties"/>
 </bean>
@@ -934,10 +933,6 @@ paymentTitle1=Pizza Payment
 accountFrom1=12345
 accountTo1=54321
 amount1=100
-paymentTitle2=Shoppings
-accountFrom2=98765
-accountTo2=56789
-amount2=200
 ```
 
 Application:
@@ -1110,7 +1105,7 @@ public void setTransactionLogger(TransactionLogger transactionLogger) {
 Application:
 
 ```java
-BillingServiceResourceNamed billingService1 = ctx.getBean("billingService", BillingServiceResourceNamed.class);
+BillingServiceResourceNamed billingService = ctx.getBean("billingService", BillingServiceResourceNamed.class);
 ```
 
 Result:
