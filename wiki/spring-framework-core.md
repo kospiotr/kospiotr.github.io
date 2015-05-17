@@ -154,7 +154,7 @@ Bean Factory is a core element of the Spring Inversion of Control container that
 
 <center>![Huge dependency graph]({{page.res}}/bean-factory.png)</center>
 
- * Initialization:
+Initialization:
 
 ```java
 
@@ -172,7 +172,7 @@ Bean Factory is a core element of the Spring Inversion of Control container that
     }
 ```
 
- * Configuration `spring-configuration.xml`:
+Configuration `spring-configuration.xml`:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -208,15 +208,17 @@ Objects can be obtained by means of either dependency lookup or dependency injec
 
 <center>![ApplicationContext]({{page.res}}/application-context.png)</center>
 
-* ```Bean Factory```
- * *Bean instantiation/wiring*
+```Bean Factory```:
 
-* ```Application Context```
- * *Bean instantiation/wiring*
- * Automatic ```BeanPostProcessor``` registration
- * Automatic ```BeanFactoryPostProcessor``` registration
- * Convenient ```MessageSource``` access (for i18n)
- * ```ApplicationEvent``` publication
+* *Bean instantiation/wiring*
+
+```Application Context```:
+
+* *Bean instantiation/wiring*
+* Automatic ```BeanPostProcessor``` registration
+* Automatic ```BeanFactoryPostProcessor``` registration
+* Convenient ```MessageSource``` access (for i18n)
+* ```ApplicationEvent``` publication
 
 Then initialisation and configuration changes (simplifies), as ```ApplicationContext``` is being used more widely:
 
@@ -271,45 +273,45 @@ Configuration file `spring-configuration.xml`:
  ```
 
 ##Bean declaration
-Simple bean declaration:
+Simple **bean declaration**:
 
 ```xml
 <bean id="ruleBillingService" class="com.github.kospiotr.spring.BillingService"/>
 ```
 
-Obtain bean by id:
+**Obtain bean by id**:
 
  ```java
 BillingService billingService = ctx.getBean("test", BillingService.class);
 ```
 
-Obtaining bean by type (if unique bean class is definied in configuration):
+**Obtaining bean by type** (if unique bean class is definied in configuration):
 
  ```java
 BillingService billingService = ctx.getBean(BillingService.class);
 ```
 
-If multiple beans with given class declared:
+Beans can be **lookup as a map** from container where map key is a bean id:
+
+```java
+Map<String, BillingService> billingService = ctx.getBeansOfType(BillingService.class);
+```
+
+and multiple beans with the same type are declared as follow:
 
 ```xml
 <bean id="ruleBillingService" class="com.github.kospiotr.spring.BillingService"/>
 <bean id="ruleBillingService2" class="com.github.kospiotr.spring.BillingService"/>
 ```
 
-They can be lookup from container as a map where bean id is a map key:
-
-```java
-Map<String, BillingService> billingService = ctx.getBeansOfType(BillingService.class);
-```
-
-Bean alias - the bean can have more ids thanks to aliases:
+**Bean alias** - the bean can have more ids thanks to aliases:
 
 ```xml
 <bean id="ruleBillingService" class="com.github.kospiotr.spring.BillingService"/>
 <alias name="ruleBillingService" alias="service"/>
 ```
 
-Obtain bean by alias is achieved in a same way as by id:
+**Obtain bean by alias** is achieved in a same way as by id:
 
  ```java
 BillingService service = ctx.getBean("service", BillingService.class);
@@ -373,7 +375,7 @@ public class BillingService {
 }
 ```
 
-***Singleton*** example:
+**Singleton** example:
 
  Configuration:
 
@@ -405,7 +407,7 @@ BillingService service3 = ctx.getBean(BillingService.class);
 > Constructed BillingService
  ```
  
-***Prototype*** example:
+**Prototype** example:
 
  Configuration:
 
@@ -451,15 +453,24 @@ There are 3 methods how it can be achieved by Spring:
 * By implementing interfaces
 * By marking methods with annotations
 
+Given application:
 
-Lifecycle definied in the **Configuration** example:
+```java
+ApplicationContext ctx = new ClassPathXmlApplicationContext("spring-configuration-configuration-driven-lifecycle.xml");
 
- Configuration:
+BillingService service1 = ctx.getBean(BillingService.class);
 
- ```xml
-    <bean id="ruleBillingService" class="com.github.kospiotr.spring.BillingService"
-          init-method="init" destroy-method="cleanUp"/>
- ```
+((ConfigurableApplicationContext) applicationContext).close(); //forces context to shut down
+```
+
+Lifecycle definied in the **XML Configuration** example:
+
+Configuration:
+
+```xml
+<bean id="ruleBillingService" class="com.github.kospiotr.spring.BillingService"
+     init-method="init" destroy-method="cleanUp"/>
+```
 
  Bean:
 
@@ -480,35 +491,17 @@ public class BillingService {
 }
  ```
 
- Application:
-
- ```java
-ApplicationContext ctx = new ClassPathXmlApplicationContext("spring-configuration-configuration-driven-lifecycle.xml");
-
-BillingService service1 = ctx.getBean(BillingService.class);
-
-((ConfigurableApplicationContext) applicationContext).close(); //forces context to shut down
- ```
-
- Result:
-
- ```
-> Constructed BillingService
-> BillingService initialized
-> BillingService clean up
- ```
-
 Lifecycle driven by the **interface** example:
 
- Configuration:
+Configuration:
 
- ```xml
+```xml
 <bean id="ruleBillingService" class="com.github.kospiotr.spring.BillingServiceLifecycleAware"/>
- ```
+```
 
- Bean:
+Bean:
 
- ```java
+```java
 public class BillingServiceLifecycleAware implements InitializingBean, DisposableBean {
 
     public BillingServiceLifecycleAware() {
@@ -520,34 +513,22 @@ public class BillingServiceLifecycleAware implements InitializingBean, Disposabl
     }
 
     public void destroy() throws Exception {
-        System.out.println("BillingService destroyed");
+        System.out.println("BillingService clean up");
     }
 }
- ```
+```
 
- Application:
+Result:
 
- ```java
-ApplicationContext ctx = new ClassPathXmlApplicationContext("spring-configuration-interface-driven-lifecycle.xml");
-
-BillingServiceLifecycleAware service1 = ctx.getBean(BillingServiceLifecycleAware.class);
-
-((ConfigurableApplicationContext) applicationContext).close(); //forces context to shut down
- ```
-
- Result:
-
- ```
+```
 > Constructed BillingService
 > BillingService initialized
-> BillingService destroyed
- ```
+> BillingService clean up
+```
 
 Lifecycle driven by annotation reference: [Lifecycle with annotations](/wiki/spring-framework-core.html#lifecycle-with-annotations)
 
 > The most recommended way is using plain configuration, then JSR-330 annotations, and in the end implementing interfaces. Interfaces will tight coupled your code to Spring and annotations bind the code with JSR-330. JSR-330 is pretty common now and this is straightforward convention to configure lifecycle in the application. For libraries development I would suggest using plain configuration.
-
-
 
 ##Dependency Injection
 
@@ -569,7 +550,7 @@ List:
 <ben ...>
     <property name="sampleList">
         <list>
-            <value>pechorin@hero.org</value>
+           + <value>pechorin@hero.org</value>
             <value>raskolnikov@slums.org</value>
             <value>stavrogin@gov.org</value>
             <value>porfiry@gov.org</value>
@@ -684,6 +665,92 @@ BillingService billingService =
         new BillingService(creditCardProcessor, transactionLogger);
 ```
 
+##Bean definition inheritance
+
+It is possible to inherit bean definition from: 
+
+* the other bean definition
+* from abstract bean definition
+
+Given two models:
+
+```java
+public class Foo {
+   private String message1;
+   private String message2;
+   
+   //Setters and Getters
+}
+
+public class Bar {
+   private String message1;
+   private String message2;
+   private String message3;
+   
+   //Setters and Getters
+}
+```
+
+**Inheritance definition from other bean**
+
+```bar``` bean has been defined as a child of ```foo``` bean by using ```parent``` attribute. The child bean inherits ```message2``` property as is, and overrides ```message1``` property and introduces one more property ```message3```:
+
+Configuration:
+
+```xml
+<bean id="foo" class="com.github.kospiotr.spring.Foo">
+  <property name="message1" value="Hello Foo1!"/>
+  <property name="message2" value="Hello Foo2!"/>
+</bean>
+
+<bean id="bar" class="com.github.kospiotr.spring.Bar" parent="helloWorld">
+  <property name="message1" value="Hello Bar1!"/>
+  <property name="message3" value="Hello Bar3!"/>
+</bean>
+```
+
+Executing application:
+
+```java
+ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
+
+Foo objA = (Foo) context.getBean("foo");
+
+System.out.println(objA.getMessage1());
+System.out.println(objA.getMessage2());
+
+Bar objB = (Bar) context.getBean("bar");
+System.out.println(objB.getMessage1());
+System.out.println(objB.getMessage2());
+System.out.println(objB.getMessage3());
+```
+
+Will result in:
+
+```
+> Hello Bar1!
+> Hello Foo2!
+> Hello Bar2!
+```
+
+**Inheritance definition from abstrac bean definition**
+
+You can create a Bean definition template which can be used by other child bean definitions without putting much effort. While defining a Bean Definition Template, you should not specify ```class``` attribute and should specify ```abstract``` attribute with a value of ```true``` as shown below:
+
+```xml
+<bean id="beanTeamplate" abstract="true">
+  <property name="message1" value="Hello Foo1!"/>
+  <property name="message2" value="Hello Foo2!"/>
+  <property name="message3" value="Hello Foo3!"/>
+</bean>
+
+<bean id="bar" class="com.github.kospiotr.spring.Bar" parent="beanTeamplate">
+  <property name="message1" value="Hello Bar1!"/>
+  <property name="message3" value="Hello Bar3!"/>
+</bean>
+```
+
+Will output the same result as above.
 
 ##Autowiring
 
@@ -726,7 +793,7 @@ class BillingService{
 
 ```
 
-* **autowiring byName**:
+* **autowiring by bean -> property name**:
 
  Autowiring by property name. Spring container looks at the properties of the beans on which autowire attribute is set to byName in the XML configuration file. It then tries to match and wire its properties with the beans defined by the same names in the configuration file.
 
@@ -740,7 +807,7 @@ Configuration:
     autowire="byName"/>
 ```
 
-* **autowiring byType**:
+* **autowiring by bean -> property type**:
 
 Autowiring by property datatype. Spring container looks at the properties of the beans on which autowire attribute is set to byType in the XML configuration file. It then tries to match and wire a property if its type matches with exactly one of the beans name in configuration file. If more than one such beans exists, a fatal exception is thrown.
 
@@ -951,8 +1018,11 @@ payment1 = Payment{paymentTitle=Pizza Payment, accountFrom=12345, accountTo=5432
 payment2 = Payment{paymentTitle=Pizza Payment, accountFrom=12345, accountTo=54321, amount=100.0}
 ```
 
-#Annotation-based container configuration
-An alternative to XML setups is provided by annotation-based configuration which rely on the bytecode metadata for wiring up components instead of angle-bracket declarations. Instead of using XML to describe a bean wiring, the developer moves the configuration into the component class itself by using annotations on the relevant class, method, or field declaration.
+#Injecting with Annotations
+
+An alternative to XML setups is provided by annotation-based configuration which rely on the bytecode metadata for wiring up components instead of angle-bracket declarations. 
+
+Instead of using XML to describe a bean wiring, the developer moves the configuration into the component class itself by using annotations on the relevant class, method, or field declaration.
 
 To be able to use annotations you need to add to the configuration following directive:
 
@@ -960,14 +1030,9 @@ To be able to use annotations you need to add to the configuration following dir
 <context:annotation-config/>
 ```
 
-##Dependency Injection
+##Autowiring
 
-Spring has mechanism for automated wiring objects called autowiring. It reduces need of explicit wiring and boilerplate code.
-
-Components might be tied by following annotations: `@Autowired`, `@Resource`, `@Inject`. Great detailed explination what is the difference can be found in [the article](http://blogs.sourceallies.com/2011/08/spring-injection-with-resource-and-autowired).
-
-
-Configuration doesn't contains information about component wiring:
+As mentioned [before](/wiki/spring-framework-core.html#autowiring), autowiring can be configured using annotations.
 
 ```xml
 <context:annotation-config/>
@@ -977,10 +1042,17 @@ Configuration doesn't contains information about component wiring:
 <bean id="transactionLogger" class="com.github.kospiotr.spring.TransactionLogger"/>
 ```
 
-###@Inject and @Autowired
+Mind that above configuration defines beans, however it doesn't say how to inject ```creditCardProcessor``` and ```transactionLogger``` to ```billingService```.
+
+Components might be tied by following annotations: `@Autowired`, `@Resource`, `@Inject`. 
+
+Great detailed explination what is the difference can be found in this article: [http://blogs.sourceallies.com/2011/08/spring-injection-with-resource-and-autowired/](http://blogs.sourceallies.com/2011/08/spring-injection-with-resource-and-autowired).
+
+
+##Autowiring with @Inject and @Autowired
 
 1. Matches by Type
-2. Restricts by Qualifiers (@Named or custom Qualifier annotation)
+2. Restricts by Qualifiers (```@Named``` or custom Qualifier annotation)
 3. Matches by Name
 
 Can mark field, setter or constructor.
@@ -1053,7 +1125,7 @@ public void setTransactionLogger(TransactionLogger transactionLogger) {
 > Constructed TransactionLogger
  ```
 
-**@Inject vs @Autowired**
+```@Inject``` vs ```@Autowired```
 > @Inject is part of the Java CDI standard introduced in Java EE 6 (JSR-299), read more. Spring has chosen to support using @Inject synonymously with their own @Autowired annotation.
 
 > @Autowired is Spring's own (legacy) annotation. @Inject is part of a new Java technology called CDI that defines a standard for dependency injection similar to Spring. In a Spring application, the two annotations works the same way as Spring has decided to support some JSR-299 annotations in addition to their own.
@@ -1062,15 +1134,15 @@ public void setTransactionLogger(TransactionLogger transactionLogger) {
 
 Source: [http://stackoverflow.com/questions/7142622/what-is-the-difference-between-inject-and-autowired-in-spring-framework-which](http://stackoverflow.com/questions/7142622/what-is-the-difference-between-inject-and-autowired-in-spring-framework-which)
 
-###@Resource
+###Autowiring with @Resource
 
 1. Matches by property Name
 2. Matches by Type
 3. Restricts by Qualifiers (ignored if match is found by name)
 
-Behaves similary to @Autowired and @Inject apart that it ties components first by name then by type.
+Behaves similary to ```@Autowired``` and ```@Inject``` apart that it ties components first by name then by type.
 
-@Resource optionally takes a name attribute, and by default Spring interprets that value as the bean name to be injected. In other words, it follows by-name semantics.
+```@Resource``` optionally takes a name attribute, and by default Spring interprets that value as the bean name to be injected. In other words, it follows by-name semantics.
 
 Configuration:
 
@@ -1122,7 +1194,7 @@ Result:
 
 ###Qualifiers
 
-When using `@Inject` or `@Autowire` annotations and wiring by type or by name is not possible `@Named` or `@Qualifier` might be used:
+When using `@Inject` or `@Autowire` annotations the autowiring is done by type. At this point autowiring by name is possible thanks to `@Named` or `@Qualifier`:
 
 Configuration:
 
@@ -1163,6 +1235,8 @@ Result:
 > Constructed CreditCardProcessor
 > Constructed TransactionLogger
 ```
+
+> ```@Named``` is a java standard (JSR 330), ```@Qualifier``` is used only for Spring; latest versions of Spring recognize both. I'd use ```@Named```, because ```@Qualifier``` is rather used to solve ambiguities where you have two or more beans of the same type.
 
 ##Lifecycle with annotations
 
