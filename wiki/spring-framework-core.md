@@ -1194,7 +1194,7 @@ Result:
 
 ###Qualifiers
 
-When using `@Inject` or `@Autowire` annotations the autowiring is done by type. At this point autowiring by name is possible thanks to `@Named` or `@Qualifier`:
+When using `@Inject` or `@Autowire` annotations the autowiring is done by type. At this point autowiring by name is possible thanks to `@Qualifier`:
 
 Configuration:
 
@@ -1210,14 +1210,14 @@ Annotation:
 
 ```java
 @Inject
-@Named("creditCardProcessor1")
+@Qualifier("creditCardProcessor1")
 public void setCreditCardProcessor(CreditCardProcessor creditCardProcessor) {
     System.out.println("Injected CreditCardProcessor to BillingService");
     this.creditCardProcessor = creditCardProcessor;
 }
 
 @Inject
-@Named("transactionLogger1")
+@Qualifier("transactionLogger1")
 public void setTransactionLogger(TransactionLogger transactionLogger) {
     System.out.println("Injected TransactionLogger to BillingService");
     this.transactionLogger = transactionLogger;
@@ -1235,8 +1235,6 @@ Result:
 > Constructed CreditCardProcessor
 > Constructed TransactionLogger
 ```
-
-> ```@Named``` is a java standard (JSR 330), ```@Qualifier``` is used only for Spring; latest versions of Spring recognize both. I'd use ```@Named```, because ```@Qualifier``` is rather used to solve ambiguities where you have two or more beans of the same type.
 
 ##Lifecycle with annotations
 
