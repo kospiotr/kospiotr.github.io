@@ -1390,14 +1390,14 @@ To rename bean you can specify a parameter:
 @Bean(name = "ruleBillingService")
 ```
 
-*Scopes* :
+**Scopes** :
 
 Default scope is Singleton. To set bean scope, class or method with bean definition can be marked with:
 
 * ```@Scope(value = BeanDefinition.SCOPE_PROTOTYPE)```
 * ```@Scope(value = BeanDefinition.SCOPE_SINGLETON)```
 
-*Autowire* :
+**Autowire** :
 
 To inject dependencies for given bean, just use ```@Autowired``` above bean declaration method and specify properties that should be injected:
 
@@ -1410,11 +1410,11 @@ public List<ScoringRule> rulesList(RememberRule remberRule,
 }
 ```
 
-*Component scanning* :
+**Component scanning** :
 
 Just mark class with: ```@ComponentScan(basePackages = {"com.github.kospiotr"})```
 
-*Placeholder configure* :
+**Placeholder configure** :
 
 Mark class with: ```@PropertySource(value = "classpath:config.properties", name = "locations")```
 and register ```PropertySourcesPlaceholderConfigurer``` bean.
