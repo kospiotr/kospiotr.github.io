@@ -1347,27 +1347,77 @@ Reasons to use them :
 
 #Java-based container configuration
 
- Configuratino file `AppConfig.java`:
+**ApplicationContext initialization** :
 
-  ```java
+```java
+ApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
+```
+
+Configuratino file `AppConfig.java`:
+
+```java
 @Configuration
 public class AppConfig {
 
-  @Bean(name = "ruleBillingService")
+  ...
+
+}
+```
+
+**Bean declaration**
+
+```java
+@Configuration
+public class AppConfig {
+
+  @Bean
   public BillingService billingServiceBean() {
       return new BillingService();
   }
 
 }
-  ```
+```
 
- ApplicationContext initialization `App.java`:
+Is equivalent to:
 
- ```java
-ApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
+```xml
+<bean id="billingServiceBean" class="BillingService"/>
+```
 
- ```
+To rename bean you can specify a parameter:
 
+```java
+@Bean(name = "ruleBillingService")
+```
+
+*Scopes* :
+
+Default scope is Singleton. To set bean scope, class or method with bean definition can be marked with:
+
+* ```@Scope(value = BeanDefinition.SCOPE_PROTOTYPE)```
+* ```@Scope(value = BeanDefinition.SCOPE_SINGLETON)```
+
+*Autowire* :
+
+To inject dependencies for given bean, just use ```@Autowired``` above bean declaration method and specify properties that should be injected:
+
+```java
+@Bean
+@Autowired
+public List<ScoringRule> rulesList(RememberRule remberRule,
+        @Qualifier("loanHistory") ScoringRule loanHistoryScoringRule) {
+  return [new JobsScoringRule(), remberRule, loanHistoryScoringRule]
+}
+```
+
+*Component scanning* :
+
+Just mark class with: ```@ComponentScan(basePackages = {"com.github.kospiotr"})```
+
+*Placeholder configure* :
+
+Mark class with: ```@PropertySource(value = "classpath:config.properties", name = "locations")```
+and register ```PropertySourcesPlaceholderConfigurer``` bean.
 
 #Testing
 
