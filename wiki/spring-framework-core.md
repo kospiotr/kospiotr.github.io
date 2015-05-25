@@ -621,10 +621,10 @@ Inner bean:
 ```xml
 <bean id="billingService" class="com.github.kospiotr.spring.BillingService">
     <property name="creditCardProcessor">
-        <bean id="creditCardProcessor" class="com.github.kospiotr.spring.CreditCardProcessor"/>
+        <bean class="com.github.kospiotr.spring.CreditCardProcessor"/>
     </property>
     <property name="transactionLogger">
-        <bean id="transactionLogger" class="com.github.kospiotr.spring.TransactionLogger"/>
+        <bean class="com.github.kospiotr.spring.TransactionLogger"/>
     </property>
 </bean>
 ```
