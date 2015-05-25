@@ -576,17 +576,11 @@ List with references:
 List as a bean (don't use it as there are better ways of doing this):
 
 ```xml
-<bean ...>
-    <property name="sampleList">
-        <list>
-            <ref bean="bean1"/>
-            <ref bean="bean2"/>
-            <ref bean="bean3"/>
-        </list>
-    </property>
-</bean>
+<util:list id="aListBean" value-type="com.github.kospiotr.springcore.Foo">
+    <bean class="com.github.kospiotr.springcore.FooA"/>
+    <bean class="com.github.kospiotr.springcore.FooB"/>
+</util:list>
 ```
-
 
 Set:
 
