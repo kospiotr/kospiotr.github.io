@@ -573,7 +573,7 @@ List with references:
 </bean>
 ```
 
-List as a bean (don't use it as there are better ways of doing this):
+List as a bean:
 
 ```xml
 <util:list id="aListBean" value-type="com.github.kospiotr.springcore.Foo">
@@ -581,6 +581,8 @@ List as a bean (don't use it as there are better ways of doing this):
     <bean class="com.github.kospiotr.springcore.FooB"/>
 </util:list>
 ```
+
+> Above method shouldn't be used. Instead use polymorphysm with autowire!!
 
 Set:
 
