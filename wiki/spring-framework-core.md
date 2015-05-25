@@ -537,20 +537,20 @@ Lifecycle driven by annotation reference: [Lifecycle with annotations](/wiki/spr
 Simple values:
 
 ```xml
-<ben ...>
+<bean ...>
     <property name="sampleString" value="TestingString"/>
     <property name="sampleIntiger" value="100"/>
     <property name="sampleDouble" value="99.99"/>
 </ben>
 ```
 
-List:
+List with values:
 
 ```xml
-<ben ...>
+<bean ...>
     <property name="sampleList">
         <list>
-           + <value>pechorin@hero.org</value>
+            <value>pechorin@hero.org</value>
             <value>raskolnikov@slums.org</value>
             <value>stavrogin@gov.org</value>
             <value>porfiry@gov.org</value>
@@ -559,10 +559,39 @@ List:
 </bean>
 ```
 
+List with references:
+
+```xml
+<bean ...>
+    <property name="sampleList">
+        <list>
+            <ref bean="bean1"/>
+            <ref bean="bean2"/>
+            <ref bean="bean3"/>
+        </list>
+    </property>
+</bean>
+```
+
+List as a bean (don't use it as there are better ways of doing this):
+
+```xml
+<bean ...>
+    <property name="sampleList">
+        <list>
+            <ref bean="bean1"/>
+            <ref bean="bean2"/>
+            <ref bean="bean3"/>
+        </list>
+    </property>
+</bean>
+```
+
+
 Set:
 
 ```xml
-<ben ...>
+<bean ...>
     <property name="sampleSet">
         <set>
             <value>pechorin@hero.org</value>
