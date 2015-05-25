@@ -582,7 +582,7 @@ List as a bean:
 </util:list>
 ```
 
-> Above method shouldn't be used. Instead use polymorphysm with autowire!!
+> Above method shouldn't be used. Instead use polymorphycal interface and inject all implementing instances using autowire!!
 
 Set:
 
