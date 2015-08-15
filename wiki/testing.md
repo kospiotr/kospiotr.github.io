@@ -5,38 +5,6 @@ comments: false
 toc: true
 editurl: wiki/testing.md
 ---
-#Maven
-
-##Configure integration tests
-
-```xml
-<plugin>
-  <groupId>org.apache.maven.plugins</groupId>
-  <artifactId>maven-surefire-plugin</artifactId>
-  <configuration>
-    <excludes>
-      <exclude>**/*IT.java</exclude>
-    </excludes>
-  </configuration>
-  <executions>
-    <execution>
-      <id>integration-test</id>
-      <goals>
-        <goal>test</goal>
-      </goals>
-      <phase>integration-test</phase>
-      <configuration>
-        <excludes>
-          <exclude>none</exclude>
-        </excludes>
-        <includes>
-          <include>**/*IT.java</include>
-        </includes>
-      </configuration>
-    </execution>
-  </executions>
-</plugin>
-```
 
 #JUnit
 
@@ -120,42 +88,6 @@ public void testMain() {
     List<String> dummyList = Arrays.asList("a","b","c");
     assertThat(dummyList).containsOnly("a","c","b");
 }
-```
-
-#Code coverage:
-Configure maven:
-
-```xml
-<build>
-    <plugins>
-        <plugin>
-            <groupId>org.jacoco</groupId>
-            <artifactId>jacoco-maven-plugin</artifactId>
-            <version>0.7.0.201403182114</version>
-            <executions>
-                <execution>
-                    <goals>
-                        <goal>prepare-agent</goal>
-                    </goals>
-                </execution>
-                <execution>
-                    <id>report</id>
-                    <phase>prepare-package</phase>
-                    <goals>
-                        <goal>report</goal>
-                    </goals>
-                </execution>
-            </executions>
-        </plugin>
-    </plugins>
-</build>
-```
-
-Run one of:
-
-```bash
-verify
-test-compile org.jacoco:jacoco-maven-plugin:prepare-agent surefire:test org.jacoco:jacoco-maven-plugin:report
 ```
 
 Reference:
