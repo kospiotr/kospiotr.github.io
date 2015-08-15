@@ -19,6 +19,7 @@ editurl: wiki/unix.md
 * `kill $(ps aux | grep 'chrome' | awk '{print $2}')` - kill all processess with chrome phrase
 * `python -m SimpleHTTPServer 8000` - very light HTTP server with Python
 * `netstat -tulpn | grep 8080` - return process which process listen on port 8080
+* ` ln -s target_path link_path` - create symbolic link
 
 
 
