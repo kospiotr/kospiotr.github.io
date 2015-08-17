@@ -185,7 +185,7 @@ Update ```web.xml``` :
 
 ## Jetty
 
-**Configure**
+**Configuration**
 
 ```xml
 <plugin>
@@ -221,11 +221,10 @@ When changing java code, modified classes must be compiled, thus the best to exe
 
 ## Database
 
-Using [In-Memory Database Maven Plugin](http://inmemdb-maven-plugin.btmatthews.com/) it's possible to set up local DB.
+Using [In-Memory Database Maven Plugin](http://inmemdb-maven-plugin.btmatthews.com/) it's possible to set up local DB. Supported databases types: hsqldb, derby, h2.
+Comprehensive example using it with integration tests: http://mjremijan.blogspot.com/2014/03/integration-testing-with-maven-and-in.html.
 
-Supported databases types: hsqldb, derby, h2.
-
-Configuration:
+**Configuration**
 
 ```xml
 <plugin>
@@ -248,7 +247,7 @@ Configuration:
 </plugin>
 ```
 
-Sample data:
+**Sample data**
 
 ```sql
 -- Create the tables
@@ -264,11 +263,11 @@ insert into app_sometable (some_varchar, some_numeric, some_timestamp, some_blob
 values ('unit_test_varchar',123,'1977-01-30-10.11.30.766',null);
 ```
 
-Run it:
+**Run it**
 
 ```mvn inmemdb:run```
 
-Client:
+**Client**
 
 ```xml
 <dependency>
@@ -280,7 +279,7 @@ Client:
 
 * URL: ```jdbc:derby://localhost/memory:test-data```
 * Driver: ```org.apache.derby.jdbc.ClientDriver```
-* Dialect: ```org.hibernate.dialect.DerbyDialect```
+* Hibernate dialect: ```org.hibernate.dialect.DerbyDialect```
 
 # Deployment
 ## To local Tomcat
