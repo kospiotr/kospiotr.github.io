@@ -84,3 +84,6 @@ sudo apt-get install elementary-tweaks
 # Recipes
 
 ## Remove obsolate PPA
+
+* edit ```/etc/apt/sources.list```
+* install synaptic

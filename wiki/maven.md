@@ -102,7 +102,7 @@ The pattern ```${someX.someY.someZ}``` can simply sometimes mean ```getSomeX().g
 ## Standalone project
 
 ```
-[TBD]
+mvn archetype:generate -DarchetypeArtifactId=maven-archetype-quickstart
 ```
 
 ## Web project
@@ -180,6 +180,38 @@ Update ```web.xml``` :
 	</plugins>
 </build>
 ```
+
+# Packaging
+
+## Create single jar with all dependencies
+
+```xml
+<plugin>
+    <artifactId>maven-assembly-plugin</artifactId>
+    <version>2.5.4</version>
+    <configuration>
+        <archive>
+            <manifest>
+                <mainClass>io.github.kospiotr.App</mainClass>
+            </manifest>
+        </archive>
+        <descriptorRefs>
+            <descriptorRef>jar-with-dependencies</descriptorRef>
+        </descriptorRefs>
+    </configuration>
+    <executions>
+        <execution>
+            <id>make-assembly</id>
+            <phase>package</phase>
+            <goals>
+                <goal>single</goal>
+            </goals>
+        </execution>
+    </executions>
+</plugin>
+```
+
+Then run: ```java -jar project-1.0-SNAPSHOT-jar-with-dependencies.jar```
 
 # Embedded services
 

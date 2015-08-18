@@ -856,193 +856,6 @@ Result in above cases:
 > Injected TransactionLogger to BillingService
 ```
 
-##Container Extension Points
-
-**BeanPostProcessor**:
-
-The `BeanPostProcessor` interface defines callback methods that you can implement to provide your own (or override the container’s default) instantiation logic, dependency-resolution logic, and so forth. If you want to implement some custom logic after the Spring container finishes instantiating, configuring, and initializing a bean, you can plug in one or more `BeanPostProcessor` implementations.
-
-Definition of custom `BeanPostProcessor`:
-
-```java
-public class SimpleBeanPostProcessor implements BeanPostProcessor {
-
-    public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
-        System.out.println("before bean init = " + beanName);
-        return bean;
-    }
-
-    public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-        System.out.println("after bean init = " + beanName);
-        return bean;
-    }
-
-}
-```
-
-Registration:
-
-```xml
-<bean id="creditCardProcessor" class="com.github.kospiotr.spring.CreditCardProcessor"/>
-<bean id="transactionLogger" class="com.github.kospiotr.spring.TransactionLogger"/>
-
-<bean id="billingService" class="com.github.kospiotr.spring.BillingService">
-    <property name="creditCardProcessor" ref="creditCardProcessor"/>
-    <property name="transactionLogger" ref="transactionLogger"/>
-</bean>
-
-<bean class="com.github.kospiotr.spring.SimpleBeanPostProcessor"/>
-```
-
-Result:
-
-```
-> Constructed CreditCardProcessor
-> before bean init = creditCardProcessor
-> after bean init = creditCardProcessor
-> Constructed TransactionLogger
-> before bean init = transactionLogger
-> after bean init = transactionLogger
-> Constructed BillingService
-> Injected CreditCardProcessor to BillingService
-> Injected TransactionLogger to BillingService
-> before bean init = billingService
-> after bean init = billingService
-```
-
-**BeanPostProcessorFactory**:
-
-The next extension point that we will look at is the `org.springframework.beans.factory.config.BeanFactoryPostProcessor`. The semantics of this interface are similar to those of the `BeanPostProcessor`, with one major difference: `BeanFactoryPostProcessor` operates on the bean configuration metadata; that is, the Spring IoC container allows a `BeanFactoryPostProcessor` to read the configuration metadata and potentially change it before the container instantiates any beans other than `BeanFactoryPostProcessors`.
-
-
-Definition of custom `BeanFactoryPostProcessor`:
-
-```java
-public class SimpleBeanFactoryPostProcessor implements BeanFactoryPostProcessor {
-
-    public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
-        System.out.println("PostProcess: " + 
-            Arrays.toString(beanFactory.getBeanDefinitionNames())
-        );
-    }
-
-}
-```
-
-Registration:
-
-```xml
-<bean id="creditCardProcessor" class="com.github.kospiotr.spring.CreditCardProcessor"/>
-<bean id="transactionLogger" class="com.github.kospiotr.spring.TransactionLogger"/>
-
-<bean id="billingService" class="com.github.kospiotr.spring.BillingService">
-    <property name="creditCardProcessor" ref="creditCardProcessor"/>
-    <property name="transactionLogger" ref="transactionLogger"/>
-</bean>
-
-<bean class="com.github.kospiotr.spring.SimpleBeanFactoryPostProcessor"/>
-```
-
-Result:
-
-```
-> PostProcess: [creditCardProcessor, transactionLogger, billingService, com.github.kospiotr.spring.S impleBeanFactoryPostProcessor#0]
-> Constructed CreditCardProcessor
-> Constructed TransactionLogger
-> Constructed BillingService
-> Injected CreditCardProcessor to BillingService
-> Injected TransactionLogger to BillingService
-```
-
-**Sample implementations**:
-
-Some of those extensions are core that are enabled by default by `ApplicationContext`.
-
-PostProcessors:
-
-* `AdvisorAdapterRegistrationManager`,
-* `AnnotationAwareAspectJAutoProxyCreator`,
-* `AspectJAwareAdvisorAutoProxyCreator`,
-* `AsyncAnnotationBeanPostProcessor`,
-* `AutowiredAnnotationBeanPostProcessor`,
-* `BeanNameAutoProxyCreator`,
-* `BeanValidationPostProcessor`,
-* `CommonAnnotationBeanPostProcessor`,
-* `DefaultAdvisorAutoProxyCreator`,
-* `InfrastructureAdvisorAutoProxyCreator`,
-* `InitDestroyAnnotationBeanPostProcessor`,
-* `InstantiationAwareBeanPostProcessorAdapter`,
-* `LoadTimeWeaverAwareProcessor`,
-* `MethodValidationPostProcessor`,
-* `PersistenceAnnotationBeanPostProcessor`,
-* `PersistenceExceptionTranslationPostProcessor`,
-* `PortletContextAwareProcessor`,
-* `RequiredAnnotationBeanPostProcessor`,
-* `ScheduledAnnotationBeanPostProcessor`,
-* `ScriptFactoryPostProcessor`,
-* `ServerEndpointExporter`,
-* `ServletContextAwareProcessor`,
-* `SimplePortletPostProcessor`,
-* `SimpleServletPostProcessor`
-
-BeanFactoryPostProcessor:
-
-* `AspectJWeavingEnabler`,
-* `ConfigurationClassPostProcessor`,
-* `CustomAutowireConfigurer`,
-* `CustomEditorConfigurer`,
-* `CustomScopeConfigurer`,
-* `DeprecatedBeanWarner`,
-* `PlaceholderConfigurerSupport`,
-* `PreferencesPlaceholderConfigurer`,
-* `PropertyOverrideConfigurer`,
-* `PropertyPlaceholderConfigurer`,
-* `PropertyResourceConfigurer`,
-* `PropertySourcesPlaceholderConfigurer`,
-* `ServletContextPropertyPlaceholderConfigurer`
-
-##Placeholders
-You use the ```PropertyPlaceholderConfigurer``` to externalize property values from a bean definition in a separate file using the standard Java Properties format.
-
-Configuration:
-
-```xml
-<bean id="payment1" class="com.github.kospiotr.spring.Payment">
-    <property name="paymentTitle" value="${paymentTitle1}"/>
-    <property name="accountFrom" value="${accountFrom1}"/>
-    <property name="accountTo" value="${accountTo1}"/>
-    <property name="amount" value="${amount1}"/>
-</bean>
-<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-    <property name="locations" value="classpath:config.properties"/>
-</bean>
-```
-
-Properties file `config.properties`:
-
-```
-paymentTitle1=Pizza Payment
-accountFrom1=12345
-accountTo1=54321
-amount1=100
-```
-
-Application:
-
-```java
-Payment payment1 = ctx.getBean("payment1", Payment.class);
-System.out.println("payment1 = " + payment1);
-Payment payment2 = ctx.getBean("payment2", Payment.class);
-System.out.println("payment2 = " + payment2);
-```
-
-Result:
-
-```
-payment1 = Payment{paymentTitle=Pizza Payment, accountFrom=12345, accountTo=54321, amount=100.0}
-payment2 = Payment{paymentTitle=Pizza Payment, accountFrom=12345, accountTo=54321, amount=100.0}
-```
-
 #Injecting with Annotations
 
 An alternative to XML setups is provided by annotation-based configuration which rely on the bytecode metadata for wiring up components instead of angle-bracket declarations. 
@@ -1439,10 +1252,205 @@ public List<ScoringRule> rulesList(RememberRule remberRule,
 
 Just mark class with: ```@ComponentScan(basePackages = {"com.github.kospiotr"})```
 
-**Placeholder configure** :
+#Container Extension Points
 
-Mark class with: ```@PropertySource(value = "classpath:config.properties", name = "locations")```
-and register ```PropertySourcesPlaceholderConfigurer``` bean.
+**BeanPostProcessor**:
+
+The `BeanPostProcessor` interface defines callback methods that you can implement to provide your own (or override the container’s default) instantiation logic, dependency-resolution logic, and so forth. If you want to implement some custom logic after the Spring container finishes instantiating, configuring, and initializing a bean, you can plug in one or more `BeanPostProcessor` implementations.
+
+Definition of custom `BeanPostProcessor`:
+
+```java
+public class SimpleBeanPostProcessor implements BeanPostProcessor {
+
+    public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
+        System.out.println("before bean init = " + beanName);
+        return bean;
+    }
+
+    public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+        System.out.println("after bean init = " + beanName);
+        return bean;
+    }
+
+}
+```
+
+Registration:
+
+```xml
+<bean id="creditCardProcessor" class="com.github.kospiotr.spring.CreditCardProcessor"/>
+<bean id="transactionLogger" class="com.github.kospiotr.spring.TransactionLogger"/>
+
+<bean id="billingService" class="com.github.kospiotr.spring.BillingService">
+    <property name="creditCardProcessor" ref="creditCardProcessor"/>
+    <property name="transactionLogger" ref="transactionLogger"/>
+</bean>
+
+<bean class="com.github.kospiotr.spring.SimpleBeanPostProcessor"/>
+```
+
+Result:
+
+```
+> Constructed CreditCardProcessor
+> before bean init = creditCardProcessor
+> after bean init = creditCardProcessor
+> Constructed TransactionLogger
+> before bean init = transactionLogger
+> after bean init = transactionLogger
+> Constructed BillingService
+> Injected CreditCardProcessor to BillingService
+> Injected TransactionLogger to BillingService
+> before bean init = billingService
+> after bean init = billingService
+```
+
+**BeanPostProcessorFactory**:
+
+The next extension point that we will look at is the `org.springframework.beans.factory.config.BeanFactoryPostProcessor`. The semantics of this interface are similar to those of the `BeanPostProcessor`, with one major difference: `BeanFactoryPostProcessor` operates on the bean configuration metadata; that is, the Spring IoC container allows a `BeanFactoryPostProcessor` to read the configuration metadata and potentially change it before the container instantiates any beans other than `BeanFactoryPostProcessors`.
+
+
+Definition of custom `BeanFactoryPostProcessor`:
+
+```java
+public class SimpleBeanFactoryPostProcessor implements BeanFactoryPostProcessor {
+
+    public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
+        System.out.println("PostProcess: " + 
+            Arrays.toString(beanFactory.getBeanDefinitionNames())
+        );
+    }
+
+}
+```
+
+Registration:
+
+```xml
+<bean id="creditCardProcessor" class="com.github.kospiotr.spring.CreditCardProcessor"/>
+<bean id="transactionLogger" class="com.github.kospiotr.spring.TransactionLogger"/>
+
+<bean id="billingService" class="com.github.kospiotr.spring.BillingService">
+    <property name="creditCardProcessor" ref="creditCardProcessor"/>
+    <property name="transactionLogger" ref="transactionLogger"/>
+</bean>
+
+<bean class="com.github.kospiotr.spring.SimpleBeanFactoryPostProcessor"/>
+```
+
+Result:
+
+```
+> PostProcess: [creditCardProcessor, transactionLogger, billingService, com.github.kospiotr.spring.S impleBeanFactoryPostProcessor#0]
+> Constructed CreditCardProcessor
+> Constructed TransactionLogger
+> Constructed BillingService
+> Injected CreditCardProcessor to BillingService
+> Injected TransactionLogger to BillingService
+```
+
+**Sample implementations**:
+
+Some of those extensions are core that are enabled by default by `ApplicationContext`.
+
+PostProcessors:
+
+* `AdvisorAdapterRegistrationManager`,
+* `AnnotationAwareAspectJAutoProxyCreator`,
+* `AspectJAwareAdvisorAutoProxyCreator`,
+* `AsyncAnnotationBeanPostProcessor`,
+* `AutowiredAnnotationBeanPostProcessor`,
+* `BeanNameAutoProxyCreator`,
+* `BeanValidationPostProcessor`,
+* `CommonAnnotationBeanPostProcessor`,
+* `DefaultAdvisorAutoProxyCreator`,
+* `InfrastructureAdvisorAutoProxyCreator`,
+* `InitDestroyAnnotationBeanPostProcessor`,
+* `InstantiationAwareBeanPostProcessorAdapter`,
+* `LoadTimeWeaverAwareProcessor`,
+* `MethodValidationPostProcessor`,
+* `PersistenceAnnotationBeanPostProcessor`,
+* `PersistenceExceptionTranslationPostProcessor`,
+* `PortletContextAwareProcessor`,
+* `RequiredAnnotationBeanPostProcessor`,
+* `ScheduledAnnotationBeanPostProcessor`,
+* `ScriptFactoryPostProcessor`,
+* `ServerEndpointExporter`,
+* `ServletContextAwareProcessor`,
+* `SimplePortletPostProcessor`,
+* `SimpleServletPostProcessor`
+
+BeanFactoryPostProcessor:
+
+* `AspectJWeavingEnabler`,
+* `ConfigurationClassPostProcessor`,
+* `CustomAutowireConfigurer`,
+* `CustomEditorConfigurer`,
+* `CustomScopeConfigurer`,
+* `DeprecatedBeanWarner`,
+* `PlaceholderConfigurerSupport`,
+* `PreferencesPlaceholderConfigurer`,
+* `PropertyOverrideConfigurer`,
+* `PropertyPlaceholderConfigurer`,
+* `PropertyResourceConfigurer`,
+* `PropertySourcesPlaceholderConfigurer`,
+* `ServletContextPropertyPlaceholderConfigurer`
+
+##Placeholders
+You use the ```PropertyPlaceholderConfigurer``` to externalize property values from a bean definition in a separate file using the standard Java Properties format.
+
+**Configuration** :
+
+XML:
+
+```xml
+<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    <property name="locations" value="classpath:config.properties"/>
+</bean>
+```
+
+Java:
+
+```java
+@Configuration
+@PropertySource(value = "classpath:config.properties", name = "locations")
+public class AppConfig {
+
+...
+
+    @Bean
+    public static PropertySourcesPlaceholderConfigurer properties() {
+        return new PropertySourcesPlaceholderConfigurer();
+    }
+}
+```
+
+**Properties source file `config.properties`** :
+
+```
+paymentTitle1=Pizza Payment
+accountFrom1=12345
+accountTo1=54321
+amount1=100
+```
+
+Application:
+
+```java
+Payment payment1 = ctx.getBean("payment1", Payment.class);
+System.out.println("payment1 = " + payment1);
+Payment payment2 = ctx.getBean("payment2", Payment.class);
+System.out.println("payment2 = " + payment2);
+```
+
+Result:
+
+```
+payment1 = Payment{paymentTitle=Pizza Payment, accountFrom=12345, accountTo=54321, amount=100.0}
+payment2 = Payment{paymentTitle=Pizza Payment, accountFrom=12345, accountTo=54321, amount=100.0}
+```
+
 
 #Testing
 
