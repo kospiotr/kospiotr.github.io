@@ -5,12 +5,26 @@ comments: false
 toc: true
 editurl: wiki/db-connectors.md
 ---
-#Links
 
- * https://code.google.com/p/xperios/wiki/JPA
+#MySQL
+
+Dependency:
+
+```xml
+	<dependency>
+		<groupId>mysql</groupId>
+		<artifactId>mysql-connector-java</artifactId>
+		<version>5.1.9</version>
+	</dependency>
+```
+
+Driver: ```com.mysql.jdbc.Driver```
+URL: ```jdbc:h2:path\databaseName```
+Hibernate dialect: ```org.hibernate.dialect.H2Dialect```
 
 #H2
- * Dependency
+
+Dependency:
 
 ```xml
 <dependency>
@@ -20,30 +34,16 @@ editurl: wiki/db-connectors.md
 </dependency>
 ```
 
- * Driver
-
-```java
-org.h2.Driver
-org.h2.jdbcx.JdbcDataSource //for JNDI
-```
-
- * URL
-
-```
-jdbc:h2:path\databaseName
-```
-
- * Hibernate dialect:
-
-```
-org.hibernate.dialect.H2Dialect
-```
+Driver: ```org.h2.Driver```
+Datasource: ```org.h2.jdbcx.JdbcDataSource```
+URL: ```jdbc:h2:path\databaseName```
+Hibernate dialect: ```org.hibernate.dialect.H2Dialect```
 
 #Derby
 
 ##Network
 
- * Dependency
+Dependency:
 
 ```xml
 <dependency>
@@ -54,26 +54,18 @@ org.hibernate.dialect.H2Dialect
 </dependency>
 ```
 
- * Driver
-
-```
-org.apache.derby.jdbc.ClientDriver
-```
-
- * URL
-
-##Embeded
+Driver: ```org.apache.derby.jdbc.ClientDriver```
 
 #Postgres
-##Server configuration
+
+Server configuration:
 
 * Download server in zip from [http://www.postgresql.org/](http://www.postgresql.org/)
 * Extract it to `opt` dir
 * Init database: `./bin/initdb.exe -D /home/username/jpa-db`
 * Run server: `"./bin/postgres" -D "/home/username/jpa-db"`
 
-##JDBC 
-###Driver dependency
+Dependency:
 
 ```xml
 <dependency>
@@ -83,21 +75,8 @@ org.apache.derby.jdbc.ClientDriver
 </dependency>
 ```
 
-###Driver name
+Driver: ```org.postgresql.Driver```
+URL: ```jdbc:postgresql://localhost:5433/postgres```
+Hibernate dialect: ```org.hibernate.dialect.PostgreSQLDialect```
 
-```
-org.postgresql.Driver
-```
-
-###Url
-
-```
-jdbc:postgresql://localhost:5433/postgres
-```
-
-###Hibernate dialect
-
-```
-org.hibernate.dialect.PostgreSQLDialect
-```
 
