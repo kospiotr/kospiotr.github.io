@@ -8,7 +8,7 @@ editurl: wiki/db-connectors.md
 
 #MySQL
 
-Dependency:
+* Dependency:
 
 ```xml
 	<dependency>
@@ -18,13 +18,13 @@ Dependency:
 	</dependency>
 ```
 
-Driver: ```com.mysql.jdbc.Driver```
-URL: ```jdbc:h2:path\databaseName```
-Hibernate dialect: ```org.hibernate.dialect.H2Dialect```
+* Driver: ```com.mysql.jdbc.Driver```
+* URL: ```jdbc:h2:path\databaseName```
+* Hibernate dialect: ```org.hibernate.dialect.H2Dialect```
 
 #H2
 
-Dependency:
+* Dependency:
 
 ```xml
 <dependency>
@@ -34,16 +34,16 @@ Dependency:
 </dependency>
 ```
 
-Driver: ```org.h2.Driver```
-Datasource: ```org.h2.jdbcx.JdbcDataSource```
-URL: ```jdbc:h2:path\databaseName```
-Hibernate dialect: ```org.hibernate.dialect.H2Dialect```
+* Driver: ```org.h2.Driver```
+* Datasource: ```org.h2.jdbcx.JdbcDataSource```
+* URL: ```jdbc:h2:path\databaseName```
+* Hibernate dialect: ```org.hibernate.dialect.H2Dialect```
 
 #Derby
 
 ##Network
 
-Dependency:
+* Dependency:
 
 ```xml
 <dependency>
@@ -54,18 +54,18 @@ Dependency:
 </dependency>
 ```
 
-Driver: ```org.apache.derby.jdbc.ClientDriver```
+* Driver: ```org.apache.derby.jdbc.ClientDriver```
 
 #Postgres
 
-Server configuration:
+* Server configuration:
 
-* Download server in zip from [http://www.postgresql.org/](http://www.postgresql.org/)
-* Extract it to `opt` dir
-* Init database: `./bin/initdb.exe -D /home/username/jpa-db`
-* Run server: `"./bin/postgres" -D "/home/username/jpa-db"`
+    * Download server in zip from [http://www.postgresql.org/](http://www.postgresql.org/)
+    * Extract it to `opt` dir
+    * Init database: `./bin/initdb.exe -D /home/username/jpa-db`
+    * Run server: `"./bin/postgres" -D "/home/username/jpa-db"`
 
-Dependency:
+* Dependency:
 
 ```xml
 <dependency>
@@ -75,8 +75,6 @@ Dependency:
 </dependency>
 ```
 
-Driver: ```org.postgresql.Driver```
-URL: ```jdbc:postgresql://localhost:5433/postgres```
-Hibernate dialect: ```org.hibernate.dialect.PostgreSQLDialect```
-
-
+* Driver: ```org.postgresql.Driver```
+* URL: ```jdbc:postgresql://localhost:5433/postgres```
+* Hibernate dialect: ```org.hibernate.dialect.PostgreSQLDialect```
