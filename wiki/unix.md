@@ -87,3 +87,10 @@ sudo apt-get install elementary-tweaks
 
 * edit ```/etc/apt/sources.list```
 * install synaptic
+* sudo update-manager
+* ppa-purge:
+```
+sudo apt-get install ppa-purge
+sudo apt-get update
+sudo ppa-purge ppa:xorg-edger/ppa
+```
