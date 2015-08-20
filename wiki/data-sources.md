@@ -10,7 +10,9 @@ As a developer, you need not know details about how to connect to the database; 
 
 When using Spring`s JDBC layer, you obtain a data source from JNDI or you configure your own with a connection pool implementation provided by a third party. Popular implementations are Apache Jakarta Commons DBCP and C3P0. Implementations in the Spring distribution are meant only for testing purposes and do not provide pooling.
 
-**DriverManagerDataSource**
+# Dev only
+
+## DriverManagerDataSource
 
 Maven dependency:
 
@@ -33,30 +35,9 @@ Spring config:
 </bean>
 ```
 
-**DBCP**
+# Production ready
 
-Maven dependency:
-
-```xml
-<dependency>
-	<groupId>org.apache.commons</groupId>
-	<artifactId>commons-dbcp2</artifactId>
-	<version>...</version>
-</dependency>
-```
-
-Spring config:
-
-```xml
-<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-    <property name="driverClassName" value="${jdbc.driverClassName}"/>
-    <property name="url" value="${jdbc.url}"/>
-    <property name="username" value="${jdbc.username}"/>
-    <property name="password" value="${jdbc.password}"/>
-</bean>
-```
-
-**C3P0**
+## C3P0
 
 Maven dependency:
 
@@ -75,6 +56,29 @@ Spring config:
     <property name="driverClass" value="${jdbc.driverClassName}"/>
     <property name="jdbcUrl" value="${jdbc.url}"/>
     <property name="user" value="${jdbc.username}"/>
+    <property name="password" value="${jdbc.password}"/>
+</bean>
+```
+
+## DBCP
+
+Maven dependency:
+
+```xml
+<dependency>
+	<groupId>org.apache.commons</groupId>
+	<artifactId>commons-dbcp2</artifactId>
+	<version>...</version>
+</dependency>
+```
+
+Spring config:
+
+```xml
+<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+    <property name="driverClassName" value="${jdbc.driverClassName}"/>
+    <property name="url" value="${jdbc.url}"/>
+    <property name="username" value="${jdbc.username}"/>
     <property name="password" value="${jdbc.password}"/>
 </bean>
 ```
