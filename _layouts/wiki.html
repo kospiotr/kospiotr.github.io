@@ -20,7 +20,7 @@ comments: false
     </header>
 
     {% if page.toc %}
-    <div id="TOC" class="markdown-body"></div>
+    <div id="toc" class="markdown-body"></div>
     {% endif %}
 
     <div id="article-body" class="markdown-body">
@@ -32,7 +32,7 @@ comments: false
 {% if page.toc %}
 <script type="text/javascript">
     $(function () {
-        $("#TOC").stoc({
+        $("#toc").stoc({
             search: "#article-body",
             stocTitle: "<h1>Table of content</h1>"
         });

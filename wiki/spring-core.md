@@ -1398,14 +1398,18 @@ BeanFactoryPostProcessor:
 * `ServletContextPropertyPlaceholderConfigurer`
 
 ##Placeholders
-You use the ```PropertyPlaceholderConfigurer``` to externalize property values from a bean definition in a separate file using the standard Java Properties format.
+See: [System properties vs Environment variables](/wiki/java-standard-edition.html#system-properties-vs-environment-variables)
+
+You use the ```PropertyPlaceholderConfigurer``` to externalize property values. Properties might come from Environment Variables, external file, database or even remote resource like REST payload.
+
+By default ```PropertyPlaceholderConfigurer``` reads properties in the following order: ```System Properties -> Environment Variables -> locations```
 
 **Configuration** :
 
 XML:
 
 ```xml
-<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+<bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
     <property name="locations" value="classpath:config.properties"/>
 </bean>
 ```
@@ -1426,31 +1430,49 @@ public class AppConfig {
 }
 ```
 
-**Properties source file `config.properties`** :
+Properties source file `config.properties` :
 
 ```
-paymentTitle1=Pizza Payment
+datasourcePassword=myPassword
 accountFrom1=12345
 accountTo1=54321
 amount1=100
 ```
 
-Application:
+**Usage** :
+
+Using it in XML configuration:
+
+```xml
+<bean id="payment1" class="com.github.kospiotr.spring.Payment">
+    <property name="accountFrom" value="${accountFrom1}"/>
+    <property name="accountTo" value="${accountTo1}"/>
+    <property name="amount" value="${amount1}"/>
+</bean>
+```
+
+Injecting it into component:
 
 ```java
-Payment payment1 = ctx.getBean("payment1", Payment.class);
-System.out.println("payment1 = " + payment1);
-Payment payment2 = ctx.getBean("payment2", Payment.class);
-System.out.println("payment2 = " + payment2);
+@Component
+public class SomeDAO {
+
+	@Value("${datasourcePassword}")
+	private String password;
+	
+	...
+	
+}
 ```
 
-Result:
+Obtaining properties via the Environment APIs:
 
+```java
+@Autowired
+private Environment env;
+...
+dataSource.setPassword(env.getProperty("datasourcePassword"));
 ```
-payment1 = Payment{paymentTitle=Pizza Payment, accountFrom=12345, accountTo=54321, amount=100.0}
-payment2 = Payment{paymentTitle=Pizza Payment, accountFrom=12345, accountTo=54321, amount=100.0}
-```
-
 
 #Testing
 

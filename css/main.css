@@ -10189,7 +10189,7 @@ a.commit-ref:hover {
 
 #toc {
     margin: 15px 0;
-    padding: 0;
+    padding: 0 0 20px 0;
 }
 
 #toc li {
