@@ -145,7 +145,7 @@ And reference the JNDI resource from Tomcat's web context.xml like this:
 ```
 
 * Driver: ```com.mysql.jdbc.Driver```
-* URL: ```jdbc:h2:path\databaseName```
+* URL: ```jdbc:mysql://localhost:3306/databaseName```
 * Hibernate dialect: ```org.hibernate.dialect.H2Dialect```
 
 ## H2
