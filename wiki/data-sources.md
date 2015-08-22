@@ -83,6 +83,29 @@ Spring config:
 </bean>
 ```
 
+## BoneCP
+
+Maven dependency:
+
+```xml
+<dependency>
+	<groupId>org.apache.commons</groupId>
+	<artifactId>commons-dbcp2</artifactId>
+	<version>...</version>
+</dependency>
+```
+
+Spring config:
+
+```xml
+<bean id="mainDataSource" class="com.jolbox.bonecp.BoneCPDataSource" destroy-method="close">
+   <property name="driverClass" value="${jdbc.driverClassName}" />
+   <property name="jdbcUrl" value="${jdbc.url}" />
+   <property name="username" value="${jdbc.username}"/>
+   <property name="password" value="${jdbc.password}"/>
+</bean>
+```
+
 ## Container managed datasource
 
 **Using ```jee``` schema**
