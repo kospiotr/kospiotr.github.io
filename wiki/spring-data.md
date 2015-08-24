@@ -76,19 +76,6 @@ For more datasources possibilities check: [Datasources](/wiki/datasources.html)
 **Configure local Transaction Manager**
 
 ```xml
-<bean id="entityManagerFactory"
-        class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
-        p:packagesToScan="io.github.kospiotr.model"
-        p:dataSource-ref="dataSource"
-        >
-    <property name="jpaVendorAdapter">
-        <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-            <property name="generateDdl" value="true" />
-            <property name="showSql" value="true" />
-        </bean>
-    </property>
-</bean>
-
 <!-- Transactions -->
 <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
     <property name="entityManagerFactory" ref="entityManagerFactory" />
@@ -96,6 +83,52 @@ For more datasources possibilities check: [Datasources](/wiki/datasources.html)
 <!-- enable the configuration of transactional behavior based on annotations -->
 <tx:annotation-driven transaction-manager="transactionManager" />
 ```
+
+**Option 1: Configure EntityManager without persistence.xml**
+
+```xml
+<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+    <property name="jpaVendorAdapter">
+        <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+            <property name="generateDdl" value="true" />
+            <property name="showSql" value="true" />
+        </bean>
+    </property>
+    <property name"packagesToScan value="io.github.kospiotr.model"/>
+    <property name="dataSource" ref="dataSource"/>
+</bean>
+```
+
+**Option 2: Configure EntityManager with persistence.xml**
+
+```xml
+<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+    <property name="jpaVendorAdapter">
+        <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
+    </property>
+    <property name="dataSource" ref="dataSource"/>
+</bean>
+```
+
+Then ```META-INF/persistence.xml```:
+
+```xml
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence 
+             http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+             version="2.0">
+    <persistence-unit name="PU" transaction-type="RESOURCE_LOCAL">
+        <properties>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
+        </properties>
+    </persistence-unit>
+</persistence>
+```
+
+More configuration properties: https://docs.jboss.org/hibernate/core/4.3/manual/en-US/html_single#configuration-optional
 
 # What is it for?
 
