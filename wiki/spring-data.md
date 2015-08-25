@@ -267,41 +267,28 @@ Simplify JPA access by removing boilerplate code and introduce higher level of a
 
 **Dependency**
 
+```xml
+<dependencies>
+	...
+	<dependency>
+	    <groupId>org.atteo.moonshine</groupId>
+	    <artifactId>spring-data</artifactId>
+	    <version>${spring-data.version}</version>
+	</dependency>
+</dependencies>
+```
 
+**Configuration**
+
+```xml
+    <jpa:repositories base-package="io.github.kospiotr.repository"/>
+```
 
 **DAO**
 
 ```java
-@Component
-public class ProductRepository {
+public interface ProductRepository extends JpaRepository<Product, Integer> {
 
-	@PersistenceContext
-	private EntityManager em;
-
-	public Product findById(Integer productId) {
-		return em.find(Product.class, productId);
-	}
-
-	public List<Product> findAll() {
-		return em.createQuery("SELECT p FROM Product p").getResultList();
-	}
-
-	public Product create(Product product) {
-		em.persist(product);
-		return product;
-	}
-
-	public Product update(Product product) {
-		return em.merge(product);
-	}
-
-	public void delete(Integer id) {
-		Product toRemove = findById(id);
-		if (toRemove == null) {
-			throw new RuntimeException("Can't find Product with given id: " + id);
-		}
-		em.remove(toRemove);
-	}
 }
 ```
 
@@ -312,55 +299,45 @@ public class ProductRepository {
 public class ProductService {
 
 	@Autowired
-	private ProductRepository productDao;
+	private ProductRepository productRepository;
 
 	@Transactional(readOnly = true)
 	public List<Product> findAll() {
-		return productDao.findAll();
+		return productRepository.findAll();
 	}
 
 	public Product findById(Integer productId) {
-		return productDao.findById(productId);
+		return productRepository.findOne(productId);
 	}
 
 	@Transactional
 	public Product save(Product product) {
-		if (product.getId() == null) {
-			return productDao.create(product);
-		} else {
-			return productDao.update(product);
-		}
+		return productRepository.save(product);
 	}
 
 	@Transactional
 	public void delete(Integer id) {
-		productDao.delete(id);
+		productRepository.delete(id);
 	}
 }
 ```
 
-**Application**
+**Custom by property
 
 ```java
-public class App {
-	public static void main(String[] args) {
+public interface ProductRepository extends JpaRepository<Product, Integer> {
 
-		ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring-configuration.xml");
-
-		ProductService productService = applicationContext.getBean(ProductService.class);
-
-		Product created = productService.save(new Product(null, "New Tested Product"));
-		System.out.println(productService.findAll());
-
-		created.setName("Modified Product");
-
-		productService.save(created);
-		System.out.println(productService.findAll());
-
-		productService.delete(created.getId());
-
-		System.out.println(productService.findAll());
-
-	}
+  List<Product> findByName(String name); 
 }
 ```
+
+**Custom JPQL**
+
+```java
+public interface ProductRepository extends JpaRepository<Product, Integer> {
+
+  @Query("<JPQ statement here>")
+  List<Product> findBySomeInputs(Integer age); 
+}
+```
+

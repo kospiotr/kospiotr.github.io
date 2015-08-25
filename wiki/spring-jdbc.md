@@ -42,7 +42,7 @@ For development purposes:
 </bean>
 ```
 
-For more datasources possibilities check: [Datasources](/wiki/datasources.html)
+For more datasources possibilities check: [Datasources](/wiki/data-sources.html)
 
 # Example Model
 
