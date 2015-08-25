@@ -84,7 +84,9 @@ For more datasources possibilities check: [Datasources](/wiki/datasources.html)
 <tx:annotation-driven transaction-manager="transactionManager" />
 ```
 
-**Option 1: Configure EntityManager without persistence.xml**
+**Configure EntityManager**
+
+Option 1: without ```persistence.xml``` :
 
 ```xml
 <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
@@ -94,12 +96,12 @@ For more datasources possibilities check: [Datasources](/wiki/datasources.html)
             <property name="showSql" value="true" />
         </bean>
     </property>
-    <property name"packagesToScan value="io.github.kospiotr.model"/>
+    <property name="packagesToScan" value="io.github.kospiotr.model"/>
     <property name="dataSource" ref="dataSource"/>
 </bean>
 ```
 
-**Option 2: Configure EntityManager with persistence.xml**
+Option 2: with ```persistence.xml``` :
 
 ```xml
 <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
@@ -129,10 +131,6 @@ Then ```META-INF/persistence.xml```:
 ```
 
 More configuration properties: https://docs.jboss.org/hibernate/core/4.3/manual/en-US/html_single#configuration-optional
-
-# What is it for?
-
-Simplify JPA access by removing boilerplate code and introduce higher level of abstraction. Thanks to Spring Data we can focus on business value.
 
 # Example Model
 
@@ -176,25 +174,54 @@ public class Product {
  
 }
 ```
-# Pure JPA CRUD example
+
+## Database schema
+
+No need if ```hibernate.hbm2ddl.auto='create-drop'```.
+ 
+```sql
+CREATE TABLE `Product` (
+  `id` int(11) unsigned NOT NULL,
+  `name` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+```
+
+# Pure JPA
 
 **DAO**
 
 ```java
 @Component
-public class ProductDao {
- 
-    @PersistenceContext
-    private EntityManager em;
- 
-    public void persist(Product product) {
-        em.persist(product);
-    }
- 
-    public List<Product> findAll() {
-        return em.createQuery("SELECT p FROM Product p").getResultList();
-    }
- 
+public class ProductRepository {
+
+	@PersistenceContext
+	private EntityManager em;
+
+	public Product findById(Integer productId) {
+		return em.find(Product.class, productId);
+	}
+
+	public List<Product> findAll() {
+		return em.createQuery("SELECT p FROM Product p").getResultList();
+	}
+
+	public Product create(Product product) {
+		em.persist(product);
+		return product;
+	}
+
+	public Product update(Product product) {
+		return em.merge(product);
+	}
+
+	public void delete(Integer id) {
+		Product toRemove = findById(id);
+		if (toRemove == null) {
+			throw new RuntimeException("Can't find Product with given id: " + id);
+		}
+		em.remove(toRemove);
+	}
 }
 ```
 
@@ -203,27 +230,137 @@ public class ProductDao {
 ```java
 @Component
 public class ProductService {
- 
-    @Autowired
-    private ProductDao productDao;
- 
-    @Transactional
-    public void add(Product product) {
-        productDao.persist(product);
-    }
-     
-    @Transactional
-    public void addAll(Collection<Product> products) {
-        for (Product product : products) {
-            productDao.persist(product);
-        }
-    }
- 
-    @Transactional(readOnly = true)
-    public List<Product> listAll() {
-        return productDao.findAll();
- 
-    }
- 
+
+	@Autowired
+	private ProductRepository productDao;
+
+	@Transactional(readOnly = true)
+	public List<Product> findAll() {
+		return productDao.findAll();
+	}
+
+	public Product findById(Integer productId) {
+		return productDao.findById(productId);
+	}
+
+	@Transactional
+	public Product save(Product product) {
+		if (product.getId() == null) {
+			return productDao.create(product);
+		} else {
+			return productDao.update(product);
+		}
+	}
+
+	@Transactional
+	public void delete(Integer id) {
+		productDao.delete(id);
+	}
+}
+```
+
+# Spring Data
+
+**What is it for?**
+
+Simplify JPA access by removing boilerplate code and introduce higher level of abstraction. Thanks to Spring Data we can focus on business value.
+
+**Dependency**
+
+
+
+**DAO**
+
+```java
+@Component
+public class ProductRepository {
+
+	@PersistenceContext
+	private EntityManager em;
+
+	public Product findById(Integer productId) {
+		return em.find(Product.class, productId);
+	}
+
+	public List<Product> findAll() {
+		return em.createQuery("SELECT p FROM Product p").getResultList();
+	}
+
+	public Product create(Product product) {
+		em.persist(product);
+		return product;
+	}
+
+	public Product update(Product product) {
+		return em.merge(product);
+	}
+
+	public void delete(Integer id) {
+		Product toRemove = findById(id);
+		if (toRemove == null) {
+			throw new RuntimeException("Can't find Product with given id: " + id);
+		}
+		em.remove(toRemove);
+	}
+}
+```
+
+**Service**
+
+```java
+@Component
+public class ProductService {
+
+	@Autowired
+	private ProductRepository productDao;
+
+	@Transactional(readOnly = true)
+	public List<Product> findAll() {
+		return productDao.findAll();
+	}
+
+	public Product findById(Integer productId) {
+		return productDao.findById(productId);
+	}
+
+	@Transactional
+	public Product save(Product product) {
+		if (product.getId() == null) {
+			return productDao.create(product);
+		} else {
+			return productDao.update(product);
+		}
+	}
+
+	@Transactional
+	public void delete(Integer id) {
+		productDao.delete(id);
+	}
+}
+```
+
+**Application**
+
+```java
+public class App {
+	public static void main(String[] args) {
+
+		ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring-configuration.xml");
+
+		ProductService productService = applicationContext.getBean(ProductService.class);
+
+		Product created = productService.save(new Product(null, "New Tested Product"));
+		System.out.println(productService.findAll());
+
+		created.setName("Modified Product");
+
+		productService.save(created);
+		System.out.println(productService.findAll());
+
+		productService.delete(created.getId());
+
+		System.out.println(productService.findAll());
+
+	}
 }
 ```

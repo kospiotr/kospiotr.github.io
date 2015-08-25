@@ -10,26 +10,6 @@ slideshow: true
 
 # Configuration
 
-**Dependencies**
-
-Add Spring dependencies in ```pom.xml``` :
-
-```xml
-<properties>
-    ...
-    <spring-jdbc.version>3.1.3.RELEASE</spring-jdbc.version>
-</properties>
-
-<dependencies>
-    ...
-    <dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-jdbc</artifactId>
-        <version>${spring-jdbc.version}</version>
-    </dependency>
-</dependencies>
-```
-
 **Install and configure database**
 
 * Database type: MySQL
@@ -63,50 +43,6 @@ For development purposes:
 ```
 
 For more datasources possibilities check: [Datasources](/wiki/datasources.html)
-
-**Logging**
-
-Dependency for Log4j:
-
-```xml
-<dependency>
-    <groupId>log4j</groupId>
-    <artifactId>log4j</artifactId>
-    <version>1.2.17</version>
-</dependency>
-```
-
-Configuration for logging to console + JdbcTemplate in ```log4j.properties```:
-
-```
-# Root logger option
-log4j.rootLogger=INFO, stdout
-
-# Direct log messages to stdout
-log4j.appender.stdout=org.apache.log4j.ConsoleAppender
-log4j.appender.stdout.Target=System.out
-log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
-log4j.appender.stdout.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n
-
-log4j.logger.org.springframework.jdbc.core = TRACE
-```
-
-# What is it for?
-
-Simplify DB access by removing boilerplate code and introduce higher level of abstraction. Thanks to JDBC templates we can focus on business value.
-
-|   Action                                                     |   Spring     |   You    |
-| ------------------------------------------------------------ |:------------:| --------:|
-|   Define connection parameters.                              |              |   X      |
-|   Open the connection.                                       |   X          |          |
-|   Specify the SQL statement.                                 |              |   X      |
-|   Declare parameters and provide parameter values            |              |   X      |
-|   Prepare and execute the statement.                         |   X          |          | 
-|   Set up the loop to iterate through the results (if any).   |   X          |          |
-|   Do the work for each iteration.                            |              |   X      |
-|   Process any exception.                                     |   X          |          | 
-|   Handle transactions.                                       |   X          |          | 
-|   Close the connection, statement and resultset.             |   X          |          |
 
 # Example Model
 
@@ -156,7 +92,7 @@ CREATE TABLE `Employee` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ```
 
-# Pure JDBC CRUD example
+# Pure JDBC
 
 ```java
 import java.sql.Connection;
@@ -316,7 +252,73 @@ public class EmployeeDAOImpl {
 }
 ```
 
-# JDBC templates CRUD example
+# JDBC templates
+
+**What is it for?**
+
+Simplify DB access by removing boilerplate code and introduce higher level of abstraction. Thanks to JDBC templates we can focus on business value.
+
+|   Action                                                     |   Spring     |   You    |
+| ------------------------------------------------------------ |:------------:| --------:|
+|   Define connection parameters.                              |              |   X      |
+|   Open the connection.                                       |   X          |          |
+|   Specify the SQL statement.                                 |              |   X      |
+|   Declare parameters and provide parameter values            |              |   X      |
+|   Prepare and execute the statement.                         |   X          |          | 
+|   Set up the loop to iterate through the results (if any).   |   X          |          |
+|   Do the work for each iteration.                            |              |   X      |
+|   Process any exception.                                     |   X          |          | 
+|   Handle transactions.                                       |   X          |          | 
+|   Close the connection, statement and resultset.             |   X          |          |
+
+**Dependencies**
+
+Add Spring dependencies in ```pom.xml``` :
+
+```xml
+<properties>
+    ...
+    <spring-jdbc.version>3.1.3.RELEASE</spring-jdbc.version>
+</properties>
+
+<dependencies>
+    ...
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-jdbc</artifactId>
+        <version>${spring-jdbc.version}</version>
+    </dependency>
+</dependencies>
+```
+
+**Logging**
+
+Dependency for Log4j:
+
+```xml
+<dependency>
+    <groupId>log4j</groupId>
+    <artifactId>log4j</artifactId>
+    <version>1.2.17</version>
+</dependency>
+```
+
+Configuration for logging to console + JdbcTemplate in ```log4j.properties```:
+
+```
+# Root logger option
+log4j.rootLogger=INFO, stdout
+
+# Direct log messages to stdout
+log4j.appender.stdout=org.apache.log4j.ConsoleAppender
+log4j.appender.stdout.Target=System.out
+log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
+log4j.appender.stdout.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n
+
+log4j.logger.org.springframework.jdbc.core = TRACE
+```
+
+**DAO**
 
 ```java
 import java.sql.ResultSet;
