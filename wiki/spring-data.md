@@ -322,7 +322,7 @@ public class ProductService {
 }
 ```
 
-**Custom by property
+**Custom by property**
 
 ```java
 public interface ProductRepository extends JpaRepository<Product, Integer> {

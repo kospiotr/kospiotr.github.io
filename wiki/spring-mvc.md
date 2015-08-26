@@ -272,6 +272,300 @@ public class SimplePageController {
 * ```InternalResourceViewResolver``` resolves ```SimplePage``` as ```/WEB-INF/jsp/SimplePage.jsp```
 * ```Model``` is prepared in Controller and used then in the view.
 
+# Expression Language
+
+**EL Property Access**
+
+Expression language syntax is ```${name}```.
+Nested object: ```${firstObj.secondObj}```
+
+**Collection Access Operator**
+
+Reference to the collection: ```${myList[1]} and ${myList[“1”]} ```
+Nested collection: ```${myMap[myList[1]]}```
+
+**JSP EL Arithmetic Operators**
+
+Provided for simple calculations in EL expressions: ```+```, ```-```, ```*```, ```/``` or ```div```, ```%``` or ```mod```.
+
+**JSP EL Logical Operators**
+
+They are ```&&``` (and), ```||``` (or) and ```!``` (not).
+
+**JSP EL Relational Operators**
+
+They are ```==``` (eq), ```!=``` (ne), ```<``` (lt), ```>``` (gt), ```<=``` (le) and ```>=``` (ge).
+
+
+# Tags
+
+## Core tags
+
+**Full documentation**
+
+http://docs.oracle.com/javaee/5/jstl/1.1/docs/tlddocs/index.html
+
+**Configuration**
+
+```html
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+```
+
+**Out**
+
+```html
+<c:out value="${'<tag> , &'}"/>
+```
+
+**Set**
+
+```html
+<c:set var="salary" scope="session" value="${2000*2}"/>
+<c:out value="${salary}"/>
+```
+
+**Remove**
+
+```html
+<c:set var="salary" scope="session" value="${2000*2}"/>
+<p>Before Remove Value: <c:out value="${salary}"/></p>
+<c:remove var="salary"/>
+<p>After Remove Value: <c:out value="${salary}"/></p>
+```
+
+**If**
+
+```html
+<c:set var="salary" scope="session" value="${2000*2}"/>
+<c:if test="${salary > 2000}">
+   <p>My salary is: <c:out value="${salary}"/><p>
+</c:if>
+```
+
+**Choose, When, Otherwise**
+
+```html
+<c:set var="salary" scope="session" value="${2000*2}"/>
+<p>Your salary is : <c:out value="${salary}"/></p>
+<c:choose>
+    <c:when test="${salary <= 0}">
+       Salary is very low to survive.
+    </c:when>
+    <c:when test="${salary > 1000}">
+        Salary is very good.
+    </c:when>
+    <c:otherwise>
+        No comment sir...
+    </c:otherwise>
+</c:choose>
+```
+
+**forEach**
+
+```html
+<c:forEach var="i" begin="1" end="5">
+   Item <c:out value="${i}"/><p>
+</c:forEach>
+```
+
+## Spring Form
+
+This tag renders an HTML 'form' tag and exposes a binding path to inner tags for binding. It puts the command object in the PageContext so that the command object can be accessed by inner tags. All the other tags in this library are nested tags of the form tag.
+
+**Configuration**
+
+```html
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+```
+
+**Form**
+
+```html
+<form:form commandName="user">
+    <table>
+        <tr>
+            <td>First Name:</td>
+            <td><form:input path="firstName" /></td>
+        </tr>
+        ...
+    </table>
+</form:form>
+```
+
+**Input**
+
+```
+<form:input path="firstName" />
+```
+
+**Checkbox**
+
+```html
+<td>
+    Quidditch: <form:checkbox path="interests" value="Quidditch"/>
+    Herbology: <form:checkbox path="interests" value="Herbology"/>
+    Defence Against the Dark Arts: <form:checkbox path="interests" value="Defence Against the Dark Arts"/>
+</td>
+```
+
+**Checkboxes**
+
+```html
+<form:checkboxes path="preferences.interests" items="${interestList}"/>
+```
+
+**Radiobutton**
+
+```html
+<tr>
+    <td>Sex:</td>
+    <td>
+        Male: <form:radiobutton path="sex" value="M"/> <br/>
+        Female: <form:radiobutton path="sex" value="F"/>
+    </td>
+</tr>
+```
+
+**Radiobuttons**
+
+```html
+<tr>
+    <td>Sex:</td>
+    <td><form:radiobuttons path="sex" items="${sexOptions}"/></td>
+</tr>
+```
+
+**Password**
+
+```html
+<tr>
+    <td>Password:</td>
+    <td>
+        <form:password path="password" value="^76525bvHGq" showPassword="true" />
+    </td>
+</tr>
+```
+
+**Select**
+
+Multiselect UI controller:
+
+```html
+<tr>
+    <td>Skills:</td>
+    <td><form:select path="skills" items="${skills}"/></td>
+</tr>
+```
+
+**Option**
+
+Singleselect UI controller:
+
+```html
+<tr>
+    <td>House:</td>
+    <td>
+        <form:select path="house">
+            <form:option value="Gryffindor"/>
+            <form:option value="Hufflepuff"/>
+            <form:option value="Ravenclaw"/>
+            <form:option value="Slytherin"/>
+        </form:select>
+    </td>
+</tr>
+```
+
+**Options**
+
+```html
+<tr>
+    <td>Country:</td>
+    <td>
+        <form:select path="country">
+            <form:option value="-" label="--Please Select"/>
+            <form:options items="${countryList}" itemValue="code" itemLabel="name"/>
+        </form:select>
+    </td>
+</tr>
+```
+
+**Textarea**
+
+```html
+<tr>
+    <td>Notes:</td>
+    <td><form:textarea path="notes" rows="3" cols="20" /></td>
+    <td><form:errors path="notes" /></td>
+</tr>
+```
+
+**Hidden**
+
+```html
+<form:hidden path="house" />
+```
+
+**Errors**
+
+```html
+<form:form>
+
+    <form:errors path="*"/>
+    
+    <table>
+        <tr>
+            <td>First Name:</td>
+            <td><form:input path="firstName" /></td>
+            <td><form:errors path="firstName" /></td>
+        </tr>
+        
+        ...
+
+    </table>
+</form:form>
+```
+
+## Spring Security
+
+**Configuration**
+
+```html
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+```
+
+**Authorize**
+
+
+```hasRole``` :
+
+```html
+<sec:authorize access="hasRole('supervisor')">
+
+This content will only be visible to users who have the "supervisor" authority in their list of <tt>GrantedAuthority</tt>s.
+
+</sec:authorize>
+```
+
+```hasPermission``` :
+
+```html
+<sec:authorize access="hasPermission(#domain,'read') or hasPermission(#domain,'write')">
+
+This content will only be visible to users who have read or write permission to the Object found as a request attribute named "domain".
+
+</sec:authorize>
+```
+
+```url`` :
+
+```html
+<sec:authorize url="/admin">
+
+This content will only be visible to users who are authorized to send requests to the "/admin" URL.
+
+</sec:authorize>
+```
+
 # Supported methods argument types
 
 Full list can be found here: [http://docs.spring.io/spring/docs/current/spring-framework-reference/html/mvc.html#mvc-ann-arguments](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/mvc.html#mvc-ann-arguments)
@@ -313,3 +607,8 @@ public class SimplePageController {
 
 Try: ```/simplePage.html?name=sampleName``` 
 
+# Validation
+
+# Localization
+
+# Customize error pages
