@@ -609,6 +609,42 @@ Try: ```/simplePage.html?name=sampleName```
 
 # Validation
 
+**Add JSR-330 dependencies**
+
+```xml
+<dependency>
+    <groupId>org.hibernate</groupId>
+    <artifactId>hibernate-validator</artifactId>
+    <version>5.1.3.Final</version>
+</dependency>
+```
+
+**View**
+
+```html
+<form:errors path="name"/>
+```
+
+**Controller**
+
+```java
+@RequestMapping(value = "/simplePage.html", method = RequestMethod.POST)
+public String getPage(@Valid @ModelAttribute("user") User user, BindingResult bindingResult, Model model) {
+    logger.info("Saving: " + user);
+    logger.info("Has errors: " + bindingResult.hasErrors());
+    if (bindingResult.hasErrors()) {
+        return "user";
+    } else {
+        User createdUser = userRepository.add(user);
+        return "redirect:user.html?id=" + createdUser.getId();
+    }
+}
+```
+
 # Localization
 
+...
+
 # Customize error pages
+
+...
