@@ -621,9 +621,19 @@ Try: ```/simplePage.html?name=sampleName```
 
 **View**
 
+All messages:
+
+```html
+<form:errors path="*"/>
+```
+
+For particular field:
+
 ```html
 <form:errors path="name"/>
 ```
+
+Mind that ```<form:error/>``` tag must be inside ```<form:form/>``` tag.
 
 **Controller**
 
@@ -638,6 +648,60 @@ public String getPage(@Valid @ModelAttribute("user") User user, BindingResult bi
         User createdUser = userRepository.add(user);
         return "redirect:user.html?id=" + createdUser.getId();
     }
+}
+```
+
+# REST services
+
+**Marshaller/Unmarshaller dependencies**
+
+```xml
+<dependency>
+    <groupId>com.fasterxml.jackson.core</groupId>
+    <artifactId>jackson-databind</artifactId>
+    <version>2.5.3</version>
+</dependency>
+```
+
+**Controller**
+
+```java
+@RestController
+@RequestMapping("/rest/loan")
+public class LoanRestController {
+
+	private Logger logger = Logger.getLogger(LoanRestController.class.getName());
+
+	@Autowired
+	private LoanService loanService;
+
+	@RequestMapping(method = RequestMethod.GET)
+	public List<Loan> findAll() {
+		return loanService.findAllLoans();
+	}
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	public Loan getById(@PathVariable("id") Integer id) {
+		return loanService.getById(id);
+	}
+
+	@RequestMapping(method = RequestMethod.POST)
+	public Loan create(@RequestBody Loan loan) {
+		loan.setId(null);
+		return loanService.save(loan);
+	}
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	public Loan put(@PathVariable("id") Integer id, @RequestBody Loan loan) {
+		loan.setId(id);
+		return loanService.save(loan);
+	}
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	public void delete(@PathVariable("id") Integer id) {
+		loanService.delete(id);
+	}
+
 }
 ```
 
