@@ -868,6 +868,22 @@ To be able to use annotations you need to add to the configuration following dir
 <context:annotation-config/>
 ```
 
+Where schema loaction is:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+...
+
+```
+
 ##Autowiring
 
 As mentioned [before](/wiki/spring-framework-core.html#autowiring), autowiring can be configured using annotations.
