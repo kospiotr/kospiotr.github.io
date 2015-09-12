@@ -89,6 +89,33 @@ public void testMain() {
     assertThat(dummyList).containsOnly("a","c","b");
 }
 ```
+#AssertJ
+Dependency:
+
+```xml
+<dependency>
+  <groupId>org.assertj</groupId>
+  <artifactId>assertj-core</artifactId>
+  <!-- use 3.1.0 for Java 8 projects -->
+  <version>2.2.0</version>
+  <scope>test</scope>
+</dependency>
+```
+
+Import:
+
+```java
+import static org.assertj.core.api.Assertions.*;
+```
+
+Use:
+
+```java
+public void testMain() {
+    List<String> dummyList = Arrays.asList("a","b","c");
+    assertThat(dummyList).containsOnly("a","c","b");
+}
+```
 
 Reference:
 
