@@ -93,3 +93,21 @@ shift + F11 - browse bookmarks
 Scratches:
 ctrl + shift + alt - create scratches
 ctrl + shift + i - inspection
+
+MockitoJUnit Template:
+
+```java
+import org.junit.*;
+import org.junit.runner.RunWith;
+import org.mockito.*;
+import org.mockito.runners.MockitoJUnitRunner;
+
+import static org.junit.Assert.*;
+import static org.mockito.BDDMockito.*;
+import static org.hamcrest.CoreMatchers.*;
+
+@RunWith( MockitoJUnitRunner.class )
+public class ${NAME}{
+  ${BODY}
+}
+```
