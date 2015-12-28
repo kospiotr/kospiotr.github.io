@@ -6,7 +6,7 @@ toc: false
 editurl: wiki/intellij-idea.md
 ---
 # Installation
-```sudo tar -xvf <intellij.tar> -C /opt/```
+```sudo tar -xvf idea* -C /opt/```
 
 # Shortcuts
 
