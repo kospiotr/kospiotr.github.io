@@ -6,7 +6,10 @@ toc: false
 editurl: wiki/intellij-idea.md
 ---
 # Installation
-```sudo tar -xvf idea* -C /opt/```
+```
+sudo tar -xvf idea* -C /opt/
+Run idea.sh from the bin subdirectory.
+```
 
 # Shortcuts
 
