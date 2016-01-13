@@ -56,8 +56,11 @@ Source: [http://stackoverflow.com/a/5785618/276948](http://stackoverflow.com/a/5
 # Branching
 
  * ```git branch -a``` - display branches
+ * ```git branch --merged``` - display only merged branches
+ * ```git branch --no-merged``` - display only no merged branches
  * ```git branch -df <branchName>``` - force to delete branch locally
  * ```git push origin --delete <branchName>``` - deletes branch remotelly
+ * ```git pull -a --prune``` - prunes all local branches
 
 #Certificates
 ##Generate private / public keys
