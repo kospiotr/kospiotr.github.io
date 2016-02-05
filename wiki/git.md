@@ -21,7 +21,7 @@ editurl: wiki/git.md
  * ```git checkout``` discard changes in working directory
  * ```git reset --hard``` - all changes will be reverted
  * ```git clean -df``` - clean all untracked directories and files
- * ```git branch | grep -v "master" | xargs git branch -D ``` - removes all branchces except master and current
+ * ```git branch | grep -v "master" | xargs git branch -d ``` - removes all branchces except master and current
 
 # Excluding files from repository
   Reference: [http://git-scm.com/docs/gitignore](http://git-scm.com/docs/gitignore)
