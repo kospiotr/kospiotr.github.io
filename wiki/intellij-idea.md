@@ -27,6 +27,7 @@ Navigating:
 * `ctrl + shift + i` - object definition popup
 * `shift + ESC` - close last non center panel
 * `ctrl + F12` - file structure
+* `alt + F12` - terminal
 
 Editing:
 
