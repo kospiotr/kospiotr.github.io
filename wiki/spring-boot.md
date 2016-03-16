@@ -7,6 +7,8 @@ editurl: wiki/spring-boot.md
 ---
 
 # Unix launch script
+
+```bash
 #!/bin/bash
 
 CMD="$1"
@@ -102,3 +104,4 @@ case "$CMD" in
 esac
 
 exit 0
+```
