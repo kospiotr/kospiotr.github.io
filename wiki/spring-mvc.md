@@ -3,7 +3,7 @@ layout: wiki
 title: Spring Framework MVC
 comments: false
 toc: true
-editurl: wiki/spring-framework-mvc.md
+editurl: wiki/spring-mvc.md
 res: ../resources/wiki/spring
 slideshow: true
 ---
