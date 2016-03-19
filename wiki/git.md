@@ -6,7 +6,7 @@ toc: true
 editurl: wiki/git.md
 ---
 
-#Basic commands
+# Basic commands
 
  * ```git init``` - Init local repo
  * ```git status``` - displays status of the repository
@@ -63,28 +63,21 @@ Source: [http://stackoverflow.com/a/5785618/276948](http://stackoverflow.com/a/5
  * ```git push origin --delete <branchName>``` - deletes branch remotelly
  * ```git pull -a --prune``` - prunes all local branches
 
-#Certificates
-##Generate private / public keys
+# Certificates
+## Generate private / public keys
 
 ```
-Generating public/private rsa key pair.
-Enter file in which to save the key (//.ssh/id_rsa): C:\Users\Piotr\.ssh\id_rsa
-Enter passphrase (empty for no passphrase):
-Enter same passphrase again:
-Your identification has been saved in C:\Users\Piotr\.ssh\id_rsa.
-Your public key has been saved in C:\Users\Piotr\.ssh\id_rsa.pub.
-The key fingerprint is:
-84:ea:b5:95:bd:a6:e9:73:83:9d:34:af:f7:15:04:a7 kospiotr@tlen.pl
+ssh-keygen
 ```
 
 To use ssh with remote repositories you need to publish your public key to this services. It can be localized here:
 
 ```bash
-C:\>clip <  C:\Users\Piotr\.ssh\id_rsa.pub
+clip <  ~\.ssh\id_rsa.pub
 ```
-#Git tools
+# Git tools
 
-##Smartgit
+## Smartgit
 [SmartGit] is a graphical Git and Mercurial client. It runs on Linux, Mac OS X (10.5 or newer) and Windows (XP or newer).
 
 ```
@@ -93,17 +86,15 @@ sudo apt-get update
 sudo apt-get install smartgithg
 ```
 
-#Github tools
+# Github tools
 * Travis - CI
 * waffle.io - Stories board
 * shields.io - icons
 * coveralls.io - Test Coverage History & Statistics
 
-#External resources
+# External resources
 * [Cheat cheet](../resources/git-cheat-sheet.svg)
 * [Git Recipes - Wlodzimierz Gajda](../resources/books/Git Recipes - Wlodzimierz Gajda.pdf)
 * [http://try.github.io](http://try.github.io)
 * [https://help.github.com/articles/generating-ssh-keys](https://help.github.com/articles/generating-ssh-keys)
 * Pro GIT book [pdf](https://github.s3.amazonaws.com/media/progit.en.pdf) [epub](https://github.s3.amazonaws.com/media/progit.epub)
-
-
