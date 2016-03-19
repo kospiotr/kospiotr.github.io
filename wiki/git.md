@@ -64,6 +64,7 @@ Source: [http://stackoverflow.com/a/5785618/276948](http://stackoverflow.com/a/5
  * ```git pull -a --prune``` - prunes all local branches
 
 # Certificates
+
 ## Generate private / public keys
 
 ```
@@ -78,6 +79,7 @@ clip <  ~\.ssh\id_rsa.pub
 # Git tools
 
 ## Smartgit
+
 [SmartGit] is a graphical Git and Mercurial client. It runs on Linux, Mac OS X (10.5 or newer) and Windows (XP or newer).
 
 ```
