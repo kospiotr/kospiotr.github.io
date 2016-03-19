@@ -24,6 +24,7 @@ editurl: wiki/git.md
  * ```git branch | grep -v "master" | xargs git branch -d ``` - removes all branchces except master and current
 
 # Excluding files from repository
+
   Reference: [http://git-scm.com/docs/gitignore](http://git-scm.com/docs/gitignore)
 To exclude certains directories and files you need to place them in ```.gitignore``` file. Here you can find some examples for popular project structures: [https://github.com/github/gitignore](https://github.com/github/gitignore)
 
@@ -32,6 +33,7 @@ To ignore uncommitted changes in a file that is already tracked, use ```git upda
 To stop tracking a file that is currently tracked, use ```git rm --cached```.
 
 # Push to all git remotes with the one command
+
 Create an all remote with several repo URLs to its name:
 
 ```
@@ -76,6 +78,7 @@ To use ssh with remote repositories you need to publish your public key to this 
 ```bash
 clip <  ~\.ssh\id_rsa.pub
 ```
+
 # Git tools
 
 ## Smartgit
@@ -89,12 +92,14 @@ sudo apt-get install smartgithg
 ```
 
 # Github tools
+
 * Travis - CI
 * waffle.io - Stories board
 * shields.io - icons
 * coveralls.io - Test Coverage History & Statistics
 
 # External resources
+
 * [Cheat cheet](../resources/git-cheat-sheet.svg)
 * [Git Recipes - Wlodzimierz Gajda](../resources/books/Git Recipes - Wlodzimierz Gajda.pdf)
 * [http://try.github.io](http://try.github.io)
