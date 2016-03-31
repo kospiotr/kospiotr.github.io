@@ -116,9 +116,9 @@ public class ${NAME}{
 }
 ```
 
-```java
 ##JUnit4 Test Method
 
+```java
 @org.junit.Test
 public void should${NAME}() throws Exception {
   ${BODY}
