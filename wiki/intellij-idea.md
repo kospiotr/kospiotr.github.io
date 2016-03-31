@@ -48,63 +48,77 @@ Clean up on save (reformat code, organize imports):
 7. `File -> Settings -> Keymap -> right click on the macro ->dd Keyboard Shortcut ->et the keyboard shortcut to `ctrl + s`. 
 
 Notes from workshops:
-* alt + number
-* ctrl + e - last visited places
-* ctrl + shift + e - last edited places
-* shift + escape - closes last tool window
-* ctrl + shift + f12 - close all tool windows
-* ctrl + shift + arrow - in tool window resize tool window, doesnt work in terminal (must remove capturing)
-* ctrl + shift + a - run action
-* ctrl + n - find file by class name
-* ctrl + shift + n - find file by file name
-* ctrl + shift + alt + n - find by symbol
-* shift + shift - find all above
-* alt + shift + F9 - debug
-* ctrl + w - expand selection
-* ctrl + shift + w - reduce selection
-* ctrl + space - code completion
-* ctrl + shift + space - smart code completion
+
+* `alt + number`
+* `ctrl + e` - last visited places
+* `ctrl + shift + e` - last edited places
+* `shift + escape` - closes last tool window
+* `ctrl + shift + f12` - close all tool windows
+* `ctrl + shift + arrow` - in tool window resize tool window, doesnt work in terminal (must remove capturing)
+* `ctrl + shift + a` - run action
+* `ctrl + n` - find file by class name
+* `ctrl + shift + n` - find file by file name
+* `ctrl + shift + alt + n` - find by symbol
+* `shift + shift` - find all above
+* `alt + shift + F9` - debug
+* `ctrl + w` - expand selection
+* `ctrl + shift + w` - reduce selection
+* `ctrl + spac`e - code completion
+* `ctrl + shift + space` - smart code completion
 
 When changing method:
-* tab - replaces current method
-* enter - appends current method
-* ctrl + shift + enter - encloses sentence in brackets
-* ctrl + . - closes sentence and adds dot on the end
-* ctrl + shift + arrow (up / down) - move properly class members
-* shift + enter - add enter after current line and goes to that line
-* ctrl + enter - add enter after current line but stays on that line
-* ctrl + d - duplicates line or selected line
-* ctrl + y - deletes current line
-* alt + insert - generate
-* ctrl + ~ - quick list
+
+* `tab` - replaces current method
+* `enter` - appends current method
+* `ctrl + shift + enter` - encloses sentence in brackets
+* `ctrl + .` - closes sentence and adds dot on the end
+* `ctrl + shift + arrow (up / down)` - move properly class members
+* `shift + enter` - add enter after current line and goes to that line
+* `ctrl + enter` - add enter after current line but stays on that line
+* `ctrl + d` - duplicates line or selected line
+* `ctrl + y` - deletes current line
+* `alt + insert` - generate
+* `ctrl + ~` - quick list
 
 Debugger:
-* shift + F7 - smart step into
-* ctrl + alt + 9 - force run to cursor
-* alt + F8 - evaluate expression
+
+* `shift + F7` - smart step into
+* `ctrl + alt + 9` - force run to cursor
+* `alt + F8` - evaluate expression
 
 Bookmarks:
-* F11 - toogle bookmarks
-* shift + F11 - browse bookmarks
+
+* `F11` - toogle bookmarks
+* `shift + F11` - browse bookmarks
 
 Scratches:
-* ctrl + shift + alt - create scratches
-* ctrl + shift + i - inspection
 
-MockitoJUnit Template:
+* `ctrl + shift + alt` - create scratches
+* `ctrl + shift + i` - inspection
+
+# File and Code Templates
+
+## JUnit4 Test Class
 
 ```java
-import org.junit.*;
-import org.junit.runner.RunWith;
 import org.mockito.*;
+import org.junit.runner.RunWith;
 import org.mockito.runners.MockitoJUnitRunner;
+import static org.assertj.core.api.Assertions.assertThat;;
 
-import static org.junit.Assert.*;
-import static org.mockito.BDDMockito.*;
-import static org.hamcrest.CoreMatchers.*;
-
-@RunWith( MockitoJUnitRunner.class )
+@RunWith(MockitoJUnitRunner.class)
 public class ${NAME}{
+
+  @InjectMocks
+  private ${CLAS_NAME} instance;
+  
   ${BODY}
 }
 ```
+
+##JUnit4 Test Method
+
+@org.junit.Test
+public void should${NAME}() throws Exception {
+  ${BODY}
+}
