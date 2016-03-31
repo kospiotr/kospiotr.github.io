@@ -116,7 +116,7 @@ public class ${NAME}{
 }
 ```
 
-##JUnit4 Test Method
+## JUnit4 Test Method
 
 ```java
 @org.junit.Test
