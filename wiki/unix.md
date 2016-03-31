@@ -19,6 +19,7 @@ editurl: wiki/unix.md
 * `kill $(ps aux | grep 'chrome' | awk '{print $2}')` - kill all processess with chrome phrase
 * `python -m SimpleHTTPServer 8000` - very light HTTP server with Python
 * `netstat -tulpn | grep 8080` - return process which process listen on port 8080
+* `diff -bur dir1 dir2` - differs content of two directories
 * ` ln -s target_path link_path` - create symbolic link
 * `find /media/kospiotr/8765-4321/DCIM/105GOPRO -type f -mtime -20 -exec cp -p "{}" /tmp/photos \;` - copy files newer than 20 days from my GoPro to ```/tmp/photos``` directory with preserved modification timestamp
 * `find /run/user/1000/gvfs/mtp:host=%5Busb%3A003%2C003%5D/Pamięć wewnętrzna/DCIM/Camera -type f -mtime -20 -exec cp -p "{}" /home/kospiotr/Obrazy/CG \;` - copy files as above from OnePlus camera 
