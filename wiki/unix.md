@@ -59,7 +59,7 @@ java -version
 javac -version
 ```
 
-##Maven
+## Maven
 
 ```
 wget http://apache.mirror.anlx.net/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz && \
@@ -91,6 +91,7 @@ sudo npm install -g grunt-cli
 ```bash
 sudo apt-get install vlc browser-plugin-vlc
 ```
+
 # Elementary OS
 
 * http://www.elementarynow.com/
