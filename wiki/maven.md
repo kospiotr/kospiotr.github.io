@@ -468,3 +468,21 @@ gpg2 --list-secret-keys
 gpg2 --keyserver hkp://pool.sks-keyservers.net --send-keys C6EED57A
 ```
 
+## Prepare project
+
+## Perform release, deploy, publish
+
+Perform release and deploy artifact to OSSRH with Maven Release Plugin
+
+```
+mvn release:clean release:prepare
+mvn release:perform
+```
+
+Publish release to Maven Central repository
+
+- Go to https://oss.sonatype.org.
+- Login with your credentials.
+- Locate and Examine Your Staging Repository.
+- Close repository in order to trigger the evaluations of the components against the requirements.
+- If everything went without issues, click Release button. This will move the components into the release repository of OSSRH where it will be synced to the Central Repository.
