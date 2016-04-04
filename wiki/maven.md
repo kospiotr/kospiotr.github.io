@@ -455,8 +455,10 @@ Import existing keys:
 
 ```
 wget http://.../public.asc
-gpg --allow-secret-key-import --import secret.asc
+gpg --import public.asc
 wget http://.../secret.asc
+gpg --allow-secret-key-import --import secret.asc
+
 ```
 
 Generate and distribute public key to public key servers:
