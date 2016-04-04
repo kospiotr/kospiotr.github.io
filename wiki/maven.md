@@ -483,7 +483,7 @@ mvn release:perform
 
 Publish release to Maven Central repository
 
-- Go to https://oss.sonatype.org.
+- Go to https://oss.sonatype.org .
 - Login with your credentials.
 - Locate and Examine Your Staging Repository.
 - Close repository in order to trigger the evaluations of the components against the requirements.
