@@ -434,3 +434,37 @@ Reference: [http://maven.apache.org/surefire/maven-surefire-plugin/examples/skip
 
  * ```mvn install -DskipTests``` - skip executing tests
  * ```mvn install -Dmaven.test.skip=true``` - skip compiling tests
+
+# Release to MAven Central repository
+
+## Prepare environment
+
+### Setup GnuPG
+
+In order to sign package GnuPG library is required.
+
+#### Install GnuPG
+
+```
+sudo apt-get install gnupg2
+```
+
+#### Generate or import keys
+
+Import existing keys:
+
+```
+wget http://.../public.asc
+gpg --allow-secret-key-import --import secret.asc
+wget http://.../secret.asc
+```
+
+Generate and distribute public key to public key servers:
+
+```
+gpg --gen-key
+gpg2 --list-keys 
+gpg2 --list-secret-keys
+gpg2 --keyserver hkp://pool.sks-keyservers.net --send-keys C6EED57A
+```
+
