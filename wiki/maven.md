@@ -314,6 +314,7 @@ values ('unit_test_varchar',123,'1977-01-30-10.11.30.766',null);
 * Hibernate dialect: ```org.hibernate.dialect.DerbyDialect```
 
 # Deployment
+
 ## To local Tomcat
 
 See: [Install and configure Tomcat server]({{site.baseurl}}/wiki/tomcat.html)
@@ -360,8 +361,9 @@ Now we need to set up credentials to the local server outside the project config
 
 ```mvn tomcat7:deploy```
 
-#Testing
-##Running \*IT tests in a separated phase
+# Testing
+
+## Running \*IT tests in a separated phase
 
 ```xml
 <plugin>
@@ -394,7 +396,7 @@ Now we need to set up credentials to the local server outside the project config
 
 ```mvn verify```
 
-##Code coverage
+## Code coverage
 
 ```xml
 <build>
@@ -429,7 +431,8 @@ verify
 test-compile org.jacoco:jacoco-maven-plugin:prepare-agent surefire:test org.jacoco:jacoco-maven-plugin:report
 ```
 
-##Skipping tests
+## Skipping tests
+
 Reference: [http://maven.apache.org/surefire/maven-surefire-plugin/examples/skipping-test.html](http://maven.apache.org/surefire/maven-surefire-plugin/examples/skipping-test.html)
 
  * ```mvn install -DskipTests``` - skip executing tests
