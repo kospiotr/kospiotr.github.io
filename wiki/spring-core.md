@@ -8,9 +8,8 @@ res: ../resources/wiki/spring
 slideshow: true
 ---
 
-#Introduction
-##History
-###Software application evolution
+## History
+### Software application evolution
 
 **Because of:**
 Human needs (laziness) -> process automation
@@ -26,7 +25,7 @@ Human needs (laziness) -> process automation
 
 <center>![application size](/img/size_of_large_projects.jpg)</center>
 
-###Enterprise Applications
+### Enterprise Applications
 
 Enterprise applications is a software mostly for business that uses standarized mechanisms like:
 
@@ -43,7 +42,7 @@ Compare:
 * personal/company website, blog, game
 * banking transaction system, powerplant management system
 
-###Early Java Enterprise Edition
+### Early Java Enterprise Edition
 Before Spring Framework, Enterprise applications was being developed using JavaEE (EJB2). Some major drawbacks:
 
  * environment polluted logic (had to extends abstract classes, implement JavaEE interfaces)
@@ -60,7 +59,7 @@ Before Spring Framework, Enterprise applications was being developed using JavaE
 ![JEE]({{page.res}}/ejb-development.png)
 </center>
 
-###The book
+### The book
 Rod Johnson between 1997 and 2002 was dealing with J2EE applications as a consultant. He identified many problems during his carrere and described them in his book "Expert One-on-One J2EE Design and Development".
 
 <center>
@@ -71,11 +70,11 @@ Rod Johnson between 1997 and 2002 was dealing with J2EE applications as a consul
 
 He published there analysys of the problems with the code that implements framework *Interface21* which was demonstrating how to solve those problems. This framework we would call today injection container.
 
-###How to write good software?
+### How to write good software?
 
 Reference: [Dependency injection?](dependency-injection.html)
 
-###Versions
+### Versions
 
 <center>
 ![Spring Logo](http://upload.wikimedia.org/wikipedia/de/9/9d/Spring_Logo.png)
@@ -91,7 +90,7 @@ Reference: [Dependency injection?](dependency-injection.html)
 
 Very stable and frequent release plan.
 
-##Mission
+## Mission
 
 * The main aim is to **simplifying application development**.
 * Spring support application development on all levels / layers
@@ -106,7 +105,7 @@ Very stable and frequent release plan.
 * Spring supports in writing high quality software
 * Spring supports in writing testable code
 
-##Construction
+## Construction
 Spring is made of the following modules:
 
 <center>
@@ -115,7 +114,7 @@ Spring is made of the following modules:
 
 [http://docs.spring.io/spring/docs/4.0.3.RELEASE/spring-framework-reference/htmlsingle/#overview-modules](http://docs.spring.io/spring/docs/4.0.3.RELEASE/spring-framework-reference/htmlsingle/#overview-modules)
 
-#Inversion of Control container
+# Inversion of Control container
 Central to the Spring Framework is its Inversion of Control (IoC) container, which provides a consistent means of configuring and managing Java objects using **reflection**. 
 
 The container is responsible for managing object lifecycles of specific objects:
@@ -124,7 +123,7 @@ The container is responsible for managing object lifecycles of specific objects:
  * configuring these objects by wiring them together,
  * calling their initialization methods.
 
-##Purpose
+## Purpose
 Without special container, components initilaisation may look like as follow:
 
 ```java
@@ -149,7 +148,7 @@ Above code is boilerplate and hard to maintain. How above code would look like f
 
 <center>![Huge dependency graph]({{page.res}}/sample-dependency-graph.png)</center>
 
-##Bean Factory
+## Bean Factory
 Bean Factory is a core element of the Spring Inversion of Control container that creates requested objects and resolves dependencies by the given configuration:
 
 <center>![Huge dependency graph]({{page.res}}/bean-factory.png)</center>
@@ -201,7 +200,7 @@ Objects can be obtained by means of either dependency lookup or dependency injec
 
 * **Dependency injection** is a pattern where the container passes objects by name to other objects, via either constructors, properties, or factory methods.
 
-##ApplicationContext
+## ApplicationContext
 
 `ApplicationContext` extends `BeanFactory` and adds some extra features to it.
 
@@ -236,12 +235,12 @@ Then initialisation and configuration changes (simplifies), as ```ApplicationCon
 
 And additionally we have extra features with minimal overhead.
 
-##Beans
+## Beans
 Objects created by the container (`BeanFactory` or `ApplicationContext`) are also called managed objects or beans. Only managed objects can be controlled by Spring (injecting dependencies, lifecycle management).
 
 <center>![Bans vs Object instances]({{page.res}}/beans.png)</center>
 
-##Configuration
+## Configuration
 The container can be configured by **XML files** or **Java classess**.
 
 <center>![Configuration]({{page.res}}/matrix-choose.png)</center>
@@ -251,7 +250,7 @@ These sources of data contain the bean definitions which provide the information
 * Reference: [XML way](/wiki/spring-framework-core.html#xml-based-container-configuration)
 * Reference: [Java way](/wiki/spring-framework-core.html#java-based-container-configuration)
 
-#XML-based container configuration
+# XML-based container configuration
 
 Configuration file `spring-configuration.xml`:
 
@@ -272,7 +271,7 @@ Configuration file `spring-configuration.xml`:
  ApplicationContext ctx = new ClassPathXmlApplicationContext("main.xml","common.xml","rest.xml");
  ```
 
-##Bean declaration
+## Bean declaration
 Simple **bean declaration**:
 
 ```xml
@@ -317,7 +316,7 @@ and multiple beans with the same type are declared as follow:
 BillingService service = ctx.getBean("service", BillingService.class);
 
 ```
-##Factory method
+## Factory method
 Objects can be manually created by other bean via factory method:
 
 **Static Factory method**:
@@ -351,7 +350,7 @@ BillingServiceFactory ruleBillingServiceFactory = new BillingServiceFactory();
 Object ruleBillingService = ruleBillingServiceFactory.createBillingService();
 ```
 
-##Scopes
+## Scopes
 Basic scopes:
 
  * **singleton** - (default) scopes a single bean definition to a single object instance per Spring IoC container.
@@ -441,7 +440,7 @@ BillingService service3 = ctx.getBean(BillingService.class);
 > Constructed BillingService
  ```
 
-##Lifecycle
+## Lifecycle
 Spring helps to mange the lifecycle of the objects. It is possible to perform actions:
 
 * after object has been initialized (after all properties has been set up),
@@ -530,7 +529,7 @@ Lifecycle driven by annotation reference: [Lifecycle with annotations](/wiki/spr
 
 > The most recommended way is using plain configuration, then JSR-330 annotations, and in the end implementing interfaces. Interfaces will tight coupled your code to Spring and annotations bind the code with JSR-330. JSR-330 is pretty common now and this is straightforward convention to configure lifecycle in the application. For libraries development I would suggest using plain configuration.
 
-##Dependency Injection
+## Dependency Injection
 
 **Injecting Value**
 
@@ -640,7 +639,7 @@ Bean reference:
 </bean>
 ```
 
-##Injecting methods
+## Injecting methods
 
 **Modifier (setter)** based injection:
 
@@ -690,7 +689,7 @@ BillingService billingService =
         new BillingService(creditCardProcessor, transactionLogger);
 ```
 
-##Bean definition inheritance
+## Bean definition inheritance
 
 It is possible to inherit bean definition from: 
 
@@ -777,7 +776,7 @@ You can create a Bean definition template which can be used by other child bean 
 
 Will output the same result as above.
 
-##Autowiring
+## Autowiring
 
 By default beans must be configured for wiring manually. There is mechanism which allows for doing this automatically – **autowiring**. 
 
@@ -856,7 +855,7 @@ Result in above cases:
 > Injected TransactionLogger to BillingService
 ```
 
-#Injecting with Annotations
+# Injecting with Annotations
 
 An alternative to XML setups is provided by annotation-based configuration which rely on the bytecode metadata for wiring up components instead of angle-bracket declarations. 
 
@@ -884,7 +883,7 @@ Where schema loaction is:
 
 ```
 
-##Autowiring
+## Autowiring
 
 As mentioned [before](/wiki/spring-framework-core.html#autowiring), autowiring can be configured using annotations.
 
@@ -903,7 +902,7 @@ Components might be tied by following annotations: `@Autowired`, `@Resource`, `@
 Great detailed explination what is the difference can be found in this article: [http://blogs.sourceallies.com/2011/08/spring-injection-with-resource-and-autowired/](http://blogs.sourceallies.com/2011/08/spring-injection-with-resource-and-autowired).
 
 
-##Autowiring with @Inject and @Autowired
+## Autowiring with @Inject and @Autowired
 
 1. Matches by Type
 2. Restricts by Qualifiers (```@Named``` or custom Qualifier annotation)
@@ -988,7 +987,7 @@ public void setTransactionLogger(TransactionLogger transactionLogger) {
 
 Source: [http://stackoverflow.com/questions/7142622/what-is-the-difference-between-inject-and-autowired-in-spring-framework-which](http://stackoverflow.com/questions/7142622/what-is-the-difference-between-inject-and-autowired-in-spring-framework-which)
 
-###Autowiring with @Resource
+### Autowiring with @Resource
 
 1. Matches by property Name
 2. Matches by Type
@@ -1046,7 +1045,7 @@ Result:
 > Constructed TransactionLogger
 ```
 
-###Qualifiers
+### Qualifiers
 
 When using `@Inject` or `@Autowire` annotations the autowiring is done by type. At this point autowiring by name is possible thanks to `@Qualifier`:
 
@@ -1090,7 +1089,7 @@ Result:
 > Constructed TransactionLogger
 ```
 
-##Lifecycle with annotations
+## Lifecycle with annotations
 
 Configuration:
 
@@ -1146,7 +1145,7 @@ Result:
 
 ```
 
-##Component scanning
+## Component scanning
 
 This section describes an option for implicitly detecting the candidate components by scanning the classpath. Candidate components are classes that match against a filter criteria and have a corresponding bean definition registered with the container. This removes the need to use XML to perform bean registration, instead you can use annotations (for example @Component).
 
@@ -1199,7 +1198,7 @@ Reasons to use them :
 > You don't have to write bean definitions in context xml file. Instead annotate classes and use those by autowiring.
 > Specialized annotations help to clearly demarcate application layers (in a standard 3 tiers application).
 
-#Java-based container configuration
+# Java-based container configuration
 
 **ApplicationContext initialization** :
 
@@ -1268,7 +1267,7 @@ public List<ScoringRule> rulesList(RememberRule remberRule,
 
 Just mark class with: ```@ComponentScan(basePackages = {"com.github.kospiotr"})```
 
-#Container Extension Points
+# Container Extension Points
 
 **BeanPostProcessor**:
 
@@ -1413,7 +1412,7 @@ BeanFactoryPostProcessor:
 * `PropertySourcesPlaceholderConfigurer`,
 * `ServletContextPropertyPlaceholderConfigurer`
 
-##Placeholders
+## Placeholders
 See: [System properties vs Environment variables](/wiki/java-standard-edition.html#system-properties-vs-environment-variables)
 
 You use the ```PropertyPlaceholderConfigurer``` to externalize property values. Properties might come from Environment Variables, external file, database or even remote resource like REST payload.
@@ -1490,7 +1489,7 @@ private Environment env;
 dataSource.setPassword(env.getProperty("datasourcePassword"));
 ```
 
-#Testing
+# Testing
 
 * Annotation `@RunWith(SpringJUnit4ClassRunner.class)` makes test class as a manageable component. It allows to inject components.
 
@@ -1537,7 +1536,7 @@ public class BillingServiceTest {
 }
 ```
 
-#References
+# References
 * Spring documentation
 * Koushik
 * Mykyong
