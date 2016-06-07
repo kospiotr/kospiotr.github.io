@@ -3,7 +3,7 @@ layout: wiki
 title: Dependency Injection
 comments: false
 toc: true
-editurl: wiki/di.md
+editurl: wiki/dependency-injection.md
 res: ../resources/wiki/dependency-injection
 slideshow: true
 ---
@@ -61,7 +61,7 @@ public class DisplayActiveUsersWebAction{
 
 Above Web Action object instantiates dependant UsersDao object itself, which means that it satisfies its own dependency. In other words it configures itself.
 
-#What's wrong with direct constructor calls - Inversion of Control motivation
+# What's wrong with direct constructor calls - Inversion of Control motivation
 
 ```java
 public interface BillingService {
@@ -92,7 +92,7 @@ This code poses problems for modularity and testability. In fact this code is no
  * It's also awkward to test what happens when the charge is declined or when the service is unavailable.
  * This method often leads to Spaghetti Monster code.
 
-#Inversion of control principle
+# Inversion of control principle
 The problem with above example is that those dependencies are created directly by the ```RealBillingService```. Instead the ready to use objects should be prepared externally and be delivered to the object that operates on them. 
 
 This object delivery from external place is called ***Inversion of Control*** as control over the object creation has been inverted.
@@ -102,7 +102,7 @@ This object delivery from external place is called ***Inversion of Control*** as
 <blockquote> "Hollywood Principle: Don't call us, we'll call you".</blockquote>
 
 
-#Inversion of control implementations
+# Inversion of control implementations
 
  * Factory pattern
  * Service locator pattern
@@ -115,7 +115,7 @@ This object delivery from external place is called ***Inversion of Control*** as
  * Template method design pattern
  * Strategy design pattern
 
-##Factories
+## Factories
 A simple factory uses static methods to obtain implementation of the given class:
 
 ```java
@@ -204,14 +204,14 @@ This code is clumsy as:
 
 Quality problems will be caught by QA or acceptance tests. That may be sufficient, but we can certainly do better.
 
-##Dependency Injection
+## Dependency Injection
 The core principal is to separate behavior from dependency resolution.
 
 In the example, the ```RealBillingService``` is not responsible for looking up the ```TransactionLog``` and ```CreditCardProcessor```.
 
 Instead, they're passed via **constructor** or **setter**.
 
-###Constructor Injection
+### Constructor Injection
 
 Implementation:
 
@@ -365,14 +365,14 @@ so that it can write logs. Since the class works with the ```ILog``` interface, 
 implement a ```FileLog```, ```MemoryLog``` or a ```DatabaseLog``` & inject this into your class. Any of these
 implementation will work fine as long as they implement the ```ILog``` interface
 
-#DI Frameworks
+# DI Frameworks
 
  * [Spring Framework](http://projects.spring.io/spring-framework/)
  * [Guice](https://code.google.com/p/google-guice/)
  * [Pico Container](http://picocontainer.codehaus.org/)
  * [Weld](http://weld.cdi-spec.org/)
 
-#References
+# References
 
  * [http://martinfowler.com/articles/injection.html](http://martinfowler.com/articles/injection.html)
  * [http://cheap.de/science/inwersja-kontroli-kontenerow-i-wzorzec-dependency-injection](http://cheap.de/science/inwersja-kontroli-kontenerow-i-wzorzec-dependency-injection)
