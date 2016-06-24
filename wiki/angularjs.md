@@ -2,7 +2,7 @@
 layout: wiki
 title: AngularJS
 comments: false
-toc: true
+toc: false
 editurl: wiki/angularjs.md
 ---
 
