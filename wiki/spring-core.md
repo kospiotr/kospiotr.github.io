@@ -221,12 +221,12 @@ Objects can be obtained by means of either dependency lookup or dependency injec
 ```Application Context```:
 
 * *Bean instantiation/wiring*
-* Automatic ```BeanPostProcessor``` registration
-* Automatic ```BeanFactoryPostProcessor``` registration
-* Convenient ```MessageSource``` access (for i18n)
-* ```ApplicationEvent``` publication
+* Automatic```BeanPostProcessor``` registration
+* Automatic```BeanFactoryPostProcessor``` registration
+* Convenient```MessageSource``` access (for i18n)
+*```ApplicationEvent``` publication
 
-Then initialisation and configuration changes (simplifies), as ```ApplicationContext``` is being used more widely:
+Then initialisation and configuration changes (simplifies), as```ApplicationContext``` is being used more widely:
 
 ```java
     public static void main(String[] args) {
@@ -263,7 +263,7 @@ These sources of data contain the bean definitions which provide the information
 
 Configuration file `spring-configuration.xml`:
 
-  ```xml
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -272,13 +272,13 @@ Configuration file `spring-configuration.xml`:
 
     <bean id="ruleBillingService" class="com.github.kospiotr.hellospring.BillingService"/>
 </beans>
-  ```
+```
 
- ApplicationContext initialization `App.java`:
+ApplicationContext initialization `App.java`:
 
- ```java
+```java
  ApplicationContext ctx = new ClassPathXmlApplicationContext("main.xml","common.xml","rest.xml");
- ```
+```
 
 ## Bean declaration
 Simple **bean declaration**:
@@ -289,13 +289,13 @@ Simple **bean declaration**:
 
 **Obtain bean by id**:
 
- ```java
+```java
 BillingService billingService = ctx.getBean("test", BillingService.class);
 ```
 
 **Obtaining bean by type** (if unique bean class is definied in configuration):
 
- ```java
+```java
 BillingService billingService = ctx.getBean(BillingService.class);
 ```
 
@@ -321,7 +321,7 @@ and multiple beans with the same type are declared as follow:
 
 **Obtain bean by alias** is achieved in a same way as by id:
 
- ```java
+```java
 BillingService service = ctx.getBean("service", BillingService.class);
 
 ```
@@ -385,9 +385,9 @@ public class BillingService {
 
 **Singleton** example:
 
- Configuration:
+Configuration:
 
- ```xml
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -397,29 +397,29 @@ public class BillingService {
     <bean id="ruleBillingService" class="com.github.kospiotr.spring.BillingService" 
         scope="singleton"/>
 </beans>
- ```
+```
 
- Application:
+Application:
 
- ```java
+```java
 ApplicationContext ctx = new ClassPathXmlApplicationContext("spring-configuration-singleton.xml");
 
 BillingService service1 = ctx.getBean(BillingService.class);
 BillingService service2 = ctx.getBean(BillingService.class);
 BillingService service3 = ctx.getBean(BillingService.class);
- ```
+```
 
  Result:
 
- ```
+```
 > Constructed BillingService
- ```
+```
  
 **Prototype** example:
 
  Configuration:
 
- ```xml
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -429,25 +429,25 @@ BillingService service3 = ctx.getBean(BillingService.class);
     <bean id="ruleBillingService" class="com.github.kospiotr.spring.BillingService" 
         scope="prototype"/>
 </beans>
- ```
+```
 
  Application:
 
- ```java
+```java
 ApplicationContext ctx = new ClassPathXmlApplicationContext("spring-configuration-singleton.xml");
 
 BillingService service1 = ctx.getBean(BillingService.class);
 BillingService service2 = ctx.getBean(BillingService.class);
 BillingService service3 = ctx.getBean(BillingService.class);
- ```
+```
 
  Result:
 
- ```
+```
 > Constructed BillingService
 > Constructed BillingService
 > Constructed BillingService
- ```
+```
 
 ## Lifecycle
 Spring helps to mange the lifecycle of the objects. It is possible to perform actions:
@@ -482,7 +482,7 @@ Configuration:
 
  Bean:
 
- ```java
+```java
 public class BillingService {
 
     public BillingService() {
@@ -497,7 +497,7 @@ public class BillingService {
         System.out.println("BillingService clean up");
     }
 }
- ```
+```
 
 Lifecycle driven by the **interface** example:
 
@@ -726,7 +726,7 @@ public class Bar {
 
 **Inheritance definition from other bean**
 
-```bar``` bean has been defined as a child of ```foo``` bean by using ```parent``` attribute. The child bean inherits ```message2``` property as is, and overrides ```message1``` property and introduces one more property ```message3```:
+```bar``` bean has been defined as a child of```foo``` bean by using```parent``` attribute. The child bean inherits```message2``` property as is, and overrides```message1``` property and introduces one more property```message3```:
 
 Configuration:
 
@@ -768,7 +768,7 @@ Will result in:
 
 **Inheritance definition from abstrac bean definition**
 
-You can create a Bean definition template which can be used by other child bean definitions without putting much effort. While defining a Bean Definition Template, you should not specify ```class``` attribute and should specify ```abstract``` attribute with a value of ```true``` as shown below:
+You can create a Bean definition template which can be used by other child bean definitions without putting much effort. While defining a Bean Definition Template, you should not specify```class``` attribute and should specify```abstract``` attribute with a value of```true``` as shown below:
 
 ```xml
 <bean id="beanTeamplate" abstract="true">
@@ -904,7 +904,7 @@ As mentioned [before](/wiki/spring-framework-core.html#autowiring), autowiring c
 <bean id="transactionLogger" class="com.github.kospiotr.spring.TransactionLogger"/>
 ```
 
-Mind that above configuration defines beans, however it doesn't say how to inject ```creditCardProcessor``` and ```transactionLogger``` to ```billingService```.
+Mind that above configuration defines beans, however it doesn't say how to inject```creditCardProcessor``` and```transactionLogger``` to```billingService```.
 
 Components might be tied by following annotations: `@Autowired`, `@Resource`, `@Inject`. 
 
@@ -923,28 +923,28 @@ Can mark field, setter or constructor.
 
  Annotation:
 
- ```java
+```java
     @Inject
     public BillingServiceAutowireConstructor(CreditCardProcessor creditCardProcessor, TransactionLogger transactionLogger) {
         this.creditCardProcessor = creditCardProcessor;
         this.transactionLogger = transactionLogger;
         System.out.println("Constructed BillingService, and injected CreditCardProcessor and TransactionLogger");
     }
- ```
+```
 
  Result:
 
- ```
+```
 > Constructed CreditCardProcessor
 > Constructed TransactionLogger
 > Constructed BillingService, and injected CreditCardProcessor and TransactionLogger
- ```
+```
 
 * **Setter**
 
  Annotation:
 
- ```java
+```java
 @Inject
 public void setCreditCardProcessor(CreditCardProcessor creditCardProcessor) {
     System.out.println("Injected CreditCardProcessor to BillingService");
@@ -956,43 +956,43 @@ public void setTransactionLogger(TransactionLogger transactionLogger) {
     System.out.println("Injected TransactionLogger to BillingService");
     this.transactionLogger = transactionLogger;
 }
- ```
+```
 
  Result:
 
- ```
+```
 > Constructed BillingService
 > Constructed CreditCardProcessor
 > Injected CreditCardProcessor to BillingService
 > Constructed TransactionLogger
 > Injected TransactionLogger to BillingService
- ```
+```
 
 * **Property**
 
  Annotation:
 
-  ```java
+```java
     @Inject
     private CreditCardProcessor creditCardProcessor;
     @Inject
     private TransactionLogger transactionLogger;
-  ```
+```
 
  Result:
 
- ```
+```
 > Constructed BillingService
 > Constructed CreditCardProcessor
 > Constructed TransactionLogger
- ```
+```
 
-```@Inject``` vs ```@Autowired```
+```@Inject``` vs```@Autowired```
 > @Inject is part of the Java CDI standard introduced in Java EE 6 (JSR-299), read more. Spring has chosen to support using @Inject synonymously with their own @Autowired annotation.
 
 > @Autowired is Spring's own (legacy) annotation. @Inject is part of a new Java technology called CDI that defines a standard for dependency injection similar to Spring. In a Spring application, the two annotations works the same way as Spring has decided to support some JSR-299 annotations in addition to their own.
 
-> Inect guarantee code portability between different Dependency Injectionframeworks ike Spring, Guice, CDI.
+> Inject guarantee code portability between different Dependency Injectionframeworks ike Spring, Guice, CDI.
 
 Source: [http://stackoverflow.com/questions/7142622/what-is-the-difference-between-inject-and-autowired-in-spring-framework-which](http://stackoverflow.com/questions/7142622/what-is-the-difference-between-inject-and-autowired-in-spring-framework-which)
 
@@ -1002,7 +1002,7 @@ Source: [http://stackoverflow.com/questions/7142622/what-is-the-difference-betwe
 2. Matches by Type
 3. Restricts by Qualifiers (ignored if match is found by name)
 
-Behaves similary to ```@Autowired``` and ```@Inject``` apart that it ties components first by name then by type.
+Behaves similary to```@Autowired``` and```@Inject``` apart that it ties components first by name then by type.
 
 ```@Resource``` optionally takes a name attribute, and by default Spring interprets that value as the bean name to be injected. In other words, it follows by-name semantics.
 
@@ -1256,12 +1256,12 @@ To rename bean you can specify a parameter:
 
 Default scope is Singleton. To set bean scope, class or method with bean definition can be marked with:
 
-* ```@Scope(value = BeanDefinition.SCOPE_PROTOTYPE)```
-* ```@Scope(value = BeanDefinition.SCOPE_SINGLETON)```
+*```@Scope(value = BeanDefinition.SCOPE_PROTOTYPE)```
+*```@Scope(value = BeanDefinition.SCOPE_SINGLETON)```
 
 **Autowire** :
 
-To inject dependencies for given bean, just use ```@Autowired``` above bean declaration method and specify properties that should be injected:
+To inject dependencies for given bean, just use```@Autowired``` above bean declaration method and specify properties that should be injected:
 
 ```java
 @Bean
@@ -1274,7 +1274,7 @@ public List<ScoringRule> rulesList(RememberRule remberRule,
 
 **Component scanning** :
 
-Just mark class with: ```@ComponentScan(basePackages = {"com.github.kospiotr"})```
+Just mark class with:```@ComponentScan(basePackages = {"com.github.kospiotr"})```
 
 # Container Extension Points
 
@@ -1424,9 +1424,9 @@ BeanFactoryPostProcessor:
 ## Placeholders
 See: [System properties vs Environment variables](/wiki/java-standard-edition.html#system-properties-vs-environment-variables)
 
-You use the ```PropertyPlaceholderConfigurer``` to externalize property values. Properties might come from Environment Variables, external file, database or even remote resource like REST payload.
+You use the```PropertyPlaceholderConfigurer``` to externalize property values. Properties might come from Environment Variables, external file, database or even remote resource like REST payload.
 
-By default ```PropertyPlaceholderConfigurer``` reads properties in the following order: ```System Properties -> Environment Variables -> locations```
+By default```PropertyPlaceholderConfigurer``` reads properties in the following order:```System Properties -> Environment Variables -> locations```
 
 **Configuration** :
 
