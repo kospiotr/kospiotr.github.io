@@ -24,7 +24,7 @@ Human needs (laziness) -> process automation
 
 **We have:**
 
-![application_size](../../img/size_of_large_projects.jpg)
+![application_size](../../img/size_of_large_projects.jpg){.center}
 
 ### Enterprise Applications
 
