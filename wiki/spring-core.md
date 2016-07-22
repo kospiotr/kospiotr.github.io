@@ -1261,7 +1261,7 @@ Default scope is Singleton. To set bean scope, class or method with bean definit
 
 **Autowire** :
 
-To inject dependencies for given bean, just use```@Autowired``` above bean declaration method and specify properties that should be injected:
+To inject dependencies for given bean, just use ```@Autowired``` above bean declaration method and specify properties that should be injected:
 
 ```java
 @Bean
@@ -1274,7 +1274,7 @@ public List<ScoringRule> rulesList(RememberRule remberRule,
 
 **Component scanning** :
 
-Just mark class with:```@ComponentScan(basePackages = {"com.github.kospiotr"})```
+Just mark class with: ```@ComponentScan(basePackages = {"com.github.kospiotr"})```
 
 # Container Extension Points
 
@@ -1422,11 +1422,11 @@ BeanFactoryPostProcessor:
 * `ServletContextPropertyPlaceholderConfigurer`
 
 ## Placeholders
-See: [System properties vs Environment variables](/wiki/java-standard-edition.html#system-properties-vs-environment-variables)
+See: [System properties vs Environment variables](/wiki/java-standard-edition/#system-properties-vs-environment-variables)
 
-You use the```PropertyPlaceholderConfigurer``` to externalize property values. Properties might come from Environment Variables, external file, database or even remote resource like REST payload.
+You use the ```PropertyPlaceholderConfigurer``` to externalize property values. Properties might come from Environment Variables, external file, database or even remote resource like REST payload.
 
-By default```PropertyPlaceholderConfigurer``` reads properties in the following order:```System Properties -> Environment Variables -> locations```
+By default ```PropertyPlaceholderConfigurer``` reads properties in the following order: ```System Properties -> Environment Variables -> locations```
 
 **Configuration** :
 
