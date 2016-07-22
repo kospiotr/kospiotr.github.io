@@ -130,22 +130,22 @@ The container is responsible for managing object lifecycles of specific objects:
 Without special container, components initilaisation may look like as follow:
 
 ```java
-    /**
-     * Manual BillingService object lifecycle maintenance and its dependencies
-     */
-    public static void main(String[] args){
-        //object creation
-        BillingService billingService = new BillingService();
-        PaymentProcessor cardProcessor = new PaymentProcessor();
-        TransactionLog transactionLog = new TransactionLog();
+/**
+ * Manual BillingService object lifecycle maintenance and its dependencies
+ */
+public static void main(String[] args){
+    //object creation
+    BillingService billingService = new BillingService();
+    PaymentProcessor cardProcessor = new PaymentProcessor();
+    TransactionLog transactionLog = new TransactionLog();
 
-        //configuring these objects by wiring them together
-        billingService.setCardProcessor(cardProcessor);
-        billingService.setTransactionLog(transactionLog);
+    //configuring these objects by wiring them together
+    billingService.setCardProcessor(cardProcessor);
+    billingService.setTransactionLog(transactionLog);
 
-        //calling their initialization methods
-        billingService.registerBillingServiceToCreditCardVendor();
-    }
+    //calling their initialization methods
+    billingService.registerBillingServiceToCreditCardVendor();
+}
 ```
 Above code is boilerplate and hard to maintain. How above code would look like for the below application configuration:
 
@@ -161,19 +161,18 @@ Bean Factory is a core element of the Spring Inversion of Control container that
 Initialization:
 
 ```java
+public static void main(String[] args) {
+    //create Inversion of Control container
+    DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
 
-    public static void main(String[] args) {
-        //create Inversion of Control container
-        DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
+    //create configuration and populate Inversion of Control container with it
+    XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(beanFactory);
+    reader.loadBeanDefinitions(new ClassPathResource("spring-configuration.xml"));
 
-        //create configuration and populate Inversion of Control container with it
-        XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(beanFactory);
-        reader.loadBeanDefinitions(new ClassPathResource("spring-configuration.xml"));
-
-        //requesting bean from the container by the id
-        BillingService billingService = beanFactory.getBean("ruleBillingService", BillingService.class);
-        billingService.charge(100);
-    }
+    //requesting bean from the container by the id
+    BillingService billingService = beanFactory.getBean("ruleBillingService", BillingService.class);
+    billingService.charge(100);
+}
 ```
 
 Configuration `spring-configuration.xml`:
@@ -229,15 +228,15 @@ Objects can be obtained by means of either dependency lookup or dependency injec
 Then initialisation and configuration changes (simplifies), as```ApplicationContext``` is being used more widely:
 
 ```java
-    public static void main(String[] args) {
-        //create Inversion of Control container
-        //create configuration and populate Inversion of Control container with it
-        ApplicationContext ctx = new ClassPathXmlApplicationContext("spring-configuration.xml");
+public static void main(String[] args) {
+    //create Inversion of Control container
+    //create configuration and populate Inversion of Control container with it
+    ApplicationContext ctx = new ClassPathXmlApplicationContext("spring-configuration.xml");
 
-        //requesting bean from the container by the id
-        BillingService billingService = ctx.getBean("ruleBillingService", BillingService.class);
-        billingService.charge(100);
-    }
+    //requesting bean from the container by the id
+    BillingService billingService = ctx.getBean("ruleBillingService", BillingService.class);
+    billingService.charge(100);
+}
 ```
 
 And additionally we have extra features with minimal overhead.
@@ -277,7 +276,7 @@ Configuration file `spring-configuration.xml`:
 ApplicationContext initialization `App.java`:
 
 ```java
- ApplicationContext ctx = new ClassPathXmlApplicationContext("main.xml","common.xml","rest.xml");
+ApplicationContext ctx = new ClassPathXmlApplicationContext("main.xml","common.xml","rest.xml");
 ```
 
 ## Bean declaration
@@ -924,12 +923,12 @@ Can mark field, setter or constructor.
  Annotation:
 
 ```java
-    @Inject
-    public BillingServiceAutowireConstructor(CreditCardProcessor creditCardProcessor, TransactionLogger transactionLogger) {
-        this.creditCardProcessor = creditCardProcessor;
-        this.transactionLogger = transactionLogger;
-        System.out.println("Constructed BillingService, and injected CreditCardProcessor and TransactionLogger");
-    }
+@Inject
+public BillingServiceAutowireConstructor(CreditCardProcessor creditCardProcessor, TransactionLogger transactionLogger) {
+    this.creditCardProcessor = creditCardProcessor;
+    this.transactionLogger = transactionLogger;
+    System.out.println("Constructed BillingService, and injected CreditCardProcessor and TransactionLogger");
+}
 ```
 
  Result:
@@ -973,10 +972,10 @@ public void setTransactionLogger(TransactionLogger transactionLogger) {
  Annotation:
 
 ```java
-    @Inject
-    private CreditCardProcessor creditCardProcessor;
-    @Inject
-    private TransactionLogger transactionLogger;
+@Inject
+private CreditCardProcessor creditCardProcessor;
+@Inject
+private TransactionLogger transactionLogger;
 ```
 
  Result:
@@ -1507,12 +1506,12 @@ dataSource.setPassword(env.getProperty("datasourcePassword"));
 Maven dependency:
 
 ```xml
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-test</artifactId>
-            <version>4.0.3.RELEASE</version>
-            <scope>test</scope>
-        </dependency>
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-test</artifactId>
+    <version>4.0.3.RELEASE</version>
+    <scope>test</scope>
+</dependency>
 ```
 
 Integration test:
