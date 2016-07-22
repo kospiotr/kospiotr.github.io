@@ -1256,8 +1256,8 @@ To rename bean you can specify a parameter:
 
 Default scope is Singleton. To set bean scope, class or method with bean definition can be marked with:
 
-*```@Scope(value = BeanDefinition.SCOPE_PROTOTYPE)```
-*```@Scope(value = BeanDefinition.SCOPE_SINGLETON)```
+* ```@Scope(value = BeanDefinition.SCOPE_PROTOTYPE)```
+* ```@Scope(value = BeanDefinition.SCOPE_SINGLETON)```
 
 **Autowire** :
 
