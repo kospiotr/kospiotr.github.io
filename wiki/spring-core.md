@@ -3,12 +3,13 @@ layout: wiki
 title: Spring Framework Core
 comments: false
 toc: true
-editurl: wiki/spring-framework-core.md
+editurl: wiki/spring-core.md
 res: ../resources/wiki/spring
 slideshow: true
 ---
 
 ## History
+
 ### Software application evolution
 
 **Because of:**
@@ -23,7 +24,7 @@ Human needs (laziness) -> process automation
 
 **We have:**
 
-<center>![application size](/img/size_of_large_projects.jpg)</center>
+<center>![application size](../../img/size_of_large_projects.jpg)</center>
 
 ### Enterprise Applications
 
