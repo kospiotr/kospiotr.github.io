@@ -149,12 +149,14 @@ Without special container, components initilaisation may look like as follow:
 ```
 Above code is boilerplate and hard to maintain. How above code would look like for the below application configuration:
 
-<center>![Huge dependency graph]({{page.res}}/sample-dependency-graph.png)</center>
+{:.text-center}
+![Huge dependency graph]({{page.res}}/sample-dependency-graph.png)
 
 ## Bean Factory
 Bean Factory is a core element of the Spring Inversion of Control container that creates requested objects and resolves dependencies by the given configuration:
 
-<center>![Huge dependency graph]({{page.res}}/bean-factory.png)</center>
+{:.text-center}
+![Huge dependency graph]({{page.res}}/bean-factory.png)
 
 Initialization:
 
@@ -195,7 +197,8 @@ Algorithm:
 * inject them to the object (Dependency Injection pattern).
 * If the dependency is not yet created, the whole above process applies to the child (recursive lookup).
 
-<center>![Bean Factory]({{page.res}}/bean-factory-with-dependencies.png)</center>
+{:.text-center}
+![Bean Factory]({{page.res}}/bean-factory-with-dependencies.png)
 
 Objects can be obtained by means of either dependency lookup or dependency injection.
 
@@ -208,7 +211,8 @@ Objects can be obtained by means of either dependency lookup or dependency injec
 `ApplicationContext` extends `BeanFactory` and adds some extra features to it.
 
 
-<center>![ApplicationContext]({{page.res}}/application-context.png)</center>
+{:.text-center}
+![ApplicationContext]({{page.res}}/application-context.png)
 
 ```Bean Factory```:
 
@@ -241,12 +245,14 @@ And additionally we have extra features with minimal overhead.
 ## Beans
 Objects created by the container (`BeanFactory` or `ApplicationContext`) are also called managed objects or beans. Only managed objects can be controlled by Spring (injecting dependencies, lifecycle management).
 
-<center>![Bans vs Object instances]({{page.res}}/beans.png)</center>
+{:.text-center}
+![Bans vs Object instances]({{page.res}}/beans.png)
 
 ## Configuration
 The container can be configured by **XML files** or **Java classess**.
 
-<center>![Configuration]({{page.res}}/matrix-choose.png)</center>
+{:.text-center}
+![Configuration]({{page.res}}/matrix-choose.png)
 
 These sources of data contain the bean definitions which provide the information required to create the beans.
 
