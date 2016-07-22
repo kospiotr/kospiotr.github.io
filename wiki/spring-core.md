@@ -4,7 +4,7 @@ title: Spring Framework Core
 comments: false
 toc: true
 editurl: wiki/spring-core.md
-res: ../resources/wiki/spring
+res: ../../resources/wiki/spring
 slideshow: true
 ---
 
