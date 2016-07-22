@@ -324,6 +324,7 @@ and multiple beans with the same type are declared as follow:
 BillingService service = ctx.getBean("service", BillingService.class);
 
 ```
+
 ## Factory method
 Objects can be manually created by other bean via factory method:
 
@@ -725,7 +726,7 @@ public class Bar {
 
 **Inheritance definition from other bean**
 
-```bar``` bean has been defined as a child of```foo``` bean by using```parent``` attribute. The child bean inherits```message2``` property as is, and overrides```message1``` property and introduces one more property```message3```:
+```bar``` bean has been defined as a child of ```foo``` bean by using ```parent``` attribute. The child bean inherits ```message2``` property as is, and overrides ```message1``` property and introduces one more property ```message3```:
 
 Configuration:
 
@@ -767,7 +768,7 @@ Will result in:
 
 **Inheritance definition from abstrac bean definition**
 
-You can create a Bean definition template which can be used by other child bean definitions without putting much effort. While defining a Bean Definition Template, you should not specify```class``` attribute and should specify```abstract``` attribute with a value of```true``` as shown below:
+You can create a Bean definition template which can be used by other child bean definitions without putting much effort. While defining a Bean Definition Template, you should not specify ```class``` attribute and should specify ```abstract``` attribute with a value of ```true``` as shown below:
 
 ```xml
 <bean id="beanTeamplate" abstract="true">
@@ -903,9 +904,9 @@ As mentioned [before](/wiki/spring-framework-core.html#autowiring), autowiring c
 <bean id="transactionLogger" class="com.github.kospiotr.spring.TransactionLogger"/>
 ```
 
-Mind that above configuration defines beans, however it doesn't say how to inject```creditCardProcessor``` and```transactionLogger``` to```billingService```.
+Mind that above configuration defines beans, however it doesn't say how to inject ```creditCardProcessor``` and ```transactionLogger``` to ```billingService```.
 
-Components might be tied by following annotations: `@Autowired`, `@Resource`, `@Inject`. 
+Components might be tied by following annotations: ```@Autowired```, ```@Resource```, ```@Inject```. 
 
 Great detailed explination what is the difference can be found in this article: [http://blogs.sourceallies.com/2011/08/spring-injection-with-resource-and-autowired/](http://blogs.sourceallies.com/2011/08/spring-injection-with-resource-and-autowired).
 
@@ -986,7 +987,7 @@ private TransactionLogger transactionLogger;
 > Constructed TransactionLogger
 ```
 
-```@Inject``` vs```@Autowired```
+```@Inject``` vs ```@Autowired```
 > @Inject is part of the Java CDI standard introduced in Java EE 6 (JSR-299), read more. Spring has chosen to support using @Inject synonymously with their own @Autowired annotation.
 
 > @Autowired is Spring's own (legacy) annotation. @Inject is part of a new Java technology called CDI that defines a standard for dependency injection similar to Spring. In a Spring application, the two annotations works the same way as Spring has decided to support some JSR-299 annotations in addition to their own.
@@ -1001,7 +1002,7 @@ Source: [http://stackoverflow.com/questions/7142622/what-is-the-difference-betwe
 2. Matches by Type
 3. Restricts by Qualifiers (ignored if match is found by name)
 
-Behaves similary to```@Autowired``` and```@Inject``` apart that it ties components first by name then by type.
+Behaves similary to ```@Autowired``` and ```@Inject``` apart that it ties components first by name then by type.
 
 ```@Resource``` optionally takes a name attribute, and by default Spring interprets that value as the bean name to be injected. In other words, it follows by-name semantics.
 
@@ -1055,7 +1056,7 @@ Result:
 
 ### Qualifiers
 
-When using `@Inject` or `@Autowire` annotations the autowiring is done by type. At this point autowiring by name is possible thanks to `@Qualifier`:
+When using ```@Inject``` or ```@Autowire``` annotations the autowiring is done by type. At this point autowiring by name is possible thanks to ```@Qualifier```:
 
 Configuration:
 
@@ -1194,15 +1195,15 @@ public class BillingService {
 
 Components might be marked with following stereotype annotations:
 
-* `@Service` - Annotate all your service classes with `@Service`. All your business logic will be in Service classes.
-* `@Repository` - Annotate all your DAO classes with `@Repository`. All your database access logic should be in DAO classes.
-* `@Component` - Annotate your other components (for example REST resource classes) with component stereotype.
-* `@Named` - Standarized `@Component` annotation.
+* ```@Service``` - Annotate all your service classes with ```@Service```. All your business logic will be in Service classes.
+* ```@Repository``` - Annotate all your DAO classes with ```@Repository```. All your database access logic should be in DAO classes.
+* ```@Component``` - Annotate your other components (for example REST resource classes) with component stereotype.
+* ```@Named``` - Standarized ```@Component``` annotation.
 
-> `@Component` is a generic stereotype for any Spring-managed component. `@Repository`, `@Service`, and `@Controller` are specializations of `@Component` for more specific use cases, for example, in the persistence, service, and presentation layers, respectively.
-Reasons to use them :
+> ```@Component``` is a generic stereotype for any Spring-managed component. ```@Repository```, ```@Service```, and ```@Controller``` are specializations of ```@Component``` for more specific use cases, for example, in the persistence, service, and presentation layers, respectively.
+Reasons to use them:
 
-> The main advantage of using `@Repository` or `@Service` over `@Component` is that it's easy to write an AOP pointcut that targets, for instance, all classes annotated with `@Repository`.
+> The main advantage of using ```@Repository``` or ```@Service``` over ```@Component``` is that it's easy to write an AOP pointcut that targets, for instance, all classes annotated with ```@Repository```.
 > You don't have to write bean definitions in context xml file. Instead annotate classes and use those by autowiring.
 > Specialized annotations help to clearly demarcate application layers (in a standard 3 tiers application).
 
@@ -1214,7 +1215,7 @@ Reasons to use them :
 ApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
 ```
 
-Configuratino file `AppConfig.java`:
+Configuratino file ```AppConfig.java```:
 
 ```java
 @Configuration
@@ -1279,9 +1280,9 @@ Just mark class with:```@ComponentScan(basePackages = {"com.github.kospiotr"})``
 
 **BeanPostProcessor**:
 
-The `BeanPostProcessor` interface defines callback methods that you can implement to provide your own (or override the container’s default) instantiation logic, dependency-resolution logic, and so forth. If you want to implement some custom logic after the Spring container finishes instantiating, configuring, and initializing a bean, you can plug in one or more `BeanPostProcessor` implementations.
+The ```BeanPostProcessor``` interface defines callback methods that you can implement to provide your own (or override the container’s default) instantiation logic, dependency-resolution logic, and so forth. If you want to implement some custom logic after the Spring container finishes instantiating, configuring, and initializing a bean, you can plug in one or more ```BeanPostProcessor``` implementations.
 
-Definition of custom `BeanPostProcessor`:
+Definition of custom ```BeanPostProcessor```:
 
 ```java
 public class SimpleBeanPostProcessor implements BeanPostProcessor {
