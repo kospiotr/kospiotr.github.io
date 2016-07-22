@@ -362,14 +362,14 @@ Object ruleBillingService = ruleBillingServiceFactory.createBillingService();
 ## Scopes
 Basic scopes:
 
- * **singleton** - (default) scopes a single bean definition to a single object instance per Spring IoC container.
- * **prototype** - scopes a single bean definition to any number of object instances.
+* **singleton** - (default) scopes a single bean definition to a single object instance per Spring IoC container.
+* **prototype** - scopes a single bean definition to any number of object instances.
 
 Only valid in the context of a web-aware Spring ApplicationContext:
 
- * **request** - scopes a single bean definition to the lifecycle of a single HTTP request; that is each and every HTTP request will have its own instance of a bean created off the back of a single bean definition.
- * **session** - scopes a single bean definition to the lifecycle of a HTTP Session.
- * **global** - session Scopes a single bean definition to the lifecycle of a global HTTP Session. Typically only valid when used in a portlet context.
+* **request** - scopes a single bean definition to the lifecycle of a single HTTP request; that is each and every HTTP request will have its own instance of a bean created off the back of a single bean definition.
+* **session** - scopes a single bean definition to the lifecycle of a HTTP Session.
+* **global** - session Scopes a single bean definition to the lifecycle of a global HTTP Session. Typically only valid when used in a portlet context.
 
 Given `BillingService.java`:
 
