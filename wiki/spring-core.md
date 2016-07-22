@@ -59,7 +59,7 @@ Before Spring Framework, Enterprise applications was being developed using JavaE
 
 
 {:.text-center}
-![JEE]({{page.res}}/ejb-development.png)
+![JEE]({{ page.res }}/ejb-development.png)
 
 
 ### The book
