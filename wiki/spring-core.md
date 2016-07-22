@@ -56,18 +56,18 @@ Before Spring Framework, Enterprise applications was being developed using JavaE
  * hard to write unit tests
  * very weak Time To Market
 
-<center>
+
 ![JEE]({{page.res}}/ejb-development.png)
-</center>
+
 
 ### The book
 Rod Johnson between 1997 and 2002 was dealing with J2EE applications as a consultant. He identified many problems during his carrere and described them in his book "Expert One-on-One J2EE Design and Development".
 
-<center>
+
 ![Expert One-on-One J2EE Design and Development](http://ecx.images-amazon.com/images/I/51D67wYiL8L._BO2,204,203,200_PIsitb-sticker-arrow-click,TopRight,35,-76_AA300_SH20_OU01_.jpg)
 
 "Expert One-on-One J2EE Design and Development" - Rod Johnson, Jurgen Hoeller (2002)
-</center>
+
 
 He published there analysys of the problems with the code that implements framework *Interface21* which was demonstrating how to solve those problems. This framework we would call today injection container.
 
@@ -77,9 +77,9 @@ Reference: [Dependency injection?](dependency-injection.html)
 
 ### Versions
 
-<center>
+
 ![Spring Logo](http://upload.wikimedia.org/wikipedia/de/9/9d/Spring_Logo.png)
-</center>
+
 
  * Spring 1.0 – 2004
  * Spring 2.0 – 2006
@@ -109,9 +109,9 @@ Very stable and frequent release plan.
 ## Construction
 Spring is made of the following modules:
 
-<center>
+
 ![Sprin Components](http://docs.spring.io/spring/docs/4.0.3.RELEASE/spring-framework-reference/htmlsingle/images/spring-overview.png)
-</center>
+
 
 [http://docs.spring.io/spring/docs/4.0.3.RELEASE/spring-framework-reference/htmlsingle/#overview-modules](http://docs.spring.io/spring/docs/4.0.3.RELEASE/spring-framework-reference/htmlsingle/#overview-modules)
 
