@@ -75,7 +75,7 @@ He published there analysys of the problems with the code that implements framew
 
 ### How to write good software?
 
-Reference: [Dependency injection?](dependency-injection)
+Reference: [Dependency injection?](../dependency-injection)
 
 ### Versions
 
