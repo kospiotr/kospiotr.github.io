@@ -4,7 +4,7 @@ title: Dependency Injection
 comments: false
 toc: true
 editurl: wiki/dependency-injection.md
-res: ../resources/wiki/dependency-injection
+res: ../../resources/wiki/dependency-injection
 slideshow: true
 ---
 
