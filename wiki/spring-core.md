@@ -98,9 +98,10 @@ Very stable and frequent release plan.
 * The main aim is to **simplifying application development**.
 * Spring support application development on all levels / layers
 * There are many modules and extensions with other popular frameworks eg.
- * Struts, JSF, WebWork
- * Hibernate, TopLink, JPA
- * JDBC, JTA
+** SpringMVC, Struts, JSF, WebWork
+** Hibernate, TopLink, JPA, JDBC, JTA, NOSQL
+** JMS
+** Cloud
 * Spring doesn't competete with other solutions and technologies which are good. Instead of that it supports theirs integration.
 * Spring doesn't forces to be installed on the application server, it doesn't forces speciality API to be used.
 * Spring is easy to be used
