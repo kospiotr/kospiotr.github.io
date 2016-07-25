@@ -19,8 +19,8 @@ slideshow: true
      * **S** (SRP) - Single responsibility principle
      * **O** (OCP) - Open/closed principle
      * **L** (LSP) - Liskov substitution principle
-  * **I** (ISP) - Interface segregation principle
-  * **D** (DIP) - **Dependency inversion principle**
+     * **I** (ISP) - Interface segregation principle
+     * **D** (DIP) - **Dependency inversion principle**
 
 # What is dependency?
 Wa are talking about dependency when one object relates on another one.
