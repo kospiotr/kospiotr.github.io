@@ -83,13 +83,18 @@ Reference: [Dependency injection?]({{ site.wikiurl }}/dependency-injection)
 ![Spring Logo](http://upload.wikimedia.org/wikipedia/de/9/9d/Spring_Logo.png)
 
 
- * Spring 1.0 – 2004
- * Spring 2.0 – 2006
- * Spring 2.5 – 2007
- * Spring 3.0 – 2009
- * Spring 3.1 - 2011
- * Spring 3.2 - 2013
- * Spring 4.0 - 2013
+* Spring 1.0   – 2004
+* Spring 2.0   – 2006
+* Spring 2.5   – 2007
+* Spring 3.0   – 2009
+* Spring 3.1   - 2011
+* Spring 3.2   - 2013
+* Spring 4.0   - 2013
+* Spring 4.1.0 - 2015
+* Spring 4.2.0 - 2015
+* Spring 4.3.0 - 2016
+
+Reference: [Spring project releases on Github](https://github.com/spring-projects/spring-framework/releases)
 
 Very stable and frequent release plan.
 
