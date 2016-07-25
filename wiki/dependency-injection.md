@@ -16,9 +16,9 @@ slideshow: true
  * DRY - dont't repeat yourself (code reuse)
  * SoC - separation of concerns
  * **SOLID** principles
-  * **S** (SRP) - Single responsibility principle
-  * **O** (OCP) - Open/closed principle
-  * **L** (LSP) - Liskov substitution principle
+     * **S** (SRP) - Single responsibility principle
+     * **O** (OCP) - Open/closed principle
+     * **L** (LSP) - Liskov substitution principle
   * **I** (ISP) - Interface segregation principle
   * **D** (DIP) - **Dependency inversion principle**
 
@@ -107,10 +107,10 @@ This object delivery from external place is called ***Inversion of Control*** as
  * Factory pattern
  * Service locator pattern
  * **Dependency injection**
-  * A constructor injection
-  * Parameter injection
-  * A setter injection
-  * An interface injection
+     * A constructor injection
+     * Parameter injection
+     * A setter injection
+     * An interface injection
  * Contextualized lookup
  * Template method design pattern
  * Strategy design pattern
@@ -193,13 +193,13 @@ public class RealBillingServiceTest extends TestCase {
 This code is clumsy as:
 
 * A global variable holds the mock implementation
-  * need to be careful about setting it up and tearing it down.
-  * could cause problems for other tests if initialization fails
-  * prevents from running multiple tests in parallel.
+    * need to be careful about setting it up and tearing it down.
+    * could cause problems for other tests if initialization fails
+    * prevents from running multiple tests in parallel.
 * All the static member variables are kept on the special area on heap memory - Permanent Generation which can cause some memory and Garbage Collector issues.
 * The dependencies are hidden in the code.
-  * If we add a dependency on a ```CreditCardFraudTracker```, we have to re-run the tests to find out which ones will break.
-  * If forget to initialize a factory for a production service, we don't find out until a charge is attempted.
+    * If we add a dependency on a ```CreditCardFraudTracker```, we have to re-run the tests to find out which ones will break.
+    * If forget to initialize a factory for a production service, we don't find out until a charge is attempted.
 * As the application grows, babysitting factories becomes a growing drain on productivity.
 
 Quality problems will be caught by QA or acceptance tests. That may be sufficient, but we can certainly do better.
