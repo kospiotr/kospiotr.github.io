@@ -49,8 +49,8 @@ Before Spring Framework, Enterprise applications was being developed using JavaE
 
  * environment polluted logic (had to extends abstract classes, implement JavaEE interfaces)
  * requires Application Server - special container where Enterprise applications can be deployed
-  * different servers (open, commercial)
-  * they differently implement specification
+     * different servers (open, commercial)
+     * they differently implement specification
  * very complicated
  * many XML files with configuration
  * unclear workflow
