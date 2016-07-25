@@ -10,17 +10,17 @@ slideshow: true
 
 # Motivation - how to write good code?
 
- * Clean code
- * Object Oriented
- * High cohesion
- * DRY - dont't repeat yourself (code reuse)
- * SoC - separation of concerns
- * **SOLID** principles
-     * **S** (SRP) - Single responsibility principle
-     * **O** (OCP) - Open/closed principle
-     * **L** (LSP) - Liskov substitution principle
-     * **I** (ISP) - Interface segregation principle
-     * **D** (DIP) - **Dependency inversion principle**
+* Clean code
+* Object Oriented
+* High cohesion
+* DRY - dont't repeat yourself (code reuse)
+* SoC - separation of concerns
+* **SOLID** principles
+    * **S** (SRP) - Single responsibility principle
+    * **O** (OCP) - Open/closed principle
+    * **L** (LSP) - Liskov substitution principle
+    * **I** (ISP) - Interface segregation principle
+    * **D** (DIP) - **Dependency inversion principle**
 
 # What is dependency?
 Wa are talking about dependency when one object relates on another one.
@@ -57,7 +57,7 @@ public class DisplayActiveUsersWebAction{
 }
 ```
 
-Above Web Action object instantiates dependant UsersDao object itself, which means that it satisfies its own dependency. In other words it configures itself.
+Above Web Action object instantiates dependant ```UsersDao``` object itself, which means that it satisfies its own dependency. In other words it configures itself.
 
 # What's wrong with direct constructor calls - Inversion of Control motivation
 
@@ -81,14 +81,13 @@ public class RealBillingService implements BillingService {
   }
 }
 ```
-
 This code poses problems for modularity and testability. In fact this code is not testable because of the following reasons:
 
- * If ```PaypalCreditCardProcessr``` or ```DatabaseTransactionLog``` has any dependencies like ```DatabaseConnection``` or ```RemoteTransactionArchiverWebService``` they will create them as well.
- * If we would like to test ```RealBillingService``` with unit tests the ```PaypalCreditCardProcessor``` will be created and we would perform operations on the real card creditCardProcessor. It means that we will the code will charge a real credit card during testing! In the tests we should operate on a ```FakeCreditCardProcessor```!
- * When using other providers like ```VisaCreditCardProcessor``` for ```CreditCardProcessor``` or ```BitCoinTransactionLog``` for ```TransactionLog``` will require code changes in the ```RealBillingService```.
- * It's also awkward to test what happens when the charge is declined or when the service is unavailable.
- * This method often leads to Spaghetti Monster code.
+* If ```PaypalCreditCardProcessr``` or ```DatabaseTransactionLog``` has any dependencies like ```DatabaseConnection``` or ```RemoteTransactionArchiverWebService``` they will create them as well.
+* If we would like to test ```RealBillingService``` with unit tests the ```PaypalCreditCardProcessor``` will be created and we would perform operations on the real card creditCardProcessor. It means that we will the code will charge a real credit card during testing! In the tests we should operate on a ```FakeCreditCardProcessor```!
+* When using other providers like ```VisaCreditCardProcessor``` for ```CreditCardProcessor``` or ```BitCoinTransactionLog``` for ```TransactionLog``` will require code changes in the ```RealBillingService```.
+* It's also awkward to test what happens when the charge is declined or when the service is unavailable.
+* This method often leads to Spaghetti Monster code.
 
 # Inversion of control principle
 The problem with above example is that those dependencies are created directly by the ```RealBillingService```. Instead the ready to use objects should be prepared externally and be delivered to the object that operates on them. 
@@ -256,7 +255,7 @@ public class RealBillingServiceTest extends TestCase {
 }
 ```
 
-We don't need any factories, and we can simplify the testcase by removing the ```setUp``` and ```tearDown``` boilerplate:
+We don't need any factories, and we can simplify the testcase by removing the ```setUp``` and ```tearDown``` boilerplate.
 
 ### Setter injection
 
@@ -366,6 +365,7 @@ implementation will work fine as long as they implement the ```ILog``` interface
  * [Guice](https://code.google.com/p/google-guice/)
  * [Pico Container](http://picocontainer.codehaus.org/)
  * [Weld](http://weld.cdi-spec.org/)
+ * [AngularJS](https://angularjs.org/)
 
 # References
 
