@@ -1,11 +1,10 @@
 name: Piotr Kosmowski site
 markdown: kramdown
-redcarpet:
-  extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "tables", "with_toc_data"]
 safe: true
 lsi: false
 highlighter: rouge
 encoding: utf-8
 baseurl: http://kospiotr.github.io
+wikiurl: {{ site.baseurl }}/wiki
 basesourceurl: https://github.com/kospiotr/kospiotr.github.io/edit/master
 permalink: /blog/:year/:month/:day/:title/
