@@ -4,7 +4,7 @@ redcarpet:
   extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "tables", "with_toc_data"]
 safe: true
 lsi: false
-pygments: true
+highlighter: rouge
 encoding: utf-8
 baseurl: http://kospiotr.github.io
 basesourceurl: https://github.com/kospiotr/kospiotr.github.io/edit/master
