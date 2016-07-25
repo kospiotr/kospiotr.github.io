@@ -25,9 +25,8 @@ slideshow: true
 # What is dependency?
 Wa are talking about dependency when one object relates on another one.
 
-<center>
+{:.text-center}
 ![Dependency]({{ page.res }}/dependency.png)
-</center>
 
 Code example:
 
@@ -45,9 +44,8 @@ public class A{
 
 From real life example Web Action may need Data Access Object (DAO) to retrieve or save data to Data Base. Data Base actions is hidden in the DAO object (encapsulated).
 
-<center>
+{:.text-center}
 ![Dependency example]({{ page.res }}/dependency-example.png)
-</center>
 
 Example implementation of Web Action:
 
@@ -351,13 +349,10 @@ Many folks don't realize that your dependencies chain can become nested, and it 
 becomes unwieldy to wire them up manually. Even with factories, the duplication of your code
 is just not worth it.
 
-
 The most valuable benefit of using an IoC container is that you can have a configuration switch
 in one place which lets you change between, say, test mode and production mode.
 
-
 Centralize the configuration of your dependencies.
-
 
 Polymorphism for plugability: with DI you can inject dependency into the code without explicitly knowing how the
 functionality is actually working. For example: your class might get a ```ILog``` interface injected
