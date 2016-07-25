@@ -5,6 +5,5 @@ lsi: false
 highlighter: rouge
 encoding: utf-8
 baseurl: http://kospiotr.github.io
-wikiurl: http://kospiotr.github.io/wiki
 basesourceurl: https://github.com/kospiotr/kospiotr.github.io/edit/master
 permalink: /blog/:year/:month/:day/:title/

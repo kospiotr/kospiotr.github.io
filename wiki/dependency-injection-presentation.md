@@ -1,9 +1,9 @@
 ---
 layout: wiki
-title: Dependency Injection
+title: Dependency Injection (Presentation)
 comments: false
 toc: true
-editurl: wiki/dependency-injection.md
+editurl: wiki/dependency-injection-presentation.md
 res: ../../resources/wiki/dependency-injection
 slideshow: true
 ---
@@ -373,3 +373,4 @@ implementation will work fine as long as they implement the ```ILog``` interface
  * [http://cheap.de/science/inwersja-kontroli-kontenerow-i-wzorzec-dependency-injection](http://cheap.de/science/inwersja-kontroli-kontenerow-i-wzorzec-dependency-injection)
  * [http://tutorials.jenkov.com/dependency-injection/index.html](http://tutorials.jenkov.com/dependency-injection/index.html)
  * [https://code.google.com/p/google-guice/wiki/Motivation](https://code.google.com/p/google-guice/wiki/Motivation)
+ * [Spring Framework Presentation]({{ site.baseurl }}/wiki/spring-core-presentation)

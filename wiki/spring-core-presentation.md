@@ -1,66 +1,16 @@
 ---
 layout: wiki
-title: Spring Framework Core
+title: Spring Framework Core (Presentation)
 comments: false
 toc: true
-editurl: wiki/spring-core.md
+editurl: wiki/spring-core-presentation.md
 res: ../../resources/wiki/spring
 slideshow: true
 ---
 
 ## History
 
-### Software application evolution
-
-**Because of:**
-Human needs (laziness) -> process automation
-
-**Thanks to:**
-
-* Stronger hardware
-* New language features, like: Procedures, Function, Classess, O. O. Development, Layers, Modules, 
-* Libraries, Frameworks
-* Return to best practices: Design patterns, Anti patterns, Methodologies
-
-**We have:**
-
-{:.text-center}
-![application_size](../../img/size_of_large_projects.jpg)
-
-### Enterprise Applications
-
-Enterprise applications is a software mostly for business that uses standarized mechanisms like:
-
-* Transactions
-* Security
-* Scalabity
-* Concurency
-* Messaging
-* Remote control
-* Persistence
-
-Compare:
-
-* personal/company website, blog, game
-* banking transaction system, powerplant management system
-
-### Early Java Enterprise Edition
-Before Spring Framework, Enterprise applications was being developed using JavaEE (EJB2). Some major drawbacks:
-
- * environment polluted logic (had to extends abstract classes, implement JavaEE interfaces)
- * requires Application Server - special container where Enterprise applications can be deployed
-     * different servers (open, commercial)
-     * they differently implement specification
- * very complicated
- * many XML files with configuration
- * unclear workflow
- * hard to write unit tests
- * very weak Time To Market
-
-
-{:.text-center}
-![JEE]({{ page.res }}/ejb-development.png)
-
+Java Enterprise Edition was first. See why Spring had to be developed: [Java Enterprise Edition - presentation]({{ site.basepath }}/wiki/java-enterprise-edition-presentation)
 
 ### The book
 Rod Johnson between 1997 and 2002 was dealing with J2EE applications as a consultant. He identified many problems during his carrere and described them in his book "Expert One-on-One J2EE Design and Development".
@@ -75,7 +25,7 @@ He published there analysys of the problems with the code that implements framew
 
 ### How to write good software?
 
-Reference: [Dependency injection?]({{ site.wikiurl }}/dependency-injection)
+Reference: [Dependency injection?]({{ site.baseurl }}/wiki/dependency-injection)
 
 ### Versions
 
@@ -536,7 +486,7 @@ Result:
 > BillingService clean up
 ```
 
-Lifecycle driven by annotation reference: [Lifecycle with annotations](/wiki/spring-framework-core.html#lifecycle-with-annotations)
+Lifecycle driven by annotation reference: [Lifecycle with annotations](#lifecycle-with-annotations)
 
 > The most recommended way is using plain configuration, then JSR-330 annotations, and in the end implementing interfaces. Interfaces will tight coupled your code to Spring and annotations bind the code with JSR-330. JSR-330 is pretty common now and this is straightforward convention to configure lifecycle in the application. For libraries development I would suggest using plain configuration.
 
@@ -896,7 +846,7 @@ Where schema loaction is:
 
 ## Autowiring
 
-As mentioned [before](/wiki/spring-framework-core.html#autowiring), autowiring can be configured using annotations.
+As mentioned [before](#autowiring), autowiring can be configured using annotations.
 
 ```xml
 <context:annotation-config/>
@@ -1552,4 +1502,3 @@ public class BillingServiceTest {
 * Koushik
 * Mykyong
 * Guice
- 

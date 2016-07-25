@@ -1,6 +1,6 @@
 ---
 layout: wiki
-title: Clean Code
+title: Clean Code (presentation)
 description: How to write good quality code?
 comments: false
 toc: true
@@ -9,10 +9,18 @@ editurl: wiki/clean-code.md
 
 
 # Object Oriented
+
+TBD
+
 # High cohesion
+
+TBD
+
 # SOLID principles
+
 ## Single responsibility principle
-###What is SRP?
+
+### What is SRP?
 
 The term was introduced by _Robert C. Martin_.
 It is the ‘S’ from the SOLID principles, which are the basis for OOD.
@@ -29,7 +37,7 @@ From&nbsp;_Clean Code_:
 
 So if a class (or module) needs to be modified for more than one reason, it does more than one thing. I.e. has more than one responsibility.
 
-###**Why SRP?**
+### **Why SRP?**
 
 *   **Organize the code**
 
@@ -72,7 +80,7 @@ Since I started doing TDD and test-first approach, I hardly debug. Really.
 But, there come times when I must debug in order to understand what’s going on.
 In a single responsibility class, finding the bug or the cause of the problem, becomes a much easier task.
 
-###**What needs to have single responsibility?**
+### **What needs to have single responsibility?**
 
 Each part of the system.
 
@@ -205,7 +213,7 @@ class Address{
 }
 ```
 
-###**Conclusion**
+### **Conclusion**
 As I mentioned in the beginning of this post, I think that Single-Responsibility-Principle is the basis of a good design.
 If you have this principle in your mind while designing and developing, you will have a simpler more readable code.
 Better design will be followed.
@@ -214,8 +222,10 @@ As always, one needs to be careful on how to apply practices, code and design.
 Sometimes we might do over-work and make simple things over complex.
 So a common sense must be applied at any refactor and change.
 
-##Open/closed principle
+## Open/closed principle
+
 ### What is the Open/Closed Principle?
+
 It’s a principle for object oriented design first described by Bertrand Meyer that says that
 > Software entities (classes, modules, functions, etc.) should be open for extension, but closed for modification.
 
@@ -343,15 +353,20 @@ If you’ve got any other good and straight forward examples of the open/closed 
 Any other feedback is of course also most welcome!
 
 _PS. For updates about new posts, sites I find useful and the occasional rant you can [follow me on Twitter](http://twitter.com/joelabrahamsson)&nbsp;<span class="wrc_icon wrc13" rating="{&quot;icon&quot;:&quot;icn_extensiontop_green.png&quot;,&quot;rating&quot;:1,&quot;weight&quot;:3,&quot;flags&quot;:{&quot;shopping&quot;:null,&quot;social&quot;:null,&quot;news&quot;:null,&quot;it&quot;:null,&quot;corporate&quot;:null,&quot;pornography&quot;:null,&quot;violence&quot;:null,&quot;gambling&quot;:null,&quot;drugs&quot;:null,&quot;illegal&quot;:null}}"></span>. You are also most welcome to subscribe to [the RSS-feed.](http://feeds.feedburner.com/JoelAbrahamsson)&nbsp;<span class="wrc_icon wrc13" rating="{&quot;icon&quot;:&quot;icn_extensiontop_green.png&quot;,&quot;rating&quot;:1,&quot;weight&quot;:3,&quot;flags&quot;:{&quot;shopping&quot;:null,&quot;social&quot;:null,&quot;news&quot;:null,&quot;it&quot;:null,&quot;corporate&quot;:null,&quot;pornography&quot;:null,&quot;violence&quot;:null,&quot;gambling&quot;:null,&quot;drugs&quot;:null,&quot;illegal&quot;:null}}"></span>_
-##Liskov substitution principle
-##Interface segregation principle
-##Dependency inversion principle
-#DRY - dont't repeat yourself (code reuse)
-#KISS
+
+## Liskov substitution principle
+
+## Interface segregation principle
+
+## Dependency inversion principle
+
+# DRY - dont't repeat yourself (code reuse)
+
+# KISS
 
 * Keep it simple stupid
 * Keep it simple and short
 * Keep it simple, short and specific
 
 
-#SoC - separation of concerns
+# SoC - separation of concerns
