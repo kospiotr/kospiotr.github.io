@@ -1,6 +1,6 @@
 ---
 layout: wiki
-title: Spring Framework Core (Presentation)
+title: Spring Core (Presentation)
 comments: false
 toc: true
 editurl: wiki/spring-core-presentation.md
@@ -23,9 +23,9 @@ Rod Johnson between 1997 and 2002 was dealing with J2EE applications as a consul
 
 He published there analysys of the problems with the code that implements framework *Interface21* which was demonstrating how to solve those problems. This framework we would call today injection container.
 
-### How to write good software?
+### Dependency Injection
 
-Reference: [Dependency injection?]({{ site.baseurl }}/wiki/dependency-injection)
+See: [Dependency Injection presentation]({{ site.baseurl }}/wiki/dependency-injection-presentation)
 
 ### Versions
 
@@ -59,6 +59,7 @@ Very stable and frequent release plan.
 * Spring enhances developers productivity
 * Spring supports in writing high quality software
 * Spring supports in writing testable code
+* Be alternative for EJB 2.x
 
 ## Construction
 Spring is made of the following modules:
@@ -70,6 +71,9 @@ Spring is made of the following modules:
 [http://docs.spring.io/spring/docs/4.0.3.RELEASE/spring-framework-reference/htmlsingle/#overview-modules](http://docs.spring.io/spring/docs/4.0.3.RELEASE/spring-framework-reference/htmlsingle/#overview-modules)
 
 # Inversion of Control container
+
+Dependency Injection is a principal design pattern used for removing direct dependencies between components of the system. Responsibility for creating objects is delegated outside to object factory - container.
+
 Central to the Spring Framework is its Inversion of Control (IoC) container, which provides a consistent means of configuring and managing Java objects using **reflection**. 
 
 The container is responsible for managing object lifecycles of specific objects:
@@ -210,6 +214,20 @@ These sources of data contain the bean definitions which provide the information
 * Reference: [XML way](/wiki/spring-framework-core.html#xml-based-container-configuration)
 * Reference: [Java way](/wiki/spring-framework-core.html#java-based-container-configuration)
 
+**Which one is better?**
+
+It depends - there is no easy answer to that question.
+
+* XML - seems to be more elastic
+* Annotations - Java code only - syntax validated by the Java Compiler, some people don't like XML, easier to refactor
+* Mixed - truly the best option
+
+Resources: [http://stackoverflow.com/questions/8428439/spring-annotation-based-di-vs-xml-configuration](http://stackoverflow.com/questions/8428439/spring-annotation-based-di-vs-xml-configuration)
+
+**Disclaimer**
+
+> Don't confuse component scanning, annotations and Java configuration!
+
 # XML-based container configuration
 
 Configuration file `spring-configuration.xml`:
@@ -274,7 +292,6 @@ and multiple beans with the same type are declared as follow:
 
 ```java
 BillingService service = ctx.getBean("service", BillingService.class);
-
 ```
 
 ## Factory method
@@ -942,7 +959,7 @@ private TransactionLogger transactionLogger;
 ```@Inject``` vs ```@Autowired```
 > @Inject is part of the Java CDI standard introduced in Java EE 6 (JSR-299), read more. Spring has chosen to support using @Inject synonymously with their own @Autowired annotation.
 
-> @Autowired is Spring's own (legacy) annotation. @Inject is part of a new Java technology called CDI that defines a standard for dependency injection similar to Spring. In a Spring application, the two annotations works the same way as Spring has decided to support some JSR-299 annotations in addition to their own.
+> ```@Autowired``` is Spring's own (legacy) annotation. @Inject is part of a new Java technology called CDI that defines a standard for dependency injection similar to Spring. In a Spring application, the two annotations works the same way as Spring has decided to support some JSR-299 annotations in addition to their own.
 
 > Inject guarantee code portability between different Dependency Injectionframeworks ike Spring, Guice, CDI.
 
@@ -1108,7 +1125,7 @@ Result:
 
 ## Component scanning
 
-This section describes an option for implicitly detecting the candidate components by scanning the classpath. Candidate components are classes that match against a filter criteria and have a corresponding bean definition registered with the container. This removes the need to use XML to perform bean registration, instead you can use annotations (for example @Component).
+This section describes an option for implicitly detecting the candidate components by scanning the classpath. Candidate components are classes that match against a filter criteria and have a corresponding bean definition registered with the container. This removes the need to use XML to perform bean registration, instead you can use annotations (for example ```@Component```).
 
 To be able to use annotated classes you need to perform scanning them on Spring bootstrap. The scanning is being confugured as follow:
 
@@ -1227,6 +1244,62 @@ public List<ScoringRule> rulesList(RememberRule remberRule,
 **Component scanning** :
 
 Just mark class with: ```@ComponentScan(basePackages = {"com.github.kospiotr"})```
+
+# Resource access
+
+Spring simplifies accessing external resources.
+
+```java
+public interface Resource extends InputStreamSource {
+    boolean exists();
+    boolean isOpen();
+    URL getURL() throws IOException;
+    File getFile() throws IOException;
+    Resource createRelative(String relativePath) throws IOException;
+    String getFilename();
+    String getDescription();
+}
+```
+
+Standard implementations:
+
+* `UrlResource`
+* `ClassPathResource`
+* `FileSystemResource`
+* `ServletContextResource`
+* `InputStreamResource`
+* `ByteArrayResource`
+
+Obtain resource directly from the context: 
+
+```java
+Resource templateRelativePath = ctx.getResource("some/resource/path/myTemplate.txt");
+Resource templateClassPath = ctx.getResource("classpath:some/resource/path/myTemplate.txt");
+Resource templateFilePath = ctx.getResource("file:/some/resource/path/myTemplate.txt");
+Resource templateRemoteUrl = ctx.getResource("http://myhost.com/resource/path/myTemplate.txt");
+```
+
+Injecting resources with XML configuration:
+
+```xml
+<bean id="myBean" class="...">
+    <property name="templateRelativePath" value="some/resource/path/myTemplate.txt"/>
+    <property name="templateClassPath" value="classpath:some/resource/path/myTemplate.txt">
+    <property name="templateFilePath" value="file:/some/resource/path/myTemplate.txt"/>
+</bean>
+```
+
+Injecting resource using annotation:
+
+```java
+@Component
+
+public class TestBean {
+
+    @Value( "classpath:images/icon.png")
+    private Resource iconResource;
+}
+```
 
 # Container Extension Points
 
@@ -1498,7 +1571,11 @@ public class BillingServiceTest {
 ```
 
 # References
-* Spring documentation
-* Koushik
-* Mykyong
-* Guice
+* [Spring Framework](https://projects.spring.io/spring-framework/)
+* [Spring.io](https://spring.io/)
+* [Javabrains (Koushik)](https://javabrains.io/topics/spring)
+* [Mykyong](https://www.mkyong.com/)
+* [Guice](https://github.com/google/guice)
+
+Further 
+* [Spring Workshops](http://kospiotr.github.io/spring-workshops/)

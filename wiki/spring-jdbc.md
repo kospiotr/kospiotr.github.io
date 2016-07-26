@@ -1,6 +1,6 @@
 ---
 layout: wiki
-title: Spring Framework JDBC
+title: Spring JDBC
 comments: false
 toc: true
 editurl: wiki/spring-framework-mvc.md
@@ -46,7 +46,7 @@ For more datasources possibilities check: [Datasources](/wiki/data-sources.html)
 
 # Example Model
 
-## Java model
+**Java model**
 
 ```java
 public class Employee {
@@ -81,7 +81,7 @@ public class Employee {
 }
 ```
 
-## Database schema
+**Database schema**
 
 ```sql
 CREATE TABLE `Employee` (
@@ -107,8 +107,73 @@ import javax.sql.DataSource;
 public class EmployeeDAOImpl {
  
     private DataSource dataSource;
- 
-    public void save(Employee employee) {
+
+     public Employee getById(int id) {
+         String query = "select name, role from Employee where id = ?";
+         Employee emp = null;
+         Connection con = null;
+         PreparedStatement ps = null;
+         ResultSet rs = null;
+         try{
+             con = dataSource.getConnection();
+             ps = con.prepareStatement(query);
+             ps.setInt(1, id);
+             rs = ps.executeQuery();
+             if(rs.next()){
+                 emp = new Employee();
+                 emp.setId(id);
+                 emp.setName(rs.getString("name"));
+                 emp.setRole(rs.getString("role"));
+                 System.out.println("Employee Found::"+emp);
+             }else{
+                 System.out.println("No Employee found with id="+id);
+             }
+         }catch(SQLException e){
+             e.printStackTrace();
+         }finally{
+             try {
+                 rs.close();
+                 ps.close();
+                 con.close();
+             } catch (SQLException e) {
+                 e.printStackTrace();
+             }
+         }
+         return emp;
+     }
+
+    public List<Employee> getAll() {
+        String query = "select id, name, role from Employee";
+        List<Employee> empList = new ArrayList<Employee>();
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try{
+            con = dataSource.getConnection();
+            ps = con.prepareStatement(query);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                Employee emp = new Employee();
+                emp.setId(rs.getInt("id"));
+                emp.setName(rs.getString("name"));
+                emp.setRole(rs.getString("role"));
+                empList.add(emp);
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }finally{
+            try {
+                rs.close();
+                ps.close();
+                con.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return empList;
+    }
+
+    public void create(Employee employee) {
         String query = "insert into Employee (id, name, role) values (?,?,?)";
         Connection con = null;
         PreparedStatement ps = null;
@@ -132,41 +197,7 @@ public class EmployeeDAOImpl {
                 e.printStackTrace();
             }
         }
-    }
- 
-    public Employee getById(int id) {
-        String query = "select name, role from Employee where id = ?";
-        Employee emp = null;
-        Connection con = null;
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        try{
-            con = dataSource.getConnection();
-            ps = con.prepareStatement(query);
-            ps.setInt(1, id);
-            rs = ps.executeQuery();
-            if(rs.next()){
-                emp = new Employee();
-                emp.setId(id);
-                emp.setName(rs.getString("name"));
-                emp.setRole(rs.getString("role"));
-                System.out.println("Employee Found::"+emp);
-            }else{
-                System.out.println("No Employee found with id="+id);
-            }
-        }catch(SQLException e){
-            e.printStackTrace();
-        }finally{
-            try {
-                rs.close();
-                ps.close();
-                con.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        return emp;
-    }
+    } 
  
     public void update(Employee employee) {
         String query = "update Employee set name=?, role=? where id=?";
@@ -216,37 +247,6 @@ public class EmployeeDAOImpl {
                 e.printStackTrace();
             }
         }
-    }
- 
-    public List<Employee> getAll() {
-        String query = "select id, name, role from Employee";
-        List<Employee> empList = new ArrayList<Employee>();
-        Connection con = null;
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        try{
-            con = dataSource.getConnection();
-            ps = con.prepareStatement(query);
-            rs = ps.executeQuery();
-            while(rs.next()){
-                Employee emp = new Employee();
-                emp.setId(rs.getInt("id"));
-                emp.setName(rs.getString("name"));
-                emp.setRole(rs.getString("role"));
-                empList.add(emp);
-            }
-        }catch(SQLException e){
-            e.printStackTrace();
-        }finally{
-            try {
-                rs.close();
-                ps.close();
-                con.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        return empList;
     }
  
 }
@@ -336,20 +336,6 @@ public class EmployeeDAOJDBCTemplateImpl {
  
     private DataSource dataSource;
  
-    public void save(Employee employee) {
-        String query = "insert into Employee (id, name, role) values (?,?,?)";
-         
-        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-         
-        Object[] args = new Object[] {employee.getId(), employee.getName(), employee.getRole()};
-         
-        int out = jdbcTemplate.update(query, args);
-         
-        if(out !=0){
-            System.out.println("Employee saved with id="+employee.getId());
-        }else System.out.println("Employee save failed with id="+employee.getId());
-    }
- 
     public Employee getById(int id) {
         String query = "select id, name, role from Employee where id = ?";
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
@@ -369,33 +355,11 @@ public class EmployeeDAOJDBCTemplateImpl {
         return emp;
     }
  
-    public void update(Employee employee) {
-        String query = "update Employee set name=?, role=? where id=?";
-        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-        Object[] args = new Object[] {employee.getName(), employee.getRole(), employee.getId()};
-         
-        int out = jdbcTemplate.update(query, args);
-        if(out !=0){
-            System.out.println("Employee updated with id="+employee.getId());
-        }else System.out.println("No Employee found with id="+employee.getId());
-    }
- 
-    public void deleteById(int id) {
- 
-        String query = "delete from Employee where id=?";
-        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-         
-        int out = jdbcTemplate.update(query, id);
-        if(out !=0){
-            System.out.println("Employee deleted with id="+id);
-        }else System.out.println("No Employee found with id="+id);
-    }
- 
     public List<Employee> getAll() {
         String query = "select id, name, role from Employee";
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
         List<Employee> empList = new ArrayList<Employee>();
- 
+  
         List<Map<String,Object>> empRows = jdbcTemplate.queryForList(query);
          
         for(Map<String,Object> empRow : empRows){
@@ -408,5 +372,40 @@ public class EmployeeDAOJDBCTemplateImpl {
         return empList;
     }
  
+    public void create(Employee employee) {
+        String query = "insert into Employee (id, name, role) values (?,?,?)";
+         
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+         
+        Object[] args = new Object[] {employee.getId(), employee.getName(), employee.getRole()};
+         
+        int out = jdbcTemplate.update(query, args);
+         
+        if(out !=0){
+            System.out.println("Employee saved with id="+employee.getId());
+        }else System.out.println("Employee save failed with id="+employee.getId());
+    }
+ 
+    public void update(Employee employee) {
+        String query = "update Employee set name=?, role=? where id=?";
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+        Object[] args = new Object[] {employee.getName(), employee.getRole(), employee.getId()};
+         
+        int out = jdbcTemplate.update(query, args);
+        if(out !=0){
+            System.out.println("Employee updated with id="+employee.getId());
+        }else System.out.println("No Employee found with id="+employee.getId());
+    }
+ 
+    public void deleteById(int id) {
+        String query = "delete from Employee where id=?";
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+         
+        int out = jdbcTemplate.update(query, id);
+        if(out !=0){
+            System.out.println("Employee deleted with id="+id);
+        }else System.out.println("No Employee found with id="+id);
+    }
+  
 }
 ```

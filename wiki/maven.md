@@ -254,7 +254,7 @@ When changing java code, modified classes must be compiled, thus the best to exe
 ## Database
 
 Using [In-Memory Database Maven Plugin](http://inmemdb-maven-plugin.btmatthews.com/) it's possible to set up local DB. Supported databases types: hsqldb, derby, h2.
-Comprehensive example using it with integration tests: http://mjremijan.blogspot.com/2014/03/integration-testing-with-maven-and-in.html.
+Comprehensive example using it with integration tests: [http://mjremijan.blogspot.com/2014/03/integration-testing-with-maven-and-in.html](http://mjremijan.blogspot.com/2014/03/integration-testing-with-maven-and-in.html).
 
 **Configuration**
 
@@ -317,7 +317,7 @@ values ('unit_test_varchar',123,'1977-01-30-10.11.30.766',null);
 
 ## To local Tomcat
 
-See: [Install and configure Tomcat server]({{site.baseurl}}/wiki/tomcat.html)
+See: [Install and configure Tomcat server]({{site.baseurl}}/wiki/tomcat)
 
 **Configure deployment process**
 
@@ -438,7 +438,7 @@ Reference: [http://maven.apache.org/surefire/maven-surefire-plugin/examples/skip
  * ```mvn install -DskipTests``` - skip executing tests
  * ```mvn install -Dmaven.test.skip=true``` - skip compiling tests
 
-# Release to MAven Central repository
+# Release to Maven Central repository
 
 ## Prepare environment
 

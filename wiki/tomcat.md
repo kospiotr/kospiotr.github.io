@@ -31,7 +31,7 @@ Use your own credentials!!!
 * To terminate remote process: ```catalina stop```
 * To run server process in current window: ```catalina run```
 
-## [Deploy project using Maven]({{site.baseurl}}/wiki/maven.html#to-local-tomcat)
+## [Deploy project using Maven]({{site.baseurl}}/wiki/maven#to-local-tomcat)
 
 # Open application
 

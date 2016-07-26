@@ -22,6 +22,8 @@ slideshow: true
     * **I** (ISP) - Interface segregation principle
     * **D** (DIP) - **Dependency inversion principle**
 
+See: [Clean Code presentation]({{ site.baseurl }}/wiki/clean-code-presentation)
+
 # What is dependency?
 Wa are talking about dependency when one object relates on another one.
 

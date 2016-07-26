@@ -1,10 +1,10 @@
 ---
 layout: wiki
-title: Spring Framework MVC
+title: Spring MVC (presentation)
 comments: false
 toc: true
-editurl: wiki/spring-mvc.md
-res: ../resources/wiki/spring
+editurl: wiki/spring-mvc-presentation.md
+res: ../../resources/wiki/spring
 slideshow: true
 ---
 
@@ -35,9 +35,11 @@ Add Spring dependencies in ```pom.xml``` :
 
 ```
 
-# Register ```DispatcherServlet```
+# DispatcherServlet
 
-The job of the DispatcherServlet is to take an incoming URI and find the right combination of handlers (generally methods on Controller classes) and views (generally JSPs) that combine to form the page or resource that's supposed to be found at that location.
+## What is DispatcherServlet
+
+The job of the `DispatcherServlet` is to take an incoming URI and find the right combination of handlers (generally methods on Controller classes) and views (generally JSPs) that combine to form the page or resource that's supposed to be found at that location.
 
 I might have a file ```/WEB-INF/jsp/pages/Home.jsp``` and a method on a class:
 
@@ -54,12 +56,10 @@ How it accomplishes this varies widely with configuration and Spring version.
 
 There's also no reason the end result has to be web pages. It can do the same thing to locate RMI end points, handle SOAP requests, anything that can come into a servlet.
 
-<center>
-![JEE]({{page.res}}/dispatcher-servlet.png)
-</center>
+{:.text-center}
+![dispatcher-servlet]({{page.res}}/dispatcher-servlet.png)
 
-
-## The traditional, XML-based approach using ```web.xml```
+## Register DispatcherServlet in ```web.xml```
 
 Most Spring users building a web application will need to register Spring's DispatcherServlet. For reference, in ```WEB-INF/web.xml```. Older servlets containers < 3.0 can be used in this case.
 
@@ -81,8 +81,6 @@ Most Spring users building a web application will need to register Spring's Disp
     <url-pattern>/</url-pattern>
 </servlet-mapping>
 ```
-
-See: Spring Configuration in XML way
 
 **Option 2: for Spring Java configuration**
 
@@ -107,9 +105,8 @@ See: Spring Configuration in XML way
 </servlet-mapping>
 ```
 
-See: Spring Configuration in Java way
+## Register DispatcherServlet using ```WebApplicationInitializer```
 
-## The code-based approach with ```WebApplicationInitializer```
 This method uses Servlet 3.0 web hook.
 
 **Remove XML deployment descriptor**
@@ -147,9 +144,6 @@ public class AppInitializer implements WebApplicationInitializer {
 }
 ```
 
-See: Spring Configuration in XML way
-
-
 **Option 2: for Spring java configuration**
 
 ```java
@@ -169,8 +163,6 @@ public class AppInitializer implements WebApplicationInitializer {
 
 }
 ```
-
-See: Spring Configuration in Java way
 
 # Spring MVC configuration
 
@@ -303,7 +295,7 @@ They are ```==``` (eq), ```!=``` (ne), ```<``` (lt), ```>``` (gt), ```<=``` (le)
 
 **Full documentation**
 
-http://docs.oracle.com/javaee/5/jstl/1.1/docs/tlddocs/index.html
+[http://docs.oracle.com/javaee/5/jstl/1.1/docs/tlddocs/index.html](http://docs.oracle.com/javaee/5/jstl/1.1/docs/tlddocs/index.html)
 
 **Configuration**
 
@@ -556,7 +548,7 @@ This content will only be visible to users who have read or write permission to 
 </sec:authorize>
 ```
 
-```url`` :
+```url``` :
 
 ```html
 <sec:authorize url="/admin">
@@ -711,4 +703,15 @@ public class LoanRestController {
 
 # Customize error pages
 
-...
+
+```java
+@ResponseStatus( value = HttpStatus.BAD_REQUEST )
+public class BadRequestException extends RuntimeException{
+ //
+}
+
+@ResponseStatus( value = HttpStatus.NOT_FOUND )
+public class ResourceNotFoundException extends RuntimeException{
+ //
+}
+```

@@ -1,10 +1,10 @@
 ---
 layout: wiki
-title: Spring Framework Data
+title: Spring Data
 comments: false
 toc: true
 editurl: wiki/spring-framework-data.md
-res: ../resources/wiki/spring
+res: ../../resources/wiki/spring
 slideshow: true
 ---
 
@@ -130,11 +130,11 @@ Then ```META-INF/persistence.xml```:
 </persistence>
 ```
 
-More configuration properties: https://docs.jboss.org/hibernate/core/4.3/manual/en-US/html_single#configuration-optional
+More configuration properties: [https://docs.jboss.org/hibernate/core/4.3/manual/en-US/html_single#configuration-optional](https://docs.jboss.org/hibernate/core/4.3/manual/en-US/html_single#configuration-optional)
 
 # Example Model
 
-## Java model
+**Java model**
 
 ```java
 import javax.persistence.Entity;
@@ -175,7 +175,7 @@ public class Product {
 }
 ```
 
-## Database schema
+**Database schema**
 
 No need if ```hibernate.hbm2ddl.auto='create-drop'```.
  
