@@ -1570,6 +1570,22 @@ public class BillingServiceTest {
 }
 ```
 
+# Best practices
+
+* **Dependencies** - If you’re starting a new project today, I highly recommend using [Spring Boot’s parent POM](http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#using-boot-dependency-management) or the [Spring Platform](https://spring.io/platform). Both provide a curated set of dependencies that are known to work well together.
+* **Injection** - Always use constructor based dependency injection in your beans. Always use assertions for mandatory dependencies. For more background on why field based injection is evil, you can read this article by Oliver Gierke [http://olivergierke.de/2013/11/why-field-injection-is-evil/](http://olivergierke.de/2013/11/why-field-injection-is-evil/).
+* **Independent components from the framework** - don't be so prescriptive. I think it’s fine to have dependencies on framework classes and annotations, but I don’t want to rewrite more than 20% of the class if I were to move off Spring. You can always use JSR-330 annotations if needed. How often do you switch architecture?
+* **Configuration** - depends on your needs but use autowiring, component scanning. I personally prefer Java configuration since Spring Boot appeared
+* **Interface programming** - if no multiple implementations in mind then avoid creating interfaces. CGLIb does great job in the runtime for non interfaced beans and mocking/spying/stubbing is very easy with Mockito framework.
+* **Layering** - keep layered project structure: domains, services, DAOs, views, controllers
+* **Logging** - Use SLF4J in your code to log things. Stick with Spring Boot’s default choice of logback if possible. Log to the console only and use a tool such as Splunk to capture and store.
+* **Unit Testing** - keep Spring out from unit testing. Use jUnit, Mockito, festAssert, Spock.
+* **Integration Testing** - use mocked services as much as possible in order to prevent slow parts of the applications. In-memory database, web server should be the last
+* **Properties** - never ship application with environmental properties build in. Properties like datasource, JMS urls or credentials should be delivered by the environmental properties or by the externalized properties files. Only shared properties should be embedded. Profiles and property switch are also bad pattern.
+* **Component granularity** - don't overuse Spring components. Use it only for binding application components, for example Form and it's input components.
+* **Use best practices and conventions** - use Spring Boot if possible ;-)
+
+
 # References
 * [Spring Framework](https://projects.spring.io/spring-framework/)
 * [Spring.io](https://spring.io/)

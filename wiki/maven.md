@@ -97,6 +97,17 @@ To access the parent version: ```${parent.version}```.
 
 The pattern ```${someX.someY.someZ}``` can simply sometimes mean ```getSomeX().getSomeY().getSomeZ()```. Thus, properties such as ```${project.build.directory}``` is translated to ```getProject().getBuild().getDirectory()```.
 
+# Useful maven plugin goals
+  
+* ```versions:display-dependency-updates``` - Display Dependency Updates                       
+* ```versions:display-plugin-updates``` - Display Plugin Updates                           
+* ```dependency:tree -Ddetail``` - Display Dependency Tree                          
+* ```dependency:list``` - Display Dependency List                          
+* ```help:effective-pom``` - Display Effective POM                            
+* ```help:effective-settings``` - Display Project Settings                         
+* ```help:system``` - Display System and Environment Variables         
+* ```dependency:build-classpath``` - Display Build Class Path                         
+
 # Generating projects from archetype
 
 ## Standalone project
