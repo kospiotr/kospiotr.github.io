@@ -344,7 +344,9 @@ For example, If adding dependency:
 
 and you have not manually configured any database connection beans, then we will auto-configure an in-memory database.
 
-**SpringBootApplication** annotation - `@SpringBootApplication~ is to replace popular combination of: `@Configuration`, `@EnableAutoConfiguration` and `@ComponentScan`
+**SpringBootApplication** annotation  
+
+`@SpringBootApplication` is to replace popular combination of: `@Configuration`, `@EnableAutoConfiguration` and `@ComponentScan`
 
 # Developer tools
 
@@ -439,7 +441,9 @@ Activate:
 spring.profiles.active=dev,hsqldb
 ```
 
-# Web development
+# Examples
+
+## Web development
 
 **Dependency**
 
@@ -478,7 +482,7 @@ To disable auto-configuration and set-up own configuration add own `@Configurati
 
 > JSPs should be avoided if possible, there are several known limitations when using them with embedded servlet containers.
 
-# Security
+## Security
 
 * If Spring Security is on the classpath then web applications will be secure by default with ‘basic’ authentication on all HTTP endpoints. 
 * To add method-level security to a web application you can also add `@EnableGlobalMethodSecurity` with your desired settings.
@@ -539,7 +543,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 }
 ```
 
-# JDBC support
+## JDBC support
 
 **Dependency**
 
@@ -614,7 +618,37 @@ public class MyBean {
 }
 ```
 
+# Other features
+
+* JPA Support
+* Spring Data Support
+* NoSQL Support
+* NoSQL Support
+* Cache
+* Messaging
+* Sending Emails
+* Spring Integration
+* Monitoring and JMX
+
 # Testing
+
+**Dependency**
+
+**Dependency**
+
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-jdbc</artifactId>
+</dependency>
+```
+
+Provides following libraries:
+
+* Spring Test — integration test support for Spring applications.
+* JUnit — The de-facto standard for unit testing Java applications.
+* Hamcrest — A library of matcher objects (also known as constraints or predicates) allowing assertThat style JUnit assertions.
+* Mockito — A Java mocking framework.
 
 * It is often desirable to call setWebEnvironment(false) when using SpringApplication within a JUnit test.
 
