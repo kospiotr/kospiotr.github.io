@@ -326,6 +326,7 @@ public class SampleApp {
 
 # Configuration
 
+
 * Preferred Java configuration over XML
 * The same rules as for Spring Framework
 
@@ -337,7 +338,7 @@ For example, If adding dependency:
 ```xml
 <dependency>
   <groupId>com.h2database</groupId>
-  <artifactId>h2</artifactId>
+  <artifactId>h2</artifactId> 
   <version>1.1.102</version>
 </dependency>
 ```
