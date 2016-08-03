@@ -502,3 +502,7 @@ Publish release to Maven Central repository
 - Locate and Examine Your Staging Repository.
 - Close repository in order to trigger the evaluations of the components against the requirements.
 - If everything went without issues, click Release button. This will move the components into the release repository of OSSRH where it will be synced to the Central Repository.
+
+# Related
+
+[http://javarevisited.blogspot.com/2016/08/top-10-maven-plugins-every-java-developer-know.html](http://javarevisited.blogspot.com/2016/08/top-10-maven-plugins-every-java-developer-know.html)
