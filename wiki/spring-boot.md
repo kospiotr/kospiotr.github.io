@@ -661,6 +661,14 @@ Provides following libraries:
   *Example 2*: When configuring integration test create separated configuration with mocked services instead of using profiles in order to make it more explicit
   *Example 3*: Use when activating deactivating application configuration parts like security, logging aspects, strategies - never hardcode properties!
 
+# Recipes
+# Logging SQL queriest to console
+
+```
+logging.level.org.hibernate.SQL=DEBUG
+logging.level.org.hibernate.type.descriptor.sql.BasicBinder=TRACE
+```
+
 # Unix launch script
 
 ```bash
