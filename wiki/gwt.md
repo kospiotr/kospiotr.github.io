@@ -7,7 +7,8 @@ description: Everything about GWT environment
 editurl: wiki/gwt.md
 ---
 
-#Showcases
+# Showcases
+
 * Homepage: [https://developers.google.com/web-toolkit](https://developers.google.com/web-toolkit)
 * Documentation: [https://developers.google.com/web-toolkit](https://developers.google.com/web-toolkit)
 * Showcase
@@ -16,14 +17,16 @@ editurl: wiki/gwt.md
  * Sample mail: [http://gwt.google.com/samples/Mail/Mail.html](http://gwt.google.com/samples/Mail/Mail.html)
  * Dynamic tables: [http://gwt.google.com/samples/DynaTable/DynaTable.html](http://gwt.google.com/samples/DynaTable/DynaTable.html)
 
-#Archetype#
+# Archetype#
 
-##GWT-Maven-Plugin
+## GWT-Maven-Plugin
 
-###Homepage
+### Homepage
+
 [http://mojo.codehaus.org/gwt-maven-plugin/user-guide/archetype.html](http://mojo.codehaus.org/gwt-maven-plugin/user-guide/archetype.html)
 
-###Usage
+### Usage
+
 Generate  archetype:
 
 ```bash
@@ -32,34 +35,36 @@ mvn archetype:generate \
    -DarchetypeArtifactId=gwt-maven-plugin \
    -DarchetypeVersion=2.5.0
 ```
-###Configuration
+### Configuration
 
 ```bash
 mvn gwt:help
 ```
 
-###Productivity
+### Productivity
 
-###Development mode
+### Development mode
 
 ```bash
 gwt:run
 ```
 
-###Development mode with debug
+### Development mode with debug
 
 ```bash
 gwt:debug //After that attach debugger on port 8000
 ```
 
-###Super Development Mode
+### Super Development Mode
 
-##TBroyer's archetype
+## TBroyer's archetype
 
-###Homepage
+### Homepage
+
 [https://github.com/tbroyer/gwt-maven-archetypes](https://github.com/tbroyer/gwt-maven-archetypes)
 
-###Usage
+### Usage
+
 Generate archetype:
 
 ```bash
@@ -70,9 +75,10 @@ mvn archetype:generate \
    -DarchetypeVersion=1.0-SNAPSHOT
 ```
 
-###Productivity
+### Productivity
 
-###Development mode
+### Development mode
+
  * Need first to compile client's project for server side run purposes - next step (execute it on the client project)
 
 ```bash
