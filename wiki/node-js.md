@@ -216,6 +216,7 @@ app.get('/sample', function (req, res) {
 app.listen(port);
 console.log('App started on port ' + port);
 ```
+
 ## Minimalistic Express app with Grunt and watch
 
 * `package.json`:
