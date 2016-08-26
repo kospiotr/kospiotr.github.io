@@ -6,7 +6,7 @@ toc: true
 editurl: wiki/node-js.md
 ---
 
-#Node
+# Node
 
 * `npm init` - initialize nodejs project
 * `node server.js` - starts node app from server.js file
@@ -14,6 +14,7 @@ editurl: wiki/node-js.md
 * `npm install -g nodemon` - installs globally nodemon
 
 ## Configuration
+
 Install `config` plugin: `npm install config --save`, and then store configuration in `config` directory in separated files (it supports different file types):
 
 `config/default.json`:
@@ -67,13 +68,15 @@ $ export NODE_ENV=production
 $ node my-app.js
 ```
 
-##Debugging
+## Debugging
+
 Install `node-inspector`: `npm install node-inspector -g`
 Run it: `node-inspector`
 Visit http://127.0.0.1:8080/debug?port=5858 to start debugging.
 Start an app with flag: `--debug`
 
-##Logging
+## Logging
+
 Install `node-logg` plugin with: `npm install logg --save`.
 Usage:
 
@@ -120,8 +123,7 @@ logg.on('', function(logRecord) {
 });
 ```
 
-
-#Grunt
+# Grunt
 
 * `npm install -g grunt-cli` - install grunt
 * `npm install --save-dev grunt` - install grunt as dev dependency to the project configuration
@@ -130,6 +132,7 @@ logg.on('', function(logRecord) {
 * `grunt-init gruntfile` - generate Grunt / NodeJS project
 
 ## Load all grunt tasks automatically
+
 Install `load-grunt-tasks` plugin with: `npm install --save-dev load-grunt-tasks`, then instead:
 
 ```js
@@ -149,6 +152,7 @@ module.exports = function (grunt) {
 ```
 
 ## Load grunt tasks from external files
+
 In `Gruntfile.js`:
 
 ```js
@@ -173,6 +177,7 @@ module.exports = function (grunt) {
 ```
 
 # Express
+
 ## Minimalistic Express app
 
 * `package.json`:
@@ -299,14 +304,17 @@ app.listen(port);
 console.log('App started on port ' + port);
 ```
 
-#Bower
+# Bower
 
-#Yeoman
+# Yeoman
 
-#Examples
+# Webpack
 
+`--display-error-details` - show error details
 
-##Grunt + Http server
+# Examples
+
+## Grunt + Http server
 
 * Grunt configuration `Gruntfile.js`:
 
@@ -335,7 +343,7 @@ module.exports = function(grunt) {
 
  * `npm install grunt-contrib-connect --save-dev`
 
-##Grunt Watch + LiveReload for Real-time JavaScript/LESS/SASS Compilation
+## Grunt Watch + LiveReload for Real-time JavaScript/LESS/SASS Compilation
 
 * **Dependencies** (`package.json`):
 
@@ -439,7 +447,7 @@ module.exports = function(grunt) {
 };
 ```
 
-##Simple app Grunt + Watch + Live reload + compile less + build release
+## Simple app Grunt + Watch + Live reload + compile less + build release
 
 Structure:
 
@@ -582,9 +590,10 @@ module.exports = function (grunt) {
 };
 ```
 
-##Popular modules
+## Popular modules
 
-#Extra resources
+# Extra resources
+
  * [Refcard](../resources/nodejs.pdf)
  * [Getting Started With Grunt and Bower/](http://www.nitinh.com/2013/05/getting-started-with-grunt-bower/)
  * [Bower notes](http://code.tutsplus.com/tutorials/meet-bower-a-package-manager-for-the-web--net-27774)
