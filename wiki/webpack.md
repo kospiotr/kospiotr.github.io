@@ -8,6 +8,7 @@ editurl: wiki/webpack.md
 
 # CLI
 - build: ```webpack --inline --colors --progress --display-error-details --display-cached```
+- server ```webpack-dev-server --inline --colors --progress --display-error-details --display-cached --port 3000  --content-base src```
 
 # Resources
 
