@@ -6,6 +6,9 @@ toc: true
 editurl: wiki/webpack.md
 ---
 
+# CLI
+- build: ```webpack --inline --colors --progress --display-error-details --display-cached```
+
 # Resources
 
 - [Configuration API](https://github.com/webpack/docs/wiki/configuration)
