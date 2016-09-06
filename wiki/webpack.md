@@ -13,5 +13,6 @@ editurl: wiki/webpack.md
 # Resources
 
 - [Configuration API](https://github.com/webpack/docs/wiki/configuration)
+- [Core plugins list](https://github.com/webpack/docs/wiki/list-of-plugins)
 - [Angular2 with webpack explained](https://angular.io/docs/ts/latest/guide/webpack.html)
 - [Webpack book by survivejs.com](http://survivejs.com/webpack/introduction/)
