@@ -111,6 +111,59 @@ person2.sayName("person2"); // outputs "person2:Nicholas"
 
 It creates proxy for the given method which replaces `this`.
 
+# Objects
+
+## Protecting properties
+
+* Preventing extensions - can't add new properties
+
+```javascript
+var person1 = {
+  name: "Nicholas"
+};
+
+console.log(Object.isExtensible(person1)); // true
+Object.preventExtensions(person1);
+
+console.log(Object.isExtensible(person1)); // false
+
+person1.sayName = function() {
+  console.log(this.name);
+};
+
+console.log("sayName" in person1); // false
+```
+
+* Sealing - can't add and remove properties
+
+```javascript
+var person1 = {
+  name: "Nicholas"
+};
+
+console.log(Object.isExtensible(person1)); // true
+console.log(Object.isSealed(person1)); // false
+
+Object.seal(person1);
+console.log(Object.isExtensible(person1)); // false
+console.log(Object.isSealed(person1)); // true
+person1.sayName = function() {
+  console.log(this.name);
+};
+
+console.log("sayName" in person1); // false
+person1.name = "Greg";
+console.log(person1.name); // "Greg"
+delete person1.name;
+
+console.log("name" in person1); // true
+console.log(person1.name); // "Greg"
+
+var descriptor = Object.getOwnPropertyDescriptor(person1, "name");
+console.log(descriptor.configurable); // false
+```
+
+* Freezing Objects - can't add, remove properties and change properties; they are read only.
 
 # Principles
 
