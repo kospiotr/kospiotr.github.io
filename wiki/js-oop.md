@@ -12,7 +12,7 @@ editurl: wiki/js-oop.md
 
 `this` binds by default to the given current object:
 
-```
+```javascript
 var person = {
   name: "Nicholas",
   sayName: function() {
@@ -25,7 +25,7 @@ person.sayName(); // outputs "Nicholas"
 
 But the context can be different:
 
-```
+```javascript
 function sayNameForAll() {
   console.log(this.name);
 }
@@ -51,7 +51,7 @@ sayNameForAll(); // outputs "Michael"
 
 * Using `call` :
 
-```
+```javascript
 function sayNameForAll(label) {
   console.log(label + ":" + this.name);
 }
@@ -67,7 +67,7 @@ It accepts multiple arguments and replaces `this`.
 
 * Using `apply` :
 
-```
+```javascript
 function sayNameForAll(label) {
   console.log(label + ":" + this.name);
 }
@@ -83,7 +83,7 @@ It accepts arguments as an array and replaces `this`.
 
 * Using `bind` :
 
-```
+```javascript
 function sayNameForAll(label) {
   console.log(label + ":" + this.name);
 }
