@@ -166,25 +166,25 @@ console.log(descriptor.configurable); // false
 
 * Freezing Objects - can't add, remove properties and change properties; they are read only.
 
-# Principles
+## Object Oriented Programming
 
 * **Encapsulation** -  Data can be grouped together with functionality that operates on that data. This, quite simply, is the definition of an object.
 * **Aggregation** -  One object can reference another object.
 * **Inheritance** -  A newly created object has the same characteristics as another object without explicitly duplicating its functionality.
 * **Polymorphism** - One interface may be implemented by multiple objects.
 
-# Class
+### Class
 
-# Object
+### Object
 
-# Aggregation
+### Aggregation
 
-# Inheritance
+### Inheritance
 
-# Polymorphism
+### Polymorphism
 
 
-#JSON
+# JSON
 
 * `JSON.stringify(value[, replacer [, space]])` - serialize JS object to JSON
  Examples:
@@ -219,12 +219,12 @@ try {
 }
  ```
 
-#Debugger
+# Debugger
 
 * `debugger;` - stops debugger while execution this line of the code
 
-#Ajax
-##Sample post call
+# Ajax
+## Sample vanilla post call
 
 ```js
 
