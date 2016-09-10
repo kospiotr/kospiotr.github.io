@@ -175,7 +175,44 @@ console.log(descriptor.configurable); // false
 
 ### Class
 
-### Object
+#### Constructor
+```javascript
+
+// the Person constructor 
+function Person() {
+  // intentionally empty
+}
+
+// objectcts of the class
+var person1 = new Person();
+var person2 = new Person();
+
+// the type is defined
+console.log(person1 instanceof Person); // true
+console.log(person2 instanceof Person); // true
+```
+
+#### Constructor with parameter
+
+```javascript
+function Person(name) {
+  this.name = name;
+  this.sayName = function() {
+    console.log(this.name);
+  };
+}
+
+var person1 = new Person("Nicholas");
+var person2 = new Person("Greg");
+
+console.log(person1.name); // "Nicholas"
+console.log(person2.name); // "Greg"
+
+person1.sayName(); // outputs "Nicholas"
+person2.sayName(); // outputs "Greg"
+```
+
+
 
 ### Aggregation
 
