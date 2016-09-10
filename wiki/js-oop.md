@@ -10,6 +10,21 @@ editurl: wiki/js-oop.md
 
 ## This
 
+`this` binds by default to the given current object:
+
+```
+var person = {
+  name: "Nicholas",
+  sayName: function() {
+    console.log(this.name);
+  }
+};
+
+person.sayName(); // outputs "Nicholas"
+```
+
+But the context can be different:
+
 ```
 function sayNameForAll() {
   console.log(this.name);
@@ -31,6 +46,71 @@ person2.sayName(); // outputs "Greg"
 
 sayNameForAll(); // outputs "Michael"
 ```
+
+## Rebinding `this`
+
+* Using `call` :
+
+```
+function sayNameForAll(label) {
+  console.log(label + ":" + this.name);
+}
+
+var person1 = {
+  name: "Nicholas"
+};
+
+sayNameForAll.call(person1, "person1"); // outputs "person1:Nicholas"
+```
+
+It accepts multiple arguments and replaces `this`.
+
+* Using `apply` :
+
+```
+function sayNameForAll(label) {
+  console.log(label + ":" + this.name);
+}
+
+var person1 = {
+  name: "Nicholas"
+};
+
+sayNameForAll.apply(person1, ["person1"]); // outputs "person1:Nicholas"
+```
+
+It accepts arguments as an array and replaces `this`.
+
+* Using `bind` :
+
+```
+function sayNameForAll(label) {
+  console.log(label + ":" + this.name);
+}
+
+var person1 = {
+  name: "Nicholas"
+};
+
+var person2 = {
+  name: "Greg"
+};
+
+// create a function just for person1
+u var sayNameForPerson1 = sayNameForAll.bind(person1);
+sayNameForPerson1("person1"); // outputs "person1:Nicholas"
+
+// create a function just for person2
+v var sayNameForPerson2 = sayNameForAll.bind(person2, "person2");
+sayNameForPerson2(); // outputs "person2:Greg"
+
+// attaching a method to an object doesn't change 'this'
+w person2.sayName = sayNameForPerson1;
+person2.sayName("person2"); // outputs "person2:Nicholas"
+```
+
+It creates proxy for the given method which replaces `this`.
+
 
 # Principles
 
