@@ -212,7 +212,7 @@ person1.sayName(); // outputs "Nicholas"
 person2.sayName(); // outputs "Greg"
 ```
 
-#### Prototype - add common functionality by modifying prototype
+#### Prototype pattern - add common functionality by modifying prototype
 
 ```javascript
 function Person(name) {
@@ -233,7 +233,7 @@ person1.sayName(); // outputs "Nicholas"
 person2.sayName(); // outputs "Greg"
 ```
 
-#### Prototype - add common functionality by replacing prototype
+#### Prototype pattern - add common functionality by replacing prototype
 
 ```javascript
 function Person(name) {
@@ -293,6 +293,14 @@ console.log(person.getAge()); // 25
 person.growOlder();
 console.log(person.getAge()); // 26
 ```
+
+Pros:
+- Aggregates API in one place
+- Expose only public members
+- Singleton implementation – through immediate invoke functions
+Cos:
+- Functions are duplicated across objects in memory
+- Not easy to extend and debug
 
 #### Revealing Module Pattern
 
@@ -508,6 +516,31 @@ console.log('square area: ' + square.getArea());
 console.log('square instance Square: ' + (square instanceof Square));
 console.log('square instance Rectangle: ' + (square instanceof Rectangle));
 console.log('square instance Figure: ' + (square instanceof Figure));
+```
+
+Output:
+
+```
+===== creating Figure
+Figure constructor called
+figure name: Figure
+figure instance Figure: true
+===== creating Rectangle
+Figure constructor called
+Rectangle constructor called
+rectangle name: Rectangle
+rectangle area: 6
+rectangle instance Rectangle: true
+rectangle instance Figure: true
+===== creating Square
+Figure constructor called
+Rectangle constructor called
+Square constructor called
+square name: Square
+square area: 16
+square instance Square: true
+square instance Rectangle: true
+square instance Figure: true
 ```
 
 ### Mixings
