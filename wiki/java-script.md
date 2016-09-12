@@ -4,6 +4,7 @@ title: JavaScript
 comments: false
 toc: true
 description: Java Script notes
+res: ../../resources/wiki/js
 editurl: wiki/java-script.md
 ---
 
@@ -542,6 +543,9 @@ square instance Square: true
 square instance Rectangle: true
 square instance Figure: true
 ```
+
+
+![Inheritance]({{page.res}}/InheritanceJS.png)
 
 ### Mixings
 
