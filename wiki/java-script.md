@@ -243,7 +243,7 @@ person1.sayName(); // outputs "Nicholas"
 person2.sayName(); // outputs "Greg"
 ```
 
-## Constructor Pattern (wit private members)
+## Constructor Pattern (with private members)
 
 ```javascript
 function Person(name) {
