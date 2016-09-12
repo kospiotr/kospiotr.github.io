@@ -403,13 +403,17 @@ function mixin(receiver, supplier) {
 ### Inheritance
 
 ```javascript
+'use strict'
+
+console.clear();
+
 var Figure = (function(){
     function Figure(){
         console.log('Figure constructor called');
     }
 
     // all methods must go to prototype in order to effectively share them across multiple objects
-    // those methods can operate onnly on the public properties that are inherited and which subtypes overrides
+    // those methods can operate onnly on the public properties that are inherited and that subtypes overrides
     Figure.prototype.getArea = function(){
         throw 'Not implemented'
     }
@@ -421,17 +425,18 @@ var Figure = (function(){
     return Figure;
 })();
 
-var Rectangle = (function(){
+var Rectangle = (function(FigureConstructor){
     function Rectangle(width, height){
 
-        Figure.call(this);
+        FigureConstructor.call(this);
 
         //private variables
         var width = width;
         var height = height;
 
         //getters without setters make such object immutable and perfectly encapsulated
-        //if setWitdh and setHeight would be created and exposed then the Square class should shadow both of them
+        //if setWitdh and setHeight would be created and exposed 
+        //then the Square class should shadow both of them
         this.getWidth = function(){
             return width;
         }
@@ -444,12 +449,12 @@ var Rectangle = (function(){
         console.log('Rectangle constructor called');
     }
 
-//    Class.prototype = Figure.prototype; - wrong because modify prototype of the Figure
-//    Class.prototype = Object.create(new Figure()); //works but not good as it creates instance of the Figure class using default constructor without parameters
+    //Class.prototype = FigureConstructor.prototype; - wrong because modify prototype of the Figure
+    //Class.prototype = Object.create(new FigureConstructor()); //works but not good as it creates instance of the Figure class using default constructor without parameters
     
     //inherits prototype Figure API but must remember to execute inherited constructor as well
     //this creates prototype chain Rectangle.prototype === Object -> Object.prototype === Figure.prototype
-    Rectangle.prototype = Object.create(Figure.prototype) 
+    Rectangle.prototype = Object.create(FigureConstructor.prototype) 
 
     //shadows but no replcaes Figure getArea
     Rectangle.prototype.getArea = function(){
@@ -462,15 +467,15 @@ var Rectangle = (function(){
     
 
     return Rectangle;
-})();
+})(Figure);
 
-var Square = (function(){
+var Square = (function(RectangleConstructor){
     function Square(size){
-        Rectangle.call(this, size, size);
+        RectangleConstructor.call(this, size, size);
         console.log('Square constructor called');
     }
 
-    Square.prototype = Object.create(Rectangle.prototype);
+    Square.prototype = Object.create(RectangleConstructor.prototype);
 
     Square.prototype.toString = function(){
         return 'Square';
@@ -478,7 +483,7 @@ var Square = (function(){
     
 
     return Square;
-})();
+})(Rectangle);
 
 
 
@@ -489,7 +494,7 @@ console.log('figure instance Figure: ' + (figure instanceof Figure));
 //console.log(f.getArea()); - exception
 
 console.log('===== creating Rectangle')
-var rectangle = new Rectangle(1,2);
+var rectangle = new Rectangle(2,3);
 console.log('rectangle name: ' + rectangle.toString());
 console.log('rectangle area: ' + rectangle.getArea());
 console.log('rectangle instance Rectangle: ' + (rectangle instanceof Rectangle));
@@ -504,8 +509,6 @@ console.log('square instance Square: ' + (square instanceof Square));
 console.log('square instance Rectangle: ' + (square instanceof Rectangle));
 console.log('square instance Figure: ' + (square instanceof Figure));
 ```
-
-
 
 ### Mixings
 
