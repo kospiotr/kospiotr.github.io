@@ -8,7 +8,7 @@ res: ../../resources/wiki/js
 editurl: wiki/java-script.md
 ---
 
-## This
+# This
 
 `this` binds by default to the given current object:
 
@@ -163,7 +163,10 @@ console.log(descriptor.configurable); // false
 
 * Freezing Objects - can't add, remove properties and change properties; they are read only.
 
-# Constructor
+# Object Constructor
+
+# Basic Constructor
+
 ```javascript
 
 // the Person constructor 
@@ -227,58 +230,9 @@ person.growOlder();
 console.log(person.getAge()); // 26
 ```
 
-# Prototype pattern - add common functionality by modifying prototype
+# Encapsulation
 
-```javascript
-function Person(name) {
-  this.name = name;
-}
-
-Person.prototype.sayName = function() {
-  console.log(this.name);
-};
-
-var person1 = new Person("Nicholas");
-var person2 = new Person("Greg");
-
-console.log(person1.name); // "Nicholas"
-console.log(person2.name); // "Greg"
-
-person1.sayName(); // outputs "Nicholas"
-person2.sayName(); // outputs "Greg"
-```
-
-# Prototype pattern - add common functionality by replacing prototype
-
-```javascript
-function Person(name) {
-  this.name = name;
-}
-
-Person.prototype = {
-  constructor: Person, // need to declare back the constructor as it would become an object
-  sayName: function() {
-    console.log(this.name);
-  },
-  toString: function() {
-    return "[Person " + this.name + "]";
-  }
-};
-
-var person1 = new Person("Nicholas");
-var person2 = new Person("Greg");
-
-console.log(person1 instanceof Person); // true
-console.log(person1.constructor === Person); // true
-
-console.log(person1.constructor === Object); // false
-console.log(person2 instanceof Person); // true
-
-console.log(person2.constructor === Person); // true
-console.log(person2.constructor === Object); // false
-```
-
-# Module pattern
+## Module pattern
 
 ```javascript
 var person = (function() {
@@ -318,7 +272,7 @@ Const:
 - Functions are duplicated across objects in memory
 - Not easy to extend and debug
 
-# Revealing Module Pattern
+## Revealing Module Pattern
 
 ```javascript
 var person = (function() {
@@ -342,24 +296,60 @@ var person = (function() {
 }());
 ```
 
+# Inheritance
 
-# Mixins
-
-Mixins occur when one object acquires the properties of another without modifying the prototype chain. The first object (a receiver) actually receives the properties of the second object (the supplier) by copying those properties directly.
+## Prototype pattern - add common functionality by modifying prototype
 
 ```javascript
-function mixin(receiver, supplier) {
-  for (var property in supplier) {
-    if (supplier.hasOwnProperty(property)) {
-      receiver[property] = supplier[property]
-    }
-  }
-  return receiver;
-
+function Person(name) {
+  this.name = name;
 }
+
+Person.prototype.sayName = function() {
+  console.log(this.name);
+};
+
+var person1 = new Person("Nicholas");
+var person2 = new Person("Greg");
+
+console.log(person1.name); // "Nicholas"
+console.log(person2.name); // "Greg"
+
+person1.sayName(); // outputs "Nicholas"
+person2.sayName(); // outputs "Greg"
 ```
 
-# Parasitic Combination Inheritance Pattern (simplified)
+## Prototype pattern - add common functionality by replacing prototype
+
+```javascript
+function Person(name) {
+  this.name = name;
+}
+
+Person.prototype = {
+  constructor: Person, // need to declare back the constructor as it would become an object
+  sayName: function() {
+    console.log(this.name);
+  },
+  toString: function() {
+    return "[Person " + this.name + "]";
+  }
+};
+
+var person1 = new Person("Nicholas");
+var person2 = new Person("Greg");
+
+console.log(person1 instanceof Person); // true
+console.log(person1.constructor === Person); // true
+
+console.log(person1.constructor === Object); // false
+console.log(person2 instanceof Person); // true
+
+console.log(person2.constructor === Person); // true
+console.log(person2.constructor === Object); // false
+```
+
+## Parasitic Combination Inheritance Pattern (simplified)
 
 ```javascript
 'use strict'
@@ -497,10 +487,23 @@ square instance Figure: true
 
 ![Inheritance]({{page.res}}/InheritanceJS.png)
 
-### Mixings
+# Extensions
 
-### Polymorphism
+## Mixins
 
+Mixins occur when one object acquires the properties of another without modifying the prototype chain. The first object (a receiver) actually receives the properties of the second object (the supplier) by copying those properties directly.
+
+```javascript
+function mixin(receiver, supplier) {
+  for (var property in supplier) {
+    if (supplier.hasOwnProperty(property)) {
+      receiver[property] = supplier[property]
+    }
+  }
+  return receiver;
+
+}
+```
 
 # JSON
 
