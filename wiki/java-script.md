@@ -263,11 +263,146 @@ console.log(person2.constructor === Person); // true
 console.log(person2.constructor === Object); // false
 ```
 
+### Encapsulation
 
+#### Module pattern
+
+```javascript
+var person = (function() {
+
+  var age = 25;
+
+  return {
+    name: "Nicholas",
+    getAge: function() {
+      return age;
+    },
+    growOlder: function() {
+      age++;
+    }
+  };
+
+}());
+
+console.log(person.name); // "Nicholas"
+console.log(person.getAge()); // 25
+
+person.age = 100;
+console.log(person.getAge()); // 25
+
+person.growOlder();
+console.log(person.getAge()); // 26
+```
+
+#### Revealing Module Pattern
+
+```javascript
+var person = (function() {
+
+  var age = 25;
+
+  function getAge() {
+    return age;
+  }
+
+  function growOlder() {
+    age++;
+  }
+
+  return {
+    name: "Nicholas",
+    getAge: getAge,
+    growOlder: growOlder
+  };
+
+}());
+```
+
+#### Constructor private members
+
+```javascript
+function Person(name) {
+  // define a variable only accessible inside of the Person constructor
+  var age = 25;
+  this.name = name;
+  
+  this.getAge = function() {
+    return age;
+  };
+  this.growOlder = function() {
+    age++;
+  };
+}
+
+var person = new Person("Nicholas");
+console.log(person.name); // "Nicholas"
+console.log(person.getAge()); // 25
+
+person.age = 100;
+console.log(person.getAge()); // 25
+
+person.growOlder();
+console.log(person.getAge()); // 26
+```
+
+#### Hybrid
+
+```javascript
+var Person = (function() {
+
+  // everyone shares the same age
+  var age = 25;
+
+  function InnerPerson(name) {
+    this.name = name;
+  }
+
+  InnerPerson.prototype.getAge = function() {
+    return age;
+  };
+  
+  InnerPerson.prototype.growOlder = function() {
+    age++;
+  };
+
+  return InnerPerson;
+
+}());
+
+var person1 = new Person("Nicholas");
+var person2 = new Person("Greg");
+
+console.log(person1.name); // "Nicholas"
+console.log(person1.getAge()); // 25
+console.log(person2.name); // "Greg"
+console.log(person2.getAge()); // 25
+
+person1.growOlder();
+console.log(person1.getAge()); // 26
+console.log(person2.getAge()); // 26
+```
+
+#### Mixins
+Mixins occur when one object acquires the properties of another without modifying the prototype chain. The first object (a receiver) actually receives the properties of the second object (the supplier) by copying those properties directly.
+
+```javascript
+function mixin(receiver, supplier) {
+  for (var property in supplier) {
+    if (supplier.hasOwnProperty(property)) {
+      receiver[property] = supplier[property]
+    }
+  }
+  return receiver;
+
+}
+```
 
 ### Aggregation
 
+
 ### Inheritance
+
+### Mixings
 
 ### Polymorphism
 
