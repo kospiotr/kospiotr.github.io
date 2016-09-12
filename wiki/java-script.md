@@ -403,17 +403,13 @@ function mixin(receiver, supplier) {
 ### Inheritance
 
 ```javascript
-'use strict'
-
-console.clear();
-
 var Figure = (function(){
     function Figure(){
         console.log('Figure constructor called');
     }
 
     // all methods must go to prototype in order to effectively share them across multiple objects
-    // those methods can operate onnly on the public properties that are inherited and that subtypes overrides
+    // those methods can operate onnly on the public properties that are inherited and which subtypes overrides
     Figure.prototype.getArea = function(){
         throw 'Not implemented'
     }
@@ -434,12 +430,14 @@ var Rectangle = (function(){
         var width = width;
         var height = height;
 
+        //getters without setters make such object immutable and perfectly encapsulated
+        //if setWitdh and setHeight would be created and exposed then the Square class should shadow both of them
         this.getWidth = function(){
             return width;
         }
 
         this.getHeight = function(){
-            return width;
+            return height;
         }
 
 
