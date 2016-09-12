@@ -8,7 +8,9 @@ res: ../../resources/wiki/js
 editurl: wiki/java-script.md
 ---
 
-# This
+# Basis
+
+## This
 
 `this` binds by default to the given current object:
 
@@ -47,9 +49,9 @@ person2.sayName(); // outputs "Greg"
 sayNameForAll(); // outputs "Michael"
 ```
 
-# Rebinding `this`
+## Rebinding `this`
 
-* Using `call` :
+### Using `call`
 
 ```javascript
 function sayNameForAll(label) {
@@ -65,7 +67,7 @@ sayNameForAll.call(person1, "person1"); // outputs "person1:Nicholas"
 
 It accepts multiple arguments and replaces `this`.
 
-* Using `apply` :
+### Using `apply`
 
 ```javascript
 function sayNameForAll(label) {
@@ -81,7 +83,7 @@ sayNameForAll.apply(person1, ["person1"]); // outputs "person1:Nicholas"
 
 It accepts arguments as an array and replaces `this`.
 
-* Using `bind` :
+### Using `bind`
 
 ```javascript
 function sayNameForAll(label) {
@@ -111,7 +113,7 @@ person2.sayName("person2"); // outputs "person2:Nicholas"
 
 It creates proxy for the given method which replaces `this`.
 
-# Protecting properties
+## Protecting properties
 
 * Preventing extensions - can't add new properties
 
@@ -132,7 +134,7 @@ person1.sayName = function() {
 console.log("sayName" in person1); // false
 ```
 
-* Sealing - can't add and remove properties
+## Sealing - can't add and remove properties
 
 ```javascript
 var person1 = {
@@ -161,11 +163,11 @@ var descriptor = Object.getOwnPropertyDescriptor(person1, "name");
 console.log(descriptor.configurable); // false
 ```
 
-* Freezing Objects - can't add, remove properties and change properties; they are read only.
+## Freezing Objects - can't add, remove properties and change properties; they are read only.
 
 # Object Constructor
 
-# Basic Constructor
+## Basic Constructor
 
 ```javascript
 
@@ -183,7 +185,7 @@ console.log(person1 instanceof Person); // true
 console.log(person2 instanceof Person); // true
 ```
 
-# Constructor with parameter
+## Constructor with parameter
 
 ```javascript
 function Person(name) {
@@ -203,7 +205,7 @@ person1.sayName(); // outputs "Nicholas"
 person2.sayName(); // outputs "Greg"
 ```
 
-# Constructor private members
+## Constructor private members
 
 ```javascript
 function Person(name) {
