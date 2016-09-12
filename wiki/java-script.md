@@ -115,7 +115,7 @@ It creates proxy for the given method which replaces `this`.
 
 ## Protecting properties
 
-* Preventing extensions - can't add new properties
+### Preventing extensions - can't add new properties
 
 ```javascript
 var person1 = {
@@ -134,7 +134,7 @@ person1.sayName = function() {
 console.log("sayName" in person1); // false
 ```
 
-## Sealing - can't add and remove properties
+### Sealing - can't add and remove properties
 
 ```javascript
 var person1 = {
@@ -163,7 +163,9 @@ var descriptor = Object.getOwnPropertyDescriptor(person1, "name");
 console.log(descriptor.configurable); // false
 ```
 
-## Freezing Objects - can't add, remove properties and change properties; they are read only.
+### Freezing Objects - can't add, remove properties and change properties; they are read only.
+
+TBD
 
 # Object Constructor
 
