@@ -402,6 +402,113 @@ function mixin(receiver, supplier) {
 
 ### Inheritance
 
+```javascript
+'use strict'
+
+console.clear();
+
+var Figure = (function(){
+    function Figure(){
+        console.log('Figure constructor called');
+    }
+
+    // all methods must go to prototype in order to effectively share them across multiple objects
+    // those methods can operate onnly on the public properties that are inherited and that subtypes overrides
+    Figure.prototype.getArea = function(){
+        throw 'Not implemented'
+    }
+
+    Figure.prototype.toString = function(){
+        return 'Figure';
+    }    
+
+    return Figure;
+})();
+
+var Rectangle = (function(){
+    function Rectangle(width, height){
+
+        Figure.call(this);
+
+        //private variables
+        var width = width;
+        var height = height;
+
+        this.getWidth = function(){
+            return width;
+        }
+
+        this.getHeight = function(){
+            return width;
+        }
+
+
+        console.log('Rectangle constructor called');
+    }
+
+//    Class.prototype = Figure.prototype; - wrong because modify prototype of the Figure
+//    Class.prototype = Object.create(new Figure()); //works but not good as it creates instance of the Figure class using default constructor without parameters
+    
+    //inherits prototype Figure API but must remember to execute inherited constructor as well
+    //this creates prototype chain Rectangle.prototype === Object -> Object.prototype === Figure.prototype
+    Rectangle.prototype = Object.create(Figure.prototype) 
+
+    //shadows but no replcaes Figure getArea
+    Rectangle.prototype.getArea = function(){
+        return this.getWidth() * this.getHeight();
+    }
+
+    Rectangle.prototype.toString = function(){
+        return 'Rectangle';
+    }    
+    
+
+    return Rectangle;
+})();
+
+var Square = (function(){
+    function Square(size){
+        Rectangle.call(this, size, size);
+        console.log('Square constructor called');
+    }
+
+    Square.prototype = Object.create(Rectangle.prototype);
+
+    Square.prototype.toString = function(){
+        return 'Square';
+    }    
+    
+
+    return Square;
+})();
+
+
+
+console.log('===== creating Figure');
+var figure = new Figure('other');
+console.log('figure name: ' + figure.toString());
+console.log('figure instance Figure: ' + (figure instanceof Figure));
+//console.log(f.getArea()); - exception
+
+console.log('===== creating Rectangle')
+var rectangle = new Rectangle(1,2);
+console.log('rectangle name: ' + rectangle.toString());
+console.log('rectangle area: ' + rectangle.getArea());
+console.log('rectangle instance Rectangle: ' + (rectangle instanceof Rectangle));
+console.log('rectangle instance Figure: ' + (rectangle instanceof Figure));
+
+
+console.log('===== creating Square')
+var square = new Square(4);
+console.log('square name: ' + square.toString());
+console.log('square area: ' + square.getArea());
+console.log('square instance Square: ' + (square instanceof Square));
+console.log('square instance Rectangle: ' + (square instanceof Rectangle));
+console.log('square instance Figure: ' + (square instanceof Figure));
+```
+
+
+
 ### Mixings
 
 ### Polymorphism
