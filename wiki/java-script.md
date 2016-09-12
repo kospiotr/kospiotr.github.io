@@ -167,15 +167,38 @@ console.log(descriptor.configurable); // false
 
 TBD
 
-# Object Constructor
+# Object Constructing
 
-## Basic Constructor
+## Factory pattern
+
+```javascript
+
+function createPerson(name) {
+  var person = new Object();
+  person.name = name;
+  
+  return person;
+}
+
+// objectcts of the class
+var person1 = createPerson('Piotr');
+var person2 = createPerson('Paulina');
+
+// the type is defined
+console.log(person1.name); // Piotr
+console.log(person2.name); // Paulina
+```
+
+## Constructor Pattern
 
 ```javascript
 
 // the Person constructor 
 function Person() {
-  // intentionally empty
+  this.name = 'Piotr';
+  this.greeting = function(){
+    return 'Hello, ' + this.name;
+  }
 }
 
 // objectcts of the class
@@ -184,10 +207,23 @@ var person2 = new Person();
 
 // the type is defined
 console.log(person1 instanceof Person); // true
+console.log(person1.name); // Piotr
+console.log(person1.greeting()); // Hello, Piotr
 console.log(person2 instanceof Person); // true
+console.log(person2.name); // Piotr
+console.log(person2.greeting()); // Hello, Piotr
 ```
 
-## Constructor with parameter
+Pros:
+
+- very simple
+
+Const:
+
+- not effectively share methods across multiple objects
+
+
+## Constructor Pattern (with parameter)
 
 ```javascript
 function Person(name) {
@@ -207,7 +243,7 @@ person1.sayName(); // outputs "Nicholas"
 person2.sayName(); // outputs "Greg"
 ```
 
-## Constructor private members
+## Constructor Pattern (wit private members)
 
 ```javascript
 function Person(name) {
