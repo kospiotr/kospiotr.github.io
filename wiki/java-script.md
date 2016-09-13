@@ -359,6 +359,36 @@ var person = (function() {
 }());
 ```
 
+## Augmentation Module pattern
+
+```javascript
+var person = (function() {
+
+  var age = 25;
+  
+  var api = {};
+  api.name = "Nicholas";
+  api.getAge = function() {
+      return age;
+  };
+  api.growOlder = function() {
+      age++;
+  };
+
+  return api;
+
+}());
+
+console.log(person.name); // "Nicholas"
+console.log(person.getAge()); // 25
+
+person.age = 100;
+console.log(person.getAge()); // 25
+
+person.growOlder();
+console.log(person.getAge()); // 26
+```
+
 # Inheritance
 
 ## Prototype pattern - add common functionality by modifying prototype
@@ -411,9 +441,8 @@ console.log(person2 instanceof Person); // true
 console.log(person2.constructor === Person); // true
 console.log(person2.constructor === Object); // false
 ```
-## Parasitic Combination Inheritance Pattern
 
-## Parasitic Combination Inheritance Pattern (simplified)
+## Parasitic Combination Inheritance Pattern (prototype inheritance)
 
 ```javascript
 'use strict'
@@ -472,7 +501,8 @@ var Rectangle = (function(FigureConstructor){
     //inherits prototype Figure API but must remember to execute inherited constructor as well
     //this creates prototype chain Rectangle.prototype === Object -> Object.prototype === Figure.prototype
     Rectangle.prototype = Object.create(FigureConstructor.prototype) 
-
+    Rectangle.prototype.constructor = Rectangle; //pointing back constructor
+    
     //shadows but no replcaes Figure getArea
     Rectangle.prototype.getArea = function(){
         return this.getWidth() * this.getHeight();
@@ -493,11 +523,11 @@ var Square = (function(RectangleConstructor){
     }
 
     Square.prototype = Object.create(RectangleConstructor.prototype);
-
+    Square.prototype.constructor = Square; //pointing back constructor
+    
     Square.prototype.toString = function(){
         return 'Square';
     }    
-    
 
     return Square;
 })(Rectangle);
