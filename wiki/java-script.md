@@ -440,6 +440,7 @@ var Figure = (function(){
 var Rectangle = (function(FigureConstructor){
     function Rectangle(width, height){
 
+        // constructor stealing
         FigureConstructor.call(this);
 
         //private variables
