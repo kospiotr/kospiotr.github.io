@@ -359,7 +359,7 @@ var person = (function() {
 }());
 ```
 
-## Augmentation Module pattern
+## Augmentation Module Pattern
 
 ```javascript
 var person = (function() {
