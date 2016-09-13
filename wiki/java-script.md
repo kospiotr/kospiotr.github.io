@@ -10,6 +10,43 @@ editurl: wiki/java-script.md
 
 # Basis
 
+## Anonymous Closures
+
+```javascript
+(function () {
+	// ... all vars and functions are in this scope only
+	// still maintains access to all globals
+}());
+```
+
+## Global Import
+
+```javascript
+(function ($, YAHOO) {
+	// now have access to globals jQuery (as $) and YAHOO in this code
+}(jQuery, YAHOO));
+```
+
+## MOdule export
+
+```javascript
+var MODULE = (function () {
+	var my = {},
+		privateVariable = 1;
+
+	function privateMethod() {
+		// ...
+	}
+
+	my.moduleProperty = 1;
+	my.moduleMethod = function () {
+		// ...
+	};
+
+	return my;
+}());
+```
+
 ## This
 
 `this` binds by default to the given current object:
