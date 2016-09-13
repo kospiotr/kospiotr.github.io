@@ -411,6 +411,7 @@ console.log(person2 instanceof Person); // true
 console.log(person2.constructor === Person); // true
 console.log(person2.constructor === Object); // false
 ```
+## Parasitic Combination Inheritance Pattern
 
 ## Parasitic Combination Inheritance Pattern (simplified)
 
@@ -463,7 +464,10 @@ var Rectangle = (function(FigureConstructor){
     }
 
     //Class.prototype = FigureConstructor.prototype; - wrong because modify prototype of the Figure
-    //Class.prototype = Object.create(new FigureConstructor()); //works but not good as it creates instance of the Figure class using default constructor without parameters
+    //Class.prototype = Object.create(new FigureConstructor()); wrong as it calls default constructor and creates
+    //                                                          instance which state is shared among Rectangles and 
+    //                                                          can be altered. If stealing also constructor then it's
+    //                                                          called twice!!
     
     //inherits prototype Figure API but must remember to execute inherited constructor as well
     //this creates prototype chain Rectangle.prototype === Object -> Object.prototype === Figure.prototype
