@@ -10,43 +10,6 @@ editurl: wiki/java-script.md
 
 # Basis
 
-## Anonymous Closures
-
-```javascript
-(function () {
-	// ... all vars and functions are in this scope only
-	// still maintains access to all globals
-}());
-```
-
-## Global Import
-
-```javascript
-(function ($, YAHOO) {
-	// now have access to globals jQuery (as $) and YAHOO in this code
-}(jQuery, YAHOO));
-```
-
-## MOdule export
-
-```javascript
-var MODULE = (function () {
-	var my = {},
-		privateVariable = 1;
-
-	function privateMethod() {
-		// ...
-	}
-
-	my.moduleProperty = 1;
-	my.moduleMethod = function () {
-		// ...
-	};
-
-	return my;
-}());
-```
-
 ## This
 
 `this` binds by default to the given current object:
@@ -424,6 +387,48 @@ console.log(person.getAge()); // 25
 
 person.growOlder();
 console.log(person.getAge()); // 26
+```
+## Immediately Invoked Function Expressions (IIFE)
+
+Allow to mimic block scope and create private variables.
+
+```javascript
+(function () {
+	// ... all vars and functions are in this scope only
+	// still maintains access to all globals
+}());
+```
+
+## Global Import
+
+An example demonstrating injecting dependencies to IIFE.
+
+```javascript
+(function ($, YAHOO) {
+	// now have access to globals jQuery (as $) and YAHOO in this code
+}(jQuery, YAHOO));
+```
+
+## Module export
+
+An example demonstrating basic module export using IIFE.
+
+```javascript
+var MODULE = (function () {
+	var my = {},
+		privateVariable = 1;
+
+	function privateMethod() {
+		// ...
+	}
+
+	my.moduleProperty = 1;
+	my.moduleMethod = function () {
+		// ...
+	};
+
+	return my;
+}());
 ```
 
 # Inheritance
