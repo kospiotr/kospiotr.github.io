@@ -272,6 +272,29 @@ console.log(person.getAge()); // 26
 
 # Encapsulation
 
+## Object literals
+
+```javascript
+
+var age = 25;
+
+var person1 = {
+  getName: 'Piotr',
+  getAge: function(){
+    return age;
+  }
+}
+
+age = 30;
+
+var person2 = {
+  getName: 'Paweł',
+  getAge: function(){
+    return age;
+  }
+}
+```
+
 ## Module pattern
 
 ```javascript
@@ -600,3 +623,7 @@ xmlhttp.onreadystatechange=function()
 xmlhttp.open("POST","/api/costumes",true); xmlhttp.send();
 
 ```
+
+# Resources
+
+[https://addyosmani.com/resources/essentialjsdesignpatterns/book/](https://addyosmani.com/resources/essentialjsdesignpatterns/book/)
