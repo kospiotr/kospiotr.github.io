@@ -2,7 +2,6 @@
 layout: post
 title:  "Angular 2 + uikit application"
 date:   2016-09-17 18:00:00
-draft: true
 ---
 
 # Prerequisite
@@ -150,12 +149,4 @@ require("imports?$=jquery/src/jquery!uikit");
 Result:
 
 ![NG2 seed app]({{site.baseurl}}/img/2016-09-17_app-page-with-js.png)
-
-# Custom directive
-
-Add typescript definitions for jquery and uikit:
-
-```
-typings install dt~jquery dt~uikit --global --sav
-```
 
