@@ -32,15 +32,11 @@ Run app:
 npm start
 ```
 
-Site URL: {{site.url}}
-Site Base URL: {{site.baseurl}}
-
-
 Go to [http://localhost:3000](http://localhost:3000)
 
 Result:
 
-![NG2 seed app](../../../../../img/2016-09-17_init-ng-app-page.png)
+![NG2 seed app]({{site.baseurl}}/img/2016-09-17_init-ng-app-page.png)
 
 # Add dependencies
 
