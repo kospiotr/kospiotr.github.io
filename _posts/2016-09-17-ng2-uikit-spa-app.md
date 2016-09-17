@@ -46,8 +46,11 @@ Install jquery and uikit runtime dependencies as a npm module:
 npm install jquery uikit --save
 ```
 
-Add typescript 
+Add typescript definitions for jquery and uikit:
 
 ```
-typings install dt~jquery --global --save jquery
+typings install dt~jquery dt~uikit --global --sav
 ```
+
+Add jquery and uikit as a runtime dependency to be bundled for the browser:
+
