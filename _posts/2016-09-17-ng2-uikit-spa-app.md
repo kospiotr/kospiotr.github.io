@@ -147,11 +147,11 @@ Add uikit with jquery as it's dependency to be bundled for the browser. Add belo
 ```
 require("imports?$=jquery/src/jquery!uikit");
 ```
+Result:
 
-At this point running app will fail with javascript error where uikit complains that jquery can't be found.
-When importing jquery in above 
+![NG2 seed app]({{site.baseurl}}/img/2016-09-17_app-page-with-js.png)
 
-
+# Custom directive
 
 Add typescript definitions for jquery and uikit:
 
