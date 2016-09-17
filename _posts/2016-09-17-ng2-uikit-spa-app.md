@@ -109,24 +109,53 @@ Result:
 
 ![NG2 seed app]({{site.baseurl}}/img/2016-09-17_app-page-with-styles.png)
 
-# Add dependencies
+# uikit dynamic elements
+
+So far static elements like panels or buttons are showing properly. However dynamic components using javascript will fail.
+
+Modify `about.html` file by adding on the end:
+
+```
+
+<!-- This is the anchor toggling the modal -->
+<a class="uk-button uk-button-primary" href="#my-id" data-uk-modal>Open dialog</a>
+
+<!-- This is the modal -->
+<div id="my-id" class="uk-modal">
+  <div class="uk-modal-dialog uk-modal-dialog-lightbox">
+    <a href="" class="uk-modal-close uk-close uk-close-alt"></a>
+    This is a dialog box
+  </div>
+</div>
+```
+
+Open [http://localhost:3000/#/about](http://localhost:3000/#/about) page and click button. Result:
+
+![NG2 seed app]({{site.baseurl}}/img/2016-09-17_app-page-no-js.png)
+
+This is actually because we didn't povided all required scripts (dependencies) yet.
 
 Install jquery and uikit runtime dependencies as a npm module:
 
 ```
 npm install jquery uikit --save
+npm install imports-loader --save-dev
 ```
+
+Add uikit with jquery as it's dependency to be bundled for the browser. Add below code to the bottom of `vendor.browser.ts` :
+
+```
+require("imports?$=jquery/src/jquery!uikit");
+```
+
+At this point running app will fail with javascript error where uikit complains that jquery can't be found.
+When importing jquery in above 
+
+
 
 Add typescript definitions for jquery and uikit:
 
 ```
 typings install dt~jquery dt~uikit --global --sav
-```
-
-Add jquery and uikit as a runtime dependency to be bundled for the browser. Add below code to the bottom of `vendor.browser.ts:
-
-```
-import 'jquery';
-import 'uikit';
 ```
 
