@@ -34,7 +34,7 @@ npm start
 
 Go to http://localhost:3000
 
-![Inheritance](img/InheritanceJS.png)
+![Inheritance](../../img/2016-09-17_init-ng-app-page.png)
 
 # Add dependencies
 
