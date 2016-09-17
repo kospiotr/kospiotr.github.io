@@ -27,6 +27,10 @@ If you just want to use `$` and `jQuery` without require:
 
   - option: `provide: { $: "/path/to/jquery", jQuery: "/path/to/jquery" }`
 
+When thirdparty library requires `$` or `jQury` then use:
+
+  - require("imports?$=jquery!bootstrap");
+
 # Resources
 
 - [Configuration API](https://github.com/webpack/docs/wiki/configuration)
