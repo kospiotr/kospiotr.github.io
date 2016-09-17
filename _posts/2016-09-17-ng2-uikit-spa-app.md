@@ -38,51 +38,7 @@ Result:
 
 ![NG2 seed app]({{site.baseurl}}/img/2016-09-17_init-ng-app-page.png)
 
-# Add dependencies
-
-Install jquery and uikit runtime dependencies as a npm module:
-
-```
-npm install jquery uikit --save
-```
-
-Add typescript definitions for jquery and uikit:
-
-```
-typings install dt~jquery dt~uikit --global --sav
-```
-
-Add jquery and uikit as a runtime dependency to be bundled for the browser. Add below code to the bottom of `vendor.browser.ts:
-
-```
-import 'jquery';
-import 'uikit';
-```
-
-# Using uikit styles
-
-Tell webpack how to build uikit theme and bundle them with app. 
-
-Need first to install less loader and then configure it. In console:
-
-```
-npm install --save-dev less-loader style-loader less url-loader file-loader
-```
-
-In `webpack.config.js` :
-
-```
-  module: {
-    loaders: [
-      ...
-      {test: /\.less$/, loader: 'style!css!less'},
-      {test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&mimetype=application/font-woff"},
-      {test: /\.(ttf|eot|svg|png|gif)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader"},
-    ]
-  }
-```
-
-# Use static uikit components
+# uikit styles
 
 Replace`home.html` content:
 
@@ -109,3 +65,68 @@ Replace`home.html` content:
   </div>
 </div>
 ```
+
+Result:
+
+![NG2 seed app]({{site.baseurl}}/img/2016-09-17_app-page-no-styles.png)
+
+Need to tell webpack how to build uikit theme and bundle them with app. 
+
+Install less and other resource loaders for webpack:
+
+```
+npm install --save-dev less-loader style-loader less url-loader file-loader
+```
+
+In `webpack.config.js` :
+
+```
+  module: {
+    loaders: [
+      ...
+      {test: /\.less$/, loader: 'style!css!less'},
+      {test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&mimetype=application/font-woff"},
+      {test: /\.(ttf|eot|svg|png|gif)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader"},
+    ]
+  }
+```
+
+Create `src/styles.less` file with content:
+
+```
+@import "../node_modules/uikit/themes/default/uikit.less";
+
+@icon-font-path: "../../fonts"; //fixing wrong relative path
+```
+
+Add as a first line to file `main.browser.ts`:
+
+```
+import './styles.less';
+```
+
+Result:
+
+![NG2 seed app]({{site.baseurl}}/img/2016-09-17_app-page-with-styles.png)
+
+# Add dependencies
+
+Install jquery and uikit runtime dependencies as a npm module:
+
+```
+npm install jquery uikit --save
+```
+
+Add typescript definitions for jquery and uikit:
+
+```
+typings install dt~jquery dt~uikit --global --sav
+```
+
+Add jquery and uikit as a runtime dependency to be bundled for the browser. Add below code to the bottom of `vendor.browser.ts:
+
+```
+import 'jquery';
+import 'uikit';
+```
+
