@@ -32,8 +32,8 @@ Run app:
 npm start
 ```
 
-Site URL: {site.url}
-Site Base URL: {site.baseurl}
+Site URL: {{site.url}}
+Site Base URL: {{site.baseurl}}
 
 
 Go to [http://localhost:3000](http://localhost:3000)
