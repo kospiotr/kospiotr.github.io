@@ -22,7 +22,9 @@ If you don't want to provide a path: `require("jquery")` `require(["jquery"], fu
 
 - by option: `resolve: { alias: { jquery: "/path/to/jquery" } }`
 - by directory: Put jquery into a folder `web_modules.
-- If you just want to use `$` and `jQuery` without require:
+
+If you just want to use `$` and `jQuery` without require:
+
   - option: `provide: { $: "/path/to/jquery", jQuery: "/path/to/jquery" }`
 
 # Resources
