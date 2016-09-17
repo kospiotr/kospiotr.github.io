@@ -34,6 +34,8 @@ npm start
 
 Go to http://localhost:3000
 
+![Inheritance](img/InheritanceJS.png)
+
 # Add dependencies
 
 Install jquery and uikit runtime dependencies as a npm module:
