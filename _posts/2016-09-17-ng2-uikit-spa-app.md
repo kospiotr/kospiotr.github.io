@@ -154,6 +154,9 @@ Add uikit with jquery as it's dependency to be bundled for the browser. Add belo
 ```
 require("imports?$=jquery/src/jquery!uikit");
 ```
+
+Need to restart watch process in order to apply new loaders.
+
 Result:
 
 ![NG2 seed app]({{site.baseurl}}/img/2016-09-17_app-page-with-js.png)
