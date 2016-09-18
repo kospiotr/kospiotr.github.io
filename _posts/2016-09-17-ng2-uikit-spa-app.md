@@ -110,6 +110,8 @@ Add as a first line to file `main.browser.ts`:
 import './styles.less';
 ```
 
+Need to restart watch process in order to apply new loaders.
+
 Result:
 
 ![NG2 seed app]({{site.baseurl}}/img/2016-09-17_app-page-with-styles.png)
