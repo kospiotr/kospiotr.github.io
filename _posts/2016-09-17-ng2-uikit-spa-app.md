@@ -71,7 +71,13 @@ Result:
 
 Need to tell webpack how to build uikit theme and bundle them with app. 
 
-Install less and other resource loaders for webpack:
+Install uikit as a npm module. We will need it later as an runtime dependency so save it with `--save` :
+
+```
+npm install uikit --save
+```
+
+Install less and other resource loaders for webpack. We will use them only for building app so use `--save-dev` :
 
 ```
 npm install --save-dev less-loader style-loader less url-loader file-loader
@@ -134,10 +140,10 @@ Open [http://localhost:3000/#/about](http://localhost:3000/#/about) page and cli
 
 This is actually because we didn't povided all required scripts (dependencies) yet.
 
-Install jquery and uikit runtime dependencies as a npm module:
+Need to install runtime dependencies. uikit is already installed, however it requires also jQuery. Install jquery runtime dependencies as a npm module and save it using `--save` :
 
 ```
-npm install jquery uikit --save
+npm install jquery --save
 npm install imports-loader --save-dev
 ```
 
