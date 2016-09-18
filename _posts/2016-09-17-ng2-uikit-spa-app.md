@@ -67,7 +67,7 @@ Replace`home.html` content:
 
 Result:
 
-![NG2 seed app]({{site.baseurl}}/img/2016-09-17_app-page-no-styles.png)
+![app without styles]({{site.baseurl}}/img/2016-09-17_app-page-no-styles.png)
 
 Need to tell webpack how to build uikit theme and bundle them with app. 
 
@@ -114,7 +114,7 @@ Need to restart watch process in order to apply new loaders.
 
 Result:
 
-![NG2 seed app]({{site.baseurl}}/img/2016-09-17_app-page-with-styles.png)
+![app with styles]({{site.baseurl}}/img/2016-09-17_app-page-with-styles.png)
 
 # uikit dynamic elements
 
@@ -138,7 +138,7 @@ Modify `about.html` file by adding on the end:
 
 Open [http://localhost:3000/#/about](http://localhost:3000/#/about) page and click button. Result:
 
-![NG2 seed app]({{site.baseurl}}/img/2016-09-17_app-page-no-js.png)
+![app without js]({{site.baseurl}}/img/2016-09-17_app-page-no-js.png)
 
 This is actually because we didn't povided all required scripts (dependencies) yet.
 
@@ -159,5 +159,50 @@ Need to restart watch process in order to apply new loaders.
 
 Result:
 
-![NG2 seed app]({{site.baseurl}}/img/2016-09-17_app-page-with-js.png)
+![app with js]({{site.baseurl}}/img/2016-09-17_app-page-with-js.png)
 
+# Theming
+
+Go to uikit customizer: [http://getuikit.com/docs/customizer.html](http://getuikit.com/docs/customizer.html)
+
+Modify elements that you wish: 
+
+![theme customization]({{site.baseurl}}/img/2016-09-17_customize_theme.png)
+
+Download less file, rename it to theme and put it in the app directory.
+
+Example `theme.less` content:
+
+```
+/* theme: Default */
+
+
+//
+// General
+//
+
+@global-background: rgba(94, 209, 255, 0.33);
+
+//
+// Icon
+//
+
+@icon-font-path: "../../fonts";
+```
+
+Modify `styles.less` file. Mind that you can remove fix for fonts as overrides already contains fix:
+
+```
+@import "../node_modules/uikit/themes/default/uikit.less";
+@import "./theme.less";
+```
+
+Mind that if you have changed the default main theme then first line should be modified as follow:
+
+- Default - `../node_modules/uikit/themes/default/uikit.less`
+- Gradient - `../node_modules/uikit/themes/gradient/uikit.less`
+- Almost Flat - `../node_modules/uikit/themes/almost-flat/uikit.less`
+
+Result:
+
+![theme customization]({{site.baseurl}}/img/2016-09-17_customized_theme.png)
