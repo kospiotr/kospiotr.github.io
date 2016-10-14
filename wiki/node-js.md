@@ -313,6 +313,50 @@ console.log('App started on port ' + port);
 
 `--display-error-details` - show error details
 
+# Testing tools list
+
+Comparisons: https://theintern.github.io/#compare
+
+## Test runners
+
+ - Karma - allows for running unit/integration tests in a real browser like Chrome, FF, PhantomJS
+ - Protractor - Protractor is an end-to-end test framework for AngularJS applications. Protractor is a Node.js program built on top of WebDriverJS. Protractor runs tests against your application running in a real browser, interacting with it as a user would.
+ - CasperJS - "CasperJS is a navigation scripting & testing utility which uses headless browsers."
+ - Intern - fully feature runner / framework toolkit
+
+## Test definitions
+
+- Jasmine - is a fullyfeature Behavior Driven Development testing framework for JavaScript with .
+- Mocha - simple plain test runner. 
+
+## Assertion Libraries
+
+ - [should.js](https://github.com/shouldjs/should.js) - BDD style shown throughout these docs
+ - [chai](http://chaijs.com/) - expect(), assert() and should style assertions
+ - [expect.js](https://github.com/LearnBoost/expect.js) - expect() style assertions
+ - [expectations](https://github.com/spmason/expectations) - Jasmine-style expect()
+ - [unit.js](https://github.com/unitjs/unit.js) - simple, fluent assertions
+ - [unexpected](https://unexpectedjs.github.io/) - extensible BDD assertion toolkit
+ - [inspect.js](https://inspectjs.com/) - modern BDD style assertion library
+
+## Mocks, Stubs, & Spies
+
+  - [sinon.js](http://sinonjs.org/) - Test spies, stubs and mocks for JavaScript.
+  - [simple-mock](https://github.com/jupiter/node-simple-mock) - Super simple mocks, stubs, and spies with 1-step sandbox restore.
+  - [nock](https://github.com/pgte/nock) - HTTP mocking and expectations library.
+
+## Other
+
+- Selenium 
+- PhantomJS 
+
+Resources:
+
+ - http://thejsguy.com/2015/01/12/jasmine-vs-mocha-chai-and-sinon.html
+ - http://andyshora.com/unit-testing-best-practices-angularjs.html
+ - https://karma-runner.github.io
+ - https://github.com/jasmine/jasmine
+
 # Examples
 
 ## Grunt + Http server
