@@ -680,9 +680,10 @@ try {
 }
  ```
 
-# Debugger
+# Tips and tricks
 
 * `debugger;` - stops debugger while execution this line of the code
+* `document.designMode = 'on'` - make the whole page editable 
 
 # Ajax
 ## Sample vanilla post call
