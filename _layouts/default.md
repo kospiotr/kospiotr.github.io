@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Piotr Kosmowski">
+    <link rel="icon" type="image/x-icon" href="https://assets-cdn.github.com/favicon.ico">
 
     <title>Piotr Kosmowski page</title>
     <script>
