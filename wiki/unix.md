@@ -95,6 +95,32 @@ sudo npm install -g grunt-cli
 sudo apt-get install vlc browser-plugin-vlc
 ```
 
+## Intellij Idea
+
+* Download version without jdk
+
+```bash
+cp ~/Downloads/idea-IU-162.2228.15 /opt -r
+```
+
+Create activator:
+
+```bash
+vim ~/.local/share/applications/jetbrains-idea.desktop
+
+paste:
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=IntelliJ IDEA
+Icon=/opt/idea-IU-143.1184.17/bin/idea.png
+Exec="/opt/idea-IU-143.1184.17/bin/idea.sh" %f
+Comment=Develop with pleasure!
+Categories=Development;IDE;
+Terminal=false
+StartupWMClass=jetbrains-idea
+```
+
 # Elementary OS
 
 * http://www.elementarynow.com/
@@ -108,7 +134,22 @@ sudo add-apt-repository ppa:mpstark/elementary-tweaks-daily
 sudo apt-get update
 sudo apt-get install elementary-tweaks
 ```
+## Create custom Activator:
 
+Create a ```.desktop``` file in your ```~/.local/share/applications``` folder for the script (or in ```usr/share/applications``` for system wide access). E.g.:
+
+```
+[Desktop Entry]
+Name=My bash script
+Comment=bash script to do custom stuff
+Type=Application
+Exec=/path/to/bash/script %U
+Icon=/path/to/some/fancy/icon
+Terminal=false (or true)
+Categories=Other;
+```
+
+It will show up in the Other category for slingshot. Run it and then select "Keep in dock" when it is running.
 
 
 # Recipes
