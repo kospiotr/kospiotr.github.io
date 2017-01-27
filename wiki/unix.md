@@ -27,7 +27,8 @@ editurl: wiki/unix.md
 * `find /run/user/1000/gvfs/mtp:host=%5Busb%3A003%2C003%5D/Pamięć wewnętrzna/DCIM/Camera -type f -mtime -20 -exec cp -p "{}" /home/kospiotr/Obrazy/CG \;` - copy files as above from OnePlus camera 
 * `sudo apt-get install gnome-system-monitor` - taask manager from GNOME
 * `sudo mkfs -t vfat /dev/mmcblk0` - format /dev/mmcblk0 device as fat
-* `badblocks -svn /dev/sdb1` - check ssd card
+* `umount /dev/sdb1 && badblocks -svn /dev/sdb1` - check ssd card
+* `umount /dev/sdb1 && badblocks -o ./badblocks.list -w -s -v -b 4096 -c 16 /dev/mmcblk0` - check ssd card in destructive way
 
 # Set up environment
 
