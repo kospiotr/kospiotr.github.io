@@ -8,9 +8,9 @@ editurl: wiki/raspberry-pi.md
 
 # Start
 
-* Download OS from: https://www.raspberrypi.org/downloads/raspbian/
-* Install it to the SD card: https://www.raspberrypi.org/documentation/installation/installing-images/linux.md
-* Enable ssh for headless access: https://www.raspberrypi.org/documentation/remote-access/ssh/
+* Download OS from: [https://www.raspberrypi.org/downloads/raspbian/](https://www.raspberrypi.org/downloads/raspbian/)
+* Install it to the SD card: [https://www.raspberrypi.org/documentation/installation/installing-images/linux.md](https://www.raspberrypi.org/documentation/installation/installing-images/linux.md)
+* Enable ssh for headless access: [https://www.raspberrypi.org/documentation/remote-access/ssh/](https://www.raspberrypi.org/documentation/remote-access/ssh/)
 
 # Commands
 
@@ -26,7 +26,7 @@ editurl: wiki/raspberry-pi.md
     * "rpc-password": "{{your_password}}"
 * Run service by: `sudo service transmission-daemon start`
     
-Reference: {https://help.ubuntu.com/community/TransmissionHowTo}[https://help.ubuntu.com/community/TransmissionHowTo]
+Reference: [https://help.ubuntu.com/community/TransmissionHowTo](https://help.ubuntu.com/community/TransmissionHowTo)
 
 # Install Owncloud
 
@@ -52,7 +52,9 @@ Restart Apache: `service apache2 restart`
 
 References: 
 
+* [https://download.owncloud.org/download/repositories/stable/owncloud/](https://download.owncloud.org/download/repositories/stable/owncloud/)
+* [http://projpi.com/diy-home-projects-with-a-raspberry-pi/pi-owncloud-drop-box-clone/](http://projpi.com/diy-home-projects-with-a-raspberry-pi/pi-owncloud-drop-box-clone/)
 
+# Resources
 
-* (https://download.owncloud.org/download/repositories/stable/owncloud/)[https://download.owncloud.org/download/repositories/stable/owncloud/]
-* (http://projpi.com/diy-home-projects-with-a-raspberry-pi/pi-owncloud-drop-box-clone/)[http://projpi.com/diy-home-projects-with-a-raspberry-pi/pi-owncloud-drop-box-clone/]
+* (https://raymii.org/s/blog/Broken_Corrupted_Raspberry_Pi_SD_Card.html)[https://raymii.org/s/blog/Broken_Corrupted_Raspberry_Pi_SD_Card.html]
