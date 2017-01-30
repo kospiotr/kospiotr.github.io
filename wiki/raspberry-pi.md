@@ -55,6 +55,8 @@ Reference: [https://help.ubuntu.com/community/TransmissionHowTo](https://help.ub
 
 # Install Owncloud
 
+* Install
+
 ```
 wget -nv https://download.owncloud.org/download/repositories/stable/Debian_8.0/Release.key -O Release.key
 apt-key add - < Release.key
@@ -63,7 +65,7 @@ apt-get update
 apt-get install owncloud
 ```
 
-Configure apache to redirect root context to /owncloud automatically:
+* Configure apache to redirect root context from `/owncloud` to `/`:
 
 Edit `/etc/apache2/sites-enabled/000-default.conf` and change the settings of DocumentRoot so that it reads:
 
@@ -72,6 +74,15 @@ DocumentRoot /var/www/owncloud
 ```
 
 Restart Apache: `service apache2 restart`
+
+* Prevent domain instead of redirecting to local host ip
+
+Edit `/var/www/owncloud/config/config.php` and add entries:
+
+```
+  'overwritehost' => "sample.domain.com",
+  'overwrite.cli.url' => 'http://sample.domain.com/',
+```
 
 
 
