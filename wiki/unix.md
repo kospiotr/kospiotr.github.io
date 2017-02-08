@@ -29,6 +29,8 @@ editurl: wiki/unix.md
 * `sudo mkfs -t vfat /dev/mmcblk0` - format /dev/mmcblk0 device as fat
 * `umount /dev/sdb1 && badblocks -svn /dev/sdb1` - check ssd card
 * `umount /dev/sdb1 && badblocks -o ./badblocks.list -w -s -v -b 4096 -c 16 /dev/mmcblk0` - check ssd card in destructive way
+* `sudo adduser <username> sudo` - create user and add it to `sudo` group
+* `sudo usermod -a -G sudo <username>` - add user to group `sudo`
 
 # Set up environment
 
