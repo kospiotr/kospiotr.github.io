@@ -32,6 +32,12 @@ editurl: wiki/unix.md
 
 # Set up environment
 
+## Commons
+
+```bash
+sudo apt-get install software-properties-common
+```
+
 ## Chrome
 
 ```bash
