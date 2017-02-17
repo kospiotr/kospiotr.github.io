@@ -6,9 +6,9 @@ toc: true
 editurl: wiki/testing.md
 ---
 
-#JUnit
+# JUnit
 
-##Dependencies##
+## Dependencies
 
 ```xml
 <dependency>
@@ -19,9 +19,9 @@ editurl: wiki/testing.md
 </dependency>
 ```
 
-#Mockito
+# Mockito
 
-##Dependencies
+## Dependencies
 
 mockito-core
 
@@ -53,7 +53,7 @@ Matchers
 ##Refs
  * http://java.dzone.com/articles/hamcrest-containing-matchers
 
-##Dependencies
+## Dependencies
 
 ```xml
 <dependency>
@@ -64,7 +64,7 @@ Matchers
 </dependency>
 ```
 
-#Fest
+# Fest
 Dependency:
 
 ```xml
@@ -89,7 +89,7 @@ public void testMain() {
     assertThat(dummyList).containsOnly("a","c","b");
 }
 ```
-#AssertJ
+# AssertJ
 Dependency:
 
 ```xml
