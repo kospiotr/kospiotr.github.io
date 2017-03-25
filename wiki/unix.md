@@ -98,6 +98,12 @@ curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
 sudo apt-get install -y nodejs
 ```
 
+Remove:
+
+```bash
+ sudo rm -rf bin/node bin/node-waf include/node lib/node lib/pkgconfig/nodejs.pc share/man/man1/node
+ ```
+
 ## VLC
 
 ```bash
