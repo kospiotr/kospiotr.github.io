@@ -15,6 +15,7 @@ editurl: wiki/raspberry-pi.md
 # Commands
 
 * `sudo dd bs=1M if=2017-01-11-raspbian-jessie-lite.img of=/dev/mmcblk0` - install image to sd card
+* `sudo apt-get install curl openssh-server ca-certificates postfix apt-transport-https`
 
 # Less writing
 
@@ -90,6 +91,8 @@ References:
 
 * [https://download.owncloud.org/download/repositories/stable/owncloud/](https://download.owncloud.org/download/repositories/stable/owncloud/)
 * [http://projpi.com/diy-home-projects-with-a-raspberry-pi/pi-owncloud-drop-box-clone/](http://projpi.com/diy-home-projects-with-a-raspberry-pi/pi-owncloud-drop-box-clone/)
+
+
 
 # Resources
 
