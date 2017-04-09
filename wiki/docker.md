@@ -3,7 +3,7 @@ layout: wiki
 title: Docker
 comments: false
 toc: true
-editurl: wiki/git.md
+editurl: wiki/docker.md
 ---
 
 # Basic commands
