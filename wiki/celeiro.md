@@ -7,7 +7,7 @@ editurl: wiki/celeiro.md
 ---
 
 # Resources
-
+* [http://www.jaxio.com/documentation/celerio/index.html](http://www.jaxio.com/documentation/celerio/index.html)
 * [http://www.springfuse.com/documentation/pdf/springfuse.pdf](http://www.springfuse.com/documentation/pdf/springfuse.pdf)
 
 # Custom pack
