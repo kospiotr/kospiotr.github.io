@@ -3,7 +3,7 @@ layout: wiki
 title: Celeiro
 comments: false
 toc: true
-editurl: wiki/git.md
+editurl: wiki/celeiro.md
 ---
 
 # Custom pack
