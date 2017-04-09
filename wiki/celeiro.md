@@ -6,6 +6,10 @@ toc: true
 editurl: wiki/celeiro.md
 ---
 
+# Resources
+
+* [http://www.springfuse.com/documentation/pdf/springfuse.pdf](http://www.springfuse.com/documentation/pdf/springfuse.pdf)
+
 # Custom pack
 
 ## Howto change location of well known files:
