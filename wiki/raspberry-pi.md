@@ -85,6 +85,12 @@ Edit `/var/www/owncloud/config/config.php` and add entries:
   'overwrite.cli.url' => 'http://sample.domain.com/',
 ```
 
+# Install docker-compose
+
+```
+sudo curl -L https://github.com/javabean/arm-compose/releases/download/1.13.0/docker-compose-Linux-armv7l > /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+```
 
 
 References: 
