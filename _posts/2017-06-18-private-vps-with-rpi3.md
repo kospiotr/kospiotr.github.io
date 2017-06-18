@@ -16,5 +16,12 @@ date:   2018-06-18 18:00:00
   * `dd bs=4M if=2017-04-10-raspbian-jessie-lite.img of=/dev/mmcblk0`
   * `sync`
 * Enable SSH on a headless RPI
-  * `sudo mkdir /media/sd && sudo mount /dev/mmcblk0p2 /media/sd` - mount SD card
+  * `sudo mkdir /media/sd && sudo mount /dev/mmcblk0p1 /media/sd` - mount bootable partition of the SD card
   * `sudo touch /media/sd/ssh` - create `ssh` file on the SD card which enables SSH on boot  
+* Insert SD card in the RPI, turn it on and connect to the LAN
+* `ssh pi@192.168.1.10` - connect via ssh where `192.168.1.10` is local address of the RPI
+
+# Install software
+
+* Install Jenkins
+  * Instructions: [http://kospiotr.github.io/wiki/jenkins/](http://kospiotr.github.io/wiki/jenkins/)
