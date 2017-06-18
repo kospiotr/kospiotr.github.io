@@ -12,3 +12,4 @@ editurl: wiki/docker.md
  * ```docker rm $(docker ps -a -q)``` - delete all containers
  * ```docker rmi $(docker images -q)``` - Delete all images
  * ```docker system df``` - docker disk usage
+ * ```docker ps --format='{{.ID}}\t{{.Label "pl.xperios.project"}}'``` - outputs all running container and label with key `pl.xperios.project`
