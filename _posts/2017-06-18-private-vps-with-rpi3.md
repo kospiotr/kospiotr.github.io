@@ -23,5 +23,13 @@ date:   2018-06-18 18:00:00
 
 # Install software
 
+* Install commons
+  * sudo apt-get update
+  * sudo apt-get install software-properties-common vim
+* Install java
+```sudo wget -O /tmp/jdk.tar.gz --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jdk-8u131-linux-arm64-vfp-hflt.tar.gz
+sudo mkdir /opt/jdk/ && \
+sudo tar xvzf /tmp/jdk.tar.gz -C /opt/jdk/
+```
 * Install Jenkins
   * Instructions: [http://kospiotr.github.io/wiki/jenkins/](http://kospiotr.github.io/wiki/jenkins/)
