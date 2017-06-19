@@ -33,3 +33,8 @@ sudo tar xvzf /tmp/jdk.tar.gz -C /opt/jdk/
 ```
 * Install Jenkins
   * Instructions: [http://kospiotr.github.io/wiki/jenkins/](http://kospiotr.github.io/wiki/jenkins/)
+* Install GIT
+```
+sudo apt-get install git
+```
+* Configure ssh keys for jenkins user
