@@ -17,15 +17,15 @@ date:   2018-06-18 18:00:00
   * `sync`
 * Enable SSH on a headless RPI
   * `sudo mkdir /media/sd && sudo mount /dev/mmcblk0p1 /media/sd` - mount bootable partition of the SD card
-  * `sudo touch /media/sd/ssh` - create `ssh` file on the SD card which enables SSH on boot  
+  * `sudo touch /media/sd/ssh` - create `ssh` file on the SD card which enables SSH on boot  
 * Insert SD card in the RPI, turn it on and connect to the LAN
 * `ssh pi@192.168.1.10` - connect via ssh where `192.168.1.10` is local address of the RPI
 
 # Install software
 
 * Install commons
-  * sudo apt-get update
-  * sudo apt-get install software-properties-common vim
+  * sudo apt-get update
+  * sudo apt-get install software-properties-common vim
 * Install java
 ```sudo wget -O /tmp/jdk.tar.gz --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jdk-8u131-linux-arm64-vfp-hflt.tar.gz
 sudo mkdir /opt/jdk/ && \
@@ -38,3 +38,7 @@ sudo tar xvzf /tmp/jdk.tar.gz -C /opt/jdk/
 sudo apt-get install git
 ```
 * Configure ssh keys for jenkins user
+* Install Docker
+```
+curl -sSL https://get.docker.com | sh
+```
