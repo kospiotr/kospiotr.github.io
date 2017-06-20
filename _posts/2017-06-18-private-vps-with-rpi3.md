@@ -42,3 +42,7 @@ sudo apt-get install git
 ```
 curl -sSL https://get.docker.com | sh
 ```
+* Grant permissions for Docker to Jenkins
+```
+sudo usermod -aG docker jenkins
+```
