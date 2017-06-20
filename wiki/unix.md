@@ -8,6 +8,7 @@ editurl: wiki/unix.md
 
 # Commands
 
+* `apt-cache policy <packageName>` - check available version
 * `du -sh *` - list all directories and files with its real size
 * `du -h * | sort -r | head -50` - 50 heaviest subdirectories with size
 * `tar -cvf archived-file.tar ./directory-to-archive` - tar directory to file
