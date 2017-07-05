@@ -7,7 +7,6 @@ editurl: tools/excel.md
 ---
 
 <div>
-
   <label>From:</label>
   <textarea id="from"></textarea>
 </div>
@@ -20,15 +19,22 @@ editurl: tools/excel.md
 </div>
 
 <script type="text/javascript">
-function convert(input) {
-  var rows = input.split('\n');
-  var out = rows.map(function(row) {
-    return '|' + row.replace(/\t/g, "|") + '|'
-  });
-  return out.join('\n');
-}
+  function convert(input) {
+    var rows = input.split('\n');
+    var out = rows.map(function(row) {
+      return '|' + row.replace(/\t/g, "|") + '|'
+    });
+    return out.join('\n');
+  }
 
-$('#convert').click(function() {
-  $('#to').val(convert($('#from').val()));
-})
+  $('#convert').click(function() {
+    $('#to').val(convert($('#from').val()));
+  })
 </script>
+
+<styles>
+  #from, #to{
+    width: 100%;
+    min-height: 400px;
+  }
+</styles>
