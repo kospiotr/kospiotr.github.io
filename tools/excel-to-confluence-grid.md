@@ -1,8 +1,8 @@
 ---
-layout: wiki
+layout: page
 title: Excel to confluence grid converter
 comments: false
-editurl: tools/excel_to_confluence_grid.md
+editurl: tools/excel-to-confluence-grid.md
 ---
 
 test
