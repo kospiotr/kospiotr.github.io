@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: tool
 title: Excel
 comments: false
 toc: false
