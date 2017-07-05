@@ -1,6 +1,6 @@
 ---
 layout: tool
-title: Excel
+title: Excel to Confluence grid converter
 comments: false
 toc: false
 editurl: tools/excel.md
