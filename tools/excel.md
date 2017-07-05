@@ -3,11 +3,32 @@ layout: tool
 title: Excel
 comments: false
 toc: false
-editurl: tools/index.md
+editurl: tools/excel.md
 ---
 
-<h1>Excel</h1>
+<div>
 
-<ul>
-<li><a href="./excel-to-confluence-grid.html">Excel to Confluence grid [converter]</a></li>
-</ul>
+  <label>From:</label>
+  <textarea id="from"></textarea>
+</div>
+<div>
+  <label>To:</label>
+  <textarea id="to"></textarea>
+</div>
+<div>
+  <button id="convert">Convert</button>
+</div>
+
+<script type="text/javascript">
+function convert(input) {
+  var rows = input.split('\n');
+  var out = rows.map(function(row) {
+    return '|' + row.replace(/\t/g, "|") + '|'
+  });
+  return out.join('\n');
+}
+
+$('#convert').click(function() {
+  $('#to').val(convert($('#from').val()));
+})
+</script>
