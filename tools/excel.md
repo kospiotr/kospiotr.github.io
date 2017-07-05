@@ -1,8 +1,13 @@
 ---
 layout: page
-title: Excel to confluence grid converter
+title: Excel
 comments: false
-editurl: tools/excel-to-confluence-grid.html
+toc: false
+editurl: tools/index.md
 ---
 
-test
+<h1>Excel</h1>
+
+<ul>
+<li><a href="./excel-to-confluence-grid.html">Excel to Confluence grid [converter]</a></li>
+</ul>
