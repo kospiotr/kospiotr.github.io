@@ -3,7 +3,7 @@ layout: page
 title: Wiki index
 comments: false
 toc: false
-editurl: wiki/index.md
+editurl: tools/index.md
 ---
 
 <h1>Tools</h1>
