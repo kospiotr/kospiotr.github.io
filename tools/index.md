@@ -1,13 +1,22 @@
 ---
 layout: page
-title: Wiki index
+title: Tools
 comments: false
 toc: false
 editurl: tools/index.md
 ---
 
-<h1>Tools</h1>
-
 <ul>
-<li><a href="./excel-to-confluence-grid.html">Excel to Confluence grid [converter]</a></li>
+	{% for page in site.pages %}
+		{% if page.layout == 'tool' %}
+    		<li>
+    			<a href="{{ page.url }}">{{ page.title }}</a>
+    			{% if page.description %}
+    				 -
+				{% endif %}
+    			{{ page.description }}
+    		</li>
+		{% endif %}
+	{% endfor %}
 </ul>
+
