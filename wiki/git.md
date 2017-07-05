@@ -105,6 +105,7 @@ sudo apt-get install smartgithg
 * waffle.io - Stories board
 * shields.io - icons
 * coveralls.io - Test Coverage History & Statistics
+* other
 
 # External resources
 
