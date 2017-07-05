@@ -32,9 +32,9 @@ editurl: tools/excel.md
   })
 </script>
 
-<styles>
+<style>
   #from, #to{
     width: 100%;
     min-height: 400px;
   }
-</styles>
+</style>
