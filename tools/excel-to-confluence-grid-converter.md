@@ -16,7 +16,7 @@ editurl: tools/excel-to-confluence-grid-converter.md
 </div>
 <div>
   <label>With header</label>
-  <input type="checkbox" id="header">
+  <input type="checkbox" id="includeHeader">
 </div>
 <div>
   <button id="convert">Convert</button>
@@ -34,7 +34,7 @@ editurl: tools/excel-to-confluence-grid-converter.md
 
   $('#convert').click(function() {
       var input = $('#from').val(),
-        includeHeader = $('#header').is(':checked');
+        includeHeader = $('#includeHeader').is(':checked');
       $('#to').val(convert(input, includeHeader));
       console.log("inc", includeHeader);
     }
