@@ -27,7 +27,7 @@ editurl: tools/excel-to-confluence-grid-converter.md
     var rows = input.split('\n');
     var out = rows.map(function(row, index) {
     	var separator = includeHeader && index === 0 ? '||' : '|'
-      return separator + row.replace(/\t/g, separator) + separator;
+      return separator + row.replace(/\t\t/g, '\t \t').replace(/\t/g, separator) + separator;
     });
     return out.join('\n');
   }
