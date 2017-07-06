@@ -45,6 +45,6 @@ editurl: tools/excel-to-confluence-grid-converter.md
 <style>
   #from, #to{
     width: 100%;
-    min-height: 400px;
+    min-height: 300px;
   }
 </style>
