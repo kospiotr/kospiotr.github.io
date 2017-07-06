@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: wiki
 title: Tools
 comments: false
 toc: false
