@@ -1,12 +1,10 @@
 ---
 layout: wiki
-title: AWS
+title: AWS Products and Services
 comments: false
 toc: false
-editurl: wiki/aws.md
+editurl: wiki/aws-products-and-services.md
 ---
-
-Products
 
 * Compute
   * Amazon EC2 - web service providing resizable compute capacity
