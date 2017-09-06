@@ -26,16 +26,32 @@ editurl: wiki/aws-business-products-and-services.md
     * manage placement containers across the cluster
     * integrates own or thirdparty schedulers
     * no addiotional charge for EC2
+  * AWS Lambda - event driven task compute service
+    * no need to maintain addiotnal servers
+    * only pay for computation
   * Auto Scalling - automatically scale Amazon EC2 capacity up or down
   * Elastic Load Balancing ELB - automatically distribute traffic across multiple Amazon EC2 instances
+
 * Storage
   * Amazon S3 - internet scale storage via API; high durability, high latency; object store that cannot be modified, static flies like images and videos; stored in one of several AWS Regions
-  * Amazon EBS - block storage for use with Amazon EC2; behaves like hard drive, can be modified, replicated in AZ
+  * Amazon Elastic Block Storage (EBS) - block storage for use with Amazon EC2; behaves like hard drive, can be modified, replicated in AZ
+    * features
+      * can store from 1GB to 16 Tb per volume
+      * can create partitions format, boot OS
+      * suite for apps that require DB, file system or block level storage
+    * durability and backup
+      * automatic replication across AZs
+      * can snapshot be backed-up to S3
+    * I/O provisioning  - can scale up by provisioning specific level I/O performance
+    * types
+      * standard - bursty I/O workloads like O/S boot partitions
+      * provisoned IOPS - I/O intense workloads like DBs
+      * general puropse - moderate workloads like small DBs
   * Amazon Glacier - storage for archiving and backup; low cost, performance not critical
   * AWS Storage Gateway - allows to securely connect external services to AWS storage; examples: connects an on-premises software apps with cloud-based storage, securely upload data to AWS Cloud, backup data on the AWS, mirror on-premises data
   * AWS Import/Export Snowball - securelly transfering data to/from AWS
   * Amazon CloudFront - global CDN
-
+  
 * Database
   * Amazon Relational Database (RDS) - managed relational database service; available: MySQL, Oracle, Postgres, MsSQL
   * Amazon RDS For Aurora - newest MySQL compatibile relational DB engine
