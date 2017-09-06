@@ -18,3 +18,10 @@ Products
 ** AWS Dirrectory Service - connecting existing on premises MS Directory
 ** AWS CloudHSM - dedicated hardware security module appliances
 
+* Monitoring and Usage Auditing
+** Amazon CloudWatch - monitor resources
+** AWS CloudTrail - records AWS API calls for your account; account audits
+** AWS Config - resource inventory configuration history; track configuration on the timeline
+
+* Analytics
+** 
