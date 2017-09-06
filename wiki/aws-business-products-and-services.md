@@ -1,9 +1,9 @@
 ---
 layout: wiki
-title: AWS products and services
+title: AWS Business - products and services
 comments: false
 toc: false
-editurl: wiki/aws-products-and-services.md
+editurl: wiki/aws-business-products-and-services.md
 ---
 
 * Compute
