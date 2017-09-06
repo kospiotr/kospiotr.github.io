@@ -27,3 +27,35 @@ editurl: wiki/aws-tco-and-pricing.md
       * Network Costs: network infrastructure (LAN switches, WAN capacity) + maintenance network admin
       * IT Admin Costs: server admin virtualisation admin
       * Facility Costs: building cost, maintenance, taxes, security staff, facilities staff, power cost, cooling cost
+* AWS Pricing Principles
+  * No up-front investment - AWS helps customers replace up-front capital expense or ‘CapEx’ with low variable operational cost or ‘OpEx.’
+  * Pay per use
+  * Pay as you go - no minimum commitments are required
+  * Services priced independently - each AWS service is priced independently. This strategy allows customers to choose the services that they need for each project, and to pay only for what they use.
+  * Volume pricing discounts - for storage and data transfer, pricing is tiered. The more resources that are used, the less customers pay per gigabyte.
+  * Reserved instance discounts - for certain products, customers can invest in reserved capacity. In other words, they pay a one-time low upfront fee, and their on-demand rate is reduced by 28 to 62 percent.
+* AWS Free Tier: https://aws.amazon.com/free/
+* AWS Trusted Advisor - helps further reducing costs by inspecting AWS environment and recommends opportunities or eliminates unused and idle resources
+* Fundamental Cost Characteristics
+  * Compute (EC2)
+  * Storage (EC3)
+  * Data Transfer out (EBS)
+* EC2 pricing
+  * Compute
+    * Instance type / hour
+    * Amazon EC2 purchase options
+    * Network I/O
+  * Storage
+    * Volume storage
+    * Snapshot storage
+    * Volume I/O
+  * Other costs
+    * Load Balancing
+    * Detailed Monitoring
+    * Auto Scaling
+    * Elastic IP Addresses
+    * Operation Systems and Software packages
+  Can be combined with other purchase types, like Reserved Instances
+  
+
+
