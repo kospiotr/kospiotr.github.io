@@ -16,6 +16,12 @@ editurl: wiki/aws-solutions.md
   
   AWS Marketplace provides several categories of products to develop web apps
 * Mobile services
+  * scale automatically
+  * build apps not infrastructure
+  * push notifications
+  * integrated services
+  * backend you can customize
+  * high performance & high availibility
 * Backup, storage and archive
 * Big data and high performance computing
 * Gaming
