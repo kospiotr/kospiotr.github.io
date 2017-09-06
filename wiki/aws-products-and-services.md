@@ -42,7 +42,7 @@ editurl: wiki/aws-products-and-services.md
 
 * Analytics
   * Amazon Redshift - fast, powerful, petabyte-scale data warehouse
-  * Amazon Elastic MapReduce - process large amounts of data, uses Hadoop
+  * Amazon Elastic MapReduce (EMR) - process large amounts of data, uses Hadoop
   * Amazon Kinesis - real-time data stream processing
   * Amazon QuickSight - SPICE (superfast, parallel, in-memory, calculation, engine)
   
