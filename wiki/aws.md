@@ -14,12 +14,12 @@ Products
   * Elastic Load Balancing - automatically distribute traffic across multiple Amazon EC2 instances
   
 * Storage
- * Amazon S3 - internet scale storage via API; high durability, high latency; object store that cannot be modified, static flies like images and videos; stored in one of several AWS Regions
- * Amazon EBS - block storage for use with Amazon EC2; behaves like hard drive, can be modified, replicated in AZ
- * Amazon Glacier - storage for archiving and backup; low cost, performance not critical
- * AWS Storage Gateway - allows to securely connect external services to AWS storage; examples: connects an on-premises software apps with cloud-based storage, securely upload data to AWS Cloud, backup data on the AWS, mirror on-premises data
- * AWS Import/Export Snowball - securelly transfering data to/from AWS
- * Amazon CloudFront - global CDN
+  * Amazon S3 - internet scale storage via API; high durability, high latency; object store that cannot be modified, static flies like images and videos; stored in one of several AWS Regions
+  * Amazon EBS - block storage for use with Amazon EC2; behaves like hard drive, can be modified, replicated in AZ
+  * Amazon Glacier - storage for archiving and backup; low cost, performance not critical
+  * AWS Storage Gateway - allows to securely connect external services to AWS storage; examples: connects an on-premises software apps with cloud-based storage, securely upload data to AWS Cloud, backup data on the AWS, mirror on-premises data
+  * AWS Import/Export Snowball - securelly transfering data to/from AWS
+  * Amazon CloudFront - global CDN
 
 * Database
   * Amazon Relational Database (RDS) - managed relational database service; available: MySQL, Oracle, Postgres, MsSQL
@@ -49,6 +49,12 @@ Products
   * Amazon QuickSight - SPICE (superfast, parallel, in-memory, calculation, engine)
   
 * Application Services
+  * Amazon AppStream
+  * Amazon Simple Queue Service (SQS)
+  * Amazon Simple Notification Service (SNS)
+  * Amazon Simple Email Service (SES)
+  * Amazon CloudSearch
+  * Amazon Elastic Transcoder
 
 * Management Services
 
