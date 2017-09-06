@@ -56,7 +56,7 @@ editurl: wiki/aws-tco-and-pricing.md
     * Elastic IP Addresses
     * Operation Systems and Software packages
     
-Can be combined with other purchase types, like Reserved Instances
+  Can be combined with other purchase types, like Reserved Instances
   
 
 
