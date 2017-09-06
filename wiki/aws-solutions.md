@@ -14,7 +14,7 @@ editurl: wiki/aws-solutions.md
   * pay only what you use
   * access to global resources instantly
   
-AWS Marketplace provides several categories of products to develop web apps
+  AWS Marketplace provides several categories of products to develop web apps
 * Mobile services
 * Backup, storage and archive
 * Big data and high performance computing
