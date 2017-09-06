@@ -1,6 +1,6 @@
 ---
 layout: wiki
-title: AWS - TCO and Pricing
+title: AWS TCO and pricing
 comments: false
 toc: false
 editurl: wiki/aws-tco-and-pricing.md
