@@ -55,8 +55,11 @@ editurl: wiki/aws-business-tco-and-pricing.md
     * Auto Scaling
     * Elastic IP Addresses
     * Operation Systems and Software packages
-    
-  Can be combined with other purchase types, like Reserved Instances
+  * Pricing model
+    * on-demand - spiky workloads; pay by hour, no long commitments
+    * reserved - steady-state workloads; pay upfront, 50 - 75% lower hourly rate
+    * spot - time-intensive workloads; bid for unused EC2 capacity, allow to be interrupted 
+    * dedicated - highly sensitive workloads; runs on the hardware dedicated to the single customer and are isolated from others on the hardware level
 * S3 pricing
   * Storage class - Standard storage, Reduced Redundancy storage, Glacier storage
   * Storage - Number of TB / month
