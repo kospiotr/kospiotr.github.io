@@ -46,17 +46,30 @@ editurl: wiki/aws-tco-and-pricing.md
     * Amazon EC2 purchase options
     * Network I/O
   * Storage
-    * Volume storage
-    * Snapshot storage
+    * Allocated Volume storage - charged by provisions amount 
+    * Snapshot storage - charged by the data space that S3 consumes; for the first snapshot and incremental one
     * Volume I/O
   * Other costs
-    * Load Balancing
+    * Load Balancing - charged for each or partial hour ELB is running and each gigabyte of data transferred through ELB
     * Detailed Monitoring
     * Auto Scaling
     * Elastic IP Addresses
     * Operation Systems and Software packages
     
   Can be combined with other purchase types, like Reserved Instances
-  
-
-
+* S3 pricing
+  * Storage class - Standard storage, Reduced Redundancy storage, Glacier storage
+  * Storage - Number of TB / month
+  * Requests - Pricing per 1,000 requests (Put, Copy, Post, List). Pricing per 10,000 requests (Get). Delete and Glacier Restores are free.
+  * Data transfer - Pricing is based on data transferred "in" to and "out" of Amazon S3.
+  * Standard – Infrequent Access: Same durability as Standard, however with reduced availability. 
+* Amazon RDS pricing
+  * Database (DB) instance classes and purchasing options
+  * Allocated storage
+  * Database Type (DB license)
+* Data Transfer Costs
+  * data transfer out
+  * data transfer in
+  * cross AZ data transfer
+  * inner AZ data transfer
+  The outbound data transfer is aggregated across Amazon EC2, Amazon S3, Amazon RDS, Amazon DynamoDB, Amazon SQS, Amazon SNS, and Amazon VPC, and then charged at the outbound data transfer rate. This charge appears on the monthly statement as AWS Data Transfer Out.
