@@ -74,3 +74,8 @@ editurl: wiki/aws-tco-and-pricing.md
   * inner AZ data transfer
   
   The outbound data transfer is aggregated across Amazon EC2, Amazon S3, Amazon RDS, Amazon DynamoDB, Amazon SQS, Amazon SNS, and Amazon VPC, and then charged at the outbound data transfer rate. This charge appears on the monthly statement as AWS Data Transfer Out.
+* Amazon CloudFront pricing
+  * Traffic distribution
+  * Requests
+  * Data transfer out
+  
