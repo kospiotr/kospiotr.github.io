@@ -16,9 +16,18 @@ editurl: wiki/aws-business-products-and-services.md
       * types: memory optimized, compute optimized, storage and I/O optimized, GPU optimized, General Purpose
       * sizes: from Micro to x8 large
       * Amazon Machine Image (AMI) - allows to choose O/S, type, version, can create and manage own AMIs
+  * Amazon EC2 Container Service ECS
+    * build on top of EC2
+    * supports building Docker based image clusters
+    * allows to manipulate containers with API that allows:
+      * launch / stop containers
+      * check container status
+      * access and manipulate features like: security groups, Elastic Load Balancing (ELB), EBS volumes, IAM roles
+    * manage placement containers across the cluster
+    * integrates own or thirdparty schedulers
+    * no addiotional charge for EC2
   * Auto Scalling - automatically scale Amazon EC2 capacity up or down
-  * Elastic Load Balancing - automatically distribute traffic across multiple Amazon EC2 instances
-  
+  * Elastic Load Balancing ELB - automatically distribute traffic across multiple Amazon EC2 instances
 * Storage
   * Amazon S3 - internet scale storage via API; high durability, high latency; object store that cannot be modified, static flies like images and videos; stored in one of several AWS Regions
   * Amazon EBS - block storage for use with Amazon EC2; behaves like hard drive, can be modified, replicated in AZ
