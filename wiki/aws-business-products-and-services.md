@@ -33,7 +33,7 @@ editurl: wiki/aws-business-products-and-services.md
   * Elastic Load Balancing ELB - automatically distribute traffic across multiple Amazon EC2 instances
 
 * Storage
-  * Amazon S3 - internet scale storage via API; high durability, high latency; object store that cannot be modified, static flies like images and videos; stored in one of several AWS Regions
+  * Amazon S3 - internet scale storage via API; cheap, high durability, high latency; object store that cannot be modified, dedicated for serving static flies like images and videos, backups, storing files for Hadoop for analysis; stored in one of several AWS Regions
   * Amazon Elastic Block Storage (EBS) - block storage for use with Amazon EC2; behaves like hard drive, can be modified, replicated in AZ
     * features
       * can store from 1GB to 16 Tb per volume
@@ -49,14 +49,26 @@ editurl: wiki/aws-business-products-and-services.md
       * general puropse - moderate workloads like small DBs
   * Amazon Glacier - storage for archiving and backup; low cost, performance not critical
   * AWS Storage Gateway - allows to securely connect external services to AWS storage; examples: connects an on-premises software apps with cloud-based storage, securely upload data to AWS Cloud, backup data on the AWS, mirror on-premises data
-  * AWS Import/Export Snowball - securelly transfering data to/from AWS
-  * Amazon CloudFront - global CDN
-  
+  * AWS Import/Export Snowball - petabyte-scale data transport to/from AWS, low cost, secured with encryption
+    * use cases
+      * cloud migration
+      * DR
+      * Data Center decomission
+      * Content Distribution
+  * Amazon CloudFront - global CDN that integrates with other Amazon services
+    * can deliver static / dynamic / streaming and interactive content
+    * delivers content using global network of edge locations
+    * no long term contract commitment
+
 * Database
   * Amazon Relational Database (RDS) - managed relational database service; available: MySQL, Oracle, Postgres, MsSQL
   * Amazon RDS For Aurora - newest MySQL compatibile relational DB engine
   * Amazon DynamoDB - managed NoSQL DB service
   * Amazon ElastiCache - in-memory caching service
+  * Amazon Database Migration Service (DMS) - allows securelly migrate data to and from supportd DBs
+    * supports homogenous migrations like Orale -> Oracle
+    * supports heterogenous migrations like Postgres -> Oracle
+    * stream data from supported sources to Redshift
 
 * Networking
   * VPC - private, isolated section of the AWS cloud; define private and public networks and control inbound and outbound traffic
