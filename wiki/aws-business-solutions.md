@@ -1,9 +1,9 @@
 ---
 layout: wiki
-title: AWS solutions
+title: AWS Business - solutions
 comments: false
 toc: false
-editurl: wiki/aws-solutions.md
+editurl: wiki/aws-business-solutions.md
 ---
 
 * Web sites and web apps
