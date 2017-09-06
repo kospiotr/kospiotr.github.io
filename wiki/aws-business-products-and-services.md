@@ -7,7 +7,15 @@ editurl: wiki/aws-business-products-and-services.md
 ---
 
 * Compute
-  * Amazon EC2 - web service providing resizable compute capacity
+  * Amazon EC2
+    * what is this
+      * web service providing resizable compute capacity
+      * provides dedicated virtual servers
+      * have remote access via API accessible with SDK written in many languages
+    * instances
+      * types: memory optimized, compute optimized, storage and I/O optimized, GPU optimized, General Purpose
+      * sizes: from Micro to x8 large
+      * Amazon Machine Image (AMI) - allows to choose O/S, type, version, can create and manage own AMIs
   * Auto Scalling - automatically scale Amazon EC2 capacity up or down
   * Elastic Load Balancing - automatically distribute traffic across multiple Amazon EC2 instances
   
