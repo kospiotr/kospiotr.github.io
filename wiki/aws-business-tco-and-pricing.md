@@ -1,9 +1,9 @@
 ---
 layout: wiki
-title: AWS TCO and pricing
+title: AWS Business - TCO and pricing
 comments: false
 toc: false
-editurl: wiki/aws-tco-and-pricing.md
+editurl: wiki/aws-business-tco-and-pricing.md
 ---
 
 * Total Cost of Ownership (TCO) - showing parters and ownerships why AWS cost model another is better than other options like on-premises, virtualised or colocations and makes sure that best practices are followed
