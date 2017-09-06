@@ -35,3 +35,11 @@ editurl: wiki/aws-technical-introduction.md
   * Availibility Zones - is a collection of data centers within each region, isolated from other AZs; connected by low latency links
     * isolationg AZs protects each other from failures in other AZs
     * low latency links make it possible for another AZs to handle requests of another AZs
+  * Edge Locations - Amazon CloudFront
+    * Hosts CDN
+      * web sites
+      * dynamic / static
+      * streaming
+    * requests are routed to the nearest edge location
+
+
