@@ -71,17 +71,33 @@ editurl: wiki/aws-business-products-and-services.md
     * stream data from supported sources to Redshift
 
 * Networking
-  * VPC - private, isolated section of the AWS cloud; define private and public networks and control inbound and outbound traffic
+  * Amazon VPC - private, isolated section of the AWS cloud; define private and public networks and control inbound and outbound traffic
+    * control over
+      * ip address range
+      * public and private subnets
+      * network topologies
+      * route table and network gateway config
+      * control access using NACLs and Security Groups
+    * connect VPC to your IT infrastructure with encrypted VPN connection
+    * attach an Elastic IP adress - make resources internet accessible
   * AWS Direct Connect - private connectivity between AWS and your data center
   * Amazon Route 53 - DNS web service
 
 * Security & Identify
   * AWS IAM - manage users, groups, permissions
+    * create individual users
+    * manage permissions with groups
+    * configure a strong password policy
+    * enable multifactor authentication (MFA) for priviliged users
+    * use IAM roles for EC2 instances, to share access
+    * rotate security credentials regularly
+    * restrict priviliged access further with conditions
   * AWS Dirrectory Service - connecting existing on premises MS Directory
   * AWS CloudHSM - dedicated hardware security module appliances
+  * AWS WAF - web app firewall
 
 * Monitoring and Usage Auditing
-  * Amazon CloudWatch - monitor resources
+  * Amazon CloudWatch - monitor system and custom resources, metrics, displays graphs
   * AWS CloudTrail - records AWS API calls for your account; account audits
   * AWS Config - resource inventory configuration history; track configuration on the timeline
 
@@ -102,7 +118,13 @@ editurl: wiki/aws-business-products-and-services.md
 * Management Services
   * AWS Elastic Beanstalk - automate resource management, deploying, scaling services written in JAVA, .Net, PHP, NodeJS, Python Ruby; 
   * AWS OpsWorks - DevOps framework for app lifecycle management; allows to model and manage from LB to DBs
-  * AWS CloudFormation - templates to deploy and manage; allows to create a collection of related AWS resources and provision them in an orderly and predictible fashion as a templates
+  * AWS CloudFormation - templates in JSON format to deploy and manage; allows to create a collection of related AWS resources and provision them in an orderly and predictible fashion as a templates
+  * AWS Trusted Advisor - helps further reducing costs by inspecting AWS environment and recommends opportunities or eliminates unused and idle resources, provides guidences in the realtime
+    * recomendations in the categories
+      * cost optimization
+      * performance
+      * security
+      * fault tolerance
 
 * Mobile Services
   * Amazon Cognito - Amazon Cognito is a simple user identity and data synchronization service that helps you securely manage and synchronize app data for your users across their mobile devices.
