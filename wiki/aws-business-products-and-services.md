@@ -104,7 +104,7 @@ editurl: wiki/aws-business-products-and-services.md
 * Analytics
   * Amazon Redshift - fast, powerful, petabyte-scale data warehouse
   * Amazon Elastic MapReduce (EMR) - process large amounts of data, uses Hadoop
-  * Amazon Kinesis - real-time data stream processing
+  * Amazon Kinesis - real-time data stream processing using SQL language
   * Amazon QuickSight - SPICE (superfast, parallel, in-memory, calculation, engine)
   
 * Application Services
@@ -114,6 +114,18 @@ editurl: wiki/aws-business-products-and-services.md
   * Amazon Simple Email Service (SES)
   * Amazon CloudSearch
   * Amazon Elastic Transcoder
+  * Amazon Gateway
+    * hosts REST API to connect backend services
+      * AWS Lambda
+      * DynamoDB
+      * S3
+      * Kinesis
+    * accept and process 100000 of PAI calls
+    * monitors traffic
+    * applies authorisation and access control
+    * provides monitoring
+    * supports API versioning
+  * Amazon Simple Queue Service (SQS) - scalable message queuing system
 
 * Management Services
   * AWS Elastic Beanstalk - automate resource management, deploying, scaling services written in JAVA, .Net, PHP, NodeJS, Python Ruby; 
