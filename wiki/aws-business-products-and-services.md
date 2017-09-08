@@ -147,6 +147,11 @@ editurl: wiki/aws-business-products-and-services.md
   * Amazon WorkDocs - is a fully managed, secure enterprise storage and sharing service with strong administrative controls and feedback capabilities that improve user productivity.
   * Amazon WorkMail - is a managed email and calendaring service that offers strong security controls and support for existing desktop and mobile clients.
 
+* Release Tools
+  * AWS CodeCommit - private GIT hosting (GIT)
+  * AWS CodeDeploy - deployment automation, avoid downtimes, handles application updates, coordinates deployments (Nolio)
+  * AWS CodePipeline - software release orchestration by building, testing, deploying every time there is a code change (Jenkins)
+
 # Resources
 
 * https://www.cheatography.com/nire0510/cheat-sheets/aws-services/#downloads
