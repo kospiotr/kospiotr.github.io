@@ -97,9 +97,12 @@ editurl: wiki/aws-business-products-and-services.md
   * AWS WAF - web app firewall
 
 * Monitoring and Usage Auditing
-  * Amazon CloudWatch - monitor system and custom resources, metrics, displays graphs
+  * AWS CloudWatch - monitor system and custom resources, metrics, displays graphs
   * AWS CloudTrail - records AWS API calls for your account; account audits
-  * AWS Config - resource inventory configuration history; track configuration on the timeline
+  * AWS Config
+    * resource inventory configuration history
+    * track configuration on the timeline
+    * can set up change notifications
 
 * Analytics
   * Amazon Redshift - fast, powerful, petabyte-scale data warehouse
@@ -128,9 +131,28 @@ editurl: wiki/aws-business-products-and-services.md
   * Amazon Simple Queue Service (SQS) - scalable message queuing system
 
 * Management Services
-  * AWS Elastic Beanstalk - automate resource management, deploying, scaling services written in JAVA, .Net, PHP, NodeJS, Python Ruby; 
-  * AWS OpsWorks - DevOps framework for app lifecycle management; allows to model and manage from LB to DBs
-  * AWS CloudFormation - templates in JSON format to deploy and manage; allows to create a collection of related AWS resources and provision them in an orderly and predictible fashion as a templates
+  * AWS Elastic Beanstalk (PaaS) - templated infrastructure provisioning for devs
+    * automate resource management, deploying, scaling services 
+    * SDK written in JAVA, .Net, PHP, NodeJS, Python Ruby; 
+    * upload code and AWS EBS automatically handles deployment including: capacity provisioning, LB, auto-scaling, app health monitoring
+  * AWS CodeCommit (CI) - private GIT hosting (GIT)
+  * AWS CodePipeline (CI) - software release orchestration by building, testing, deploying every time there is a code change (Jenkins)
+  * AWS CodeDeploy (CD) - deployment automation, avoid downtimes, handles application updates, coordinates deployments (Nolio)
+  * AWS CloudFormation (Infrastructure) - templated AWS Infrastructure provisioning
+    * templates in JSON format to deploy and manage
+    * allows to create a collection of related AWS resources and provision them in an orderly and predictible fashion 
+    * for DevOps than for devs
+    * templates can be stored in code repository and be versioned (infrastructure as a code)
+  * AWS OpsWorks (Infrastructure) - configuration management
+    * DevOps framework for app lifecycle management
+    * allows to model and manage from LB to DBs
+    * using Chef under the hood
+    * define app architecture and spec of each component (for example package installation, software configuration, storage)
+    * templates can be stored in code repository and be versioned (infrastructure as a code)
+  * AWS Config (Infrastructure)
+    * resource inventory 
+    * config history
+    * config change notifications
   * AWS Trusted Advisor - helps further reducing costs by inspecting AWS environment and recommends opportunities or eliminates unused and idle resources, provides guidences in the realtime
     * recomendations in the categories
       * cost optimization
@@ -146,11 +168,6 @@ editurl: wiki/aws-business-products-and-services.md
   * Amazon WorkSpaces - is a fully managed virtual desktop service in the cloud with strong administrative controls and feedback capabilities.
   * Amazon WorkDocs - is a fully managed, secure enterprise storage and sharing service with strong administrative controls and feedback capabilities that improve user productivity.
   * Amazon WorkMail - is a managed email and calendaring service that offers strong security controls and support for existing desktop and mobile clients.
-
-* Release Tools
-  * AWS CodeCommit - private GIT hosting (GIT)
-  * AWS CodeDeploy - deployment automation, avoid downtimes, handles application updates, coordinates deployments (Nolio)
-  * AWS CodePipeline - software release orchestration by building, testing, deploying every time there is a code change (Jenkins)
 
 # Resources
 
