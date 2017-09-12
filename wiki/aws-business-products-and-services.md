@@ -163,6 +163,7 @@ editurl: wiki/aws-business-products-and-services.md
 * Mobile Services
   * Amazon Cognito - Amazon Cognito is a simple user identity and data synchronization service that helps you securely manage and synchronize app data for your users across their mobile devices.
   * AWS Device Farm - helps you improve the quality of your Android, Fire OS, and iOS apps by testing them against real phones and tablets in the AWS Cloud.
+  * AWS IoT - is a managed cloud service that lets connected devices easily and securely interact with cloud applic­ations and other devices.
 
 * Enterprise Applications
   * Amazon WorkSpaces - is a fully managed virtual desktop service in the cloud with strong administrative controls and feedback capabilities.
