@@ -54,6 +54,10 @@ Issue a `mount -a` command or reboot the machine to make this active.
     
 Reference: [https://help.ubuntu.com/community/TransmissionHowTo](https://help.ubuntu.com/community/TransmissionHowTo)
 
+# Install Plex
+
+Reference: [https://www.dev2day.de/projects/](https://www.dev2day.de/projects/)
+
 # Install Owncloud
 
 * Install
