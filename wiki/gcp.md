@@ -9,6 +9,7 @@ editurl: wiki/gcp.md
 
 
 # Compute
+![https://cloud.google.com/_static/images/cloud/products/icons/compute.svg]
 
 ## Compute Engine
 Virtual Machines, Disks, Network
