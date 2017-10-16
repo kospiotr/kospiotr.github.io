@@ -2,10 +2,10 @@
 layout: wiki
 title: Google Cloud Platform
 comments: false
-toc: false
+toc: true
+slideshow: true
 editurl: wiki/gcp.md
 ---
-
 
 
 # Compute
