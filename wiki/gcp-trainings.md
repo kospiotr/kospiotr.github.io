@@ -7,7 +7,8 @@ slideshow: true
 editurl: wiki/gcp-trainings.md
 ---
 
-
+# Essentials
+ * [https://google.qwiklabs.com/quests/23](https://google.qwiklabs.com/quests/23)
 # Compute
 ## Compute Engine
 ## App Engine
