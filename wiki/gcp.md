@@ -14,6 +14,19 @@ How to choose: [https://cloud.google.com/docs/choosing-a-compute-option](https:/
 ## Compute Engine
 Virtual Machines, Disks, Network
 
+Docs: [https://cloud.google.com/compute/](https://cloud.google.com/compute/)
+
+Features: Predefined Machine Types, Custom Machine Types, Persistent Disks, Local SSD, Transparent Maintenance, Global Load Balancing, Linux & Windows Support, Batch Processing, Compliance & Security, Per-Second Billing, Automatic Discounts, Commitment savings, Containers []
+
+Pricing:
+* Always Free Usage Limits
+* Machine type pricing: predefined (micro, small, standard high cpu, high memory), custom
+* Sustained use discounts: automatic discount for using VM more than 25% month time
+* Committed use discounts: discount for using VM for commited longer time
+* Charged for addons: extended memory, GPU, paid software images
+* Network: Internet egress rates, load balancing, port forwarding, traffic through external IP addresses, VPN, Unused IP address
+* Disk: persistent disk types, snapshot storage, local SSD
+
 Use cases: Any workload requiring a specific OS or OS configuration. Currently deployed, on-premises software that you want to run in the cloud.
 
 
@@ -221,3 +234,6 @@ Maven App Engine Plugin
 
 ## Cloud Test Lab
 Mobile Device Testing Service
+
+#Pricing
+[https://cloud.google.com/products/calculator/](https://cloud.google.com/products/calculator/)
