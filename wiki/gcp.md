@@ -12,6 +12,7 @@ editurl: wiki/gcp.md
 
 ## Compute Engine
 Virtual Machines, Disks, Network
+How to choose: [https://cloud.google.com/docs/choosing-a-compute-option](https://cloud.google.com/docs/choosing-a-compute-option)
 
 ## App Engine
 Managed App Platform
