@@ -13,15 +13,18 @@ How to choose: [https://cloud.google.com/docs/choosing-a-compute-option](https:/
 
 ## Compute Engine
 Virtual Machines, Disks, Network
+
 Use cases: Any workload requiring a specific OS or OS configuration. Currently deployed, on-premises software that you want to run in the cloud.
 
 
 ## App Engine
 Managed App Platform
+
 Use cases: Web sites. Mobile app and gaming backends. RESTful APIs. Internal Line of Business (LOB) apps. Internet of things (IoT) apps.
 
 ## Container Engine
 Managed Kubernetes/Containers
+
 Use cases: Containerized workloads. Cloud-native distributed systems. Hybrid applications.
 
 ## Cloud Functions
