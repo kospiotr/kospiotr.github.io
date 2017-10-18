@@ -207,6 +207,7 @@ Usefull commands:
 * `gcloud auth list` - active account
 * `gcloud config list project` - active project
 * `gcloud compute ssh <instance-id>`
+* `gcloud components listt`
 
 ## Container Registry
 Private Container Registry/Storage
