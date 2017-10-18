@@ -202,6 +202,12 @@ APIs for Cloud Services
 ## Cloud SDK
 CLI for GCP
 
+Usefull commands:
+
+* `gcloud auth list` - active account
+* `gcloud config list project` - active project
+* `gcloud compute ssh <instance-id>`
+
 ## Container Registry
 Private Container Registry/Storage
 
