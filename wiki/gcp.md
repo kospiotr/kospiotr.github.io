@@ -149,7 +149,18 @@ Scene-level Video Annotation
 # Identity & Security
 
 ## Cloud IAM
-Resource Access Control
+Resource Access Control 
+
+Docs: [https://cloud.google.com/iam/docs/overview](https://cloud.google.com/iam/docs/overview)
+
+**Who** can do **what** on which **resource**
+
+* Who:  Google account, Service account, Google group, G Suite domain, Cloud Identity domain
+* What: 
+  * Roles 
+  * Permissions
+* Resource: 
+
 
 ## Cloud Identity-Aware Proxy (NEW)
 Identity-based App Signin
