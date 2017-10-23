@@ -174,6 +174,12 @@ Best practices:
 * Use 2 step verification
 * Disable SSH password authentication
 * Disable root login and use sudo instead
+* Grant least privilege - reduce the number of accounts that perform powerfull operations
+* Grant Roles to Groups, not Users
+* Grant least privileges to applications - create service account per application component
+* Rotate keys - service account keys, ssh keys
+* No secrets in instance metadata - everybody who can read instance metadata can see secrets, instead save them in the Cloud Storage and give service account permission to read it
+* Leave a trace - retain audit logs in Cloud Storage or Big Query, forward guest events to centralized logging
 
 ## Cloud Identity-Aware Proxy (NEW)
 Identity-based App Signin
