@@ -159,7 +159,7 @@ Docs: [https://cloud.google.com/iam/docs/overview](https://cloud.google.com/iam/
 * What: 
   * Roles - sets of permissions; types: Primitive roles, Predefined roles (permissions to the specific service), Custom roles
   * Permissions
-* Resource: 
+* Resource: Cloud Platform resources are organized hierarchically, where the Organization node is the root node in the hierarchy, the projects are the children of the Organization, and the other resources are the children of projects. Each resource has exactly one parent.
 
 
 ## Cloud Identity-Aware Proxy (NEW)
