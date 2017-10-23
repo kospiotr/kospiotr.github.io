@@ -16,7 +16,19 @@ Virtual Machines, Disks, Network
 
 Docs: [https://cloud.google.com/compute/](https://cloud.google.com/compute/)
 
-Features: Predefined Machine Types, Custom Machine Types, Persistent Disks, Local SSD, Transparent Maintenance, Global Load Balancing, Linux & Windows Support, Batch Processing, Compliance & Security, Per-Second Billing, Automatic Discounts, Commitment savings, Containers []
+Features: 
+ * Predefined Machine Types, 
+ * Custom Machine Types, 
+ * [Storage](https://cloud.google.com/compute/docs/disks/) (Standard persistent disks, SSD persistent disks, Local SSD, Cloud Storage buckets), 
+ * Transparent Maintenance, 
+ * Global Load Balancing, 
+ * Linux & Windows Support, 
+ * Batch Processing (Preemptible), 
+ * Compliance & Security, 
+ * Per-Second Billing, 
+ * Automatic Discounts, 
+ * Commitment savings, 
+ * Containers
 
 Pricing:
 * Always Free Usage Limits
