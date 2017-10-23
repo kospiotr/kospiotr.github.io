@@ -161,6 +161,19 @@ Docs: [https://cloud.google.com/iam/docs/overview](https://cloud.google.com/iam/
   * Permissions
 * Resource: Cloud Platform resources are organized hierarchically, where the Organization node is the root node in the hierarchy, the projects are the children of the Organization, and the other resources are the children of projects. Each resource has exactly one parent.
 
+Other features:
+* Automatic (SSH) key management
+* Manual key management (SSH key in project or resource metadata section )
+* sudo
+
+Best practices:
+* Reuse your existing Identities - import to G-Suite users and groups from existing on-premises via Google Cloud Directory Sync 
+* Don't store keys in code - create service account and if app is using other Google services via SDK libraries then:
+  * app installed on GCP is already authorized and don't need to use keys at all
+  * for local development app create environment variable `GOOGLE_APPLICATION_CREDENTIALS` with path to the key
+* Use 2 step verification
+* Disable SSH password authentication
+* Disable root login and use sudo instead
 
 ## Cloud Identity-Aware Proxy (NEW)
 Identity-based App Signin
