@@ -52,6 +52,34 @@ Managed Kubernetes/Containers
 
 Use cases: Containerized workloads. Cloud-native distributed systems. Hybrid applications.
 
+Commands:
+* `docker build -t gcr.io/PROJECT_ID/hello-node:v1 .` - build image
+* `docker run -d -p 8080:8080 gcr.io/PROJECT_ID/hello-node:v1`
+* `docker ps`
+* `docker stop <container-id>`
+* `gcloud docker -- push gcr.io/PROJECT_ID/hello-node:v1`
+* `gcloud config set project PROJECT_ID`
+* ```gcloud container clusters create hello-world \
+                --num-nodes 2 \
+                --machine-type n1-standard-1 \
+                --zone us-central1-f```
+* `kubectl run hello-node \
+    --image=gcr.io/PROJECT_ID/hello-node:v1 \
+    --port=8080`
+* `kubectl get deployments`
+* `kubectl get pods`
+* `kubectl cluster-info`
+* `kubectl config view`
+* `kubectl get events`
+* `kubectl logs <pod-name>`
+* `kubectl expose deployment hello-node --type="LoadBalancer"`
+* `kubectl get services`
+* `kubectl scale deployment hello-node --replicas=4`
+* `kubectl edit deployment hello-node`
+* `gcloud container clusters get-credentials hello-world \
+    --zone us-central1-f --project <PROJECT_ID>`
+* `kubectl proxy --port 8081 and open /ui`
+
 ## Cloud Functions
 Serverless Microservices
 
