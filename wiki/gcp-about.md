@@ -59,10 +59,10 @@ Commands:
 * `docker stop <container-id>`
 * `gcloud docker -- push gcr.io/PROJECT_ID/hello-node:v1`
 * `gcloud config set project PROJECT_ID`
-* ```gcloud container clusters create hello-world \
+* `gcloud container clusters create hello-world \
                 --num-nodes 2 \
                 --machine-type n1-standard-1 \
-                --zone us-central1-f```
+                --zone us-central1-f`
 * `kubectl run hello-node \
     --image=gcr.io/PROJECT_ID/hello-node:v1 \
     --port=8080`
