@@ -54,31 +54,31 @@ Use cases: Containerized workloads. Cloud-native distributed systems. Hybrid app
 
 Commands:
 * `docker build -t gcr.io/PROJECT_ID/hello-node:v1 .` - build image
-* `docker run -d -p 8080:8080 gcr.io/PROJECT_ID/hello-node:v1`
-* `docker ps`
-* `docker stop <container-id>`
-* `gcloud docker -- push gcr.io/PROJECT_ID/hello-node:v1`
-* `gcloud config set project PROJECT_ID`
+* `docker run -d -p 8080:8080 gcr.io/PROJECT_ID/hello-node:v1` - create container and run it
+* `docker ps` - list all running containers
+* `docker stop <container-id>` - stop container
+* `gcloud docker -- push gcr.io/PROJECT_ID/hello-node:v1` - push docker image to gcloud repository
+* `gcloud config set project PROJECT_ID` - set project as default in order not to specify it explicit every time
 * `gcloud container clusters create hello-world \
-                --num-nodes 2 \
-                --machine-type n1-standard-1 \
-                --zone us-central1-f`
+                --num-nodes 3 \
+                --machine-type f-micro \
+                --zone us-central1-f` - create cluster with 3 nodes of micro type in us-central zone
 * `kubectl run hello-node \
     --image=gcr.io/PROJECT_ID/hello-node:v1 \
-    --port=8080`
-* `kubectl get deployments`
-* `kubectl get pods`
+    --port=8080` - create and run deployment
+* `kubectl get deployments` - list all deployments
+* `kubectl get pods` - list all running pods
 * `kubectl cluster-info`
 * `kubectl config view`
 * `kubectl get events`
 * `kubectl logs <pod-name>`
-* `kubectl expose deployment hello-node --type="LoadBalancer"`
-* `kubectl get services`
-* `kubectl scale deployment hello-node --replicas=4`
-* `kubectl edit deployment hello-node`
+* `kubectl expose deployment hello-node --type="LoadBalancer"` - create service of type LoadBalancer
+* `kubectl get services` - list all services
+* `kubectl scale deployment hello-node --replicas=4` - manually scale pods to the count of total = 4
+* `kubectl edit deployment hello-node` - after introduce change in the image and release given deployment can be updated with new container image version and apply it
 * `gcloud container clusters get-credentials hello-world \
-    --zone us-central1-f --project <PROJECT_ID>`
-* `kubectl proxy --port 8081 and open /ui`
+    --zone us-central1-f --project <PROJECT_ID>` - configure `kubectl` command before usage
+* `kubectl proxy --port 8081 and open /ui` - proxy traffic to the kubernetes console
 
 ## Cloud Functions
 Serverless Microservices
