@@ -59,12 +59,12 @@ Commands:
 * `docker stop <container-id>` - stop container
 * `gcloud docker -- push gcr.io/PROJECT_ID/hello-node:v1` - push docker image to gcloud repository
 * `gcloud config set project PROJECT_ID` - set project as default in order not to specify it explicit every time
-* `gcloud container clusters create hello-world \
-                --num-nodes 3 \
-                --machine-type f-micro \
+* `gcloud container clusters create hello-world 
+                --num-nodes 3 
+                --machine-type f-micro 
                 --zone us-central1-f` - create cluster with 3 nodes of micro type in us-central zone
-* `kubectl run hello-node \
-    --image=gcr.io/PROJECT_ID/hello-node:v1 \
+* `kubectl run hello-node 
+    --image=gcr.io/PROJECT_ID/hello-node:v1 
     --port=8080` - create and run deployment
 * `kubectl get deployments` - list all deployments
 * `kubectl get pods` - list all running pods
