@@ -44,6 +44,14 @@ Use cases: Any workload requiring a specific OS or OS configuration. Currently d
 Commands:
 * `gcloud config set compute/zone europe-west1-c` - set default zone
 * `gcloud config set compute/region europe-west1` - set default region
+* `gcloud compute target-pools create pkosmowski-nginx-pool` - create load balancer
+* `gcloud compute instance-templates create pkosmowski-nginx-template 
+         --metadata-from-file startup-script=startup.sh` - create instance template with given startup script
+* `gcloud compute instance-groups managed create pkosmowski-nginx-group 
+         --base-instance-name pkosmowski-nginx 
+         --size 2 
+         --template pkosmowski-nginx-template 
+         --target-pool pkosmowski-nginx-pool` - create instance group of the minimal size = 2 with assigned target pool
 
 Script for installing nginx on startup:
 ```
