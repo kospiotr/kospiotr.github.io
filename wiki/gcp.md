@@ -41,6 +41,9 @@ Pricing:
 
 Use cases: Any workload requiring a specific OS or OS configuration. Currently deployed, on-premises software that you want to run in the cloud.
 
+Commands:
+* `gcloud config set compute/zone europe-west1-c` - set default zone
+* `gcloud config set compute/region europe-west1` - set default region
 
 ## App Engine
 Managed App Platform
