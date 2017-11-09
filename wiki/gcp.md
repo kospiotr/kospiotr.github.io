@@ -45,6 +45,17 @@ Commands:
 * `gcloud config set compute/zone europe-west1-c` - set default zone
 * `gcloud config set compute/region europe-west1` - set default region
 
+Script for installing nginx on startup:
+```
+cat << EOF > startup.sh
+#! /bin/bash
+apt-get update
+apt-get install -y nginx
+service nginx start
+sed -i -- 's/nginx/Google Cloud Platform - '"\$HOSTNAME"'/' /var/www/html/index.nginx-debian.html
+EOF
+```
+
 ## App Engine
 Managed App Platform
 
