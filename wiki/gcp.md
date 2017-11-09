@@ -41,10 +41,12 @@ Pricing:
 
 Use cases: Any workload requiring a specific OS or OS configuration. Currently deployed, on-premises software that you want to run in the cloud.
 
-Commands:
+General commands:
 * `gcloud config set compute/zone europe-west1-c` - set default zone
 * `gcloud config set compute/region europe-west1` - set default region
-* `gcloud compute target-pools create pkosmowski-nginx-pool` - create load balancer
+
+Instance commands:
+* `gcloud compute target-pools create pkosmowski-nginx-pool` - create load balancer (target pool)
 * `gcloud compute instance-templates create pkosmowski-nginx-template 
          --metadata-from-file startup-script=startup.sh` - create instance template with given startup script
 * `gcloud compute instance-groups managed create pkosmowski-nginx-group 
@@ -53,6 +55,32 @@ Commands:
          --template pkosmowski-nginx-template 
          --target-pool pkosmowski-nginx-pool` - create instance group of the minimal size = 2 with assigned target pool
 * `gcloud compute firewall-rules create www-firewall --allow tcp:80` - create firewall rule to allow tcp traffic 
+
+L4 Load Balancing commands:
+* `gcloud compute forwarding-rules list`
+* `gcloud compute forwarding-rules create pkosmowski-nginx-lb 
+         --region europe-west1 
+         --ports=80 
+         --target-pool pkosmowski-nginx-pool` - create forwarding rule (LB Frontend) which allows accessing LB from outside
+
+L7 Load Balancing commands:
+* `gcloud compute http-health-checks create pkosmowski-http-basic-check` - create healthcheck
+* `gcloud compute instance-groups managed 
+       set-named-ports pkosmowski-nginx-group 
+       --named-ports http:80` - add named port to the instance group which 
+* `gcloud compute backend-services add-backend pkosmowski-nginx-backend 
+    --instance-group pkosmowski-nginx-group 
+    --instance-group-zone europe-west1-c 
+    --global` - Add the instance group into the backend service
+* `gcloud compute url-maps create pkosmowski-web-map 
+    --default-service pkosmowski-nginx-backend` - Create a default URL map that directs all incoming requests to the given instances
+* `gcloud compute target-http-proxies create pkosmowski-http-lb-proxy 
+    --url-map pkosmowski-web-map` - Create a target HTTP proxy to route requests to the URL map
+* `gcloud compute forwarding-rules create pkosmowski-http-content-rule 
+        --global 
+        --target-http-proxy pkosmowski-http-lb-proxy 
+        --ports 80` - create forwarding rule (LB Frontend) which allows accessing LB from outside
+
 
 Script for installing nginx on startup:
 ```
