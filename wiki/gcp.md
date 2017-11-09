@@ -52,16 +52,15 @@ Commands:
          --size 2 
          --template pkosmowski-nginx-template 
          --target-pool pkosmowski-nginx-pool` - create instance group of the minimal size = 2 with assigned target pool
+* `gcloud compute firewall-rules create www-firewall --allow tcp:80` - create firewall rule to allow tcp traffic 
 
 Script for installing nginx on startup:
 ```
-cat << EOF > startup.sh
 #! /bin/bash
 apt-get update
 apt-get install -y nginx
 service nginx start
-sed -i -- 's/nginx/Google Cloud Platform - '"\$HOSTNAME"'/' /var/www/html/index.nginx-debian.html
-EOF
+sed -i -- 's/nginx/Google Cloud Platform - '"$HOSTNAME"'/' /var/www/html/index.nginx-debian.html
 ```
 
 ## App Engine
