@@ -56,85 +56,6 @@ Instance commands:
          --target-pool pkosmowski-nginx-pool` - create instance group of the minimal size = 2 with assigned target pool
 * `gcloud compute firewall-rules create www-firewall --allow tcp:80` - create firewall rule to allow tcp traffic 
 
-+---------------------+------------------------------------------+------------------------------------------------------+
-|       Category      |       Network Load Balancing (NLB)       |             HTTP(S) Load Balancing (HLB)             |
-+---------------------+------------------------------------------+------------------------------------------------------+
-|     1. Region /     | NLB supports only within a region.       | HLB supports both within cross-region                |
-|     Cross-Region    | Does not support cross-region            | load balancing.                                      |
-|                     | load balancing                           |                                                      |
-+---------------------+------------------------------------------+------------------------------------------------------+
-|  2. Load balancing  | NLB is based on IP address, port         | HLB is based only on HTTP and HTTPS                  |
-|       based on      | and protocol type. Any TCP/UDP           | protocols.                                           |
-|                     | traffic, even SMTP can be                |                                                      |
-|                     | load balanced.                           |                                                      |
-+---------------------+------------------------------------------+------------------------------------------------------+
-|      3. Packet      | Packet inspection is possible and        | HLB cannot inspect packets.                          |
-|      inspection     | load balance based on packets            |                                                      |
-+---------------------+------------------------------------------+------------------------------------------------------+
-|     4. Instance     | No need of creating instance group.      | Managed / UnManaged Instance group                   |
-|         Group       | Target pools need to be created.         | is necessary for creating HTTP / HTTPS               |
-|                     | Instance can be just tagged to the pool. | load balancer.                                       |
-|                     | Ideal for unmanaged instance group       |                                                      |
-|                     | where instances are non homogeneous.     |                                                      |
-+---------------------+------------------------------------------+------------------------------------------------------+
-|     5. Workflow     | Forwarding rules is the starting point.  | This is quite complex in HTTP(s) load balancer.      |
-|                     | It directs the request to the            | Global forwarding rulesroutes direct the request     |
-|                     | target pools from which compute          | to target HTTP proxy, which in turn checks the       |
-|                     | engines will pick the request.           | URL map to determine appropriate backend             |
-|                     |                                          | services.  These services in turn direct the request |
-|                     | Forwarding rules -> target pool          | to the instance group.                               |
-|                     |  -> instances                            |                                                      |
-|                     |                                          |                                                      |
-|                     |                                          | Global forwarding rules -> Target HTTP proxy ->      |
-|                     |                                          | URL map -> Backend Sevices -> instance group         |
-+---------------------+------------------------------------------+------------------------------------------------------+
-|     6. Types of     | Basic network load balancer which        | 1. Cross-region load balancer uses only one          |
-|    load balancer    | directs the request based on IP address, | global IP address and routes the request             |
-|                     | port and the protocol within the region. | to the nearest region.                               |
-|                     |                                          |                                                      |
-|                     |                                          | 2. Content-based load balancer is based              |
-|                     |                                          | on the URL path. Different path rules need           |
-|                     |                                          | different backend services. for eg: /video           |
-|                     |                                          | and /static require two separate backend services.   |
-+---------------------+------------------------------------------+------------------------------------------------------+
-| 7. Session affinity | Session affinity can be set, but only    | 1. Client IP Affinity: This directs the same         |
-|                     | during the creation of target pool.      | client ip to same backend instance by                |
-|                     | Once it is set, the value                | computing hash of the IP.                            |
-|                     | cannot be changed.                       | 2. Generated Cookie Affinity: Load balancer stores   |
-|                     |                                          | cookie in clients and directs the same client to     |
-|                     |                                          | same instance with the help of retrieved cookie.     |
-+---------------------+------------------------------------------+------------------------------------------------------+
-|   8. Health check   | Health check is optional, but network    | Health can be verified by either using HTTP          |
-|                     | load balancing relies on HTTP Health     | heath check or HTTPS health check.                   |
-|                     | checks for determining instance health.  |                                                      |
-+---------------------+------------------------------------------+------------------------------------------------------+
-
-L4 Load Balancing commands:
-* `gcloud compute forwarding-rules list`
-* `gcloud compute forwarding-rules create pkosmowski-nginx-lb 
-         --region europe-west1 
-         --ports=80 
-         --target-pool pkosmowski-nginx-pool` - create forwarding rule (LB Frontend) which allows accessing LB from outside
-
-L7 Load Balancing commands:
-* `gcloud compute http-health-checks create pkosmowski-http-basic-check` - create healthcheck
-* `gcloud compute instance-groups managed 
-       set-named-ports pkosmowski-nginx-group 
-       --named-ports http:80` - add named port to the instance group which 
-* `gcloud compute backend-services add-backend pkosmowski-nginx-backend 
-    --instance-group pkosmowski-nginx-group 
-    --instance-group-zone europe-west1-c 
-    --global` - Add the instance group into the backend service
-* `gcloud compute url-maps create pkosmowski-web-map 
-    --default-service pkosmowski-nginx-backend` - Create a default URL map that directs all incoming requests to the given instances
-* `gcloud compute target-http-proxies create pkosmowski-http-lb-proxy 
-    --url-map pkosmowski-web-map` - Create a target HTTP proxy to route requests to the URL map
-* `gcloud compute forwarding-rules create pkosmowski-http-content-rule 
-        --global 
-        --target-http-proxy pkosmowski-http-lb-proxy 
-        --ports 80` - create forwarding rule (LB Frontend) which allows accessing LB from outside
-
-
 Script for installing nginx on startup:
 ```
 #! /bin/bash
@@ -241,6 +162,59 @@ Software Defined Networking
 
 ## Cloud Load Balancing
 Multi-region Load Distribution
+
+Network Load Balancing (NLB) L4
+* Region / Cross-Region - NLB supports only within a region. Does not support cross-region load balancing.
+* Load balancing based on - NLB is based on IP address, port and protocol type. Any TCP/UDP traffic, even SMTP can be load balanced.
+* Packet inspection - Packet inspection is possible and load balance based on packets
+* Instance Group - No need of creating instance group. Target pools need to be created. Instance can be just tagged to the pool. Ideal for unmanaged instance group where instances are non homogeneous.     
+* Workflow - Forwarding rules is the starting point. It directs the request to the target pools from which compute engines will pick the request. Forwarding rules -> target pool -> instances                           
+* Types of load balancer - Basic network load balancer which directs the request based on IP address, port and the protocol within the region. 
+* Session affinity - Session affinity can be set, but only during the creation of target pool. Once it is set, the value cannot be changed.                    
+* Health check - Health check is optional, but network load balancing relies on HTTP Health checks for determining instance health. 
+
+Commands:
+* `gcloud compute forwarding-rules list`
+* `gcloud compute forwarding-rules create pkosmowski-nginx-lb 
+         --region europe-west1 
+         --ports=80 
+         --target-pool pkosmowski-nginx-pool` - create forwarding rule (LB Frontend) which allows accessing LB from outside
+
+
+Network Load Balancing (NLB) L7
+* Region / Cross-Region - HLB supports both within cross-region load balancing.
+* Load balancing based on - HLB is based only on HTTP and HTTPS protocols.
+* Packet inspection - HLB cannot inspect packets.
+* Instance Group - Managed / UnManaged Instance group is necessary for creating HTTP / HTTPS load balancer.
+* Workflow - This is quite complex in HTTP(s) load balancer. Global forwarding rulesroutes direct the request     
+to target HTTP proxy, which in turn checks the URL map to determine appropriate backend services. These services in turn direct the request to the instance group. Global forwarding rules -> Target HTTP proxy -> URL map -> Backend Sevices -> instance group
+* Types of load balancer - 
+1. Cross-region load balancer uses only one global IP address and routes the request to the nearest region. 
+2. Content-based load balancer is based on the URL path. Different path rules need different backend services. for eg: /video and /static require two separate backend services. 
+* Session affinity - 
+1. Client IP Affinity: This directs the same client ip to same backend instance by              
+computing hash of the IP.
+2. Generated Cookie Affinity: Load balancer stores cookie in clients and directs the same client to same instance with the help of retrieved cookie.
+* Health check - Health can be verified by either using HTTP heath check or HTTPS health check.          
+
+Commands:
+* `gcloud compute http-health-checks create pkosmowski-http-basic-check` - create healthcheck
+* `gcloud compute instance-groups managed 
+       set-named-ports pkosmowski-nginx-group 
+       --named-ports http:80` - add named port to the instance group which 
+* `gcloud compute backend-services add-backend pkosmowski-nginx-backend 
+    --instance-group pkosmowski-nginx-group 
+    --instance-group-zone europe-west1-c 
+    --global` - Add the instance group into the backend service
+* `gcloud compute url-maps create pkosmowski-web-map 
+    --default-service pkosmowski-nginx-backend` - Create a default URL map that directs all incoming requests to the given instances
+* `gcloud compute target-http-proxies create pkosmowski-http-lb-proxy 
+    --url-map pkosmowski-web-map` - Create a target HTTP proxy to route requests to the URL map
+* `gcloud compute forwarding-rules create pkosmowski-http-content-rule 
+        --global 
+        --target-http-proxy pkosmowski-http-lb-proxy 
+        --ports 80` - create forwarding rule (LB Frontend) which allows accessing LB from outside
+
 
 ## Cloud CDN
 Content Delivery Network
