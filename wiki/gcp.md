@@ -181,7 +181,7 @@ Commands:
          --target-pool pkosmowski-nginx-pool` - create forwarding rule (LB Frontend) which allows accessing LB from outside
 
 
-Network Load Balancing (NLB) L7
+HTTP(S) Load Balancing (HLB) L7
 * Region / Cross-Region - HLB supports both within cross-region load balancing.
 * Load balancing based on - HLB is based only on HTTP and HTTPS protocols.
 * Packet inspection - HLB cannot inspect packets.
