@@ -79,10 +79,10 @@ EOF
 # Publish
 
 To push images to your private registry hosted by gcr, you need to tag the images with a registry name. The format is `[hostname]/[project-id]/[image]:[tag]`. For gcr:
-* `[hostname]` is gcr.io
-* `[project-id]` is your project's ID
-* `[image]` is your image name
-* `[tag]` is any string tag of your choice. If unspecified, it defaults to "latest".
+  * `[hostname]` is gcr.io
+  * `[project-id]` is your project's ID
+  * `[image]` is your image name
+  * `[tag]` is any string tag of your choice. If unspecified, it defaults to "latest".
 
 * `docker tag node-app:0.2 gcr.io/[project-id]/node-app:0.2` - create new image with new tag from existing one
 * `gcloud docker -- push gcr.io/[project-id]/node-app:0.2` - push image to the gcr repository
