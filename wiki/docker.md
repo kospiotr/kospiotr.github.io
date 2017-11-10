@@ -8,6 +8,10 @@ editurl: wiki/docker.md
 
 # Samples
 
+# Init
+
+* `docker run hello-world` - run container from `hello world` image
+
 ## Application
 
 ```
@@ -54,19 +58,38 @@ CMD ["node", "app.js"]
 EOF
 ```
 
-# Building
+# Build
 * `docker images` - list all downloaded images
 * `docker build -t node-app:0.1 .` - build image from sources with with tag node-app:0.1
+* `docker rm my-app` - remove image
  
-# Running
-* `docker run hello-world` - run container from `hello world` image
+# Run
 * `docker ps` - list all running containers
 * `docker ps -a` - list all containers including all which are stopped
+* `docker run -p 4000:80 --name my-app node-app:0.1` - running container in attached mode
+* `docker run -p 4000:80 --name my-app -d node-app:0.1` - running container in detached mode (in background)
+* `docker stop my-app` - stop container
 
-* `sudo docker exec -i -t container_name /bin/bash`
-* `docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)` - stop and remove all containers
-* `docker rm $(docker ps -a -q)` - delete all containers
-* `docker rmi $(docker images -q)` - Delete all images
+# Debug
+* `docker logs <container-id>` - displays logs
+* `docker logs -f <container-id>` - displays logs with follow
+* `docker exec -it <container-id> /bin/bash` - "enter" container (ssh replacement)
+* `docker inspect <container-id>` 
+* `docker ps --format='{{.ID}}\t{{.Label "pl.xperios.project"}}'` - outputs all running container and label with key `pl.xperios.project` 
+
+# Publish
+
+To push images to your private registry hosted by gcr, you need to tag the images with a registry name. The format is `[hostname]/[project-id]/[image]:[tag]`. For gcr:
+* `[hostname]` is gcr.io
+* `[project-id]` is your project's ID
+* `[image]` is your image name
+* `[tag]` is any string tag of your choice. If unspecified, it defaults to "latest".
+
+* `docker tag node-app:0.2 gcr.io/[project-id]/node-app:0.2` - create new image with new tag from existing one
+* `gcloud docker -- push gcr.io/[project-id]/node-app:0.2` - push image to the gcr repository
+
+# Clean up
 * `docker system df` - docker disk usage
-* `docker ps --format='{{.ID}}\t{{.Label "pl.xperios.project"}}'` - outputs all running container and label with key `pl.xperios.project`
-* 
+* `docker stop $(docker ps -a -q)` - stop all containers
+* `docker rm $(docker ps -a -q)` - delete all containers
+* `docker rmi $(docker images -q)` - delete all images
