@@ -56,6 +56,59 @@ Instance commands:
          --target-pool pkosmowski-nginx-pool` - create instance group of the minimal size = 2 with assigned target pool
 * `gcloud compute firewall-rules create www-firewall --allow tcp:80` - create firewall rule to allow tcp traffic 
 
++---------------------+------------------------------------------+------------------------------------------------------+
+|       Category      |       Network Load Balancing (NLB)       |             HTTP(S) Load Balancing (HLB)             |
++---------------------+------------------------------------------+------------------------------------------------------+
+|     1. Region /     | NLB supports only within a region.       | HLB supports both within cross-region                |
+|     Cross-Region    | Does not support cross-region            | load balancing.                                      |
+|                     | load balancing                           |                                                      |
++---------------------+------------------------------------------+------------------------------------------------------+
+|  2. Load balancing  | NLB is based on IP address, port         | HLB is based only on HTTP and HTTPS                  |
+|       based on      | and protocol type. Any TCP/UDP           | protocols.                                           |
+|                     | traffic, even SMTP can be                |                                                      |
+|                     | load balanced.                           |                                                      |
++---------------------+------------------------------------------+------------------------------------------------------+
+|      3. Packet      | Packet inspection is possible and        | HLB cannot inspect packets.                          |
+|      inspection     | load balance based on packets            |                                                      |
++---------------------+------------------------------------------+------------------------------------------------------+
+|     4. Instance     | No need of creating instance group.      | Managed / UnManaged Instance group                   |
+|         Group       | Target pools need to be created.         | is necessary for creating HTTP / HTTPS               |
+|                     | Instance can be just tagged to the pool. | load balancer.                                       |
+|                     | Ideal for unmanaged instance group       |                                                      |
+|                     | where instances are non homogeneous.     |                                                      |
++---------------------+------------------------------------------+------------------------------------------------------+
+|     5. Workflow     | Forwarding rules is the starting point.  | This is quite complex in HTTP(s) load balancer.      |
+|                     | It directs the request to the            | Global forwarding rulesroutes direct the request     |
+|                     | target pools from which compute          | to target HTTP proxy, which in turn checks the       |
+|                     | engines will pick the request.           | URL map to determine appropriate backend             |
+|                     |                                          | services.  These services in turn direct the request |
+|                     | Forwarding rules -> target pool          | to the instance group.                               |
+|                     |  -> instances                            |                                                      |
+|                     |                                          |                                                      |
+|                     |                                          | Global forwarding rules -> Target HTTP proxy ->      |
+|                     |                                          | URL map -> Backend Sevices -> instance group         |
++---------------------+------------------------------------------+------------------------------------------------------+
+|     6. Types of     | Basic network load balancer which        | 1. Cross-region load balancer uses only one          |
+|    load balancer    | directs the request based on IP address, | global IP address and routes the request             |
+|                     | port and the protocol within the region. | to the nearest region.                               |
+|                     |                                          |                                                      |
+|                     |                                          | 2. Content-based load balancer is based              |
+|                     |                                          | on the URL path. Different path rules need           |
+|                     |                                          | different backend services. for eg: /video           |
+|                     |                                          | and /static require two separate backend services.   |
++---------------------+------------------------------------------+------------------------------------------------------+
+| 7. Session affinity | Session affinity can be set, but only    | 1. Client IP Affinity: This directs the same         |
+|                     | during the creation of target pool.      | client ip to same backend instance by                |
+|                     | Once it is set, the value                | computing hash of the IP.                            |
+|                     | cannot be changed.                       | 2. Generated Cookie Affinity: Load balancer stores   |
+|                     |                                          | cookie in clients and directs the same client to     |
+|                     |                                          | same instance with the help of retrieved cookie.     |
++---------------------+------------------------------------------+------------------------------------------------------+
+|   8. Health check   | Health check is optional, but network    | Health can be verified by either using HTTP          |
+|                     | load balancing relies on HTTP Health     | heath check or HTTPS health check.                   |
+|                     | checks for determining instance health.  |                                                      |
++---------------------+------------------------------------------+------------------------------------------------------+
+
 L4 Load Balancing commands:
 * `gcloud compute forwarding-rules list`
 * `gcloud compute forwarding-rules create pkosmowski-nginx-lb 
