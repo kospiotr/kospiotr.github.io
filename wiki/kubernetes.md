@@ -60,20 +60,28 @@ EOF
 * `docker build -t gcr.io/PROJECT_ID/hello-node:v1 .` - 
 * `gcloud docker -- push gcr.io/PROJECT_ID/hello-node:v1`
 
-# Commands
+# Deployment
 * `kubectl run hello-node 
     --image=gcr.io/PROJECT_ID/hello-node:v1 
     --port=8080` - create and run deployment
 * `kubectl get deployments` - list all deployments
+* `kubectl edit deployment hello-node` - after introduce change in the image and release given deployment can be updated with new container image version and apply it
+
+# Status
 * `kubectl get pods` - list all running pods
 * `kubectl cluster-info`
 * `kubectl config view`
 * `kubectl get events`
 * `kubectl logs <pod-name>`
-* `kubectl expose deployment hello-node --type="LoadBalancer"` - create service of type LoadBalancer
+
+# Services
 * `kubectl get services` - list all services
+* `kubectl expose deployment hello-node --type="LoadBalancer"` - create service of type LoadBalancer
+
+# Scaling
 * `kubectl scale deployment hello-node --replicas=4` - manually scale pods to the count of total = 4
-* `kubectl edit deployment hello-node` - after introduce change in the image and release given deployment can be updated with new container image version and apply it
+
+# Web console
 * `gcloud container clusters get-credentials hello-world \
     --zone us-central1-f --project <PROJECT_ID>` - configure `kubectl` command before usage
 * `kubectl proxy --port 8081 and open /ui` - proxy traffic to the kubernetes console
