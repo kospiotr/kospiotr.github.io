@@ -73,6 +73,11 @@ EOF
 * `kubectl config view`
 * `kubectl get events`
 * `kubectl logs <pod-name>`
+* `kubectl describe pods <pod-name>`
+
+# Interacting with pods
+* `kubectl port-forward monolith 8080:80` - forwarding port from pod 80 to local 8080
+* `kubectl exec <pod-name> --stdin --tty -c <container-name> /bin/sh` - "enter" container (ssh replacement)
 
 # Services
 * `kubectl get services` - list all services
