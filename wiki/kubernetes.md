@@ -7,6 +7,7 @@ slideshow: true
 editurl: wiki/gcp.md
 ---
 
+* [https://kubernetes.io/docs/user-guide/kubectl-cheatsheet/](https://kubernetes.io/docs/user-guide/kubectl-cheatsheet/)
 
 # Samples
 
@@ -80,6 +81,17 @@ EOF
 * `kubectl exec <pod-name> --stdin --tty -c <container-name> /bin/sh` - "enter" container (ssh replacement)
 
 # Services
+Currently there are three types:
+
+
+ClusterIP
+ (internal) -- the default type means that this Service is only visible inside of the cluster,
+
+NodePort
+ gives each node in the cluster an externally accessible IP and
+
+LoadBalancer
+ adds a load balancer from the cloud provider which forwards traffic from the service to Nodes within it.
 * `kubectl get services` - list all services
 * `kubectl expose deployment hello-node --type="LoadBalancer"` - create service of type LoadBalancer
 
