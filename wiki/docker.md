@@ -34,6 +34,7 @@ process.on('SIGINT', function() {
     console.log('Caught interrupt signal and will exit');
     process.exit();
 });
+EOF
 ```
 
 ## Dockerfile
