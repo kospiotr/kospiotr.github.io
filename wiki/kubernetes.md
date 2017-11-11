@@ -70,6 +70,9 @@ EOF
 
 # Status
 * `kubectl get pods` - list all running pods
+* `kubectl get pods -l "key1=value1,key2=value2"` - list all pods with multiple labels
+* `kubectl get pods <pod-name> --show-labels` - list pods with labels
+* `kubectl label pods <pod-name> 'key=value'` - set labels to the pod
 * `kubectl cluster-info`
 * `kubectl config view`
 * `kubectl get events`
@@ -79,6 +82,7 @@ EOF
 # Interacting with pods
 * `kubectl port-forward monolith 8080:80` - forwarding port from pod 80 to local 8080
 * `kubectl exec <pod-name> --stdin --tty -c <container-name> /bin/sh` - "enter" container (ssh replacement)
+
 
 # Services
 Currently there are three types:
@@ -94,6 +98,7 @@ LoadBalancer
  adds a load balancer from the cloud provider which forwards traffic from the service to Nodes within it.
 * `kubectl get services` - list all services
 * `kubectl expose deployment hello-node --type="LoadBalancer"` - create service of type LoadBalancer
+
 
 # Scaling
 * `kubectl scale deployment hello-node --replicas=4` - manually scale pods to the count of total = 4
