@@ -98,7 +98,7 @@ NodePort
 LoadBalancer
  adds a load balancer from the cloud provider which forwards traffic from the service to Nodes within it.
 * `kubectl get services` - list all services
-* `kubectl expose deployment hello-node --type="LoadBalancer"` - create service of type LoadBalancer
+* `kubectl expose deployment hello-node --type="LoadBalancer"` --port=8080 - create service of type LoadBalancer
 
 
 # Scaling
