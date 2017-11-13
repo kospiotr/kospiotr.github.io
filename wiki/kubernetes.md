@@ -82,6 +82,7 @@ EOF
 
 # Interacting with pods
 * `kubectl port-forward monolith 8080:80` - forwarding port from pod 80 to local 8080
+* `kubectl exec <pod-name> --stdin --tty /bin/sh` - "enter" container (ssh replacement)
 * `kubectl exec <pod-name> --stdin --tty -c <container-name> /bin/sh` - "enter" container (ssh replacement)
 
 
