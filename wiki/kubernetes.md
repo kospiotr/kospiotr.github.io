@@ -4,10 +4,11 @@ title: Kubernetes
 comments: false
 toc: true
 slideshow: true
-editurl: wiki/gcp.md
+editurl: wiki/kubernetes.md
 ---
 
 * [https://kubernetes.io/docs/user-guide/kubectl-cheatsheet/](https://kubernetes.io/docs/user-guide/kubectl-cheatsheet/)
+* `source <(kubectl completion bash)`
 
 # Samples
 
