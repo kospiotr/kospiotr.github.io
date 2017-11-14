@@ -103,3 +103,7 @@ Commands:
 * `gcloud container clusters get-credentials hello-world \
     --zone us-central1-f --project <PROJECT_ID>` - configure `kubectl` command before usage
 * `kubectl proxy --port 8081 and open /ui` - proxy traffic to the kubernetes console
+
+# Create object
+* `kubectl create -f <object>.yaml` - create object from file
+
