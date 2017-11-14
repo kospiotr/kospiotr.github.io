@@ -94,10 +94,19 @@ Types:
 
 Commands:
 * `kubectl get services` - list all services
-* `kubectl expose deployment hello-node --type="LoadBalancer"` --port=8080 - create service of type LoadBalancer
+* `kubectl expose deployment <deployent-name> --type="LoadBalancer"` --port=8080 - create service of type LoadBalancer
 
 # Scaling
-* `kubectl scale deployment hello-node --replicas=4` - manually scale pods to the count of total = 4
+* `kubectl scale deployment <deployent-name> --replicas=4` - manually scale pods to the count of total = 4
+
+# Rolling update
+* `kubectl edit deployment <deployent-name>` - vim deployment descriptor
+* `kubectl rollout history deployment/<deployent-name>` - rolling history
+* `kubectl rollout pause deployment/<deployent-name>` - rolling update pause
+* `kubectl rollout status deployment/<deployent-name>` - rolling status
+* `kubectl get pods -o jsonpath --template='{range .items[*]}{.metadata.name}{"\t"}{"\t"}{.spec.containers[0].image}{"\n"}{end}'` - erify rolling status on pods directly
+* `kubectl rollout undo deployment/hello` - uno latest deployment
+
 
 # Web console
 * `gcloud container clusters get-credentials hello-world \
