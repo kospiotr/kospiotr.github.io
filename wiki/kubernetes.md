@@ -106,6 +106,8 @@ Commands:
 * `kubectl rollout status deployment/<deployent-name>` - rolling status
 * `kubectl get pods -o jsonpath --template='{range .items[*]}{.metadata.name}{"\t"}{"\t"}{.spec.containers[0].image}{"\n"}{end}'` - erify rolling status on pods directly
 * `kubectl rollout undo deployment/hello` - uno latest deployment
+* canary release: [https://google.qwiklabs.com/focuses/7013](https://google.qwiklabs.com/focuses/7013)
+* blue green deployment: [https://google.qwiklabs.com/focuses/7013](https://google.qwiklabs.com/focuses/7013)
 
 
 # Web console
