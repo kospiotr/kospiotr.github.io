@@ -68,11 +68,10 @@ sed -i -- 's/nginx/Google Cloud Platform - '"$HOSTNAME"'/' /var/www/html/index.n
 ## App Engine
 Managed App Platform
 
-Use cases: Web sites. Mobile app and gaming backends. RESTful APIs. Internal Line of Business (LOB) apps. Internet of things (IoT) apps.
-
 ## Container Engine
 Managed Kubernetes/Containers
 
+Use cases: Web sites. Mobile app and gaming backends. RESTful APIs. Internal Line of Business (LOB) apps. Internet of things (IoT) apps.
 Use cases: Containerized workloads. Cloud-native distributed systems. Hybrid applications.
 
 Commands:
@@ -116,6 +115,12 @@ Key features:
 * no need to maintain servers, however:
   * you must declare resource on which it will be running: CPU, memory
   * you must create bucket where those functions will be stored or as an alternative they can be hosted in GIT Repository
+
+Pricing:
+* Free first 2 million messages
+* CPU type
+* Compute time (CPU usage)
+* Network - egress data
 
 # Storage and Databases
 
