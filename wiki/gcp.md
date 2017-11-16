@@ -104,8 +104,16 @@ Commands:
 * `kubectl proxy --port 8081 and open /ui` - proxy traffic to the kubernetes console
 
 ## Cloud Functions
-Serverless Microservices
+Serverless Microservices diren with events
 
+Key features:
+* write nodejs functions that are triggered with:
+  * http call
+  * cloud bucket content modification
+  * pub / sub topic event
+* no need to maintain servers, however:
+  * you must declare resource on which it will be running: CPU, memory
+  * you must create bucket where those functions will be stored or as an alternative they can be hosted in GIT Repository
 
 # Storage and Databases
 
