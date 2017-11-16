@@ -104,7 +104,9 @@ Commands:
 * `kubectl proxy --port 8081 and open /ui` - proxy traffic to the kubernetes console
 
 ## Cloud Functions
-Serverless Microservices diren with events
+Serverless Microservices driven with events
+
+Use cases: Data Processing / ETL, Webhooks, Lightweight APIs, Mobile Backend, IoT
 
 Key features:
 * write nodejs functions that are triggered with:
