@@ -68,6 +68,30 @@ sed -i -- 's/nginx/Google Cloud Platform - '"$HOSTNAME"'/' /var/www/html/index.n
 ## App Engine
 Managed App Platform
 
+Features:
+* Popular Languages - Node.js, Java, Ruby, C#, Go, Python, or PHP—or bring your own language runtime
+* Open & Flexible - Custom runtimes allow you to bring any library and framework to App Engine by supplying a Docker container
+* Fully Managed - A fully managed environment lets you focus on code while App Engine manages infrastructure concerns
+Monitoring, 
+* Logging & Diagnostics - Google Stackdriver gives you powerful application diagnostics to debug and monitor the health and performance of your app
+* Application Versioning - Easily host different versions of your app, easily create development, test, staging, and production environments
+* Traffic Splitting - Route incoming requests to different app versions, A/B test and do incremental feature rollouts
+* Application Security - Help safeguard your application by defining access rules with App Engine firewall and leverage managed SSL/TLS certificates* by default on your custom domain at no additional cost
+* Services Ecosystem - Tap a growing ecosystem of GCP services from your app including an excellent suite of cloud developer tools
+
+Standard environment:
+* Preconfigured runtime: Java 7, Java 8, Python 2.7, Go and PHP
+* Includes libraries supporting Standard Env API
+
+Persistent Storage:
+
+
+Pricing:
+* Standard environment - depends on the instance class
+* Flexible envirnoment - CPU, RAM, HDD
+* Datastore - capacity, reads, writes, deletes, network, excluding small operations
+* Search API
+
 ## Container Engine
 Managed Kubernetes/Containers
 
