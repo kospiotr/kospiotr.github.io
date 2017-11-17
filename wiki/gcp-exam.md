@@ -1,6 +1,6 @@
 ---
 layout: wiki
-title: Google Cloud Platform trainings
+title: Google Cloud Platform exam
 comments: false
 toc: true
 slideshow: true
