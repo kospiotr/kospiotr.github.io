@@ -7,7 +7,7 @@ slideshow: true
 editurl: wiki/gcp-trainings.md
 ---
 1. Designing and planning a cloud solution architecture
-  1.	Designing a solution infrastructure that meets business requirements. Considerations include:
+  1.1.	Designing a solution infrastructure that meets business requirements. Considerations include:
     * business use cases and product strategy
     * cost optimization
     * supporting the application design
