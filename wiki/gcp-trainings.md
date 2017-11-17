@@ -6,16 +6,16 @@ toc: true
 slideshow: true
 editurl: wiki/gcp-trainings.md
 ---
-Section 1: Designing and planning a cloud solution architecture
+1 Designing and planning a cloud solution architecture
 1.1	Designing a solution infrastructure that meets business requirements. Considerations include:
-* business use cases and product strategy
-* cost optimization
-* supporting the application design
-* integration
-* movement of data
-* tradeoffs
-* build, buy or modify
-* success measurements (e.g., Key Performance Indicators (KPI), Return on Investment (ROI), metrics)
+  * business use cases and product strategy
+  * cost optimization
+  * supporting the application design
+  * integration
+  * movement of data
+  * tradeoffs
+  * build, buy or modify
+  * success measurements (e.g., Key Performance Indicators (KPI), Return on Investment (ROI), metrics)
 1.2	Designing a solution infrastructure that meets technical requirements. Considerations include:
 * high availability and failover design
 * elasticity of cloud resources
