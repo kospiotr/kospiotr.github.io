@@ -169,6 +169,23 @@ VM-attached disks
 
 # Big Data
 
+Hadoop base terminology:
+* HDFS - Hadoop distributed file system - stores data which needs to be processed and the data which are the result of the processing
+* MapReduce - framework which defines a data processing task 
+* YARN - yet another resource - framework which runs data processing tasks
+
+Hadoop ecosystem technologies:
+* HIVE - provides SQL interface to Hadoop - OLAP sources, in GCP it's BigQuery
+* HBase - columnar (NoSQL) data base management system on top of Hadoop, in GCP it's BigTable
+* Pig - data manipulation language which allows reading unstructured data and writing as structured, for example reading logs and witing them to HDFS, it's GCP DataFlow
+* Spark - distributed compute engine used along with Hadoop, it's GCP DataFlow
+* Oozie - A tool to schedule workflows on all Hadoop ecosystem technologies in other words it makes Hadoop being managed as Dataproc is doing on GCP
+* Kafka - stream data process in the realtime, equivalent in GCP is Pub / Sub
+
+Flow:
+
+Map Reduce -> YARN -> HDFS
+
 ## BigQuery
 Managed Data Warehouse/Analytics
 
