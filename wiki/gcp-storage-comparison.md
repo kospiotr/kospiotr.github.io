@@ -39,7 +39,13 @@ editurl: wiki/gcp-storage-comparison.md
 <ul>
 <li>Availibility: Multi Regional, Regional (*) zonal, however replicated across regions</li>
 <li>Capacity: Unlimited</li>
-<li>Price:&nbsp;Per usage -Regional $0.026 -Nearline $0.01 - Coldline $0.007&nbsp;</li>
+<li>Price:&nbsp;Per usage
+<ul>
+<li>Regional $0.026</li>
+<li>Nearline $0.01</li>
+<li>Coldline $0.007&nbsp;</li>
+</ul>
+</li>
 <li>Transactional: No</li>
 <li>Consistency: Strong</li>
 </ul>
@@ -103,7 +109,6 @@ editurl: wiki/gcp-storage-comparison.md
 </ul>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <ul>
-<li></li>
 <li>Capacity:&nbsp;</li>
 <li>Price:</li>
 <li>Transactional: Yes</li>
@@ -119,35 +124,11 @@ editurl: wiki/gcp-storage-comparison.md
 <ul>
 <li>Availibility: Multi Regional</li>
 <li>Capacity:</li>
-<li>Price</li>
+<li>Price:</li>
 <li>Transactional: No</li>
 <li>Consistency: Eventual</li>
 </ul>
 </td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-</tr>
-<tr>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-</tr>
-<tr>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-</tr>
-<tr>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-</tr>
-<tr>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
 </tr>
