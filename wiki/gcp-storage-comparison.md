@@ -9,19 +9,120 @@ editurl: wiki/gcp-storage-comparison.md
 # Compare
 
 <table>
-  <tr><td>Product</td><td>Availibility</td><td>Capacity</td><td>Price</td><td>Transactional / consistency</td><td>Use when</td><td>Avoid when</td></tr>
-  <tr><td>Persistent Disk</td><td>Zonal</td><td>from: to: </td><td>from: to: </td>no<td></td><td></td><td></td></tr>
-  <tr><td>Google Cloud Storage</td><td>Unlimited</td><td>Per usage
-- Regional $0.026
-- Nearline $0.01
-- Coldline $0.007</td><td></td><td></td><td></td><td></td></tr>
-  <tr><td>Google Cloud Bigtable</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-  <tr><td>Google Cloud Datastore</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-  <tr><td>Google Cloud SQL</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-  <tr><td>Google Cloud Spanner</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-  <tr><td>Google BigQuery</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-  <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-  <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-  <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-  <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tbody>
+<tr>
+<td>Product</td>
+<td>Availibility</td>
+<td>Capacity</td>
+<td>Price</td>
+<td>Transactional / consistency</td>
+<td>Use when</td>
+<td>Avoid when</td>
+</tr>
+<tr>
+<td>Persistent Disk</td>
+<td>Zonal</td>
+<td>from: to:</td>
+<td>from: to:</td>
+<td>no</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>Google Cloud Storage</td>
+<td>
+<p>Multi Regional</p>
+<p>Regional (*) - zonal, however replicated across region</p>
+</td>
+<td>Unlimited</td>
+<td>Per usage - Regional $0.026 - Nearline $0.01 - Coldline $0.007&nbsp;</td>
+<td>&nbsp;No / Strong</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>Google Cloud Bigtable</td>
+<td>&nbsp;Zonal</td>
+<td>&nbsp;Unlimited</td>
+<td>
+<p>&nbsp;$0.17 per GB/month</p>
+<p>+ node</p>
+</td>
+<td>&nbsp;No / Eventual</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>Google Cloud Datastore</td>
+<td>Global&nbsp;</td>
+<td>&nbsp;Unlimited</td>
+<td>&nbsp;$0.18 per GB/month</td>
+<td>yes / strong consistency for row, eventual for queries&nbsp;</td>
+<td>- Need to scale for read prformance<br />- Data is hierarchical with key/value&nbsp;</td>
+<td>- Need strong support for transactions, use instead SQL or Spanner<br />- Need support non hierarchical or unstructured data, use instead BigTable or Storage<br />- Need analytics (OLAP) / BI / data warehousing, use instead BigQuery<br />- Need to store Blobs &gt; 10MB, use instead Storage<br />- Need to frequent reads and writes by key&nbsp;</td>
+</tr>
+<tr>
+<td>Google Cloud SQL</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>Google Cloud Spanner</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>Google BigQuery</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
 </table>
