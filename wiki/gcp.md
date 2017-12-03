@@ -172,6 +172,12 @@ Key features:
 * Atomic transactions
 * Indices for fast lookup, all queris using indices
 * Query result depends on he result set instead of dataset size
+* No joins
+* Slow updates
+* Can't filter on subquery result
+* Can't have more than 1 inequality filter
+* Multitenacy - can use namespaces for agregating data within the same kinds
+* Transaction are optional
 
 Avoid when:
 * Need strong support for transactions, use instead SQL or Spanner
