@@ -20,14 +20,27 @@ editurl: wiki/gcp-storage-comparison.md
 <td>Avoid when</td>
 </tr>
 <tr>
-<td>Persistent Disk</td>
+<td>[Persistent Disk](https://cloud.google.com/compute/docs/disks/)</td>
 <td>
 <ul>
-<li>Availibility: Zonal</li>
-<li>Capacity:</li>
-<li>Price</li>
+<li>Availibility: Zonal, Instance</li>
+<li>Capacity: &lt; 64TB</li>
+<li>Price (varies by location): 
+    <ul>
+    <li>HDD: $0.04</li>
+    <li>Persistent SSD: $0.170</li>
+    <li>Local SSD: $0.080</li>
+  </ul>
+</li>
 <li>Transactional: no</li>
 <li>Consistency: Strong</li>
+<li>IOPS R/W:
+  <ul>
+    <li>HDD: 3 000 / 15 000</li>
+    <li>Persistent SSD: 3 000 / 15 000 - 40 000</li>
+    <li>Local SSD: 400 000 / 280 000</li>
+  </ul>
+</li>
 </ul>
 </td>
 <td>&nbsp;</td>
