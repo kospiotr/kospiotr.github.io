@@ -75,7 +75,7 @@ editurl: wiki/gcp-storage-comparison.md
 </tr>
 <tr>
 <td>Google Cloud Bigtable</td>
-<td>&nbsp;
+<td>
 <ul>
 <li>Availibility: Zonal</li>
 <li>Capacity:&nbsp;</li>
@@ -94,11 +94,9 @@ editurl: wiki/gcp-storage-comparison.md
 <ul>
 <li>Availibility: Fully managed: Global or Multiregional</li>
 <li>Capacity: Unlimited</li>
-<li>Price:</li>
-<li>$0.18 per GB/month</li>
+<li>Price: $0.18</li>
 <li>Transactional: Yes</li>
-<li>Consistency:&nbsp;</li>
-<li>Strong for row, eventual for queries&nbsp;</li>
+<li>Consistency: Strong for row, eventual for queries&nbsp;</li>
 </ul></td>
 <td>- Need to scale for read prformance<br />- Data is hierarchical with key/value&nbsp;</td>
 <td>- Need strong support for transactions, use instead SQL or Spanner<br />- Need support non hierarchical or unstructured data, use instead BigTable or Storage<br />- Need analytics (OLAP) / BI / data warehousing, use instead BigQuery<br />- Need to store Blobs &gt; 10MB, use instead Storage<br />- Need to frequent reads and writes by key&nbsp;</td>
