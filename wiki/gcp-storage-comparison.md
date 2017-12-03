@@ -5,6 +5,9 @@ comments: false
 toc: false
 editurl: wiki/gcp-storage-comparison.md
 ---
+* [Locations and products](https://cloud.google.com/about/locations/)
+* [Storage compare](https://cloud.google.com/storage-options/)
+* ![img](https://cloud.google.com/images/storage-options/flowchart.svg)
 
 # Compare
 
@@ -54,37 +57,37 @@ editurl: wiki/gcp-storage-comparison.md
 </tr>
 <tr>
 <td>Google Cloud Datastore</td>
-<td>Global&nbsp;</td>
+<td>Fully maintained: Global or Multiregional</td>
 <td>&nbsp;Unlimited</td>
 <td>&nbsp;$0.18 per GB/month</td>
-<td>yes / strong consistency for row, eventual for queries&nbsp;</td>
+<td>Yes / Strong for row, eventual for queries&nbsp;</td>
 <td>- Need to scale for read prformance<br />- Data is hierarchical with key/value&nbsp;</td>
 <td>- Need strong support for transactions, use instead SQL or Spanner<br />- Need support non hierarchical or unstructured data, use instead BigTable or Storage<br />- Need analytics (OLAP) / BI / data warehousing, use instead BigQuery<br />- Need to store Blobs &gt; 10MB, use instead Storage<br />- Need to frequent reads and writes by key&nbsp;</td>
 </tr>
 <tr>
 <td>Google Cloud SQL</td>
+<td>&nbsp;Zonal</td>
+<td>&nbsp;limited with storage</td>
 <td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td>&nbsp;Yes / Strong</td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
 </tr>
 <tr>
 <td>Google Cloud Spanner</td>
+<td>Multi Regional&nbsp;</td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td>&nbsp;Yes / Strong</td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
 </tr>
 <tr>
 <td>Google BigQuery</td>
+<td>&nbsp;Multi Regional</td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
-<td>&nbsp;</td>
-<td>&nbsp;</td>
+<td>&nbsp;No / Eventual</td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
 </tr>
