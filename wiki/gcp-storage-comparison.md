@@ -100,10 +100,10 @@ editurl: wiki/gcp-storage-comparison.md
 </tr>
 <tr>
 <td>Google Cloud Spanner</td>
-<td>&nbsp;
+<td>
 <ul>
 <ul>
-<li>Availibility: Multi Regional</li>
+<li>&nbsp;Availibility: Multi Regional</li>
 <li></li>
 </ul>
 </ul>
