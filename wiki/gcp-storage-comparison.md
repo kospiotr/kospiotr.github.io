@@ -52,9 +52,10 @@ editurl: wiki/gcp-storage-comparison.md
 <ul>
 <li>Availibility: Multi Regional, Regional (*) zonal, however replicated across regions</li>
 <li>Capacity: Unlimited</li>
-<li>Price:&nbsp;Per usage
+<li>Price (varies by location):
 <ul>
-<li>Regional $0.026</li>
+<li>Multi Regional $0.026</li>
+<li>Regional $0.02</li>
 <li>Nearline $0.01</li>
 <li>Coldline $0.007&nbsp;</li>
 </ul>
