@@ -24,7 +24,13 @@ editurl: wiki/gcp-storage-comparison.md
 <td>
 <ul>
 <li>Availibility: Zonal, Instance</li>
-<li>Capacity: &lt; 64TB</li>
+<li>Capacity: 
+    <ul>
+    <li>HDD: 64Tb</li>
+    <li>Persistent SSD: 64Tb</li>
+    <li>Local SSD: 3Tb</li>
+  </ul>
+</li>
 <li>Price (varies by location): 
     <ul>
     <li>HDD: $0.04</li>
