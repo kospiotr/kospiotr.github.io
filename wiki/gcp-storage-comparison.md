@@ -102,13 +102,7 @@ editurl: wiki/gcp-storage-comparison.md
 <td>Google Cloud Spanner</td>
 <td>
 <ul>
-<ul>
 <li>&nbsp;Availibility: Multi Regional</li>
-<li></li>
-</ul>
-</ul>
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<ul>
 <li>Capacity:&nbsp;</li>
 <li>Price:</li>
 <li>Transactional: Yes</li>
