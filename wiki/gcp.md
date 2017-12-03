@@ -178,6 +178,7 @@ Key features:
 * Can't have more than 1 inequality filter
 * Multitenacy - can use namespaces for agregating data within the same kinds
 * Transaction are optional
+* Serverless, there is no instance
 
 Avoid when:
 * Need strong support for transactions, use instead SQL or Spanner
