@@ -74,13 +74,12 @@ editurl: wiki/gcp-storage-comparison.md
 <ul>
 <li>Availibility: Fully managed: Global or Multiregional</li>
 <li>Capacity: Unlimited</li>
-<li>Price:&nbsp;</li>
+<li>Price:</li>
 <li>$0.18 per GB/month</li>
 <li>Transactional: Yes</li>
 <li>Consistency:&nbsp;</li>
 <li>Strong for row, eventual for queries&nbsp;</li>
-</ul>
-&nbsp;</td>
+</ul></td>
 <td>- Need to scale for read prformance<br />- Data is hierarchical with key/value&nbsp;</td>
 <td>- Need strong support for transactions, use instead SQL or Spanner<br />- Need support non hierarchical or unstructured data, use instead BigTable or Storage<br />- Need analytics (OLAP) / BI / data warehousing, use instead BigQuery<br />- Need to store Blobs &gt; 10MB, use instead Storage<br />- Need to frequent reads and writes by key&nbsp;</td>
 </tr>
@@ -102,7 +101,7 @@ editurl: wiki/gcp-storage-comparison.md
 <td>Google Cloud Spanner</td>
 <td>
 <ul>
-<li>&nbsp;Availibility: Multi Regional</li>
+<li>Availibility: Multi Regional</li>
 <li>Capacity:&nbsp;</li>
 <li>Price:</li>
 <li>Transactional: Yes</li>
@@ -114,8 +113,7 @@ editurl: wiki/gcp-storage-comparison.md
 </tr>
 <tr>
 <td>Google BigQuery</td>
-<td>&nbsp;
-<ul>
+<td><ul>
 <li>Availibility: Multi Regional</li>
 <li>Capacity:</li>
 <li>Price:</li>
