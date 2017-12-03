@@ -155,10 +155,34 @@ Object/File Storage & Serving
 Managed MySQL and PostgreSQL
 
 ## Cloud Bigtable
-HBase compatible NoSQL
+HBase compatible NoSQL, collumnar database running on Hadoop
+
+Key features:
+* Distributed
+* NoSQL - no joins, no grouppings, no order by, no indexes except id, o constraints
+* Only CRUD operations are supported
+* ACID at the row level
+* Denormalized data
 
 ## Cloud Datastore
-Horizontally Scalable Document DB
+Horizontally Scalable Document DB like MongoDB, CouchDB
+
+Key features:
+* NoSQL document DB
+* Atomic transactions
+* Indices for fast lookup, all queris using indices
+* Query result depends on he result set instead of dataset size
+
+Avoid when:
+* Need strong support for transactions, use instead SQL or Spanner
+* Need support non hierarchical or unstructured data, use instead BigTable or Storage
+* Need analytics (OLAP) / BI / data warehousing, use instead BigQuery
+* Need to store Blobs > 10MB, use instead Storage
+* Need to frequent reads and writes by key
+
+Use when:
+* Need to scale for read prformance
+* Use when data is hierarchical with key/value
 
 ## Cloud Spanner
 Horizontally Scalable Relational DB
