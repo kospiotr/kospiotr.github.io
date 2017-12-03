@@ -221,6 +221,15 @@ Map Reduce -> YARN -> HDFS
 ## BigQuery
 Managed Data Warehouse/Analytics
 
+Key features:
+* SQL queries with Google storage underneeth
+* Fully mnaged - no servers, resources deployed
+* Storage internal in maintained by BigQuery or external from BigTable / Cloud Storage etc
+* Schema Auto detection
+* Loading data: 
+  * with batches: csv, JSON, Avro, GCP Datastore backups 
+  * with streams
+
 ## Cloud Dataflow
 Managed Data Processing
 
