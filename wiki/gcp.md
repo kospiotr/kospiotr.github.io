@@ -170,6 +170,7 @@ Horizontally Scalable Document DB like MongoDB, CouchDB
 Key features:
 * NoSQL document DB
 * Atomic transactions
+* Strong consistency for the entity, eventual consitency for the query
 * Indices for fast lookup, all queris using indices
 * Query result depends on he result set instead of dataset size
 * No joins
