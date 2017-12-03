@@ -20,7 +20,7 @@ editurl: wiki/gcp-storage-comparison.md
 <td>Avoid when</td>
 </tr>
 <tr>
-<td>[Persistent Disk](https://cloud.google.com/compute/docs/disks/)</td>
+<td><a href="https://cloud.google.com/compute/docs/disks/">Persistent Disk</a></td>
 <td>
 <ul>
 <li>Availibility: Zonal, Instance</li>
