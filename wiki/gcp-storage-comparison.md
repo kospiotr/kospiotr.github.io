@@ -22,11 +22,13 @@ editurl: wiki/gcp-storage-comparison.md
 <tr>
 <td>Persistent Disk</td>
 <td>
-<p>Availibility: Zonal</p>
-<p>Capacity:</p>
-<p>Price</p>
-<p>Transactional: no</p>
-<p>Consistency: Strong</p>
+<ul>
+<li>Availibility: Zonal</li>
+<li>Capacity:</li>
+<li>Price</li>
+<li>Transactional: no</li>
+<li>Consistency: Strong</li>
+</ul>
 </td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
@@ -34,11 +36,13 @@ editurl: wiki/gcp-storage-comparison.md
 <tr>
 <td>Google Cloud Storage</td>
 <td>
-<p>Availibility: Multi Regional, Regional (*) zonal, however replicated across regions</p>
-<p>Capacity: Unlimited</p>
-<p>Price:&nbsp;Per usage -Regional $0.026 -Nearline $0.01 - Coldline $0.007&nbsp;</p>
-<p>Transactional: No</p>
-<p>Consistency: Strong</p>
+<ul>
+<li>Availibility: Multi Regional, Regional (*) zonal, however replicated across regions</li>
+<li>Capacity: Unlimited</li>
+<li>Price:&nbsp;Per usage -Regional $0.026 -Nearline $0.01 - Coldline $0.007&nbsp;</li>
+<li>Transactional: No</li>
+<li>Consistency: Strong</li>
+</ul>
 </td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
@@ -46,12 +50,14 @@ editurl: wiki/gcp-storage-comparison.md
 <tr>
 <td>Google Cloud Bigtable</td>
 <td>&nbsp;
-<p>Availibility: Zonal</p>
-<p>Capacity:&nbsp;</p>
-<p>Unlimited</p>
-<p>Price:&nbsp;$0.17 per GB/month</p>
-<p>Transactional: No</p>
-<p>Consistency: Eventual</p>
+<ul>
+<li>Availibility: Zonal</li>
+<li>Capacity:&nbsp;</li>
+<li>Unlimited</li>
+<li>Price:&nbsp;$0.17 per GB/month</li>
+<li>Transactional: No</li>
+<li>Consistency: Eventual</li>
+</ul>
 </td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
@@ -59,13 +65,15 @@ editurl: wiki/gcp-storage-comparison.md
 <tr>
 <td>Google Cloud Datastore</td>
 <td>
-<p>Availibility: Fully managed: Global or Multiregional</p>
-<p>Capacity: Unlimited</p>
-<p>Price:&nbsp;</p>
-<p>$0.18 per GB/month</p>
-<p>Transactional: Yes</p>
-<p>Consistency:&nbsp;</p>
-<p>Strong for row, eventual for queries&nbsp;</p>
+<ul>
+<li>Availibility: Fully managed: Global or Multiregional</li>
+<li>Capacity: Unlimited</li>
+<li>Price:&nbsp;</li>
+<li>$0.18 per GB/month</li>
+<li>Transactional: Yes</li>
+<li>Consistency:&nbsp;</li>
+<li>Strong for row, eventual for queries&nbsp;</li>
+</ul>
 &nbsp;</td>
 <td>- Need to scale for read prformance<br />- Data is hierarchical with key/value&nbsp;</td>
 <td>- Need strong support for transactions, use instead SQL or Spanner<br />- Need support non hierarchical or unstructured data, use instead BigTable or Storage<br />- Need analytics (OLAP) / BI / data warehousing, use instead BigQuery<br />- Need to store Blobs &gt; 10MB, use instead Storage<br />- Need to frequent reads and writes by key&nbsp;</td>
@@ -73,11 +81,13 @@ editurl: wiki/gcp-storage-comparison.md
 <tr>
 <td>Google Cloud SQL</td>
 <td>
-<p>Availibility: Zonal</p>
-<p>Capacity: Limited with storage</p>
-<p>Price:</p>
-<p>Transactional: Yes</p>
-<p>Consistency: Strong</p>
+<ul>
+<li>Availibility: Zonal</li>
+<li>Capacity: Limited with storage</li>
+<li>Price:</li>
+<li>Transactional: Yes</li>
+<li>Consistency: Strong</li>
+</ul>
 </td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
@@ -85,11 +95,20 @@ editurl: wiki/gcp-storage-comparison.md
 <tr>
 <td>Google Cloud Spanner</td>
 <td>&nbsp;
-<p>Availibility: Multi Regional</p>
-<p>Capacity:&nbsp;</p>
-<p>Price:</p>
-<p>Transactional: Yes</p>
-<p>Consistency: Strong</p>
+<ul>
+<ul>
+<li>Availibility: Multi Regional</li>
+<li></li>
+</ul>
+</ul>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<ul>
+<li></li>
+<li>Capacity:&nbsp;</li>
+<li>Price:</li>
+<li>Transactional: Yes</li>
+<li>Consistency: Strong</li>
+</ul>
 </td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
@@ -97,11 +116,13 @@ editurl: wiki/gcp-storage-comparison.md
 <tr>
 <td>Google BigQuery</td>
 <td>&nbsp;
-<p>Availibility: Multi Regional</p>
-<p>Capacity:</p>
-<p>Price</p>
-<p>Transactional: No</p>
-<p>Consistency: Eventual</p>
+<ul>
+<li>Availibility: Multi Regional</li>
+<li>Capacity:</li>
+<li>Price</li>
+<li>Transactional: No</li>
+<li>Consistency: Eventual</li>
+</ul>
 </td>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
