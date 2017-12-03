@@ -1,10 +1,10 @@
 ---
 layout: wiki
-title: Google Cloud Platform
+title: Google Cloud Platform storage comparison
 comments: false
 toc: true
 slideshow: true
-editurl: wiki/gcp.md
+editurl: wiki/gcp-storage-comparison.md
 ---
 
 | Product                	| Availibility                                                                     	| Capacity  	| Price                                                          	| Transactional / consistency                            	| Use when                                                                  	| Avoid when                                                                                                                                                                                                                                                                                                                  	|
