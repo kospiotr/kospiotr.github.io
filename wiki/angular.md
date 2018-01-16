@@ -8,7 +8,7 @@ editurl: wiki/angular.md
 
 # Create own library with demo
 
-*Initialize*
+**Initialize**
 
 ```
 export LIB_NAME=my-lib
@@ -28,3 +28,21 @@ EOT
 touch public_api.ts
 ```
 
+**Add core module**
+```
+mkdir -p src/core
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+cat <<EOT > src/core/core.module.ts
+@NgModule({
+  imports: [
+    CommonModule
+  ],
+  declarations: [
+  ],
+  exports: [
+  ]
+})
+export class CoreModule { }
+EOT
+```
