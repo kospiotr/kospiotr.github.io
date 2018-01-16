@@ -31,9 +31,10 @@ touch public_api.ts
 **Add core module**
 ```
 mkdir -p src/core
+cat <<EOT > src/core/core.module.ts 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-cat <<EOT > src/core/core.module.ts
+
 @NgModule({
   imports: [
     CommonModule
@@ -45,4 +46,6 @@ cat <<EOT > src/core/core.module.ts
 })
 export class CoreModule { }
 EOT
+echo "export * from './src/core/core.module'" >> public_api.ts
 ```
+
