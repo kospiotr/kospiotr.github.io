@@ -52,6 +52,7 @@ echo "export * from './src/core/core.module'" >> public_api.ts
 
 # Resources
 
+* [https://medium.com/@arnaudrinquin/build-modular-application-with-npm-local-modules-dfc5ff047bcc](https://medium.com/@arnaudrinquin/build-modular-application-with-npm-local-modules-dfc5ff047bcc)
 * [https://github.com/jvandemo/generator-angular2-library](https://github.com/jvandemo/generator-angular2-library)
 * [https://github.com/lerna/lerna](https://github.com/lerna/lerna)
 * [https://www.npmjs.com/package/@storybook/angular](https://www.npmjs.com/package/@storybook/angular)
