@@ -49,3 +49,8 @@ EOT
 echo "export * from './src/core/core.module'" >> public_api.ts
 ```
 
+
+# Resources
+
+* [https://github.com/jvandemo/generator-angular2-library](https://github.com/jvandemo/generator-angular2-library)
+* [https://github.com/lerna/lerna](https://github.com/lerna/lerna)
