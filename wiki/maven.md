@@ -453,7 +453,7 @@ Reference: [http://maven.apache.org/surefire/maven-surefire-plugin/examples/skip
 
 ## Set version
 
-* ``` versions:set -DnewVersion=1.0.1-123 -DgenerateBackupPoms=false -X ```
+* ```mvn versions:set -DnewVersion=1.0.1-123 -DgenerateBackupPoms=false -X```
 
 # Release to Maven Central repository
 
