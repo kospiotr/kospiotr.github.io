@@ -449,6 +449,12 @@ Reference: [http://maven.apache.org/surefire/maven-surefire-plugin/examples/skip
  * ```mvn install -DskipTests``` - skip executing tests
  * ```mvn install -Dmaven.test.skip=true``` - skip compiling tests
 
+# Releasing
+
+## Set version
+
+* ``` versions:set -DnewVersion=1.0.1-123 -DgenerateBackupPoms=false -X ```
+
 # Release to Maven Central repository
 
 ## Prepare environment
