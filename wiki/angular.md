@@ -24,7 +24,7 @@ editurl: wiki/angular.md
 
 # Internationalization (i18n)
 
-* https://angular.io/guide/i18n
+* https://github.com/ngx-translate/core
 
 # Workspace
 
