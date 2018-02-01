@@ -6,6 +6,14 @@ toc: false
 editurl: wiki/angular.md
 ---
 
+# Versioning
+
+# Internationalization (i18n)
+
+* https://angular.io/guide/i18n
+
+# Workspace
+
 # Create own library with demo
 
 **Initialize**
