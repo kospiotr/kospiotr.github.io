@@ -38,7 +38,7 @@ editurl: wiki/unix.md
 ## Commons
 
 ```bash
-sudo apt-get install software-properties-common
+sudo apt-get install software-properties-common gdebi
 ```
 
 ## Chrome
