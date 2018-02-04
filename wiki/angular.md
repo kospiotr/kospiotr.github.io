@@ -6,6 +6,10 @@ toc: false
 editurl: wiki/angular.md
 ---
 
+# Angular CLI
+
+* `sudo npm install -g @angular/cli --unsafe-perm` - install Angular CLI under Ubuntu
+
 # Creating components
 
 * `<input [value]="firstName">` - Binds property value to the result of expression firstName.
