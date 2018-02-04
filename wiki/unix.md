@@ -116,7 +116,8 @@ sudo apt-get install vlc browser-plugin-vlc
 * Download version without jdk
 
 ```bash
-cp ~/Downloads/idea-IU-162.2228.15 /opt -r
+sudo cp ~/Pobrane/idea-* /opt -r \
+sudo chown 
 ```
 
 Create activator:
