@@ -182,3 +182,13 @@ sudo apt-get install ppa-purge
 sudo apt-get update
 sudo ppa-purge ppa:xorg-edger/ppa
 ```
+
+# Add cloud printer
+
+```
+sudo add-apt-repository ppa:simon-cadman/niftyrepo
+sudo apt-get update
+sudo apt-get install cupscloudprint
+```
+Once the installation is ready, you can connect your server to the Google Cloud Print account.
+
