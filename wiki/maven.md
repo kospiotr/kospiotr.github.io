@@ -511,4 +511,5 @@ Publish release to Maven Central repository
 
 # Related
 
-[http://javarevisited.blogspot.com/2016/08/top-10-maven-plugins-every-java-developer-know.html](http://javarevisited.blogspot.com/2016/08/top-10-maven-plugins-every-java-developer-know.html)
+* [http://javarevisited.blogspot.com/2016/08/top-10-maven-plugins-every-java-developer-know.html](http://javarevisited.blogspot.com/2016/08/top-10-maven-plugins-every-java-developer-know.html)
+* [http://maven.apache.org/ref/current/maven-embedder/cli.html](http://maven.apache.org/ref/current/maven-embedder/cli.html)
