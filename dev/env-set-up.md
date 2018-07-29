@@ -6,4 +6,10 @@ toc: false
 editurl: dev/env-set-up.md
 ---
 
-Test
+Init:
+
+```
+sudo useradd ansible-dev -m -U
+sudo passwd ansible-dev
+sudo adduser ansible-dev sudo
+```
