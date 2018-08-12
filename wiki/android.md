@@ -8,6 +8,6 @@ editurl: wiki/android.md
 
 # ADB
 
-`sudo adb kill-server`
-`sudo adb start-server`
-`adb devices`
+- `sudo adb kill-server`
+- `sudo adb start-server`
+- `adb devices`
