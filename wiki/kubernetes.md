@@ -118,3 +118,9 @@ Commands:
 # Create object
 * `kubectl create -f <object>.yaml` - create object from file
 
+# Debbuging
+* `kubectl -n kube-system get cm kubeadm-config -oyaml`
+* `kubectl get pods --all-namespaces`
+* `kubectl -n <namespace-name> describe pod <pod name>`
+* `kubectl -n mortgages-dev2 logs -p  <pod name> `
+
