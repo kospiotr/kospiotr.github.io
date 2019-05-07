@@ -92,3 +92,10 @@ To push images to your private registry hosted by gcr, you need to tag the image
 * `docker stop $(docker ps -a -q)` - stop all containers
 * `docker rm $(docker ps -a -q)` - delete all containers
 * `docker rmi $(docker images -q)` - delete all images
+
+# Recipes
+
+## Build with maven
+
+* `docker run --rm -v "$(pwd)":/app -w /app maven mvn clean install` - simple run
+* `docker run --rm -v "$(pwd)":/app -v maven-repo:/root/.m2 -w /app maven mvn clean install` - preserve local repo
