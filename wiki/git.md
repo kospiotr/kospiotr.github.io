@@ -21,6 +21,7 @@ editurl: wiki/git.md
  * ```git checkout``` discard changes in working directory
  * ```git reset --hard``` - all changes will be reverted
  * ```git clean -df``` - clean all untracked directories and files
+ * ```git clean -df && git reset --hard && git pull``` - discards any change and updates branch
  * ```git branch | grep -v "master" | xargs git branch -d ``` - removes all branchces except master and current
 
 # Excluding files from repository
