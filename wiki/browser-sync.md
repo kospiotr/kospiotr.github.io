@@ -11,4 +11,5 @@ editurl: wiki/browser-sync.md
 ```sudo npm install -g browser-sync``` 
 
 # CLI
-- serve and observe build: ```browser-sync start -s build -f build```
+- current dir: ```browser-sync start -s . -f .```
+- build dir: ```browser-sync start -s build -f build```
