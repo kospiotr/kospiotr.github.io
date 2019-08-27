@@ -6,7 +6,17 @@ toc: false
 editurl: wiki/microservices.md
 ---
 
-Ansible - automated environment set up 
-Go - deployment pipeline - do not use
+# Decomposition strategies
 
-export PATH=$PATH:/home/pkosmowski/Projects/microhackathon/boot-microservice
+## Bounded context
+## Separate Value Stream
+## Separate Failure Domains
+## Anti-Corruption Layers
+## Facade
+
+# Decomposition reasons
+## Independent Rate of Change
+## Independent Life Cycle
+## Independent Scalability
+## Isolated Failure
+## Independant technologies
