@@ -23,6 +23,6 @@ editurl: wiki/microservices.md
 ### Independant technologies
 
 ## References 
-https://builttoadapt.io/whats-your-decomposition-strategy-e19b8e72ac8f
-https://dwmkerr.com/the-death-of-microservice-madness-in-2018/
-https://content.pivotal.io/blog/should-that-be-a-microservice-keep-these-six-factors-in-mind
+* https://builttoadapt.io/whats-your-decomposition-strategy-e19b8e72ac8f
+* https://dwmkerr.com/the-death-of-microservice-madness-in-2018/
+* https://content.pivotal.io/blog/should-that-be-a-microservice-keep-these-six-factors-in-mind
