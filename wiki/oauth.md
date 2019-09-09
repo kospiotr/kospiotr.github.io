@@ -5,6 +5,24 @@ comments: false
 toc: true
 editurl: wiki/oauth.md
 ---
+## OAuth 2.0
+Specs: https://tools.ietf.org/html/rfc6749#section-1.4
+
+OAuth2 is an open standard for authorization. Confusingly, OAuth2 is also the basis for OpenID Connect, which provides OpenID (authentication) on top of OAuth2 (authorization) for a more complete security solution.
+
+## OpenID
+OpenID is an open standard for authentication, promoted by the non-profit OpenID Foundation. As of March 2016, there are over a billion OpenID-enabled accounts on the internet, and organizations such as Google, WordPress, Yahoo, and PayPal use OpenId to authenticate users.
+
+A user must obtain an OpenID account through an OpenID identity provider (for example, Google). The user will then use that account to sign into any website (the relying party) that accepts OpenID authentication (think YouTube or another site that accepts a Google account as a login). The OpenID standard provides a framework for the communication that must take place between the identity provider and the relying party.
+
+## OpenID Connect
+The latest version of OpenID is OpenID Connect, which combines OpenID authentication and OAuth2 authorization. (not OpenID 1 or OpenID 2–both previous versions have been deprecated!…) is a profile of OAuth 2.0 that defines a workflow for authentication. Other might be SAML.
+
+## SAML
+SAML is the oldest standard of the three, originally developed in 2001, with its most recent major update in 2005. SAML, pronounced “sam-el,” stands for Security Assertion Markup Language. It’s an open standard that provides both authentication and authorization.
+
+## SSO
+Single Sign On
 
 # Parties
 ## Resource Owner
