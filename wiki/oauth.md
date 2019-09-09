@@ -24,7 +24,8 @@ It's communicating with authorization server via Front Channel
 
 ## Client Credentials
 ### flow: 2-legged flow
-Provides a client application way to access it's own service account
+Provides a client application way to access it's own service account.
+
 Phases:
 - Client provides client credentials with Request Token
 - Authorization server verifies if client credentials are correct
