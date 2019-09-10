@@ -52,8 +52,15 @@ Phases:
 - Authorization server issues Access Token that allows for the access requested resource
 - Client is using Access Token when requesting for the requested resource
 
-## Resource Owner Credentials
+## Resource Owner Credentials (username-password authentication flow)
 ### flow: 2-legged flow
+Used when user or resource owner has a trust relationship with the client. The client must be capable of obtaining the user's credentials for example via form on the front channel.
+
+Phases:
+- Resource owner (end user) provides his username and password to the client application
+- The client application uses the user credentials to request an access token from the authorization server
+- Authorization server authenticates the client and receives the user credentials
+- Authorization server if credentials are valid issues an access token to the client application and optionally can issue a refresh token as well
 
 ## Implicit
 ### flow: 2-legged flow
