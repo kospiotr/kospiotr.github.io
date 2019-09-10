@@ -40,6 +40,8 @@ It's communicating with authorization server via Front Channel
 
 # Grand Types
 
+![choosing alghoritm](https://alexbilbie.com/images/oauth-grants.svg)
+
 ## Client Credentials
 ### flow: 2-legged flow
 Provides a client application way to access it's own service account.
