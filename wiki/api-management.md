@@ -28,7 +28,11 @@ editurl: api-management.md
 ## Testing
 * Testing before publishing to production
 * Notification: for subscribers about SLAs, approvals, deprecated APIs
+
 ## Portals
+## SLAa
+* availability (uptime vs deployment)
+* response times (downstream systems vs data-lake)
 
 # Components
 eDMZ, iDMZ, DRN Gateway
