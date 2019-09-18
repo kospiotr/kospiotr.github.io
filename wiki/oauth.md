@@ -58,7 +58,7 @@ In principle, the Get Access Token flow has 5 steps (as shown in the diagram bel
 
 ![differences](https://raw.githubusercontent.com/kospiotr/kospiotr.github.io/master/resources/wiki/oauth/OAuth-Flow-Comparison-1024x646.png)
 
-##Types
+## Types
 ### Client Credentials
 #### flow: 2-legged flow
 Provides a client application way to access it's own service account.
