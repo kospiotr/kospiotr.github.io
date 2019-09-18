@@ -42,13 +42,25 @@ It's communicating with authorization server via Back Channel
 It's not able to protect client credentials confidently which can be compromised or hijacked, cant ensure integrity of the client secrets (mobile application or java-script app in the browser)
 It's communicating with authorization server via Front Channel
 
-# Grand Types
+# Flows
 
+## Choosing
 ![choosing alghoritm](https://raw.githubusercontent.com/kospiotr/kospiotr.github.io/master/resources/wiki/oauth/oauth-grants.svg?sanitize=true)
+## Differences
+Every OAuth2 grant type flow differs only in the first part of the main flow: *Get Token Acquisition*
+In principle, the Get Access Token flow has 5 steps (as shown in the diagram below):
+
+1. Pre-register Client (App) with OAuth Server to get Client ID/Client Secret
+2. OAuth Server authenticates user when she clicks on the App’s social login button, which is tagged with Client ID
+3. OAuth Server solicits user permission to allow the App to perform something on her behalf
+4. OAuth Server sends secret Code to App
+5. App acquires Key/Access Token from OAuth Server by presenting secret Code and Client Secret
+
 ![differences](https://raw.githubusercontent.com/kospiotr/kospiotr.github.io/master/resources/wiki/oauth/OAuth-Flow-Comparison-1024x646.png)
 
-## Client Credentials
-### flow: 2-legged flow
+##Types
+### Client Credentials
+#### flow: 2-legged flow
 Provides a client application way to access it's own service account.
 
 Phases:
@@ -57,8 +69,8 @@ Phases:
 - Authorization server issues Access Token that allows for the access requested resource
 - Client is using Access Token when requesting for the requested resource
 
-## Resource Owner Credentials (username-password authentication flow)
-### flow: 2-legged flow
+### Resource Owner Credentials (username-password authentication flow)
+#### flow: 2-legged flow
 Used when user or resource owner has a trust relationship with the client. The client must be capable of obtaining the user's credentials for example via form on the front channel.
 
 Phases:
@@ -67,8 +79,8 @@ Phases:
 - Authorization server authenticates the client and receives the user credentials
 - Authorization server if credentials are valid issues an access token to the client application and optionally can issue a refresh token as well
 
-## Implicit
-### flow: 2-legged flow
+### Implicit
+#### flow: 2-legged flow
 
-## Authorization Code
-### flow: 3-legged flow
+### Authorization Code
+#### flow: 3-legged flow
