@@ -5,6 +5,8 @@ comments: false
 toc: true
 editurl: wiki/oauth.md
 ---
+
+# Thesaurus
 ## OAuth 2.0
 Specs: https://tools.ietf.org/html/rfc6749#section-1.4
 
@@ -24,11 +26,13 @@ SAML is the oldest standard of the three, originally developed in 2001, with its
 ## SSO
 Single Sign On
 
-# Parties
+# Comonents
 ## Resource Owner
 ## Client Application
 ## Authorization Server
 ## Resource Server
+## Access token
+## Refresh token
 
 # Clients
 ## Confidencial
@@ -40,7 +44,8 @@ It's communicating with authorization server via Front Channel
 
 # Grand Types
 
-![choosing alghoritm](https://alexbilbie.com/images/oauth-grants.svg)
+![choosing alghoritm](https://raw.githubusercontent.com/kospiotr/kospiotr.github.io/master/resources/wiki/oauth/oauth-grants.svg)
+![differences](https://raw.githubusercontent.com/kospiotr/kospiotr.github.io/master/resources/wiki/oauth/OAuth-Flow-Comparison-1024x646.png)
 
 ## Client Credentials
 ### flow: 2-legged flow
