@@ -44,7 +44,7 @@ It's communicating with authorization server via Front Channel
 
 # Grand Types
 
-![choosing alghoritm](https://raw.githubusercontent.com/kospiotr/kospiotr.github.io/master/resources/wiki/oauth/oauth-grants.svg)
+<img src="https://raw.githubusercontent.com/kospiotr/kospiotr.github.io/master/resources/wiki/oauth/oauth-grants.svg" alt="choosing alghoritm"/>
 ![differences](https://raw.githubusercontent.com/kospiotr/kospiotr.github.io/master/resources/wiki/oauth/OAuth-Flow-Comparison-1024x646.png)
 
 ## Client Credentials
