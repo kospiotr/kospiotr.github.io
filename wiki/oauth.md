@@ -33,6 +33,7 @@ Single Sign On
 ## Resource Server
 ## Access token
 ## Refresh token
+## Consent screen
 
 # Clients
 ## Confidencial
@@ -75,13 +76,14 @@ Phases:
   1. Resource owner needs access Resources from access Resource Server via Client
   2. Resource server requires authorization
   3. Client requests for the authorization to Authorization Server with HTTP request: GET /authorize?client_id=CLIENT_ID&scope=resource&redirect_uri=http://CALLBACK_URL&response_type=**token**&state=STATE_VAR
-  4. Client receives Access Token GET /cb#access_token=ACCESS_TOKEN&expires_in=3600&state=STATE_VAR
+  4. Client receives Access Token directly via callback GET /cb#access_token=ACCESS_TOKEN&expires_in=3600&state=STATE_VAR
   5. Client is using Access Token on Resource Server with Authorization Bearer
-* retrieved access token
 * Notes:
   * Callback parameters are returned after URL hash instead question mark in order to consume it only locally not to send to any other server
-  * No Refresh Token is provided
-  * Is simplified version of Authorization Code
+  * Is simplified version of Authorization Code but Authorization Code is not provided in this flow
+  * Access Token is exposed to the browser and local operating system so there are some securities concerns and is the most discussed flow among others
+  * Refresh Token are per spec forbidden to be returned to the Client
+  * There are many variations of this flow like using hidden iframes, persisting tokens in cookies
 
 ### Authorization Code
 #### flow: 3-legged flow
