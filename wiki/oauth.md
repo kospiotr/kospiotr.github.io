@@ -36,9 +36,11 @@ Single Sign On
 ## Consent screen
 
 # Clients
+
 ## Confidencial
 It's able to protect client credentials confidently (web app)
 It's communicating with authorization server via Back Channel
+
 ## Public Clients
 It's not able to protect client credentials confidently which can be compromised or hijacked, cant ensure integrity of the client secrets (mobile application or java-script app in the browser)
 It's communicating with authorization server via Front Channel
@@ -47,10 +49,11 @@ It's communicating with authorization server via Front Channel
 
 ## Types
 ### Client Credentials
-#### flow: 2-legged flow
+* flow type: 2-legged flow
+* used by: clients that are trusted for example on the trusted hardware
 Provides a client application way to access it's own service account.
 
-Phases:
+* Flow:
 - Client provides client credentials with Request Token
 - Authorization server verifies if client credentials are correct
 - Authorization server issues Access Token that allows for the access requested resource
@@ -58,32 +61,38 @@ Phases:
 
 ### Resource Owner Credentials (username-password authentication flow)
 #### flow: 2-legged flow
-Used when user or resource owner has a trust relationship with the client. The client must be capable of obtaining the user's credentials for example via form on the front channel.
+* Used when user or resource owner has a trust relationship with the client.
 
-Phases:
-- Resource owner (end user) provides his username and password to the client application
-- The client application uses the user credentials to request an access token from the authorization server
+Prerequisites:
+- Client must be capable of obtaining the user's credentials for example via form on the front channel and store them securely.
+
+Flow:
+- Resource Owner provides his credentials (username and password) to the Client application
+- Client application uses the user credentials to request an Access Token from the Authorization Server via request: POST /token, Authorization: Basic (client_id:secret), grant_type=PASSWORD&scope=resource&user_name=USER_NAME&password=PASSWORD
 - Authorization server authenticates the client and receives the user credentials
 - Authorization server if credentials are valid issues an access token to the client application and optionally can issue a refresh token as well
 
 ### Implicit
 * flow type: 2-legged flow
-* used by: clients that are unverified source like third party applications
-* prerequisites:
-  * Client must be able to display web page, for example web view or pop out in the browser
-  * Client must be registered in the authorization server
-* Flow:
-  1. Resource owner needs access Resources from access Resource Server via Client
-  2. Resource server requires authorization
-  3. Client requests for the authorization to Authorization Server with HTTP request: GET /authorize?client_id=CLIENT_ID&scope=resource&redirect_uri=http://CALLBACK_URL&response_type=**token**&state=STATE_VAR
-  4. Client receives Access Token directly via callback GET /cb#access_token=ACCESS_TOKEN&expires_in=3600&state=STATE_VAR
-  5. Client is using Access Token on Resource Server with Authorization Bearer
-* Notes:
-  * Callback parameters are returned after URL hash instead question mark in order to consume it only locally not to send to any other server
-  * Is simplified version of Authorization Code but Authorization Code is not provided in this flow
-  * Access Token is exposed to the browser and local operating system so there are some securities concerns and is the most discussed flow among others
-  * Refresh Token are per spec forbidden to be returned to the Client
-  * There are many variations of this flow like using hidden iframes, persisting tokens in cookies
+* used when clients that are unverified source like third party applications
+
+Prerequisites:
+- Client must be able to display web page, for example web view or pop out in the browser
+- Client must be registered in the authorization server
+
+Flow:
+- Resource owner needs access Resources from access Resource Server via Client
+- Resource server requires authorization
+- Client requests for the authorization to Authorization Server with HTTP request: GET /authorize?client_id=CLIENT_ID&scope=resource&redirect_uri=http://CALLBACK_URL&response_type=**token**&state=STATE_VAR
+- Client receives Access Token directly via callback GET /cb#access_token=ACCESS_TOKEN&expires_in=3600&state=STATE_VAR
+- Client is using Access Token on Resource Server with Authorization Bearer
+
+Notes:
+- Callback parameters are returned after URL hash instead question mark in order to consume it only locally not to send to any other server
+- Is simplified version of Authorization Code but Authorization Code is not provided in this flow
+- Access Token is exposed to the browser and local operating system so there are some securities concerns and is the most discussed flow among others
+- Refresh Token are per spec forbidden to be returned to the Client
+- There are many variations of this flow like using hidden iframes, persisting tokens in cookies
 
 ### Authorization Code
 #### flow: 3-legged flow
