@@ -44,20 +44,6 @@ It's communicating with authorization server via Front Channel
 
 # Flows
 
-## Choosing
-![choosing alghoritm](https://raw.githubusercontent.com/kospiotr/kospiotr.github.io/master/resources/wiki/oauth/oauth-grants.svg?sanitize=true)
-## Differences
-Every OAuth2 grant type flow differs only in the first part of the main flow: *Get Token Acquisition*
-In principle, the Get Access Token flow has 5 steps (as shown in the diagram below):
-
-1. Pre-register Client (App) with OAuth Server to get Client ID/Client Secret
-2. OAuth Server authenticates user when she clicks on the App’s social login button, which is tagged with Client ID
-3. OAuth Server solicits user permission to allow the App to perform something on her behalf
-4. OAuth Server sends secret Code to App
-5. App acquires Key/Access Token from OAuth Server by presenting secret Code and Client Secret
-
-![differences](https://raw.githubusercontent.com/kospiotr/kospiotr.github.io/master/resources/wiki/oauth/OAuth-Flow-Comparison-1024x646.png)
-
 ## Types
 ### Client Credentials
 #### flow: 2-legged flow
@@ -80,7 +66,37 @@ Phases:
 - Authorization server if credentials are valid issues an access token to the client application and optionally can issue a refresh token as well
 
 ### Implicit
-#### flow: 2-legged flow
+* flow type: 2-legged flow
+* used by: clients that are unverified source like third party applications
+* prerequisites:
+  * Client must be able to display web page, for example web view or pop out in the browser
+  * Client must be registered in the authorization server
+* Flow:
+  1. Resource owner needs access Resources from access Resource Server via Client
+  2. Resource server requires authorization
+  3. Client requests for the authorization to Authorization Server with HTTP request: GET /authorize?client_id=CLIENT_ID&scope=resource&redirect_uri=http://CALLBACK_URL&response_type=**token**&state=STATE_VAR
+  4. Client receives Access Token GET /cb#access_token=ACCESS_TOKEN&expires_in=3600&state=STATE_VAR
+  5. Client is using Access Token on Resource Server with Authorization Bearer
+* retrieved access token
+* Notes:
+  * Callback parameters are returned after URL hash instead question mark in order to consume it only locally not to send to any other server
+  * No Refresh Token is provided
+  * Is simplified version of Authorization Code
 
 ### Authorization Code
 #### flow: 3-legged flow
+
+## Choosing
+![choosing alghoritm](https://raw.githubusercontent.com/kospiotr/kospiotr.github.io/master/resources/wiki/oauth/oauth-grants.svg?sanitize=true)
+
+## Differences
+Every OAuth2 grant type flow differs only in the first part of the main flow: *Get Token Acquisition*
+In principle, the Get Access Token flow has 5 steps (as shown in the diagram below):
+
+1. Pre-register Client (App) with OAuth Server to get Client ID/Client Secret
+2. OAuth Server authenticates user when she clicks on the App’s social login button, which is tagged with Client ID
+3. OAuth Server solicits user permission to allow the App to perform something on her behalf
+4. OAuth Server sends secret Code to App
+5. App acquires Key/Access Token from OAuth Server by presenting secret Code and Client Secret
+
+![differences](https://raw.githubusercontent.com/kospiotr/kospiotr.github.io/master/resources/wiki/oauth/OAuth-Flow-Comparison-1024x646.png)
