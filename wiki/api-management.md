@@ -20,17 +20,23 @@ IT teams specifically look for API Management to oversee encryption, decryption,
 # Features
 
 ## Security
+
 ### API Management roles
 * Administrator - 
 * Publisher - create API, list resources, metrics dashboards
 * Subscriber - view documentation, explor & test API, register applications, request API Key, metrics dashboard
+
 ## Versioning
 * Separate management
 * Multiple versions support
 * Lifecycle - Draft, Published, Deprecated, Retired
 * Views - Public, Private, PArtner
+
 ## Analytics
+
 ## Documentation
+* Contract first
+
 ## Operability
 * Rate limiting
 * Throttling
@@ -54,3 +60,25 @@ feign
 
 # Platforms
 Apigee, Mulesoft Anypoint Platform, Azure API Management, Kong, SnapLogic Enterprise Integration Cloud, WSO2 App Cloud, CA API Management, 3scale, Akana, SwaggerHub, Mashery, Postman, Oracle API Manager, Cloud Elements, Google Cloud Endpoints, Apiary, Dell Boomi, webMethods, Sentinet, Agama API, SAP Cloud Platform, AWS CloudTrail, Workato, RepreZen API Studio, ClearUI, Stoplight are some of the Top API Management Platforms
+
+# Contract first vs Code first
+https://swagger.io/blog/api-design/design-first-or-code-first-api-development/
+There are advantages and disadvantages associated with both approaches, and at the end of the day, choosing the right approach boils down to your immediate technological and strategic needs that you wish to solve with your APIs.
+
+## Contract first
+The plan is converted to a human and machine readable contract, such as a Swagger document, from which the code is built.
+* Pros
+* Cons
+* When use:
+- When Developer Experience Matters
+- When Delivering Mission Critical APIs
+- When Ensuring Good Communication
+
+## Code first
+Based on the business plan, API is directly coded, from which a human or machine readable document, such as a Swagger document can be generated
+* Pros:
+- Generated from existing classess
+* Cons
+* When use:
+- When Delivery Speedy Matters
+- When Developing Internal APIs
