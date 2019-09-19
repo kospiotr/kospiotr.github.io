@@ -67,8 +67,6 @@ There are advantages and disadvantages associated with both approaches, and at t
 
 ## Contract first
 The plan is converted to a human and machine readable contract, such as a Swagger document, from which the code is built.
-* Pros
-* Cons:
 * When use:
   - **When Developer Experience Matters**
   A well designed API can do wonders for the adoption and consumption of your APIs, and good design can be better achieved with the Design First approach. If your API strategy involves high adoption of your API and retention of users integrating with your API, then good Developers Experience (DX) matters. An effective API design helps your end consumers quickly understand your API’s resources and value propositions, reducing the time taken for them to integrate with your API. An API with consistent design decreases the learning curve when integrating with your API, making it more likely to have higher reuse value and engagement.
@@ -97,9 +95,6 @@ The plan is converted to a human and machine readable contract, such as a Swagge
   
 ## Code first
 Based on the business plan, API is directly coded, from which a human or machine readable document, such as a Swagger document can be generated
-* Pros:
-  - Generated from existing classess
-* Cons:
 * When use:
   - **When Delivery Speedy Matters**
   - **When Developing Internal APIs**
