@@ -71,9 +71,19 @@ The plan is converted to a human and machine readable contract, such as a Swagge
 * Cons:
 * When use:
   - When Developer Experience Matters
+  A well designed API can do wonders for the adoption and consumption of your APIs, and good design can be better achieved with the Design First approach. If your API strategy involves high adoption of your API and retention of users integrating with your API, then good Developers Experience (DX) matters. An effective API design helps your end consumers quickly understand your API’s resources and value propositions, reducing the time taken for them to integrate with your API. An API with consistent design decreases the learning curve when integrating with your API, making it more likely to have higher reuse value and engagement.
   - When Delivering Mission Critical APIs
+  The biggest reason to go for the Design First approach is when your API’s target audience are external customers or partners. In such a case, your API is a key distribution channel that your end customers can use to consume the services you provide, and good design plays a key role in determining customer satisfaction. Such APIs play a critical role in representing your organization’s services, especially in an omni-channel ecosystem, where consistency in information and hassle-free consumption is an important indicator of business success.
   - When Ensuring Good Communication
-
+  The API contract can act as the central draft that keeps all your team members aligned on what your API’s objectives are, and how your API’s resources are exposed. Identifying bugs and issues in the API’s architecture with your team becomes easier from inspecting a human-readable design. Spotting issues in the design, before writing any code is a much more efficient and streamlined approach, than doing so after the implementation is already in place.
+  - When Break A Monolithic to Micorservices
+  When you are breaking a big monolithic application into microservices, you need to design the contracts between each services so that separate teams can work on these services independently in order to increase productivity. The contract will help teams in communication and ensure that the developed services can be integrated together.
+  - When Using Non-REST API
+  When people are talking about design first or code first, they are talking about REST APIs as most REST API frameworks provide some sort of document generation from the code. If you are building your API with GraphQL or RPC, then there is no choose. You have to write the schema or proto files and a good framework will help you to scaffolding the project from the contract.
+  - When You Want To User the API Spec as Interface Agreement Document
+  Most enterprises will adopt API specification as Interface Agreement document or make it part of the IA so that you don’t need to describe the interface in Word or Excel document. The traditional way that developers read Word or Excel document and convert requirement into code is long gone as there are a lot of misunderstandings in natural language to describe the API. Specifications are designed to clearly describe the contract for both human and computer and it is a live document which is always in sync with code if design first is adopted.
+  - When The Chosen Framework Provide A Code Generator
+  It make perfect sense to create the specification first and then use a code generator to scaffold the project. It saves a lot of time to start a project from scratch and copy/modify existing project might introduce some bugs very hard to detected. Most of the generators will offer features to re- generate the code with the same specification as the framework has been upgraded to a new version. Even the specification has been changed, you can still generate a new project and then to a full text comparison with the old codebase to merge your code into the new project.
 ## Code first
 Based on the business plan, API is directly coded, from which a human or machine readable document, such as a Swagger document can be generated
 * Pros:
