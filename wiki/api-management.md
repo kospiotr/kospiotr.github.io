@@ -68,17 +68,17 @@ There are advantages and disadvantages associated with both approaches, and at t
 ## Contract first
 The plan is converted to a human and machine readable contract, such as a Swagger document, from which the code is built.
 * Pros
-* Cons
+* Cons:
 * When use:
-- When Developer Experience Matters
-- When Delivering Mission Critical APIs
-- When Ensuring Good Communication
+  - When Developer Experience Matters
+  - When Delivering Mission Critical APIs
+  - When Ensuring Good Communication
 
 ## Code first
 Based on the business plan, API is directly coded, from which a human or machine readable document, such as a Swagger document can be generated
 * Pros:
-- Generated from existing classess
-* Cons
+  - Generated from existing classess
+* Cons:
 * When use:
-- When Delivery Speedy Matters
-- When Developing Internal APIs
+  - When Delivery Speedy Matters
+  - When Developing Internal APIs
