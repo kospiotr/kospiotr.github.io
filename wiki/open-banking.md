@@ -17,13 +17,26 @@ editurl: wiki/open-banking.md
   - AISP - Account Information Serveces Provider
   - CAF - Confirmation on Availability of Funds
 ## GDPR
+ - protects individuals data
+
 
 # Thesaurus
-- ASPSP
+- ASPSP - bank that exposes API
 - AISP
 - PISP
 - Customer
 - SCA - Strong Customer Authentication
+  - PSP must authenticate customer based on 2FA: knowledge, possession, inherence
+  - AISP / PISPs must be regulated locally
+  - AISP / PISPs must be registered in a local registry
+  - AISP / PISPs must be certified
+  - ASPSP Identify AISP / PISPs via qualified certificates - eIDAS
+  - Exemptions:
+    - Contactless <= 50EUR
+    - UAT - parking / tolls
+    - Payments <= 30EUR
+    - Transaction Risk Assessment
+- RTS  
 - Open Banking API Clusters - there is no common european API, they are locally driven
 
 # Resources
