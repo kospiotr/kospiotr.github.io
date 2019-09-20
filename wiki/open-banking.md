@@ -25,7 +25,7 @@ editurl: wiki/open-banking.md
   - API Usage Monitoring
 - SCA - Strong Customer Authentication
   - 2 Factor Authentication (SMSOTP, FIDO, DUO, MePin)
-  - Adaptive Authentication
+  - Adaptive Authentication - for example when force 2FA like amount or frequency
   - Consent Management
   - PSP must authenticate customer based on 2FA: knowledge, possession, inherence
   - TPP must be regulated locally
