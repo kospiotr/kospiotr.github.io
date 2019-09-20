@@ -61,6 +61,22 @@ Terminology
 - **Authorization Code**	The authorization code (or 'auth code' for short) is a code provided to the Client during the Access Authorization flow; this code short-lived and exchanged for an access token.
 Availability level	Availability tells in which part of the delivery lifecycle the given operation, parameter, model or property is.
 
+- **ASPSP**	Account Servicing Payment Services Provider. An entity authorized to operate customer accounts, with a line of credit and payment facilities online.
+- **API	Application Programming Interface** A set of definitions, protocols, and tools that can be used to create applications, interact with other applications, and exchange data.
+- **Certificate**	An electronic ‘passport’ used to certify the identity of a person, machine, or organisation over the Internet.
+- **Electronic Seal**	An electronic ‘signature’ used by a legal entity to certify electronic documents as genuine.
+- **EBA**	European Banking Authority. The body responsible for publishing the Regulatory Technical Standards (RTS), Implementing Technical Standards (ITS), and a central register for PSD2.
+- **MTLS**	Mutual TLS connection
+- **PSD2**	Payment Service Directive. EU Directive, administered by the European Commission (Directorate General Internal Market) to regulate payment services and payment service providers throughout the European Union (EU) and European Economic Area (EEA). The Directive's purpose was to increase pan-European competition and participation in the payments industry also from non-banks, and to provide for a level playing field by harmonizing consumer protection and the rights and obligations for payment providers and users
+- **PSP**	Payment Service Provider. An entity authorized to provide payment services to customers. PSPs include ASPSPs and TPPs.
+- **QTSP**	Qualified Trust Service Provider. An entity permitted by Member State Supervisory Body to issue Qualified Digital Certificates that are recognized across the EU.
+- **QSealC**	Qualified certificates for electronic seals. Qualified electronic seals can be considered as digital equivalent to seals of legal entities on paper. According to the eIDAS regulation, a qualified electronic seal must be created by a qualified electronic device and based on a qualified certificate for electronic seal.
+- **QWAC**	A qualified website authentication certificate (QWAC certificate) is a qualified digital certificate under the trust services defined in the eIDAS Regulation.
+- **TPP**	Third Party Provider. An entity authorized to access accounts on behalf of customers but that does not operate those accounts themselves. TPPs include PISPs and AISPs.
+- **RTS**	Regulatory Technical Standards. Commission Delegated Regulation (EU) 2018/389 of 27 November 2017 supplementing Directive (EU) 2015/2366 of the European Parliament and of the Council with regard to regulatory technical standards for strong customer authentication and common and secure open standards of communication
+- **TLS**	Transport Layer Security. The TLS protocol aims primarily to provide privacy and data integrity between two or more communicating computer applications
+- **TSP**	Trust Service Provider. An entity that provides digital services which enable the issuance and proving mechanisms to secure and protect information online. Examples include Certificates and Electronic Seals.
+
 # Resources
 - https://www.youtube.com/watch?v=bYovaLTXjzo
 - https://openbanking.wso2.com/
