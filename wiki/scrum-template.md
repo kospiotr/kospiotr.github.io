@@ -64,5 +64,7 @@ The “How” part may be separate for every scrum team. Team thinks how to do t
 5.	Acceptance criteria are met.
 
 # Exemplary meetings calendar
-![calendar week 1](https://raw.githubusercontent.com/kospiotr/kospiotr.github.io/master/resources/wiki/scrum/2020-01-31 12_47_26-Window.png)
-![calendar week 1](https://raw.githubusercontent.com/kospiotr/kospiotr.github.io/master/resources/wiki/scrum/2020-01-31 12_47_47-Window.png)
+
+![calendar_week_1](https://raw.githubusercontent.com/kospiotr/kospiotr.github.io/master/resources/wiki/scrum/2020-01-31 12_47_26-Window.png)
+
+![calendar_week_2](https://raw.githubusercontent.com/kospiotr/kospiotr.github.io/master/resources/wiki/scrum/2020-01-31 12_47_47-Window.png)
