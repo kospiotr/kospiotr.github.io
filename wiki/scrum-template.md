@@ -22,7 +22,7 @@ Scrum team consists of PO, SM and Developers.
 3.	**Increment** – the added value of given sprint.
 
 ## Scrum ceremonies/Meetings
-1.	**Planning**
+* 1.	**Planning**
    * **Timebox**: Up to 4 hours/sprint, but it could end quicker. Proposition: 2h of “What” part with Product Owner and 2h of “How” part internally in teams. 
    * **Attendees**: Product owner + dev team 
    
