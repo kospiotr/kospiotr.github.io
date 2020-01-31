@@ -11,21 +11,21 @@ editurl: wiki/scrum-template.md
 2 weeks, planning at the start, review at the end, starting Tuesday or Wednesday (1 to choose) (a lot of meetings at Monday).
 
 ## Roles
-1.	Product Owner – the only person responsible for items in product backlog and it’s prioritisation. One person. 
-2.	Scrum Master – facilitator for the team, helps in impediments removal (Bartlomiej Labno/Piotr Kosmowski + rotational team support)
-3.	Developer – member of the team
+1.	**Product Owner** – the only person responsible for items in product backlog and it’s prioritisation. One person. 
+2.	**Scrum Master** – facilitator for the team, helps in impediments removal (Bartlomiej Labno/Piotr Kosmowski + rotational team support)
+3.	**Developer** – member of the team
 Scrum team consists of PO, SM and Developers.
 
 ## Artifacts
-1.	Product backlog – list of all items to be done in the project. Product Owner is responsible for product backlog. He may delegate this task but the content and order are his responsibility. The product backlog usually grows in time. There is one product backlog for the product.
-2.	Sprint backlog – the list of tasks to be done in current sprint. The team forecasts how many tasks are to be done having capacity and velocity in mind. Every scrum team (pod) has separate sprint backlog. 
-3.	Increment – the added value of given sprint.
+1.	**Product backlog** – list of all items to be done in the project. Product Owner is responsible for product backlog. He may delegate this task but the content and order are his responsibility. The product backlog usually grows in time. There is one product backlog for the product.
+2.	**Sprint backlog** – the list of tasks to be done in current sprint. The team forecasts how many tasks are to be done having capacity and velocity in mind. Every scrum team (pod) has separate sprint backlog. 
+3.	**Increment** – the added value of given sprint.
 
 ## Scrum ceremonies/Meetings
-1.	Planning
-Timebox: Up to 4 hours/sprint, but it could end quicker. Proposition: 2h of “What” part with Product Owner and 2h of “How” part internally in teams. 
-Attendees: Product owner + dev team 
-Goal: It answers two questions: “What should we do in the next sprint?“ and “How should we achieve it?” 
+1.	**Planning**
+   **Timebox**: Up to 4 hours/sprint, but it could end quicker. Proposition: 2h of “What” part with Product Owner and 2h of “How” part internally in teams. 
+   **Attendees**: Product owner + dev team 
+   **Goal**: It answers two questions: “What should we do in the next sprint?“ and “How should we achieve it?” 
 The “What” part is common for all scrum teams. Teams fill their sprint backlog with product backlog items basing on capacity and velocity and having task order in mind. Product owner is required to confirm the order, explain details etc.
 The “How” part may be separate for every scrum team. Team thinks how to do the work selected to the sprint backlog, how to split it into tasks.
 2.	Review 
