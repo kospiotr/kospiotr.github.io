@@ -23,10 +23,8 @@ Scrum team consists of PO, SM and Developers.
 
 ## Scrum ceremonies/Meetings
 1.	**Planning**
-
-   **Timebox**: Up to 4 hours/sprint, but it could end quicker. Proposition: 2h of “What” part with Product Owner and 2h of “How” part internally in teams. 
-   
-   **Attendees**: Product owner + dev team 
+  * **Timebox**: Up to 4 hours/sprint, but it could end quicker. Proposition: 2h of “What” part with Product Owner and 2h of “How” part internally in teams. 
+  * **Attendees**: Product owner + dev team 
    
    **Goal**: It answers two questions: “What should we do in the next sprint?“ and “How should we achieve it?” 
 The “What” part is common for all scrum teams. Teams fill their sprint backlog with product backlog items basing on capacity and velocity and having task order in mind. Product owner is required to confirm the order, explain details etc.
