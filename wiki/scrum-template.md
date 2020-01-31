@@ -33,19 +33,19 @@ The “How” part may be separate for every scrum team. Team thinks how to do t
 	* **Timebox**: up to 2 h/sprint
 	* **Attendees**: Product owner + dev team + stakeholders
 	* **Goal**: Presentation of the sprint results, demo, getting the feedback.
-4.	Daily
+4.	**Daily**
 	* **Timebox**: Up to 15 min every day/pod (possibility not to do at demo day or planning day), same time and place 9 AM LDN time (conference call).
 	* **Attendees**: Developers + Scrum Master (optional) + external domain specialists (optional)
 	* **Goal**: Synchronize done work from the developer perspective. Plan upcoming work for next day. Raise blockers. Don’t go into details - > interested people should have another meeting with the details. We update jira task statuses before daily.
-5.	Scrum of scrums
+5.	**Scrum of scrums**
 	* **Timebox**: Up to 15 min, every day
 	* **Attendees**: Every scrum team representation + Scrum Master (optional?) + Product Owner
 	* **Goal**: Synchronize done work, plan work for next day, raise blockers – all from scrum team perspective.
-6.	Retrospective
+6.	**Retrospective**
 	* **Timebox**: Up to 1.5 h/sprint, may be finished quicker
 	* **Attendees**: Scrum master + developers + product owner – could be interchangeably – every pod by itself and all pods together.
 	* **Goal**: Identifying good things from last sprint and areas of improvement. It ends with short list of actions to be done before next retrospective. Each action has an owner. These actions are reviewed at the next retrospective meeting.
-7.	Refinement
+7.	**Refinement**
 	* **Timebox**: Up to 10% of team capacity, 1-3 meetings/sprint
 	* **Attendees**: Product owner + subset of developers (for example Business Analysts) + domain specialists
 	* **Goal**: Get deeper understanding of the tasks for the next 2-3 sprints: better description, splitting into more separate stories, estimation, order/prioritization of tasks. 
