@@ -32,6 +32,8 @@ editurl: wiki/unix.md
 * `umount /dev/sdb1 && badblocks -o ./badblocks.list -w -s -v -b 4096 -c 16 /dev/mmcblk0` - check ssd card in destructive way
 * `sudo adduser <username> sudo` - create user and add it to `sudo` group
 * `sudo usermod -a -G sudo <username>` - add user to group `sudo`
+* `ssh cloud_user@talentmanagement3c.mylabserver.com -R 7001:localhost:7000` - espose local 7000 port on remote machine on 7001 port locally
+* `ssh cloud_user@talentmanagement3c.mylabserver.com -R 7001:localhost:7000` - espose local 7000 port on remote machine on 7001 port locally
 
 # Set up environment
 
@@ -167,7 +169,6 @@ Categories=Other;
 ```
 
 It will show up in the Other category for slingshot. Run it and then select "Keep in dock" when it is running.
-
 
 # Recipes
 
