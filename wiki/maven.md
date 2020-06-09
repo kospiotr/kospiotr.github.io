@@ -106,7 +106,8 @@ The pattern ```${someX.someY.someZ}``` can simply sometimes mean ```getSomeX().g
 * ```help:effective-pom``` - Display Effective POM                            
 * ```help:effective-settings``` - Display Project Settings                         
 * ```help:system``` - Display System and Environment Variables         
-* ```dependency:build-classpath``` - Display Build Class Path                         
+* ```dependency:build-classpath``` - Display Build Class Path             
+* ```dependency:get -Dartifact=org.apache.hadoop:hadoop-aws:321``` - downloading artifact with dependencies from remote to local repo
 
 # Generating projects from archetype
 
