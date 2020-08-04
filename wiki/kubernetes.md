@@ -124,3 +124,14 @@ Commands:
 * `kubectl -n <namespace-name> describe pod <pod name>`
 * `kubectl -n mortgages-dev2 logs -p  <pod name> `
 
+# Istio
+- Traffic Management
+- Authentication between services
+- Authorization between services
+- Secure communication between services
+- Observability:
+ - tracing
+ - service discovery
+ - load balancing
+ - logging
+ - monitoring
