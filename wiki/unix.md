@@ -141,6 +141,19 @@ StartupWMClass=jetbrains-idea
 ```
 
 # Elementary OS
+Download: https://elementary.io/pl/
+
+Install:
+```bash
+# detect mounting point for USB
+lsblk
+
+# unmount mounting point for /dev/sdb
+sudo umount /dev/sdb
+
+#
+sudo dd bs=4M if=elementaryos-5.1-stable.20200814.iso of=/dev/sdb conv=fdatasync  status=progress
+```
 
 * http://www.elementarynow.com/
 * https://plus.google.com/communities/104613975513761463450
