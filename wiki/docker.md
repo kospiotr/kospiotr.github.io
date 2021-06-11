@@ -99,3 +99,7 @@ To push images to your private registry hosted by gcr, you need to tag the image
 
 * `docker run --rm -v "$(pwd)":/app -w /app maven mvn clean install` - simple run
 * `docker run --rm -v "$(pwd)":/app -v maven-repo:/root/.m2 -w /app maven mvn clean install` - preserve local repo
+
+## Nodejs
+
+* `docker run -it --rm --name my-running-script -v "$PWD":/usr/src/app -w /usr/src/app node:8 node your-daemon-or-script.js` - run single script
