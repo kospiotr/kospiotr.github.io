@@ -122,7 +122,15 @@ logg.on('', function(logRecord) {
   }
 });
 ```
+# Browser sync
 
+**Installation**
+```sudo npm install -g browser-sync``` 
+
+**CLI**
+- current dir: ```browser-sync start -s . -f .```
+- build dir: ```browser-sync start -s build -f build```
+- 
 # Grunt
 
 * `npm install -g grunt-cli` - install grunt
