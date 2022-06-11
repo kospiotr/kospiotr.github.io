@@ -9,7 +9,7 @@ res: ../resources/wiki/jpa
 ---
 
 
-##Lazy loading
+## Lazy loading
 The default is to load all basic mappings eagerly
 
 Example:
@@ -20,7 +20,7 @@ Example:
  private String comments;
 ```
 
-##Large Objects
+## Large Objects
 Annotation: `@Lob`
 
 Two types:
@@ -42,7 +42,7 @@ public class Employee {
 }
 ```
 
-##Enumerated Types
+## Enumerated Types
 By default Enumerated types are represented as number - an index of value in the enum class.
 It is possible to change this behaviour by adding `@Enumerated` annotation with value:
 
@@ -62,7 +62,7 @@ public class Employee {
 }
 ```
 
-##Temporal Types
+## Temporal Types
 Temporal types are the set of time-based types that can be used in persistent state mappings.
 Supported formats:
 
@@ -80,18 +80,18 @@ An annotation `@Temporal` needs to explain what specific kind of value it stores
 * `TemporalType.DATE`
 * `TemporalType.TIME`
 
-##Transient State
+## Transient State
 Attributes that are part of a persistent entity but not intended to be persistent can either be modified
 with the `transient` modifier in Java or be annotated with the `@Transient` annotation.
 
-#Relations
+# Relations
 
-##OneToOne
-###Unidirectional
+## OneToOne
+### Unidirectional
 
 The owning side is definied by `@OneToOne` annotation.
 
-####Employee owning side
+#### Employee owning side
 
 ```java
 @Entity
@@ -122,7 +122,7 @@ public class Department {
 ![JEE]({{page.res}}/one-to-one-4.png)
 </center>
 
-####Department owning side
+#### Department owning side
 
 ```java
 @Entity
@@ -153,11 +153,11 @@ public class Department {
 </center>
 
 
-###Bidirectional
+### Bidirectional
 
 The inverse side is definied with mappedBy parameter in `@OneToOne` annotation.
 
-####No owning side
+#### No owning side
 
 ```java
 @Entity
@@ -190,7 +190,7 @@ public class Department {
 ![JEE]({{page.res}}/one-to-one-1.png)
 </center>
 
-####Employee owning side
+#### Employee owning side
 
 ```java
 @Entity
@@ -224,7 +224,7 @@ public class Department {
 </center>
 
 
-####Department owning side
+#### Department owning side
 
 ```java
 @Entity
@@ -405,10 +405,10 @@ public class Department {
 </center>
 
 
-##ManyToMany
+## ManyToMany
 
-###Bidirectional
-####Employee owning side
+### Bidirectional
+#### Employee owning side
 ```java
 @Entity
 public class Employee {
@@ -440,7 +440,7 @@ public class Department {
 ![JEE]({{page.res}}/many-to-many-1.png)
 </center>
 
-####Department owning side
+#### Department owning side
 ```java
 @Entity
 public class Employee {
@@ -472,4 +472,4 @@ public class Department {
 ![JEE]({{page.res}}/many-to-many-2.png)
 </center>
 
-#Collection Mapping
+# Collection Mapping
