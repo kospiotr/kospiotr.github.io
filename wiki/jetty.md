@@ -5,7 +5,7 @@ comments: false
 toc: true
 editurl: wiki/jetty.md
 ---
-#Versions
+# Versions
 
 This document is about Jetty 8 version
 
@@ -14,9 +14,9 @@ This document is about Jetty 8 version
 * Jetty 8 [http://wiki.eclipse.org/Jetty](http://wiki.eclipse.org/Jetty)
 * Jetty 9 [http://www.eclipse.org/jetty/documentation/current/](http://www.eclipse.org/jetty/documentation/current/)
 
-#Run Jetty
+# Run Jetty
 
-##Standalone
+## Standalone
 
 Create script in jetty folder called start.bat with content:
 
@@ -24,9 +24,9 @@ Create script in jetty folder called start.bat with content:
 c:\opt\jdk\bin\java -jar start.jar
 ```
 
-##Embedded with Maven plugin
+## Embedded with Maven plugin
 
-###Plugin
+### Plugin
 
 Put in pom.xml plugin info:
 
@@ -38,7 +38,7 @@ Put in pom.xml plugin info:
 </plugin>
 ```
 
-###Configuration - hot-deploy
+### Configuration - hot-deploy
 
 ```xml
 <plugin>
@@ -53,7 +53,7 @@ Put in pom.xml plugin info:
 
 If running `mvn jetty:run-exploded` then hot deploy is definied by `scanIntervalSeconds` interval
 
-###Running
+### Running
 then execute maven command:
 
 ```bash
@@ -62,11 +62,11 @@ mvn jetty:run-exploded
 mvn jetty:run-war
 ```
 
-#JNDI
+# JNDI
 
-##Variable
+## Variable
 
-###jetty.xml
+### jetty.xml
 
 ```xml
 <New class="org.eclipse.jetty.plus.jndi.EnvEntry">
@@ -77,14 +77,14 @@ mvn jetty:run-war
 </New>
 ```
 
-###java code
+### java code
 
 ```java
 InitialContext ic = new InitialContext();
 Integer mySpecialValue = (Integer)ic.lookup("java:comp/env/mySpecialValue");
 ```
 
-###web.xml
+### web.xml
 Default value might be initialized as follows:
 
 ```xml
@@ -95,12 +95,12 @@ Default value might be initialized as follows:
     </env-entry>
 ```
 
-##Data source
+## Data source
 
-###driver
+### driver
 Download driver and put it in folder `${JETTY}/lib/ext`. In our case it is DerbyClient driver.
 
-###jetty.xml
+### jetty.xml
 
 ```xml
 <New class="org.eclipse.jetty.plus.jndi.Resource">
@@ -119,7 +119,7 @@ Download driver and put it in folder `${JETTY}/lib/ext`. In our case it is Derby
 </New>
 ```
 
-###web.xml
+### web.xml
 
 ```xml
     <resource-ref>
@@ -129,14 +129,14 @@ Download driver and put it in folder `${JETTY}/lib/ext`. In our case it is Derby
     </resource-ref>
 ```
 
-###java code
+### java code
 
 ```java
 InitialContext ic = new InitialContext();
 DataSource myds = (Integer)ic.lookup("java:comp/env/jdbc/myds");
 ```
 
-###JPA configuration
+### JPA configuration
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
