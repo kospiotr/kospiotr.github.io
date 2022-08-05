@@ -29,6 +29,10 @@ Good for:
 ## Data Pipeline
 ## MPP
 ## BigData
+## Analytics
+### KPI Dashboard
+High level, strategic goals of the organization, and we need to figure out what data we want to use in order to make a decision makers to understand how well we are doing aganst those goals and how well as a business we are performing. What data is 
+### Self service
 
 # History
 
