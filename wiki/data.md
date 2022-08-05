@@ -1,10 +1,40 @@
 ---
 layout: wiki
-title: data
+title: Data
 comments: false
 toc: true
 editurl: wiki/data.md
 ---
+
+# Glossary
+## Data Warehouse
+Hierarchical DW - stores data in files or folders. Uses proprietary systems.
+## DataLake (Databrics propertary)
+Repositories for raw data in a variety of formats (structured, unstructuured, from audio, video, xml, csv, avro, parquet, compressed, chunked, from bytes to GBs). It is represented mostly as a storage but sometimes as an architecture (Kappa, Lambda, Delta) with processing segments (ETL or sometimes ELT) pipelines in place.
+Uses object storage, flat locations, tags, metadata, unique ID for performance improvements. Schema on read. Unstructured data support - good for ML. .
+Examples: HDFS, GCS, S3
+Pros:
+- Uses cheap storage, open formats
+- Highly durable, low costs, scalable
+- ML friendly
+Cons:
+- Don't support transactions 
+- No data check, quality, consistency
+Good for:
+- Powering data science and machine learning
+- Centralization, consolidation, cataloging data
+- 
+## Lakehouse
+## Datamesh
+## Data Pipeline
+## MPP
+## BigData
+
+# History
+
+# Tags
+flexibility, performance, costs, ingestion, governance, policies, master data management, lineage, real time processing, streaming, messaging, volumes, formats, consistency, isolation, refinement, raw, intermediate, final, bronze, silver, gold, segmentation
+
 
 
 # Data pipeline
