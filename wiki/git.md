@@ -88,8 +88,10 @@ ssh-keygen
 To use ssh with remote repositories you need to publish your public key to this services. It can be localized here:
 
 ```bash
-clip <  ~\.ssh\id_rsa.pub
+cat ~/.ssh/id_rsa.pub
 ```
+
+Go to: https://github.com/settings/keys and add the above content.
 
 # Git tools
 
