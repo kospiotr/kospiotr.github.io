@@ -92,6 +92,11 @@ cat ~/.ssh/id_rsa.pub
 ```
 
 Go to: https://github.com/settings/keys and add the above content.
+Test connectivity:
+
+```bash
+ssh -T git@github.com
+```
 
 # Git tools
 
