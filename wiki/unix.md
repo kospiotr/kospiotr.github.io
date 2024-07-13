@@ -34,7 +34,7 @@ editurl: wiki/unix.md
 * `sudo usermod -a -G sudo <username>` - add user to group `sudo`
 * `ssh cloud_user@talentmanagement3c.mylabserver.com -R 7001:localhost:7000` - espose local 7000 port on remote machine on 7001 port locally
 * `ssh cloud_user@talentmanagement3c.mylabserver.com -R 7001:localhost:7000` - espose local 7000 port on remote machine on 7001 port locally
-* `tr ':' '\n' <<< "$PATH"` - show PATH in human readable format
+* `echo $PATH | sed 's/:/\n/g'` - show PATH in human readable format
 
 # Set up environment
 
