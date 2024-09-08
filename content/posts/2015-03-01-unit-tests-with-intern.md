@@ -5,7 +5,7 @@ description: "Unit tests in TDD with Intern"
 date:   2015-03-01 22:16:00
 ---
 
-#Introduction
+# Introduction
 
 In JS world, regressions may appear at every change without any warning, so tests are equally important as production code. The same rule applies to every non static typed languages, but let's stay on JS. 
 

@@ -5,9 +5,9 @@ description: "Testing REST with Intern"
 date:   2015-03-03 22:16:00
 ---
 
-#Introduction
+# Introduction
 
-In the previous post ["Testing Node applications with Intern framework"]({% post_url 2015-03-01-unit-tests-with-intern %}) I demostrated how to set up testing environment for unit tests with Intern and Grunt.
+In the previous post [Testing Node applications with Intern framework]({{< relref "2015-03-01-unit-tests-with-intern" >}} "About Us") I demostrated how to set up testing environment for unit tests with Intern and Grunt.
 Today I will show how to test REST endpoints with end to end tests in a speed of unit tests.
 
 #Set up infrastructure
