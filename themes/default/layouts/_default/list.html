@@ -1,0 +1,22 @@
+{{ define "main" }}
+<h1>
+    <a href="{{ .RelPermalink }}">{{ partial "docs/title.html" . }}</a>
+</h1>
+{{ range sort .Pages }}
+<article class="">
+    <ul>
+        <li>
+            {{ with .Date }}
+            <span>{{ partial "docs/date" (dict "Date" . "Format" $.Site.Params.BookDateFormat) }}</span>
+            {{ end }}
+            <a href="{{ .RelPermalink }}">{{ partial "docs/title.html" . }}</a></li>
+    </ul>
+
+</article>
+{{ end }}
+
+{{ end }}
+
+{{ define "toc" }}
+{{ partial "docs/taxonomy" . }}
+{{ end }}

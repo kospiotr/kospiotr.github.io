@@ -1,0 +1,24 @@
+languageCode = 'pl-pl'
+title = 'pkosmowski.pl'
+theme = 'default'
+
+[menus]
+    [[menus.after]]
+        name = 'Posts'
+        pageRef = '/posts'
+        weight = 20
+    [[menus.after]]
+        name = 'Wiki'
+        pageRef = '/wiki'
+        weight = 21
+[params]
+    BookTheme = 'auto'
+    BookRepo = 'https://github.com/kospiotr/pkosmowski.pl'
+    BookEditPath = 'edit/main'
+    BookCommitPath = 'commit'
+    BookToC = true
+    BookDateFormat = '2006-01-02'
+[markup]
+    [markup.tableOfContents]
+        startLevel = 1
+        endLevel = 3

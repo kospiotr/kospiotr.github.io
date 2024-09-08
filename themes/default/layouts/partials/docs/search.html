@@ -1,0 +1,8 @@
+{{ if default true .Site.Params.BookSearch }}
+<div class="search hidden">
+  <input type="text" id="search-input" placeholder="{{ i18n "Search" }}" aria-label="{{ i18n "Search" }}" maxlength="64" data-hotkeys="s/" />
+  <div class="search-spinner hidden"></div>
+  <ul id="search-results"></ul>
+</div>
+<script>document.querySelector(".search").classList.remove("hidden")</script>
+{{ end }}

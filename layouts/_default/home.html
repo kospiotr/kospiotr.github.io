@@ -1,0 +1,16 @@
+{{ define "main" }}
+{{ .Content }}
+{{ $image := (resources.Get "images/piotr_kosmowski.jpg").Fit "300x300" }}
+<section class="text-center">
+    <img src="{{ $image.RelPermalink }}" width="{{ $image.Width }}" height="{{ $image.Height }}">
+    <h1>Piotr Kosmowski</h1>
+    <h3>Software Engineer</h3>
+
+    <aside>
+        <nav>
+            {{ partial "docs/inject/menu-before" . }}
+            {{ partial "docs/menu-hugo" .Site.Menus.after }}
+        </nav>
+    </aside>
+</section>
+{{ end }}

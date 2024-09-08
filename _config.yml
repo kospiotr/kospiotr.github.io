@@ -1,9 +1,0 @@
-name: Piotr Kosmowski site
-markdown: kramdown
-safe: true
-lsi: false
-highlighter: rouge
-encoding: utf-8
-baseurl: http://kospiotr.github.io
-basesourceurl: https://github.com/kospiotr/kospiotr.github.io/edit/master
-permalink: /blog/:year/:month/:day/:title/
