@@ -2,21 +2,28 @@
 <h1>
     <a href="{{ .RelPermalink }}">{{ partial "docs/title.html" . }}</a>
 </h1>
-{{ range sort .Pages }}
-<article class="">
-    <ul>
-        <li>
-            {{ with .Date }}
-            <span>{{ partial "docs/date" (dict "Date" . "Format" $.Site.Params.BookDateFormat) }}</span>
-            {{ end }}
-            <a href="{{ .RelPermalink }}">{{ partial "docs/title.html" . }}</a></li>
-    </ul>
-
-</article>
-{{ end }}
-
+{{ template "section-children" (dict "Section" . "CurrentPage" $) }}
 {{ end }}
 
 {{ define "toc" }}
 {{ partial "docs/taxonomy" . }}
+{{ end }}
+
+
+{{ define "section-children" }}{{/* (dict "Section" .Section "CurrentPage" .CurrentPage) */}}
+<ul>
+    {{ range (where .Section.Pages "Params.hidden" "ne" true) }}
+    {{ if .IsSection }}
+    <li {{- if .Params.BookFlatSection }} class="section-flat" {{ end -}}>
+        {{ template "page-link" (dict "Page" . "CurrentPage" $.CurrentPage) }}
+        {{ template "section-children" (dict "Section" . "CurrentPage" $.CurrentPage) }}
+    </li>
+    {{ else if and .IsPage .Content }}
+    <li>
+        {{ with .Date }}<span>{{ partial "docs/date" (dict "Date" . "Format" "2006-01-02") }}</span>{{ end }}
+        {{ template "page-link" (dict "Page" . "CurrentPage" $.CurrentPage) }}
+    </li>
+    {{ end }}
+    {{ end }}
+</ul>
 {{ end }}

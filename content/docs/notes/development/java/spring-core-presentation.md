@@ -1,5 +1,5 @@
 ---
-title: Spring Core (Presentation)
+title: Spring Core
 slideshow: true
 ---
 

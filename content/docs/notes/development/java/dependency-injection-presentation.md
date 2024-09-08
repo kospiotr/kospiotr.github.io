@@ -1,5 +1,5 @@
 ---
-title: Dependency Injection (Presentation)
+title: Dependency Injection
 slideshow: true
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: Spring MVC (presentation)
+title: Spring MVC
 slideshow: true
 ---
 

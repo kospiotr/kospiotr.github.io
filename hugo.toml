@@ -7,11 +7,15 @@ googleAnalytics = "G-N5X4WQMVC2"
     [[menus.after]]
         name = 'Posts'
         pageRef = '/posts'
-        weight = 20
-    [[menus.after]]
-        name = 'Wiki'
-        pageRef = '/wiki'
-        weight = 21
+        weight = 10
+#    [[menus.before]]
+#        name = 'Docs'
+#        pageRef = '/docs'
+#        weight = 20
+#    [[menus.after]]
+#        name = 'Archive'
+#        pageRef = '/docs/archive'
+#        weight = 20
 [params]
     BookTheme = 'auto'
     BookRepo = 'https://github.com/kospiotr/pkosmowski.pl'

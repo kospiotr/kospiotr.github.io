@@ -1,5 +1,5 @@
 ---
-title: Spring AOP (Presentation)
+title: Spring AOP
 slideshow: true
 ---
 

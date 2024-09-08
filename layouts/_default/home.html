@@ -9,7 +9,15 @@
     <aside>
         <nav>
             {{ partial "docs/inject/menu-before" . }}
-            {{ partial "docs/menu-hugo" .Site.Menus.after }}
+            <ul>
+                <li>
+                    <a href="/docs/notes" class="">Notes</a>
+                </li>
+                <li>
+                    <a href="/posts" class="">Posts</a>
+                </li>
+            </ul>
+<!--            {{ partial "docs/menu-hugo" .Site.Menus.before }}-->
         </nav>
     </aside>
 </section>

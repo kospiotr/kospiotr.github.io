@@ -1,5 +1,5 @@
 ---
-title: Clean Code (presentation)
+title: Clean Code
 description: How to write good quality code?
 ---
 

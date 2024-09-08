@@ -1,3 +1,4 @@
 public/
 resources/
 *.iml
+/.hugo_build.lock

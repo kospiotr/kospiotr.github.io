@@ -1,6 +1,6 @@
 ---
-title: IntelliJ Idea
-toc: false
+title: IDE
+
 ---
 # Installation
 ```
