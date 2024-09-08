@@ -17,10 +17,11 @@
   {{ end }}
 
     <div class="page">
+{{ if not (and (isset .Params "display_footer") (eq .Params.display_footer false)) }}
       <header class="header">
         {{ template "header" . }} <!-- Mobile layout header -->
       </header>
-
+{{ end }}
       {{ partial "docs/inject/content-before" . }}
       {{ template "main" . }} <!-- Page Content -->
       {{ partial "docs/inject/content-after" . }}

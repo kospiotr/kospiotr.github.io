@@ -1,6 +1,7 @@
 languageCode = 'pl-pl'
 title = 'pkosmowski.pl'
 theme = 'default'
+googleAnalytics = "G-N5X4WQMVC2"
 
 [menus]
     [[menus.after]]

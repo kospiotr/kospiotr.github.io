@@ -2,7 +2,7 @@
 {{ .Content }}
 {{ $image := (resources.Get "images/piotr_kosmowski.jpg").Fit "300x300" }}
 <section class="text-center">
-    <img src="{{ $image.RelPermalink }}" width="{{ $image.Width }}" height="{{ $image.Height }}">
+    <img src="{{ $image.RelPermalink }}" width="{{ $image.Width }}" height="{{ $image.Height }}" alt="Piotr Kosmowski avatar">
     <h1>Piotr Kosmowski</h1>
     <h3>Software Engineer</h3>
 
