@@ -1,5 +1,7 @@
 +++
 title = 'Notes'
-BookHref = '/docs/notes'
+#BookHref = '/docs/notes'
 #BookCollapseSection = true
 +++
+
+Private Notes
