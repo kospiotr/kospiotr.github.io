@@ -30,10 +30,13 @@ Sort(
 
 ```groovy
 Sort(
-    Filter(
-        Engagements,
-        TextInputCanvas1_2.Value in Title && (!Toggle1.Checked || Not(ID in allMappedEngagementIds)) && Not (ID in ForAll(varCaseStudySelected.Engagements, Id))
-    ),
-    Title
+        Filter(
+                Engagements,
+                TextInputCanvas1_2.Value in Title && (!Toggle1.Checked || Not(ID in allMappedEngagementIds)) && Not (ID in ForAll(
+                        varCaseStudySelected.Engagements,
+                        Id
+                ))
+        ),
+        Title
 )
 ```
