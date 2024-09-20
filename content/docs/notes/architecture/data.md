@@ -171,16 +171,16 @@ Supplier History
 - Data Governance
 - Data usage policy
 
-## Data Exploration
-- Data schema
-- Data format
-- Changes over time
-
-## Data storage
+## Data Storage
 - Storage capacity
 - Security
 - Scalability
 - Redundancy / Backup / Recovery
+- 
+## Data Exploration
+- Data schema
+- Data format
+- Changes over time
 
 # Data analytics
 - Processing engine
