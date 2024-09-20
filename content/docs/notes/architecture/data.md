@@ -164,25 +164,35 @@ Supplier History
 | 123          | ABC           | Acme Supply Co | CA             | 2003-06-14T00:00:00 |
 | 124          | ABC           | Acme Supply Co | IL             | 2004-12-22T00:00:00 |
 
-# Processing Big Data
+# BigQuery
 
-## Understanding the Use Case
+## Processing Big Data with BigQuery
+
+### Understanding the Use Case
 - Data Collection 
 - Data Governance
 - Data usage policy
 
-## Data Storage
+### Data Storage
 - Storage capacity
 - Security
 - Scalability
 - Redundancy / Backup / Recovery
 - 
-## Data Exploration
+### Data Exploration
 - Data schema
 - Data format
 - Changes over time
 
-# Data analytics
+### Data analytics
 - Processing engine
 - Service availability
 - Output of the analysis
+
+## Big Query overview
+- OLAP
+- Big data > 1TB
+- Structured data
+- Serverless and fully managed
+
+## BigQuery Architecture
