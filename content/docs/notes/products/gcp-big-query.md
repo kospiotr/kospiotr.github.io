@@ -28,9 +28,18 @@ title: BigQuery
 - Output of the analysis
 
 ## Big Query overview
-- OLAP
-- Big data > 1TB
-- Structured data
+- OLAP not OLTP
+- Big data > 1TB, otherwise use regular DB.
+- Structured data, otherwise use Data Lake
 - Serverless and fully managed
+- Caches queries
+- Prices: on-demand, reservations, Flex slots, Flat rate
+
 
 ## BigQuery Architecture
+- Servers
+- Borg - Platform for containers
+- Colossus - Splits data for parallel processing
+- Jupiter - Ultra fast Network
+- Dremel - Query Execution Engine
+- API
