@@ -1,0 +1,10 @@
+name: hugo-site
+
+services:
+  server:
+    image: hugomods/hugo:exts-0.128.2
+    command: hugo serve --bind 0.0.0.0
+    volumes:
+      - .:/src
+    ports:
+      - 1313:1313

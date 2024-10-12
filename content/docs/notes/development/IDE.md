@@ -1,5 +1,5 @@
 ---
-title: IDE
+title: IDE 2
 ---
 # Installation
 ```
