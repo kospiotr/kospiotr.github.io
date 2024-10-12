@@ -20,13 +20,13 @@ Arrays hold values of the same type at contiguous memory locations. In an array,
 
 **Time Complexity**
 
-| Operation | Big-O | Note |
-| --- | --- | --- |
-| Access | O(1) |     |
-| Insert | O(n) | Insertion would require shifting all the subsequent elements to the right by one and that takes O(n) |
-| Insert (at the end) | O(1) | Special case of insertion where no other element needs to be shifted |
-| Remove | O(n) | Removal would require shifting all the subsequent elements to the left by one and that takes O(n) |
-| Remove (at the end) | O(1) | Special case of removal where no other element needs to be shifted |
+| Operation | Big-O |
+| --- | --- |
+| Access | O(1) |
+| Insert | O(n) |
+| Insert (at the end) | O(1) |
+| Remove | O(n) |
+| Remove (at the end) | O(1) |
 
 Example:
 ```java
