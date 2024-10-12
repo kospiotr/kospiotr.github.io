@@ -24,26 +24,17 @@ larger elements sink to the bottom (end of the array) during the sorting process
 public class BubbleSort {
 
     public static void bubbleSort(int[] array) {
-        int n = array.length;
-        boolean swapped;
-
-        // Outer loop for the number of passes
-        for (int i = 0; i < n - 1; i++) {
-            swapped = false;  // Track if any swapping happened
-
-            // Inner loop for comparing adjacent elements
-            for (int j = 0; j < n - 1 - i; j++) {
-                // Swap if the current element is greater than the next
+        for (int i = 0; i < array.length - 1; i++) {
+            boolean changed = false;
+            for (int j = 0; j < array.length - i - 1; j++) {
                 if (array[j] > array[j + 1]) {
-                    int temp = array[j];
+                    int tmp = array[j];
                     array[j] = array[j + 1];
-                    array[j + 1] = temp;
-                    swapped = true;  // Set swapped to true
+                    array[j + 1] = tmp;
+                    changed = true;
                 }
             }
-
-            // If no swapping happened in this pass, the array is already sorted
-            if (!swapped) {
+            if(!changed){
                 break;
             }
         }
@@ -66,6 +57,63 @@ public class BubbleSort {
         }
     }
 }
+```
+# Sequence
+
+```
+Before sort: [9, 1, 8, 2, 7, 3, 6, 4, 5]
+Sorting A=[9, 1, 8, 2, 7, 3, 6, 4, 5]
+A={L[9], R[1], 8, 2, 7, 3, 6, 4, 5}
+Swap A[0] = 9 <=> A[1] = 1
+A={1, L[9], R[8], 2, 7, 3, 6, 4, 5}
+Swap A[1] = 9 <=> A[2] = 8
+A={1, 8, L[9], R[2], 7, 3, 6, 4, 5}
+Swap A[2] = 9 <=> A[3] = 2
+A={1, 8, 2, L[9], R[7], 3, 6, 4, 5}
+Swap A[3] = 9 <=> A[4] = 7
+A={1, 8, 2, 7, L[9], R[3], 6, 4, 5}
+Swap A[4] = 9 <=> A[5] = 3
+A={1, 8, 2, 7, 3, L[9], R[6], 4, 5}
+Swap A[5] = 9 <=> A[6] = 6
+A={1, 8, 2, 7, 3, 6, L[9], R[4], 5}
+Swap A[6] = 9 <=> A[7] = 4
+A={1, 8, 2, 7, 3, 6, 4, L[9], R[5]}
+Swap A[7] = 9 <=> A[8] = 5
+A={L[1], R[8], 2, 7, 3, 6, 4, 5, 9}
+A={1, L[8], R[2], 7, 3, 6, 4, 5, 9}
+Swap A[1] = 8 <=> A[2] = 2
+A={1, 2, L[8], R[7], 3, 6, 4, 5, 9}
+Swap A[2] = 8 <=> A[3] = 7
+A={1, 2, 7, L[8], R[3], 6, 4, 5, 9}
+Swap A[3] = 8 <=> A[4] = 3
+A={1, 2, 7, 3, L[8], R[6], 4, 5, 9}
+Swap A[4] = 8 <=> A[5] = 6
+A={1, 2, 7, 3, 6, L[8], R[4], 5, 9}
+Swap A[5] = 8 <=> A[6] = 4
+A={1, 2, 7, 3, 6, 4, L[8], R[5], 9}
+Swap A[6] = 8 <=> A[7] = 5
+A={L[1], R[2], 7, 3, 6, 4, 5, 8, 9}
+A={1, L[2], R[7], 3, 6, 4, 5, 8, 9}
+A={1, 2, L[7], R[3], 6, 4, 5, 8, 9}
+Swap A[2] = 7 <=> A[3] = 3
+A={1, 2, 3, L[7], R[6], 4, 5, 8, 9}
+Swap A[3] = 7 <=> A[4] = 6
+A={1, 2, 3, 6, L[7], R[4], 5, 8, 9}
+Swap A[4] = 7 <=> A[5] = 4
+A={1, 2, 3, 6, 4, L[7], R[5], 8, 9}
+Swap A[5] = 7 <=> A[6] = 5
+A={L[1], R[2], 3, 6, 4, 5, 7, 8, 9}
+A={1, L[2], R[3], 6, 4, 5, 7, 8, 9}
+A={1, 2, L[3], R[6], 4, 5, 7, 8, 9}
+A={1, 2, 3, L[6], R[4], 5, 7, 8, 9}
+Swap A[3] = 6 <=> A[4] = 4
+A={1, 2, 3, 4, L[6], R[5], 7, 8, 9}
+Swap A[4] = 6 <=> A[5] = 5
+A={L[1], R[2], 3, 4, 5, 6, 7, 8, 9}
+A={1, L[2], R[3], 4, 5, 6, 7, 8, 9}
+A={1, 2, L[3], R[4], 5, 6, 7, 8, 9}
+A={1, 2, 3, L[4], R[5], 6, 7, 8, 9}
+After sort: [1, 2, 3, 4, 5, 6, 7, 8, 9]
 ```
 
 # Time Complexity

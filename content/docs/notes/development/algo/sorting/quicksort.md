@@ -17,63 +17,169 @@ The process is recursively repeated for the sub-arrays, and the result is a sort
 # Implementation
 
 ```java
-public class QuickSort {
+@Slf4j
+public class Quicksort {
 
-    // Method to perform QuickSort on the array
-    public static void quickSort(int[] array, int low, int high) {
-        if (low < high) {
-            // Partition the array and get the pivot index
-            int pivotIndex = partition(array, low, high);
+   public static void sort(int[] array) {
+      quicksort(array, 0, array.length - 1);
+   }
 
-            // Recursively sort the elements before and after the pivot
-            quickSort(array, low, pivotIndex - 1);
-            quickSort(array, pivotIndex + 1, high);
-        }
-    }
+   private static void quicksort(int[] array, int left, int right) {
+      int[] subArray = Arrays.copyOfRange(array, left, right + 1);
+      if (left < right) {
+         int index = partition(array, left, right);
+         quicksort(array, left, index - 1);
+         quicksort(array, index, right);
+      }
+   }
 
-    // Partition method that arranges elements around a pivot
-    public static int partition(int[] array, int low, int high) {
-        // Select the last element as the pivot
-        int pivot = array[high];
-        int i = low - 1;
+   private static int partition(int[] array, int left, int right) {
+      int middle = (left + right) / 2;
+      int pivot = array[middle];
+      while (left <= right) {
+         while (array[left] < pivot) {
+            left++;
+         }
+         while (array[right] > pivot) {
+            right--;
+         }
+         if (left <= right) {
+            int tmp = array[left];
+            array[left] = array[right];
+            array[right] = tmp;
+            left++;
+            right--;
+         }
+      }
+      return left;
+   }
 
-        // Move elements smaller than the pivot to the left
-        for (int j = low; j < high; j++) {
-            if (array[j] <= pivot) {
-                i++;
-                // Swap array[i] and array[j]
-                int temp = array[i];
-                array[i] = array[j];
-                array[j] = temp;
-            }
-        }
-
-        // Move the pivot to its correct sorted position
-        int temp = array[i + 1];
-        array[i + 1] = array[high];
-        array[high] = temp;
-
-        return i + 1;
-    }
-
-    public static void main(String[] args) {
-        int[] array = {10, 7, 8, 9, 1, 5};
-        int n = array.length;
-
-        System.out.println("Original Array:");
-        for (int num : array) {
-            System.out.print(num + " ");
-        }
-
-        // Call quickSort
-        quickSort(array, 0, n - 1);
-
-        System.out.println("\nSorted Array:");
-        for (int num : array) {
-            System.out.print(num + " ");
-        }
-    }
 }
+
+@Slf4j
+class QuicksortTest {
+
+   @Test
+   void testPairSortedArray() {
+      //given
+      int[] arr = {9, 1, 8, 2, 7, 3, 6, 4, 5};
+
+      //when
+      log.info("Before sort: {}", arr);
+      Quicksort.sort(arr);
+      log.info("After sort: {}", arr);
+
+      //then
+      assertThat(arr).containsExactly(1, 2, 3, 4, 5, 6, 7, 8, 9);
+   }
+}
+```
+
+# Sequence
+
+```
+Before sort: [9, 1, 8, 2, 7, 3, 6, 4, 5]
+Sorting A=[9, 1, 8, 2, 7, 3, 6, 4, 5]
+Partition: L=0, R=8, M=4, P=7
+A={L[9], 1, 8, 2, 7, 3, 6, 4, R[5]}
+Swap A[0] = 9 <=> A[8] = 5
+L++
+R--
+A={5, L[1], 8, 2, 7, 3, 6, R[4], 9}
+L++
+A={5, 1, L[8], 2, 7, 3, 6, R[4], 9}
+Swap A[2] = 8 <=> A[7] = 4
+L++
+R--
+A={5, 1, 4, L[2], 7, 3, R[6], 8, 9}
+L++
+A={5, 1, 4, 2, L[7], 3, R[6], 8, 9}
+Swap A[4] = 7 <=> A[6] = 6
+L++
+R--
+A={5, 1, 4, 2, 6, L[R[3]], 7, 8, 9}
+L++
+A={5, 1, 4, 2, 6, R[3], L[7], 8, 9}
+Partition result A=[5, 1, 4, 2, 6, 3, 7, 8, 9], I=6
+Sorting A=[5, 1, 4, 2, 6, 3]
+Partition: L=0, R=5, M=2, P=4
+A={L[5], 1, 4, 2, 6, R[3], 7, 8, 9}
+Swap A[0] = 5 <=> A[5] = 3
+L++
+R--
+A={3, L[1], 4, 2, R[6], 5, 7, 8, 9}
+L++
+A={3, 1, L[4], 2, R[6], 5, 7, 8, 9}
+R--
+A={3, 1, L[4], R[2], 6, 5, 7, 8, 9}
+Swap A[2] = 4 <=> A[3] = 2
+L++
+R--
+Partition result A=[3, 1, 2, 4, 6, 5, 7, 8, 9], I=3
+Sorting A=[3, 1, 2]
+Partition: L=0, R=2, M=1, P=1
+A={L[3], 1, R[2], 4, 6, 5, 7, 8, 9}
+R--
+A={L[3], R[1], 2, 4, 6, 5, 7, 8, 9}
+Swap A[0] = 3 <=> A[1] = 1
+L++
+R--
+Partition result A=[1, 3, 2, 4, 6, 5, 7, 8, 9], I=1
+Sorting A=[1]
+Sorting A=[3, 2]
+Partition: L=1, R=2, M=1, P=3
+A={1, L[3], R[2], 4, 6, 5, 7, 8, 9}
+Swap A[1] = 3 <=> A[2] = 2
+L++
+R--
+Partition result A=[1, 2, 3, 4, 6, 5, 7, 8, 9], I=2
+Sorting A=[2]
+Sorting A=[3]
+Sorting A=[4, 6, 5]
+Partition: L=3, R=5, M=4, P=6
+A={1, 2, 3, L[4], 6, R[5], 7, 8, 9}
+L++
+A={1, 2, 3, 4, L[6], R[5], 7, 8, 9}
+Swap A[4] = 6 <=> A[5] = 5
+L++
+R--
+Partition result A=[1, 2, 3, 4, 5, 6, 7, 8, 9], I=5
+Sorting A=[4, 5]
+Partition: L=3, R=4, M=3, P=4
+A={1, 2, 3, L[4], R[5], 6, 7, 8, 9}
+R--
+A={1, 2, 3, L[R[4]], 5, 6, 7, 8, 9}
+Swap A[3] = 4 <=> A[3] = 4
+L++
+R--
+Partition result A=[1, 2, 3, 4, 5, 6, 7, 8, 9], I=4
+Sorting A=[4]
+Sorting A=[5]
+Sorting A=[6]
+Sorting A=[7, 8, 9]
+Partition: L=6, R=8, M=7, P=8
+A={1, 2, 3, 4, 5, 6, L[7], 8, R[9]}
+L++
+A={1, 2, 3, 4, 5, 6, 7, L[8], R[9]}
+R--
+A={1, 2, 3, 4, 5, 6, 7, L[R[8]], 9}
+Swap A[7] = 8 <=> A[7] = 8
+L++
+R--
+Partition result A=[1, 2, 3, 4, 5, 6, 7, 8, 9], I=8
+Sorting A=[7, 8]
+Partition: L=6, R=7, M=6, P=7
+A={1, 2, 3, 4, 5, 6, L[7], R[8], 9}
+R--
+A={1, 2, 3, 4, 5, 6, L[R[7]], 8, 9}
+Swap A[6] = 7 <=> A[6] = 7
+L++
+R--
+Partition result A=[1, 2, 3, 4, 5, 6, 7, 8, 9], I=7
+Sorting A=[7]
+Sorting A=[8]
+Sorting A=[9]
+After sort: [1, 2, 3, 4, 5, 6, 7, 8, 9]
 ```
 
 # Time Complexity
@@ -100,5 +206,6 @@ public class QuickSort {
 - Worst-case time complexity: QuickSort can degrade to O(n^2) in the worst case (e.g., when the input is already sorted or reverse-sorted and no pivot optimization is used).
 - Not stable: QuickSort is not a stable sort (i.e., it doesn't preserve the relative order of elements with equal keys).
 
-Refs:
+# Refs:
 - [Visualization of Quick sort](https://www.youtube.com/watch?v=aXXWXz5rF64)
+- [Quicksort Algorithm: A Step-by-Step Visualization](https://www.youtube.com/watch?v=pM-6r5xsNEY)
