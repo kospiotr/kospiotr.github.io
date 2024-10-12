@@ -61,10 +61,10 @@ The **current value** of an attribute is simply overwritten when it changes. No 
 
 * ETL:
 ```SQL
-    INSERT INTO Dim_Product (product_id, product_name, category, price, last_updated_datetime) 
-    SELECT s.product_id, s.product_name, s.category, s.price, CURRENT_TIMESTAMP 
-    FROM Source_Product s 
-    WHERE s.product_id NOT IN (SELECT product_id FROM Dim_Product);
+INSERT INTO Dim_Product (product_id, product_name, category, price, last_updated_datetime) 
+SELECT s.product_id, s.product_name, s.category, s.price, CURRENT_TIMESTAMP 
+FROM Source_Product s 
+WHERE s.product_id NOT IN (SELECT product_id FROM Dim_Product);
 ```
 
 * Target Table: Dim\_Product:
@@ -86,13 +86,13 @@ The **current value** of an attribute is simply overwritten when it changes. No 
 
 * ETL:
 ```SQL
-    UPDATE 
-        Dim_Product SET product_name = s.product_name,     
-        category = s.category,     
-        price = s.price,     
-        last_updated_datetime = CURRENT_TIMESTAMP 
-    FROM Source_Product s 
-    WHERE Dim_Product.product_id = s.product_id;
+UPDATE 
+    Dim_Product SET product_name = s.product_name,     
+    category = s.category,     
+    price = s.price,     
+    last_updated_datetime = CURRENT_TIMESTAMP 
+FROM Source_Product s 
+WHERE Dim_Product.product_id = s.product_id;
 ```
 
 * Target Table: Dim\_Product:
@@ -125,7 +125,7 @@ When an attribute changes, a **new row** is added with the updated information, 
 
 - - -
 
-### **SCD Type 3: Add New Column (Limited Historical Tracking)**
+# **SCD Type 3: Add New Column (Limited Historical Tracking)**
 
 **Description**: A **new column** is added to store both the current and previous value of the changing attribute. This method tracks a limited history since only one previous value is retained.
 
@@ -142,7 +142,7 @@ When an attribute changes, a **new row** is added with the updated information, 
 
 - - -
 
-### **SCD Type 4: Add Historical Table**
+# **SCD Type 4: Add Historical Table**
 
 **Description**: The historical data is moved to a **separate historical table** that keeps track of changes, while the current table only holds the latest data.
 
@@ -163,7 +163,7 @@ When an attribute changes, a **new row** is added with the updated information, 
 
 - - -
 
-### **SCD Type 6: Hybrid (SCD 1 + SCD 2 + SCD 3)**
+# **SCD Type 6: Hybrid (SCD 1 + SCD 2 + SCD 3)**
 
 **Description**: This type is a **hybrid** approach that combines the features of SCD Type 1, Type 2, and Type 3. It involves:
 
@@ -182,7 +182,7 @@ When an attribute changes, a **new row** is added with the updated information, 
 
 - - -
 
-### **Conclusion:**
+# **Conclusion:**
 
 Each **SCD type** offers a different way to manage changes in dimension data:
 
