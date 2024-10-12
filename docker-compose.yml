@@ -1,5 +1,3 @@
-name: hugo-site
-
 services:
   server:
     image: hugomods/hugo:exts-0.128.2
