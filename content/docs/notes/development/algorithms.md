@@ -1,1 +1,3 @@
-Algo
+---
+Title: Algorithms
+---

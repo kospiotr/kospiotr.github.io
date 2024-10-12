@@ -1,6 +1,5 @@
 ---
 title: IDE
-
 ---
 # Installation
 ```
