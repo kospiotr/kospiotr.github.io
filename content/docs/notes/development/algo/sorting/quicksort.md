@@ -24,34 +24,21 @@ public class Quicksort {
       quicksort(array, 0, array.length - 1);
    }
 
-   private static void quicksort(int[] array, int left, int right) {
-      int[] subArray = Arrays.copyOfRange(array, left, right + 1);
-      if (left < right) {
-         int index = partition(array, left, right);
-         quicksort(array, left, index - 1);
-         quicksort(array, index, right);
-      }
+   private static void quicksort(int[] array, int lo, int hi) {
+      if (lo >= hi || hi < 0) return;
+      int partitionIndex = partition(array, lo, hi);
+      quicksort(array, lo, partitionIndex - 1);
+      quicksort(array, partitionIndex + 1, hi);
    }
 
-   private static int partition(int[] array, int left, int right) {
-      int middle = (left + right) / 2;
-      int pivot = array[middle];
-      while (left <= right) {
-         while (array[left] < pivot) {
-            left++;
-         }
-         while (array[right] > pivot) {
-            right--;
-         }
-         if (left <= right) {
-            int tmp = array[left];
-            array[left] = array[right];
-            array[right] = tmp;
-            left++;
-            right--;
-         }
+   private static int partition(int[] array, int lo, int hi) {
+      int pivot = array[hi];
+      while (true) {
+         while (array[lo] < pivot) lo++;
+         while (array[hi] > pivot) hi--;
+         if (lo >= hi) return lo;
+         swap(array, lo, hi);
       }
-      return left;
    }
 
 }
