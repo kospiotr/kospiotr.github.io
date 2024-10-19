@@ -6,7 +6,7 @@ In Java, `Stack` is a class that extends `Vector` and implements a standard **La
 structure. It inherits the synchronization properties of `Vector`, making it thread-safe but with similar performance
 drawbacks due to synchronization overhead.
 
-### Advantages
+# Advantages
 
 1. **LIFO Behavior**: The stack operates with a Last In First Out order, which is useful in many algorithms and
    processes, such as parsing expressions, backtracking, or implementing recursive algorithms iteratively.
@@ -15,7 +15,7 @@ drawbacks due to synchronization overhead.
 3. **Easy-to-Use API**: `Stack` provides simple methods like `push()`, `pop()`, `peek()`, which directly support typical
    stack operations.
 
-### Disadvantages
+# Disadvantages
 
 1. **Performance Overhead**: Since `Stack` inherits from `Vector`, it inherits its synchronized nature, which can lead
    to performance issues when synchronization is not required. This makes it slower compared to modern, non-synchronized
@@ -25,14 +25,14 @@ drawbacks due to synchronization overhead.
 3. **Unnecessary Synchronization**: If the stack is only used by one thread, the inherent synchronization is unnecessary
    and can degrade performance.
 
-### Comparison with Deque (ArrayDeque or LinkedList)
+# Comparison with Deque (ArrayDeque or LinkedList)
 In modern Java development, Deque (like ArrayDeque or LinkedList) is preferred for stack implementations. Here’s why:
 
 - Non-Synchronized: Deque is not synchronized by default, leading to better performance in non-concurrent scenarios.
 - More Flexibility: Deque can be used as both a stack and a queue, providing greater flexibility.
 - Better Performance: ArrayDeque in particular offers O(1) performance for push, pop, and peek operations without synchronization overhead.
 
-### Time and Space Complexity
+# Time and Space Complexity
 
 | Operation             | Time Complexity | Space Complexity | Description                                                     |
 |-----------------------|-----------------|------------------|-----------------------------------------------------------------|
@@ -42,7 +42,7 @@ In modern Java development, Deque (like ArrayDeque or LinkedList) is preferred f
 | **search (search)**   | O(n)            | O(1)             | Searching for an element requires scanning the stack.           |
 | **Iteration**         | O(n)            | O(1)             | Iterating through the stack takes linear time.                  |
 
-### Examples
+# Examples
 
 1. **Initialization and Pushing Elements**:
     - Time Complexity: O(1) for each push
@@ -156,7 +156,7 @@ In modern Java development, Deque (like ArrayDeque or LinkedList) is preferred f
    }
    ```
 
-### Conclusion:
+# Conclusion:
 
 - `Stack` in Java provides a thread-safe, synchronized implementation of a LIFO (Last In, First Out) data structure. It
   is simple to use and provides convenient methods for typical stack operations such as `push`, `pop`, and `peek`.

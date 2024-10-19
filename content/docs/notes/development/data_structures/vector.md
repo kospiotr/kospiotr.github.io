@@ -12,7 +12,7 @@ by `CopyOnWriteArrayList` or `Collections.synchronizedList()` in threaded applic
 multithreaded environment and are concerned about thread safety, you can use `Vector`. Otherwise, `ArrayList` is usually
 a better choice for general usage.
 
-### Advantages
+# Advantages
 
 1. **Thread-Safe**: `Vector` is synchronized, meaning it is thread-safe out of the box. If you need a thread-safe
    dynamic array, `Vector` can be useful without needing external synchronization mechanisms.
@@ -23,7 +23,7 @@ a better choice for general usage.
 4. **Legacy Support**: Some legacy systems or APIs still use `Vector`, so it may be required to work with them for
    backward compatibility.
 
-### Disadvantages
+# Disadvantages
 
 1. **Performance Overhead**: The synchronized methods in `Vector` add overhead even if only a single thread is accessing
    it. In modern applications, `ArrayList` is generally preferred unless synchronization is required.
@@ -33,7 +33,7 @@ a better choice for general usage.
 3. **Less Used in Modern Java**: `Vector` has largely been replaced by `ArrayList` and other collections that are not
    synchronized by default. Explicit synchronization can be applied when necessary.
 
-### Time and Space Complexity:
+# Time and Space Complexity:
 
 | Operation             | Time Complexity | Space Complexity | Description                                                                     |
 |-----------------------|-----------------|------------------|---------------------------------------------------------------------------------|
@@ -44,7 +44,7 @@ a better choice for general usage.
 | **Resizing Array**    | O(n)            | O(n)             | Resizing involves creating a new array and copying elements.                    |
 | **Iteration**         | O(n)            | O(1)             | Iterating through the vector takes O(n).                                        |
 
-### Examples
+# Examples
 
 1. **Initialization and Adding Elements**:
     - Time Complexity: O(1) (amortized for adding elements)

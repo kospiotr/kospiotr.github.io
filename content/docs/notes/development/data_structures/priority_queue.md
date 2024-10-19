@@ -15,7 +15,7 @@ dynamically.
 However, it's not suitable for cases where random access or ordering of all elements is needed. In those cases, other
 structures like `ArrayList` or `TreeSet` might be more appropriate.
 
-### Advantages
+# Advantages
 
 1. **Efficient Priority Management**: The `PriorityQueue` ensures that the highest-priority element (smallest by
    default) is always at the head of the queue, which allows for fast retrieval of the next "most important" element.
@@ -25,7 +25,7 @@ structures like `ArrayList` or `TreeSet` might be more appropriate.
 4. **Partial Sorting**: You can efficiently access the smallest or largest element without sorting the entire
    collection.
 
-### Disadvantages
+# Disadvantages
 
 1. **No Random Access**: Unlike `ArrayList`, `PriorityQueue` does not support random access to elements. You cannot
    directly access elements by index.
@@ -35,7 +35,7 @@ structures like `ArrayList` or `TreeSet` might be more appropriate.
 4. **Not Thread-Safe**: `PriorityQueue` is not synchronized. For concurrent access, use `PriorityBlockingQueue`
    from `java.util.concurrent`.
 
-### Time and Space Complexity
+# Time and Space Complexity
 
 | Operation                  | Time Complexity | Space Complexity | Description                                                                                             |
 |----------------------------|-----------------|------------------|---------------------------------------------------------------------------------------------------------|
@@ -46,7 +46,7 @@ structures like `ArrayList` or `TreeSet` might be more appropriate.
 | **Iteration**              | O(n)            | O(n)             | Iterating through all elements takes O(n), but the elements are not guaranteed to be in priority order. |
 | **Space Complexity**       | O(n)            | O(n)             | The space required grows linearly with the number of elements.                                          |
 
-### Examples
+# Examples
 
 1. **Initialization and Adding Elements:**
     - Time Complexity: O(log n) for each insertion
