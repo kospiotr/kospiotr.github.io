@@ -47,82 +47,53 @@ operations like adding, removing, and searching elements.
 # Examples
 
 1. **Add Operation**
-    - **Time Complexity**: `O(log n)`
+    - Time Complexity: `O(log n)`
    ```java
    TreeSet<Integer> treeSet = new TreeSet<>();
-   treeSet.add(10);  // Adding an element
-   treeSet.add(5);
-   treeSet.add(15);
-   System.out.println(treeSet);  // Output: [5, 10, 15]
+   treeSet.add(10); // [10]
+   treeSet.add(5);  // [5, 10]
+   treeSet.add(15); // [5, 15, 10]
+   treeSet.add(20); // [5, 15, 10, 20]
    ```
 
 2. **Remove Operation**
-    - **Time Complexity**: `O(log n)`
+    - Time Complexity: `O(log n)`
    ```java
-   TreeSet<Integer> treeSet = new TreeSet<>();
-   treeSet.add(10);
-   treeSet.add(5);
-   treeSet.add(15);
-   treeSet.remove(10);  // Removing an element
-   System.out.println(treeSet);  // Output: [5, 15]
+   treeSet.remove(20); // [5, 15, 10]
    ```
 
 3. **Contains Operation**
-    - **Time Complexity**: `O(log n)`
+    - Time Complexity: `O(log n)`
    ```java
-   TreeSet<Integer> treeSet = new TreeSet<>();
-   treeSet.add(10);
-   treeSet.add(5);
-   treeSet.add(15);
-   System.out.println(treeSet.contains(5));  // Output: true
+   treeSet.contains(5); // true
    ```
 
 4. **First Operation**
-    - **Time Complexity**: `O(log n)`
+    - Time Complexity: `O(log n)`
    ```java
-   TreeSet<Integer> treeSet = new TreeSet<>();
-   treeSet.add(10);
-   treeSet.add(5);
-   treeSet.add(15);
-   System.out.println(treeSet.first());  // Output: 5
+   treeSet.first(); // 5
    ```
 
 5. **Last Operation**
-    - **Time Complexity**: `O(log n)`
+    - Time Complexity: `O(log n)`
    ```java
-   TreeSet<Integer> treeSet = new TreeSet<>();
-   treeSet.add(10);
-   treeSet.add(5);
-   treeSet.add(15);
-   System.out.println(treeSet.last());  // Output: 15
+   treeSet.last(); // 15
    ```
 
 6. **HeadSet Operation**
-    - **Time Complexity**: `O(log n)`
+    - Time Complexity: `O(log n)`
    ```java
-   TreeSet<Integer> treeSet = new TreeSet<>();
-   treeSet.add(10);
-   treeSet.add(5);
-   treeSet.add(15);
-   System.out.println(treeSet.headSet(10));  // Output: [5]
+   treeSet.headSet(10); // [5]
    ```
 
 7. **TailSet Operation**
-    - **Time Complexity**: `O(log n)`
+    - Time Complexity: `O(log n)`
    ```java
-   TreeSet<Integer> treeSet = new TreeSet<>();
-   treeSet.add(10);
-   treeSet.add(5);
-   treeSet.add(15);
-   System.out.println(treeSet.tailSet(10));  // Output: [10, 15]
+   treeSet.tailSet(10);  // [10, 15]
    ```
 
 8. **SubSet Operation**
-    - **Time Complexity**: `O(log n)`
+    - Time Complexity: `O(log n)`
    ```java
-   TreeSet<Integer> treeSet = new TreeSet<>();
-   treeSet.add(10);
-   treeSet.add(5);
-   treeSet.add(15);
-   System.out.println(treeSet.subSet(5, 15));  // Output: [5, 10]
+   treeSet.subSet(5, 15);  // [5, 10]
    ```
