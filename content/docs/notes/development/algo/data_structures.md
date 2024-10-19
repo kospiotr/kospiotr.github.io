@@ -4,20 +4,6 @@ title: Data Structures
 
 Using Java Framework
 
-### Vector
-
-### Stack
-
-* **Description:** A last-in-first-out (LIFO) data structure where the most recently added element is accessed first.
-* **Java Implementation:**
-
-Example:
-
-```java
-Stack<Integer> stack = new Stack<>();
-```
-
-* **Use Cases:** Used in depth-first search (DFS), expression evaluation, backtracking, etc.
 
 ## Queue
 
@@ -68,18 +54,6 @@ Queue<Integer> queue = new LinkedList<>();
 
 * **Use Cases:** Task scheduling, breadth-first search (BFS), etc.
 
-### 8. PriorityQueue
-
-* **Description:** A special type of queue where elements are dequeued in order of their priority.
-* **Java Implementation:**
-
-Example:
-
-```java
-PriorityQueue<Integer> pq = new PriorityQueue<>();
-```
-
-* **Use Cases:** Task scheduling with priorities, Dijkstra's algorithm, Huffman coding, etc.
 
 ### 9. Tree (Binary Tree, Binary Search Tree)
 
@@ -99,19 +73,6 @@ PriorityQueue<Integer> pq = new PriorityQueue<>();
 * **Description:** A data structure consisting of nodes (vertices) and edges that connect pairs of nodes.
 * **Java Implementation:** You can implement graphs using an adjacency list, adjacency matrix, or edge list.
 * **Use Cases:** Modeling relationships, networks, pathfinding algorithms (BFS, DFS, Dijkstra), etc.
-
-### 12. Deque (Double-Ended Queue)
-
-* **Description:** A linear collection that allows insertion and removal of elements from both ends.
-* **Java Implementation:**
-
-Example:
-
-```java
-Deque<Integer> deque = new LinkedList<>();
-```
-
-* **Use Cases:** Storing and accessing data from both ends, useful in sliding window algorithms.
 
 ### 13. LinkedHashMap
 

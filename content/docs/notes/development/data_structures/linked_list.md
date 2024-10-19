@@ -16,7 +16,7 @@ If you need fast access by index or are working with a large dataset where rando
 be a better choice. On the other hand, if your use case involves many insertions or deletions and sequential
 access, `LinkedList` is a better fit.
 
-# Advantages:
+# Advantages
 
 1. **Efficient Insertions/Deletions**: Insertions and deletions at the beginning or in the middle of the list are more
    efficient (O(1)) compared to `ArrayList`, which requires shifting elements (O(n)).
@@ -27,7 +27,7 @@ access, `LinkedList` is a better fit.
 4. **Bi-Directional Navigation**: Since it's a doubly linked list, it allows traversing in both forward and backward
    directions efficiently.
 
-# Disadvantages:
+# Disadvantages
 
 1. **Memory Overhead**: Each node in a `LinkedList` stores a reference to both the next and previous nodes, consuming
    more memory compared to `ArrayList`, which uses a contiguous block of memory.
@@ -36,7 +36,7 @@ access, `LinkedList` is a better fit.
 3. **Less Cache-Friendly**: Elements in a `LinkedList` are scattered across memory rather than being stored contiguously
    like in an array, so it does not benefit from CPU cache locality as `ArrayList` does.
 
-# Time and Space Complexity:
+# Time and Space Complexity
 
 | Operation             | Time Complexity | Space Complexity | Description                                                                     |
 |-----------------------|-----------------|------------------|---------------------------------------------------------------------------------|

@@ -4,7 +4,7 @@ Title: Arrays
 
 In Java, arrays are a fundamental data structure used to store elements of the same data type in contiguous memory.
 
-# Advantages:
+# Advantages
 
 1. **Fixed Size**: Arrays have a predefined size, which means they allocate a contiguous block of memory. This helps
    with fast access to elements.
@@ -15,7 +15,7 @@ In Java, arrays are a fundamental data structure used to store elements of the s
 4. **Cache-Friendly**: Since elements are stored contiguously in memory, accessing array elements benefits from CPU
    cache locality, improving performance.
 
-# Disadvantages:
+# Disadvantages
 
 1. **Fixed Size**: The size of an array cannot be changed after its initialization. To resize, a new array needs to be
    created, and data must be copied.
@@ -24,7 +24,7 @@ In Java, arrays are a fundamental data structure used to store elements of the s
 3. **Homogeneity**: Arrays can only store elements of a single data type, so they lack the flexibility of structures
    like `ArrayList` that can grow dynamically.
 
-# Time and Space Complexity:
+# Time and Space Complexity
 
 | Operation               | Time Complexity | Space Complexity | Description                                                          |
 |-------------------------|-----------------|------------------|----------------------------------------------------------------------|

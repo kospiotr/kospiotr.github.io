@@ -8,7 +8,7 @@ interface. It is widely used when you need a dynamic array that can grow and shr
 For scenarios where the list size changes frequently or insertions/deletions are common in the middle, alternatives
 like `LinkedList` or other specialized data structures might be more suitable.
 
-# Advantages:
+# Advantages
 
 1. **Dynamic Resizing**: Unlike arrays, `ArrayList` can grow or shrink dynamically when elements are added or removed,
    making it more flexible.
@@ -17,7 +17,7 @@ like `LinkedList` or other specialized data structures might be more suitable.
    with dynamic arrays.
 4. **Type Safety**: Since Java 5, `ArrayList` supports generics, allowing type-safe collections.
 
-# Disadvantages:
+# Disadvantages
 
 1. **Resizing Cost**: When the `ArrayList` reaches its capacity, it needs to resize (usually by 50% or 100% increase),
    which involves copying the elements to a new array. This resizing operation is costly.
@@ -26,7 +26,7 @@ like `LinkedList` or other specialized data structures might be more suitable.
 3. **Memory Overhead**: `ArrayList` may consume more memory than arrays because of its capacity (an internal array
    that's typically larger than the actual list size).
 
-# Time and Space Complexity:
+# Time and Space Complexity
 
 | Operation                  | Time Complexity  | Space Complexity                | Description                                                                                                |
 |----------------------------|------------------|---------------------------------|------------------------------------------------------------------------------------------------------------|
