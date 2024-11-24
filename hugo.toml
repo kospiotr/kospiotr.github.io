@@ -18,7 +18,7 @@ googleAnalytics = "G-N5X4WQMVC2"
 #        weight = 20
 [params]
     BookTheme = 'auto'
-    BookRepo = 'https://github.com/kospiotr/kospiott.github.io'
+    BookRepo = 'https://github.com/kospiotr/kospiotr.github.io'
     BookEditPath = 'edit/main'
     BookCommitPath = 'commit'
     BookToC = true
