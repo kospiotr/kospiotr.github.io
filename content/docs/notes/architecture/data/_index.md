@@ -273,7 +273,186 @@ Normalization is the process of organizing data in a database to reduce redundan
 | **4NF**     | No multi-valued dependencies                     | Handles independent multi-values       |
 | **5NF**     | No join dependencies                             | Prevents redundancy from complex joins |
 
-Would you like more details on any specific normal form or practical implementation tips?
+
+Here’s how the principles of normalization are practically implemented in **real-world scenarios**:
+
+---
+
+### **Scenario 1: 1NF Implementation**
+
+**Problem**: A student database stores multiple phone numbers in a single column.
+
+- **Initial Table (Not in 1NF)**:
+  | StudentID | Name   | PhoneNumbers         |
+  |-----------|--------|----------------------|
+  | 1         | John   | 123-456, 789-012    |
+  | 2         | Alice  | 345-678             |
+
+- **Solution**: Break the multi-valued column into atomic values.
+
+- **Normalized Table**:
+  | StudentID | Name   | PhoneNumber  |
+  |-----------|--------|--------------|
+  | 1         | John   | 123-456      |
+  | 1         | John   | 789-012      |
+  | 2         | Alice  | 345-678      |
+
+---
+
+### **Scenario 2: 2NF Implementation**
+
+**Problem**: A sales database mixes data about customers and orders in a single table.
+
+- **Initial Table (Not in 2NF)**:
+  | OrderID | CustomerID | CustomerName | Product   | Quantity |
+  |---------|------------|--------------|-----------|----------|
+  | 1       | 101        | John Doe     | Laptop    | 1        |
+  | 2       | 101        | John Doe     | Smartphone| 2        |
+
+  **Issue**: `CustomerName` depends only on `CustomerID`, not on the composite primary key (`OrderID, Product`).
+
+- **Solution**: Split the table to remove partial dependencies.
+
+  **Orders Table**:
+  | OrderID | CustomerID |
+  |---------|------------|
+  | 1       | 101        |
+  | 2       | 101        |
+
+  **Customers Table**:
+  | CustomerID | CustomerName |
+  |------------|--------------|
+  | 101        | John Doe     |
+
+  **OrderDetails Table**:
+  | OrderID | Product    | Quantity |
+  |---------|------------|----------|
+  | 1       | Laptop     | 1        |
+  | 2       | Smartphone | 2        |
+
+---
+
+### **Scenario 3: 3NF Implementation**
+
+**Problem**: A supplier database stores unnecessary attributes in a single table.
+
+- **Initial Table (Not in 3NF)**:
+  | SupplierID | SupplierName | City      | Region  |
+  |------------|--------------|-----------|---------|
+  | 1          | Supplier A   | Chicago   | Midwest |
+  | 2          | Supplier B   | Dallas    | South   |
+
+  **Issue**: `Region` depends on `City`, not on `SupplierID`.
+
+- **Solution**: Remove transitive dependencies by creating a separate table for cities.
+
+  **Suppliers Table**:
+  | SupplierID | SupplierName | City    |
+  |------------|--------------|---------|
+  | 1          | Supplier A   | Chicago |
+  | 2          | Supplier B   | Dallas  |
+
+  **Cities Table**:
+  | City      | Region  |
+  |-----------|---------|
+  | Chicago   | Midwest |
+  | Dallas    | South   |
+
+---
+
+### **Scenario 4: BCNF Implementation**
+
+**Problem**: A university database assigns classrooms to courses but also tracks room managers.
+
+- **Initial Table (Not in BCNF)**:
+  | RoomID | CourseID | Manager       |
+  |--------|----------|---------------|
+  | 101    | Math     | Alice         |
+  | 101    | Physics  | Alice         |
+  | 102    | Chemistry| Bob           |
+
+  **Issue**: `RoomID` determines `Manager`, but `RoomID` is not a candidate key.
+
+- **Solution**: Split the table to eliminate dependency violations.
+
+  **Rooms Table**:
+  | RoomID | Manager |
+  |--------|---------|
+  | 101    | Alice   |
+  | 102    | Bob     |
+
+  **RoomCourses Table**:
+  | RoomID | CourseID |
+  |--------|----------|
+  | 101    | Math     |
+  | 101    | Physics  |
+  | 102    | Chemistry|
+
+---
+
+### **Scenario 5: 4NF Implementation**
+
+**Problem**: A hobby and courses database for students combines unrelated multi-valued facts.
+
+- **Initial Table (Not in 4NF)**:
+  | StudentID | Course     | Hobby      |
+  |-----------|------------|------------|
+  | 1         | Math       | Painting   |
+  | 1         | Science    | Chess      |
+
+  **Issue**: `Course` and `Hobby` are independent of each other but combined in one table.
+
+- **Solution**: Split into two tables for independent facts.
+
+  **Courses Table**:
+  | StudentID | Course     |
+  |-----------|------------|
+  | 1         | Math       |
+  | 1         | Science    |
+
+  **Hobbies Table**:
+  | StudentID | Hobby      |
+  |-----------|------------|
+  | 1         | Painting   |
+  | 1         | Chess      |
+
+---
+
+### **Scenario 6: 5NF Implementation**
+
+**Problem**: A supplier database combines relationships between suppliers, parts, and projects.
+
+- **Initial Table (Not in 5NF)**:
+  | SupplierID | PartID | ProjectID |
+  |------------|--------|-----------|
+  | 1          | A      | X         |
+  | 1          | B      | X         |
+  | 2          | A      | Y         |
+
+  **Issue**: Redundancy due to multiple independent relationships (Supplier-Part, Part-Project).
+
+- **Solution**: Decompose into three independent tables.
+
+  **SuppliersParts Table**:
+  | SupplierID | PartID |
+  |------------|--------|
+  | 1          | A      |
+  | 1          | B      |
+  | 2          | A      |
+
+  **PartsProjects Table**:
+  | PartID | ProjectID |
+  |--------|-----------|
+  | A      | X         |
+  | B      | X         |
+  | A      | Y         |
+
+  **SuppliersProjects Table**:
+  | SupplierID | ProjectID |
+  |------------|-----------|
+  | 1          | X         |
+  | 2          | Y         |
+
 
 Refs:
 - https://youtu.be/GFQaEYEc8_8?si=8v5hSBXxqwJE97_k
