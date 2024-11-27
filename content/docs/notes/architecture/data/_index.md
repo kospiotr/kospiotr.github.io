@@ -108,91 +108,173 @@ Example: Operation in time
 Lookup table / dictionary. This might change (add / modify) often.
 Example: Client Table
 
-## Slowly Changing Dimension
-It is a table which doesn't change very often.
-Example: Country Table
-Slowly Changing Dimension (SCD) is a dimension that stores and manages both current and historical data over the time in a data warehouse. 
-
-### Type 0: Retain original
-The Type 0 dimension attributes never change and are assigned to attributes that have durable values or are described as 'Original'. Examples: Date of Birth, Original Credit Score. Type 0 applies to most date dimension attributes.
-
-### Type 1: Overwrite
-This method overwrites old with new data, and therefore does not track historical data.
-
-### Type 2: Add new row
-This method tracks historical data by creating multiple records for a given natural key in the dimensional tables with separate surrogate keys and/or different version numbers. Unlimited history is preserved for each insert.
-
-| Supplier_Key | Supplier_Code | Supplier_Name  | Supplier_State | Version |
-|--------------|---------------|----------------|----------------|---------|
-| 123          | ABC           | Acme Supply Co | CA             | 1       |
-| 124          | ABC           | Acme Supply Co | IL             | 2       |
-| 125          | ABC           | Acme Supply Co | NY             | 3       |
-
-Another method is to add 'effective date' columns.
-
-| Supplier_Key | Supplier_Code | Supplier_Name  | Supplier_State | Start Date          | End Date            |
-|--------------|---------------|----------------|----------------|---------------------|---------------------|
-| 123          | ABC           | Acme Supply Co | CA             | 2000-01-01T00:00:00 | 2004-12-22T00:00:00 |
-| 124          | ABC           | Acme Supply Co | IL             | 2004-12-22T00:00:00 | Null                |
-
-Another method is to add 'effective date' columns.
-
-| Supplier_Key | Supplier_Code | Supplier_Name  | Supplier_State | Effective Date      | Current Flag |
-|--------------|---------------|----------------|----------------|---------------------|--------------|
-| 123          | ABC           | Acme Supply Co | CA             | 2000-01-01T00:00:00 | N            |
-| 124          | ABC           | Acme Supply Co | IL             | 2004-12-22T00:00:00 | Y            |
-
-### Type 3: Add new attribute
-
-| Supplier_Key | Supplier_Code | Supplier_Name  | Original_Supplier_State | Effective Date      | Current_Supplier_State |
-|--------------|---------------|----------------|-------------------------|---------------------|------------------------|
-| 123          | ABC           | Acme Supply Co | CA                      | 2000-01-01T00:00:00 | NY                     |
 
 
-### Type 4: Add history table
+# Normalisation
 
-Supplier
+### **Database Normal Forms**
+Normalization is the process of organizing data in a database to reduce redundancy and improve data integrity. Normal forms are a series of rules applied to database tables to ensure consistency and efficiency.
 
-| Supplier_Key | Supplier_Code | Supplier_Name  | Supplier_State |
-|--------------|---------------|----------------|----------------|
-| 125          | ABC           | Acme Supply Co | NY             |
+---
 
-Supplier History
+### **1st Normal Form (1NF): Eliminate Repeating Groups**
+**Principle**: Each column should hold atomic (indivisible) values, and there should be no repeating groups or arrays within a table. Each row must be unique.
 
-| Supplier_Key | Supplier_Code | Supplier_Name  | Supplier_State | Create Date         |
-|--------------|---------------|----------------|----------------|---------------------|
-| 123          | ABC           | Acme Supply Co | CA             | 2003-06-14T00:00:00 |
-| 124          | ABC           | Acme Supply Co | IL             | 2004-12-22T00:00:00 |
+- **Good Example**:
+  | OrderID | Product    | Quantity |
+  |---------|------------|----------|
+  | 1       | Apple      | 10       |
+  | 1       | Banana     | 5        |
+  | 2       | Orange     | 3        |
 
-# BigQuery
+- **Bad Example** (Repeating groups):
+  | OrderID | Product1 | Quantity1 | Product2 | Quantity2 |
+  |---------|----------|-----------|----------|-----------|
+  | 1       | Apple    | 10        | Banana   | 5         |
 
-## Processing Big Data with BigQuery
+**Issue**: Difficult to query and maintain as the number of products grows.
 
-### Understanding the Use Case
-- Data Collection 
-- Data Governance
-- Data usage policy
+---
 
-### Data Storage
-- Storage capacity
-- Security
-- Scalability
-- Redundancy / Backup / Recovery
-- 
-### Data Exploration
-- Data schema
-- Data format
-- Changes over time
+### **2nd Normal Form (2NF): Eliminate Partial Dependencies**
+**Principle**: Ensure that every non-key column is fully dependent on the whole primary key (for composite keys). Tables with a single-column primary key are automatically in 2NF if they meet 1NF.
 
-### Data analytics
-- Processing engine
-- Service availability
-- Output of the analysis
+- **Good Example**:
+  **Orders Table**:
+  | OrderID | CustomerID |
+  |---------|------------|
+  | 1       | 101        |
+  | 2       | 102        |
 
-## Big Query overview
-- OLAP
-- Big data > 1TB
-- Structured data
-- Serverless and fully managed
+  **OrderDetails Table**:
+  | OrderID | ProductID | Quantity |
+  |---------|-----------|----------|
+  | 1       | 201       | 10       |
+  | 1       | 202       | 5        |
 
-## BigQuery Architecture
+- **Bad Example**:
+  | OrderID | CustomerID | ProductID | Quantity |
+  |---------|------------|-----------|----------|
+  | 1       | 101        | 201       | 10       |
+  | 1       | 101        | 202       | 5        |
+
+**Issue**: "CustomerID" depends only on `OrderID`, not the combination of `OrderID` and `ProductID`. This creates redundancy.
+
+---
+
+### **3rd Normal Form (3NF): Eliminate Transitive Dependencies**
+**Principle**: Ensure that non-key columns are only dependent on the primary key, not on other non-key columns.
+
+- **Good Example**:
+  **Orders Table**:
+  | OrderID | CustomerID | OrderDate |
+  |---------|------------|-----------|
+  | 1       | 101        | 2024-11-25|
+
+  **Customers Table**:
+  | CustomerID | CustomerName |
+  |------------|--------------|
+  | 101        | John Doe     |
+
+- **Bad Example**:
+  | OrderID | CustomerID | CustomerName |
+  |---------|------------|--------------|
+  | 1       | 101        | John Doe     |
+  | 2       | 101        | John Doe     |
+
+**Issue**: "CustomerName" depends on `CustomerID`, not directly on `OrderID`, leading to redundancy and maintenance problems.
+
+---
+
+### **Boyce-Codd Normal Form (BCNF): Generalization of 3NF**
+**Principle**: Every determinant (column or combination of columns that uniquely identify another column) must be a candidate key.
+
+- **Good Example**:
+  **Rooms Table**:
+  | RoomID | RoomType | PricePerNight |
+  |--------|----------|---------------|
+  | 101    | Single   | 100           |
+  | 102    | Double   | 150           |
+
+- **Bad Example**:
+  | RoomID | RoomType | Manager       |
+  |--------|----------|---------------|
+  | 101    | Single   | Alice         |
+  | 102    | Double   | Bob           |
+
+**Issue**: "RoomType" determines "Manager," but "RoomType" is not a candidate key (it’s not unique).
+
+---
+
+### **4th Normal Form (4NF): Eliminate Multi-Valued Dependencies**
+**Principle**: A table should not have more than one multi-valued dependency. Multi-valued dependencies occur when one column can have multiple values independently of another.
+
+- **Good Example**:
+  **Courses Table**:
+  | StudentID | CourseID |
+  |-----------|----------|
+  | 1         | Math     |
+  | 1         | Science  |
+  | 2         | Math     |
+
+  **Hobbies Table**:
+  | StudentID | Hobby    |
+  |-----------|----------|
+  | 1         | Painting |
+  | 1         | Chess    |
+  | 2         | Swimming |
+
+- **Bad Example**:
+  | StudentID | CourseID | Hobby      |
+  |-----------|----------|------------|
+  | 1         | Math     | Painting   |
+  | 1         | Science  | Chess      |
+
+**Issue**: Independent multi-valued facts (Courses and Hobbies) are combined, leading to redundancy.
+
+---
+
+### **5th Normal Form (5NF): Eliminate Join Dependencies**
+**Principle**: A table is in 5NF if it cannot be decomposed into smaller tables without losing data.
+
+- **Good Example**:
+  **Suppliers Table**:
+  | SupplierID | PartID |
+  |------------|--------|
+  | 1          | A      |
+  | 1          | B      |
+  | 2          | A      |
+
+  **Projects Table**:
+  | ProjectID | PartID |
+  |-----------|--------|
+  | X         | A      |
+  | X         | B      |
+  | Y         | A      |
+
+- **Bad Example**:
+  | SupplierID | PartID | ProjectID |
+  |------------|--------|-----------|
+  | 1          | A      | X         |
+  | 1          | B      | X         |
+  | 2          | A      | Y         |
+
+**Issue**: Combining multiple relationships (Supplier-Part and Part-Project) creates redundancy.
+
+---
+
+### Summary of Normal Forms
+| Normal Form | Key Principle                                     | Main Issue Resolved                    |
+|-------------|---------------------------------------------------|----------------------------------------|
+| **1NF**     | Atomic columns, no repeating groups              | Eliminates multi-value cells           |
+| **2NF**     | No partial dependencies                          | Removes dependencies on part of key    |
+| **3NF**     | No transitive dependencies                       | Removes non-key dependencies           |
+| **BCNF**    | Every determinant is a candidate key             | Resolves key dependency violations     |
+| **4NF**     | No multi-valued dependencies                     | Handles independent multi-values       |
+| **5NF**     | No join dependencies                             | Prevents redundancy from complex joins |
+
+Would you like more details on any specific normal form or practical implementation tips?
+
+Refs:
+- https://youtu.be/GFQaEYEc8_8?si=8v5hSBXxqwJE97_k
+- https://youtu.be/SK4H5tTT6-M?si=stLjOO_iDI-Rsdnk
