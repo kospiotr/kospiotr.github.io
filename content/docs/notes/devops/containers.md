@@ -92,6 +92,7 @@ To push images to your private registry hosted by gcr, you need to tag the image
 # Podman
 1. Run cmd.exe as administrator.
 2. Create symlink: `mklink "C:\Program Files\RedHat\Podman\docker.exe" "C:\Program Files\RedHat\Podman\podman.exe"`
+3. Test: `docker version`
 
 # Recipes
 
