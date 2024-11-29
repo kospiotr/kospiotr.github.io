@@ -1,5 +1,5 @@
 ---
-title: Docker
+title: Containers
 ---
 # Init
 
@@ -88,6 +88,10 @@ To push images to your private registry hosted by gcr, you need to tag the image
 * `docker stop $(docker ps -a -q)` - stop all containers
 * `docker rm $(docker ps -a -q)` - delete all containers
 * `docker rmi $(docker images -q)` - delete all images
+
+# Podman
+1. Run cmd.exe as administrator.
+2. Create symlink: `mklink "C:\Program Files\RedHat\Podman\docker.exe" "C:\Program Files\RedHat\Podman\podman.exe"`
 
 # Recipes
 
