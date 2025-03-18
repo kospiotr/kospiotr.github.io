@@ -1,0 +1,179 @@
+siteId: demo.decapcms.org
+backend:
+  name: github
+  repo: kospiotr/bcu
+  site_domain: https://bcu-amf.pages.dev
+  base_url: https://bcu-amf.pages.dev
+  auth_endpoint: /api/auth
+media_folder: /static/public
+public_folder: /public/
+slug:
+  encoding: ascii
+  clean_accents: true
+  sanitize_replacement: _
+collections:
+  - name: aktualnosci
+    label: Aktualności
+    folder: content/aktualnosci/
+    create: true
+    path: '{{year}}-{{month}}-{{day}}-{{slug}}/_index'
+    media_folder: ''
+    public_folder: ''
+    editor:
+      preview: true
+    fields:
+      - label: Tytuł
+        name: title
+        widget: string
+      - label: Data opublikowania
+        name: date
+        widget: datetime
+        default: "{{now}}"
+        format: YYYY-MM-DDTHH:mm:ss
+      - label: Szkic
+        name: draft
+        widget: boolean
+        default: false
+        hint: Zawartość w trybie szkic nie będzie opublikowana.
+      - name: image
+        label: Okładka
+        widget: image
+        required: false
+      - label: Treść
+        name: body
+        widget: markdown
+      - label: Tagi
+        name: tags
+        widget: list
+      - name: albums
+        label: Albumy
+        widget: list
+        required: false
+        fields:
+          - name: name
+            label: Nazwa Albumu
+            widget: string
+            required: false
+          - name: images
+            label: Obrazy
+            widget: list
+            field:
+              name: obraz
+              label: Obraz
+              widget: image
+  - name: kursy
+    label: Kursy i Szkolenia
+    folder: content/kursy
+    create: true
+    path: '{{slug}}/_index'
+    editor:
+      preview: false
+    fields:
+      - label: Tytuł
+        name: title
+        widget: string
+      - label: Szkic
+        name: draft
+        widget: boolean
+        default: false
+        hint: Zawartość w trybie szkic nie będzie opublikowana.
+      - name: image
+        label: Okładka
+        widget: image
+        required: false
+      - label: Treść
+        name: body
+        widget: markdown
+        required: false
+      - label: Czas trwania w sumie
+        name: total_hours
+        widget: string
+        required: false
+      - label: Uczestnicy
+        name: participants
+        widget: string
+        required: false
+      - label: Godzin teoretycznych
+        name: theory_hours
+        widget: string
+        required: false
+      - label: Zakres teoretyczny
+        name: theory_content
+        widget: list
+        required: false
+        field:
+          name: zakres_teoretyczny
+          widget: text
+      - label: Godzin praktycznych
+        name: practice_hours
+        widget: string
+        required: false
+      - label: Zakres praktyczny
+        name: practice_content
+        widget: list
+        required: false
+        field:
+          name: zakres_praktyczny
+          widget: text
+      - label: Zielona transformacja
+        name: green_transformation
+        widget: text
+        required: false
+      - label: Cyfrowe kompetencje
+        name: digital_competences
+        widget: text
+        required: false
+      - label: Kwalifikacje trenerów
+        name: trainer_qualifications
+        widget: list
+        required: false
+        field:
+          name: kwalifikacja_trenerow
+          widget: string
+  - name: edycje-kursow
+    label: Edycje kursów
+    folder: content/kursy
+    create: true
+    path: '{{kurs}}/{{slug}}/index'
+    summary: '{{kurs}} - {{title}}'
+    editor:
+      preview: false
+    fields:
+      - label: Kurs
+        name: kurs
+        widget: relation
+        collection: kursy
+        search_fields:
+          - title
+        value_field: title
+        display_fields:
+          - title
+      - label: Tytuł
+        name: title
+        widget: string
+      - label: Szkic
+        name: draft
+        widget: boolean
+        default: false
+        hint: Zawartość w trybie szkic nie będzie opublikowana.
+      - name: image
+        label: Okładka
+        widget: image
+        required: false
+      - label: Treść
+        name: body
+        widget: markdown
+        required: false
+      - label: Oś czasu
+        name: timeline
+        widget: list
+        required: false
+        fields:
+          - label: Etap
+            name: text
+            widget: string
+          - label: Data
+            name: date
+            widget: datetime
+            default: "{{now}}"
+            format: YYYY-MM-DDTHH:mm:ss
