@@ -19,7 +19,7 @@ googleAnalytics = "G-N5X4WQMVC2"
 [params]
     BookTheme = 'auto'
     BookRepo = 'https://github.com/kospiotr/kospiotr.github.io'
-    BookEditPath = 'edit/main'
+    BookEditPath = 'edit/master'
     BookCommitPath = 'commit'
     BookToC = true
     BookDateFormat = '2006-01-02'
