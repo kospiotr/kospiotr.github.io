@@ -1,9 +1,9 @@
-siteId: demo.decapcms.org
+siteId: pkosmowski.pl
 backend:
   name: github
-  repo: kospiotr/bcu
-  site_domain: https://bcu-amf.pages.dev
-  base_url: https://bcu-amf.pages.dev
+  repo: kospiotr/kospiotr.github.io
+  site_domain: https://pkosmowski.pl
+  base_url: https://pkosmowski.pl
   auth_endpoint: /api/auth
 media_folder: /static/public
 public_folder: /public/
@@ -12,11 +12,11 @@ slug:
   clean_accents: true
   sanitize_replacement: _
 collections:
-  - name: aktualnosci
-    label: Aktualności
-    folder: content/aktualnosci/
+  - name: posty
+    label: Posty
+    folder: content/posts/
     create: true
-    path: '{{year}}-{{month}}-{{day}}-{{slug}}/_index'
+    path: '{{year}}-{{month}}-{{day}}-{{slug}}'
     media_folder: ''
     public_folder: ''
     editor:
@@ -45,22 +45,6 @@ collections:
       - label: Tagi
         name: tags
         widget: list
-      - name: albums
-        label: Albumy
-        widget: list
-        required: false
-        fields:
-          - name: name
-            label: Nazwa Albumu
-            widget: string
-            required: false
-          - name: images
-            label: Obrazy
-            widget: list
-            field:
-              name: obraz
-              label: Obraz
-              widget: image
   - name: kursy
     label: Kursy i Szkolenia
     folder: content/kursy
@@ -130,50 +114,3 @@ collections:
         field:
           name: kwalifikacja_trenerow
           widget: string
-  - name: edycje-kursow
-    label: Edycje kursów
-    folder: content/kursy
-    create: true
-    path: '{{kurs}}/{{slug}}/index'
-    summary: '{{kurs}} - {{title}}'
-    editor:
-      preview: false
-    fields:
-      - label: Kurs
-        name: kurs
-        widget: relation
-        collection: kursy
-        search_fields:
-          - title
-        value_field: title
-        display_fields:
-          - title
-      - label: Tytuł
-        name: title
-        widget: string
-      - label: Szkic
-        name: draft
-        widget: boolean
-        default: false
-        hint: Zawartość w trybie szkic nie będzie opublikowana.
-      - name: image
-        label: Okładka
-        widget: image
-        required: false
-      - label: Treść
-        name: body
-        widget: markdown
-        required: false
-      - label: Oś czasu
-        name: timeline
-        widget: list
-        required: false
-        fields:
-          - label: Etap
-            name: text
-            widget: string
-          - label: Data
-            name: date
-            widget: datetime
-            default: "{{now}}"
-            format: YYYY-MM-DDTHH:mm:ss
