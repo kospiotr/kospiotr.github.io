@@ -8,5 +8,6 @@ export const onRequest: PagesFunction<Env> = async (context) => {
     const data = context.data;
     const headers = context.request.headers;
     const text = await context.request.text();
-    return new Response(JSON.stringify({value, params, data, headers, text}));
+    const { searchParams } = new URL(context.request.url)
+    return new Response(JSON.stringify({value, params, data, headers, text, searchParams}));
 };
