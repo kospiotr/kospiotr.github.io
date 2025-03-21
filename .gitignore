@@ -3,3 +3,4 @@ resources/
 *.iml
 /.hugo_build.lock
 /.idea/
+/node_modules/
