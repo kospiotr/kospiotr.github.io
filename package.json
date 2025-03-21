@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@cloudflare/pages-plugin-static-forms": "^1.0.3"
+  }
+}
