@@ -14,13 +14,11 @@ A **one-to-one** relationship means each record in **Table A** corresponds to ex
 ```mermaid
 erDiagram
     Users ||--o| UserProfiles : "has one"
-    
     Users {
         int user_id PK
         string username
         string email
     }
-    
     UserProfiles {
         int profile_id PK
         int user_id FK
