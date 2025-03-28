@@ -1,7 +1,7 @@
 ---
 title: ERD
 draft: false
-toc: false
+toc: true
 ---
 Sure! Here are examples of **One-to-One**, **One-to-Many**, and **Many-to-Many** relationships with table schemas.
 
