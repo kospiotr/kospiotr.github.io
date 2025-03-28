@@ -137,14 +137,3 @@ CREATE TABLE StudentCourses (
 🔹 The **StudentCourses** table acts as a **junction table** to establish the **many-to-many** relationship.
 
 ---
-
-### **ERD Representation**
-Here’s a visual representation of these relationships:
-
-```
-[Users] 1 ---- 1 [UserProfiles]
-[Departments] 1 ---- * [Employees]
-[Students] * ---- * [StudentCourses] * ---- * [Courses]
-```
-
-Would you like an ERD diagram for better visualization? 🚀
