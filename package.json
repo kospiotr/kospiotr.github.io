@@ -1,5 +1,13 @@
 {
+  "scripts": {
+    "build": "pages-build",
+    "start": "pages-start",
+    "dev": "wrangler pages dev ."
+  },
   "dependencies": {
     "@cloudflare/pages-plugin-static-forms": "^1.0.3"
+  },
+  "devDependencies": {
+    "wrangler": "^4.3.0"
   }
 }

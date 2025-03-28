@@ -22,95 +22,55 @@ collections:
     editor:
       preview: true
     fields:
-      - label: Tytuł
+      - label: Title
         name: title
         widget: string
-      - label: Data opublikowania
+      - label: Date
         name: date
         widget: datetime
         default: "{{now}}"
         format: YYYY-MM-DDTHH:mm:ss
-      - label: Szkic
+      - label: Draft
         name: draft
         widget: boolean
         default: false
-        hint: Zawartość w trybie szkic nie będzie opublikowana.
       - name: image
-        label: Okładka
+        label: Image
         widget: image
         required: false
-      - label: Treść
+      - label: Content
         name: body
         widget: markdown
-      - label: Tagi
+      - label: Tags
         name: tags
         widget: list
-  - name: kursy
-    label: Kursy i Szkolenia
-    folder: content/kursy
+  - name: notes
+    label: Notes
+    folder: content/docs/notes
     create: true
-    path: '{{slug}}/_index'
+    path: '{{slug}}'
+    nested:
+      depth: 100 # max depth to show in the collection tree
+      summary: '{{title}}' # optional summary for a tree node, defaults to the inferred title field
     editor:
-      preview: false
+      preview: true
     fields:
-      - label: Tytuł
+      - label: Title
         name: title
         widget: string
-      - label: Szkic
+      - label: Draft
         name: draft
         widget: boolean
         default: false
-        hint: Zawartość w trybie szkic nie będzie opublikowana.
+      - label: TOC
+        name: toc
+        widget: boolean
+        default: true
       - name: image
-        label: Okładka
+        label: Image
         widget: image
         required: false
-      - label: Treść
+      - label: Content
         name: body
         widget: markdown
         required: false
-      - label: Czas trwania w sumie
-        name: total_hours
-        widget: string
-        required: false
-      - label: Uczestnicy
-        name: participants
-        widget: string
-        required: false
-      - label: Godzin teoretycznych
-        name: theory_hours
-        widget: string
-        required: false
-      - label: Zakres teoretyczny
-        name: theory_content
-        widget: list
-        required: false
-        field:
-          name: zakres_teoretyczny
-          widget: text
-      - label: Godzin praktycznych
-        name: practice_hours
-        widget: string
-        required: false
-      - label: Zakres praktyczny
-        name: practice_content
-        widget: list
-        required: false
-        field:
-          name: zakres_praktyczny
-          widget: text
-      - label: Zielona transformacja
-        name: green_transformation
-        widget: text
-        required: false
-      - label: Cyfrowe kompetencje
-        name: digital_competences
-        widget: text
-        required: false
-      - label: Kwalifikacje trenerów
-        name: trainer_qualifications
-        widget: list
-        required: false
-        field:
-          name: kwalifikacja_trenerow
-          widget: string
