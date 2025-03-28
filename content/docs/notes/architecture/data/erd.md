@@ -1,14 +1,15 @@
 ---
 title: ERD
+draft: false
+toc: false
 ---
-
 Sure! Here are examples of **One-to-One**, **One-to-Many**, and **Many-to-Many** relationships with table schemas.
 
----
+- - -
 
 ### **1. One-to-One (1:1)**
-A **one-to-one** relationship means each record in **Table A** corresponds to exactly one record in **Table B**.
 
+A **one-to-one** relationship means each record in **Table A** corresponds to exactly one record in **Table B**.
 
 ```mermaid
 erDiagram
@@ -47,12 +48,13 @@ CREATE TABLE UserProfiles (
     FOREIGN KEY (user_id) REFERENCES Users(user_id) ON DELETE CASCADE
 );
 ```
+
 🔹 `UserProfiles.user_id` is both a **foreign key** and **unique**, ensuring a **1:1** relationship.
 
-
----
+- - -
 
 ### **2. One-to-Many (1:M)**
+
 A **one-to-many** relationship means each record in **Table A** can be associated with multiple records in **Table B**.
 
 ```mermaid
@@ -67,7 +69,6 @@ erDiagram
         string name
         int department_id FK
     }
-
 ```
 
 Each department has multiple employees, but each employee belongs to only one department.
@@ -85,11 +86,13 @@ CREATE TABLE Employees (
     FOREIGN KEY (department_id) REFERENCES Departments(department_id) ON DELETE SET NULL
 );
 ```
+
 🔹 One **department** can have multiple **employees**, but each **employee** belongs to only one **department**.
 
----
+- - -
 
 ### **3. Many-to-Many (M:N)**
+
 A **many-to-many** relationship means multiple records in **Table A** can be associated with multiple records in **Table B**.
 
 ```mermaid
@@ -110,7 +113,6 @@ erDiagram
         int course_id PK, FK
         date enrollment_date
     }
-
 ```
 
 A student can enroll in multiple courses, and a course can have multiple students.
@@ -135,6 +137,7 @@ CREATE TABLE StudentCourses (
     FOREIGN KEY (course_id) REFERENCES Courses(course_id) ON DELETE CASCADE
 );
 ```
+
 🔹 The **StudentCourses** table acts as a **junction table** to establish the **many-to-many** relationship.
 
----
+- - -
