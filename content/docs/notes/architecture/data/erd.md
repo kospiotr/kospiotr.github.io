@@ -23,7 +23,7 @@ erDiagram
     
     UserProfiles {
         int profile_id PK
-        int user_id FK UNIQUE
+        int user_id FK
         string first_name
         string last_name
         string bio
