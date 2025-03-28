@@ -54,7 +54,7 @@ CREATE TABLE UserProfiles (
 ### **2. One-to-Many (1:M)**
 A **one-to-many** relationship means each record in **Table A** can be associated with multiple records in **Table B**.
 
-```mermaidjs
+```mermaid
 erDiagram
     Departments ||--o{ Employees : "has many"
     Departments {
@@ -91,7 +91,7 @@ CREATE TABLE Employees (
 ### **3. Many-to-Many (M:N)**
 A **many-to-many** relationship means multiple records in **Table A** can be associated with multiple records in **Table B**.
 
-```mermaidjs
+```mermaid
 erDiagram
     Students ||--o{ StudentCourses : "enrolls in"
     Courses ||--o{ StudentCourses : "has students"
