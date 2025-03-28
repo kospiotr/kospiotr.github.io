@@ -25,7 +25,6 @@ erDiagram
         string last_name
         text bio
     }
-
 ```
 
 Each user has exactly one profile.
