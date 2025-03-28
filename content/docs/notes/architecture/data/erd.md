@@ -26,7 +26,7 @@ erDiagram
         int user_id FK UNIQUE
         string first_name
         string last_name
-        text bio
+        string bio
     }
 ```
 
