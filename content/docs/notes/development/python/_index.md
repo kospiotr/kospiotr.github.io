@@ -3,6 +3,11 @@ title = 'Python'
 BookCollapseSection = true
 +++
 
+```python
+if __name__ == "__main__":
+    print("Hello, World!")
+```
+
 # Methods
 ## String
 
@@ -192,6 +197,22 @@ finally:
   - `logger.addHandler(logging.StreamHandler())` Add a handler to a logger to output logs to the console
   - `logger.addHandler(logging.FileHandler("logfile.log"))` Add a handler to a logger to output logs to a file
 - `import math` Import the math library
+  - `math.sqrt(16)` Calculate the square root of a number
+  - `math.pow(2, 3)` Calculate 2 raised to the power of 3
+  - `math.factorial(5)` Calculate the factorial of a number
+  - `math.gcd(12, 15)` Calculate the greatest common divisor of two numbers
+  - `math.lcm(12, 15)` Calculate the least common multiple of two numbers
+  - `math.pi` Get the value of pi
+  - `math.e` Get the value of Euler's number
+  - `math.sin(math.pi / 2)` Calculate the sine of an angle in radians
+  - `math.cos(math.pi)` Calculate the cosine of an angle in radians
+  - `math.tan(math.pi / 4)` Calculate the tangent of an angle in radians
+  - `math.log(100, 10)` Calculate the logarithm of a number with a specified base
+  - `math.log10(100)` Calculate the base-10 logarithm of a number
+  - `math.log2(8)` Calculate the base-2 logarithm of a number
+  - `math.exp(1)` Calculate the exponential of a number (e^x)
+  - `math.degrees(math.pi)` Convert radians to degrees
+  - `math.radians(180)` Convert degrees to radians
 - `import datetime` Import the datetime library
 - `import os` Import the os library
 - `import json` Import the json library
