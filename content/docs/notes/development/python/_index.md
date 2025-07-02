@@ -134,6 +134,7 @@ finally:
 
 # Importing
 - `import random` Import the random module
+- `import random as rnd` Import the random module with an alias
 - `from random import choice` Import the choice function from the random module
 
 
