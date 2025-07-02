@@ -118,8 +118,15 @@ while loops:
 - `dict1 != dict2` Check if two dictionaries are not equal 
 
 # Exceptions
-- `try:` Start a try block
-- `except Exception as e:` Catch an exception and assign it to the variable `e`
-- `finally:` Execute code in the finally block regardless of whether an exception was raised or not
+```python
+try:
+    # code that may raise an exception
+except Exception as e:
+    # handle the exception
+else:
+    # code to execute if no exception was raised
+finally:
+    # code to execute regardless of whether an exception was raised or not
+```
 - `raise Exception("Error message")` Raise an exception with a custom error message
 - `assert condition, "Error message"` Assert that a condition is true, raise an exception with a custom error message if it is not
