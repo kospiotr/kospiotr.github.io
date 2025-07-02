@@ -71,10 +71,6 @@ BookCollapseSection = true
 - `len(list)` Get the length of the list
 - `list1 == list2` Check if two lists are equal
 - `list1 != list2` Check if two lists are not equal
-- `list1 < list2` Check if list1 is less than list2 (lexicographically)
-- `list1 > list2` Check if list1 is greater than list2 (lexicographically)
-- `list1 <= list2` Check if list1 is less than or equal to list2 (lexicographically)
-- `list1 >= list2` Check if list1 is greater than or equal to list2 (lexicographically)
 - `list1 in list2` Check if an element is in the list
 - `list1 not in list2` Check if an element is not in the list
 - `list(range(10))` Convert a range to a list
@@ -96,12 +92,34 @@ BookCollapseSection = true
 - `i %= 2`  Modulo i by 2 (shorthand)
 
 # Loops
-
 - `for i in range(10):` Loop from 0 to 9
 - `for i in range(1, 11):` Loop from 1 to 10
 - `for i in range(1, 11, 2):` Loop from 1 to 10 with step 2
 - `for i in range(10, 0, -1):` Loop from 10 to 1
+- `for _ in range(10):` Loop 10 times without using the loop variable
+- `for item in [1,2,3]:` Loop through each item in the list
 
 while loops:
 - `while x < 10:` Loop while x is less than 10
 
+# Dict
+- `dict = {'a': 1, 'b': 2, 'c': 3}` Create a dictionary
+- `dict['d'] = 4` Add a key-value pair to the dictionary
+- `dict['a']` Access the value associated with the key 'a'
+- `dict.get('a')` Access the value associated with the key 'a' (returns None if key does not exist)
+- `dict.keys()` Get a list of keys in the dictionary
+- `dict.values()` Get a list of values in the dictionary
+- `dict.items()` Get a list of key-value pairs in the dictionary
+- `dict.pop('a')` Remove and return the value associated with the key 'a'
+- `dict.popitem()` Remove and return the last key-value pair in the dictionary
+- `dict.update({'d': 4})` Update the dictionary with a new key-value pair
+- `dict.clear()` Remove all key-value pairs from the dictionary
+- `dict1 == dict2` Check if two dictionaries are equal
+- `dict1 != dict2` Check if two dictionaries are not equal 
+
+# Exceptions
+- `try:` Start a try block
+- `except Exception as e:` Catch an exception and assign it to the variable `e`
+- `finally:` Execute code in the finally block regardless of whether an exception was raised or not
+- `raise Exception("Error message")` Raise an exception with a custom error message
+- `assert condition, "Error message"` Assert that a condition is true, raise an exception with a custom error message if it is not
