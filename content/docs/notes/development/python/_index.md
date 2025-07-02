@@ -61,11 +61,6 @@ BookCollapseSection = true
 - `list.count(3)` Count the number of occurrences of an element in the list
 - `list[0]` Access the first element of the list
 - `list[-1]` Access the last element of the list
-- `list[1:3]` Access a slice of the list from index 1 to 2 (inclusive of 1, exclusive of 3)
-- `list[1:]` Access a slice of the list from index 1 to the end
-- `list[:3]` Access a slice of the list from the beginning to index 2 (inclusive of 0, exclusive of 3)
-- `list[::2]` Access every second element of the list
-- `list[::-1]` Access the list in reverse order
 - `list1 + list2` Concatenate two lists
 - `list1 * 2` Repeat the list twice
 - `len(list)` Get the length of the list
@@ -75,6 +70,21 @@ BookCollapseSection = true
 - `list1 not in list2` Check if an element is not in the list
 - `list(range(10))` Convert a range to a list
 - `list(range(1, 11))` Convert a range from 1 to 10 to a list
+
+# Slices
+- `list[start:end]` Get a slice of the list from index `start` to `end` (exclusive)
+- `list[start:end:step]` Get a slice of the list from index `start` to `end` (exclusive) with a step size of `step`
+- `list[start:]` Get a slice of the list from index `start` to the end
+- `list[:end]` Get a slice of the list from the beginning to index `end` (exclusive)
+- `list[:]` Get a copy of the entire list
+- `list[::-1]` Get a reversed copy of the list
+- `list[::2]` Get every second element of the list
+- `list[-1]` Access the last element of the list
+- `list[-2]` Access the second-to-last element of the list
+- `list[-3:]` Get the last three elements of the list
+- `list[:-3]` Get all elements of the list except the last three
+- `list[1:5]` Get a slice of the list from index 1 to 4 (inclusive of 1, exclusive of 5)
+- `list[1:5:2]` Get a slice of the list from index 1 to 4 (inclusive of 1, exclusive of 5) with a step size of 2
 
 # Operator shorthands
 - `i = 0`  Initialize i to 0
@@ -139,11 +149,16 @@ finally:
 
 
 # Libraries
-- `import math` Import the math library
 - `import random` Import the random library
+- `import statistics` Import the statistics library
+  - `mean([100, 90])` Calculate the mean of a list of numbers
+- `import sys` Import the sys library
+  - `sys.argv` Access command-line arguments as a list passed to the script
+  - `sys.exit(0)` Exit the script with a status code (0 for success)
+- `import logging` Import the logging library (for logging messages)
+- `import math` Import the math library
 - `import datetime` Import the datetime library
 - `import os` Import the os library
-- `import sys` Import the sys library
 - `import json` Import the json library
 - `import re` Import the re library (regular expressions)
 - `import requests` Import the requests library (for making HTTP requests)
@@ -173,7 +188,6 @@ finally:
 - `import yaml` Import the yaml library (for working with YAML data)
 - `import configparser` Import the configparser library (for working with configuration files)
 - `import argparse` Import the argparse library (for parsing command-line arguments)
-- `import logging` Import the logging library (for logging messages)
 - `import time` Import the time library (for working with time)
 - `import datetime` Import the datetime library (for working with dates and times)
 - `import calendar` Import the calendar library (for working with calendars)
