@@ -130,3 +130,75 @@ finally:
 ```
 - `raise Exception("Error message")` Raise an exception with a custom error message
 - `assert condition, "Error message"` Assert that a condition is true, raise an exception with a custom error message if it is not
+- `pass` Do nothing (used as a placeholder)
+
+# Importing
+- `import random` Import the random module
+- `from random import choice` Import the choice function from the random module
+
+
+# Libraries
+- `import math` Import the math library
+- `import random` Import the random library
+- `import datetime` Import the datetime library
+- `import os` Import the os library
+- `import sys` Import the sys library
+- `import json` Import the json library
+- `import re` Import the re library (regular expressions)
+- `import requests` Import the requests library (for making HTTP requests)
+- `import pandas as pd` Import the pandas library (for data manipulation and analysis)
+- `import numpy as np` Import the numpy library (for numerical operations)
+- `import matplotlib.pyplot as plt` Import the matplotlib library (for plotting)
+- `import seaborn as sns` Import the seaborn library (for statistical data visualization)
+- `import scikit-learn as sk` Import the scikit-learn library (for machine learning)
+- `import tensorflow as tf` Import the tensorflow library (for deep learning)
+- `import torch` Import the torch library (for deep learning with PyTorch)
+- `import cv2` Import the OpenCV library (for computer vision)
+- `import PIL` Import the PIL library (for image processing)
+- `import sqlite3` Import the sqlite3 library (for working with SQLite databases)
+- `import sqlalchemy` Import the sqlalchemy library (for working with databases)
+- `import logging` Import the logging library (for logging messages)
+- `import unittest` Import the unittest library (for unit testing)
+- `import pytest` Import the pytest library (for testing)
+- `import flask` Import the flask library (for web development)
+- `import django` Import the django library (for web development)
+- `import fastapi` Import the fastapi library (for building APIs)
+- `import scrapy` Import the scrapy library (for web scraping)
+- `import beautifulsoup4 as bs4` Import the beautifulsoup4 library (for parsing HTML and XML documents)
+- `import lxml` Import the lxml library (for parsing XML and HTML documents)
+- `import xml.etree.ElementTree as ET` Import the xml.etree.ElementTree library (for parsing XML documents)
+- `import csv` Import the csv library (for working with CSV files)
+- `import json` Import the json library (for working with JSON data)
+- `import yaml` Import the yaml library (for working with YAML data)
+- `import configparser` Import the configparser library (for working with configuration files)
+- `import argparse` Import the argparse library (for parsing command-line arguments)
+- `import logging` Import the logging library (for logging messages)
+- `import time` Import the time library (for working with time)
+- `import datetime` Import the datetime library (for working with dates and times)
+- `import calendar` Import the calendar library (for working with calendars)
+- `import itertools` Import the itertools library (for working with iterators)
+- `import functools` Import the functools library (for working with higher-order functions)
+- `import operator` Import the operator library (for working with operators)
+- `import collections` Import the collections library (for working with specialized container datatypes)
+- `import heapq` Import the heapq library (for working with heaps)
+- `import bisect` Import the bisect library (for working with sorted lists)
+- `import array` Import the array library (for working with arrays)
+- `import struct` Import the struct library (for working with C-style data structures)
+- `import ctypes` Import the ctypes library (for working with C libraries)
+- `import multiprocessing` Import the multiprocessing library (for parallel processing)
+- `import threading` Import the threading library (for working with threads)
+- `import queue` Import the queue library (for working with queues)
+- `import subprocess` Import the subprocess library (for running external commands)
+- `import shutil` Import the shutil library (for working with files and directories)
+- `import glob` Import the glob library (for working with file patterns)
+- `import fnmatch` Import the fnmatch library (for matching filenames)
+- `import tempfile` Import the tempfile library (for working with temporary files)
+- `import zipfile` Import the zipfile library (for working with ZIP files)
+- `import tarfile` Import the tarfile library (for working with TAR files)
+- `import gzip` Import the gzip library (for working with GZIP files)
+- `import bz2` Import the bz2 library (for working with BZ2 files)
+- `import lzma` Import the lzma library (for working with LZMA files)
+- `import base64` Import the base64 library (for encoding and decoding base64 data)
+- `import hashlib` Import the hashlib library (for working with hash functions)
+- `import hmac` Import the hmac library (for working with HMACs)
+- 
