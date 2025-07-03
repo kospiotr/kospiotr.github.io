@@ -16,6 +16,22 @@ if __name__ == "__main__":
 - `'abc'.capitalize()` -> `'Abc'` Capitalize the first character of the string
 - `'ab bc cd'.title()` -> `'Ab Bc Cd'` Capitalize the first character of each word
 - `'a b c'.split('')` -> `['a','b','c']` Split the string into a list of substrings
+- `'abc'.startswith('a')` -> `True` Check if the string starts with a specific substring
+- `'abc'.endswith('c')` -> `True` Check if the string ends with a specific substring
+- `'abc'.find('b')` -> `1` Find the index of the first occurrence of a substring
+- `'abc'.rfind('b')` -> `1` Find the index of the last occurrence of a substring
+- `'abc'.count('a')` -> `1` Count the number of occurrences of a substring
+- `'abc'.replace('a', 'x')` -> `'xbc'` Replace a substring with another substring
+- `'abc'.upper()` -> `'ABC'` Convert the string to uppercase
+- `'abc'.lower()` -> `'abc'` Convert the string to lowercase
+- `'abc'.swapcase()` -> `'ABC'` Swap the case of each character in the string
+- `'abc'.isalpha()` -> `True` Check if the string contains only alphabetic characters
+- `'abc123'.isalnum()` -> `True` Check if the string contains only alphanumeric characters
+- `'abc'.isdigit()` -> `False` Check if the string contains only digits
+- `'abc'.isupper()` -> `False` Check if the string is in uppercase
+- `'abc'.islower()` -> `True` Check if the string is in lowercase
+- `'abc'.isspace()` -> `False` Check if the string contains only whitespace characters
+- `'abc'.isnumeric()` -> `False` Check if the string contains only numeric characters
 
 ## String Formatting
 
