@@ -85,6 +85,7 @@ To use ssh with remote repositories you need to publish your public key to this 
 
 ```bash
 cat ~/.ssh/id_rsa.pub
+pbcopy < ~/.ssh/id_rsa.pub
 ```
 
 Go to: https://github.com/settings/keys and add the above content.
