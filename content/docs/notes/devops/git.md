@@ -78,7 +78,7 @@ Source: [http://stackoverflow.com/a/5785618/276948](http://stackoverflow.com/a/5
 ## Generate private / public keys
 
 ```
-ssh-keygen
+ssh-keygen -t rsa -b 4096
 ```
 
 To use ssh with remote repositories you need to publish your public key to this services. It can be localized here:
