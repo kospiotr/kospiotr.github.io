@@ -4,7 +4,8 @@ title: Macos
 
 # Apps
 ## Raycast
-** Quicklinks **
+
+**Quicklinks**
 - GPT: https://chatgpt.com?hint=search&q={query}
 - BB pl-en: https://pl.bab.la/slownik/polski-angielski/{phrase}
 - BB en-pl: https://pl.bab.la/slownik/angielski-polski/{phrase}
