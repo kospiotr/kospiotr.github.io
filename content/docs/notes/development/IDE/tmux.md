@@ -6,6 +6,13 @@ title: tmux
 brew install tmux
 ```
 
+# Configuration
+
+Config location: `~/.tmux.conf`
+
+```
+```
+
 # General
 - `ctrl b ?` - commands list
 
