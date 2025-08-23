@@ -27,7 +27,16 @@ brew install tmux
 - `ctrl b !` - pane to window
 - `ctrl b ;` - navigate to previous pane
 - `ctrl b E` - spreads panes evenly
-- `ctrl b p` - pane list
+- `ctrl b f` - find pane
+- `ctrl b m` - mark toggle
+- `ctrl b z` - zoom toggle
+- `ctrl b {` - swap with previous pane
+- `ctrl b }` - swap with next pane
+- `ctrl b <arrows>` - resize
 
 # Sessions
 - `ctrl b $` - rename
+
+# Select mode
+- `ctrl [` - starts selection mode
+- `ctrl w` - copy selection
