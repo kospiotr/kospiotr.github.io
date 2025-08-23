@@ -1,5 +1,5 @@
 ---
-title: Nvim
+title: nvim
 ---
 # Installation
 ```
