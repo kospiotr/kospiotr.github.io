@@ -14,6 +14,7 @@ brew install tmux
 - `ctrl b &` - kill
 - `ctrl b n` - next
 - `ctrl b p` - previos
+- `ctrl b l` - last
 - `ctrl b <number>` - select window number
 - `ctrl b w` - windows list
 - `ctrl b ,` - rename
@@ -23,9 +24,8 @@ brew install tmux
 - `ctrl b "` - split vertically
 - `ctrl b %` - split horizontally
 - `ctrl b o` - next
-- `ctrl b o` - next
+- `ctrl b ;` - previous
 - `ctrl b !` - pane to window
-- `ctrl b ;` - navigate to previous pane
 - `ctrl b E` - spreads panes evenly
 - `ctrl b f` - find pane
 - `ctrl b m` - mark toggle
@@ -40,3 +40,4 @@ brew install tmux
 # Select mode
 - `ctrl [` - starts selection mode
 - `ctrl w` - copy selection
+- `ctrl ]` - paste
