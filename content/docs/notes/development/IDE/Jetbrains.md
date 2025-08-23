@@ -1,5 +1,5 @@
 ---
-title: IDE
+title: Jetbrains IDE
 ---
 # Installation
 ```
