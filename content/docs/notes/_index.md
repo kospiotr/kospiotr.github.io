@@ -4,4 +4,5 @@ title = 'Notes'
 #BookCollapseSection = true
 +++
 
-Private Notes
+Editors:
+- https://jubilant-parakeet-7vwq9qvgjxcxxgp.github.dev
