@@ -1,0 +1,81 @@
+---
+title: React force input update
+---
+```js
+/**
+ * Simulates typing a string into an input element by dispatching
+ * keydown, keypress, and input events for each character.
+ *
+ * @param {HTMLInputElement | HTMLTextAreaElement} el The DOM input element.
+ * @param {string} value The new value to set.
+ */
+function simulateTyping(el, value) {
+    if (!el) return;
+
+    // 1. Focus the element (often required for key events to be accepted)
+    el.focus();
+
+    // 2. Clear the current value
+    el.value = '';
+
+    // 3. Iterate through each character and simulate keystrokes
+    for (let i = 0; i < value.length; i++) {
+        const char = value[i];
+        const keyCode = char.charCodeAt(0);
+
+        // a. Dispatch keydown
+        // Note: For actual letters/numbers, keyCode is often 0 for modern browsers,
+        // but older React/libraries sometimes expect a value. We'll use the charCode.
+        const downEvent = new KeyboardEvent('keydown', {
+            key: char,
+            keyCode: keyCode, // Deprecated, but often checked by legacy code
+            which: keyCode,   // Deprecated, but often checked by legacy code
+            bubbles: true,
+            cancelable: true
+        });
+        el.dispatchEvent(downEvent);
+
+        // b. Dispatch keypress (often triggers React's state update logic)
+        const pressEvent = new KeyboardEvent('keypress', {
+            key: char,
+            keyCode: keyCode,
+            which: keyCode,
+            bubbles: true,
+            cancelable: true
+        });
+        el.dispatchEvent(pressEvent);
+
+        // c. Manually update the DOM value
+        el.value += char;
+
+        // d. Dispatch 'input' event (to force React to read the new value)
+        const inputEvent = new Event('input', { bubbles: true });
+        el.dispatchEvent(inputEvent);
+
+        // e. Dispatch keyup
+        const upEvent = new KeyboardEvent('keyup', {
+            key: char,
+            keyCode: keyCode,
+            which: keyCode,
+            bubbles: true,
+            cancelable: true
+        });
+        el.dispatchEvent(upEvent);
+    }
+
+    // 4. Blur the element (to trigger any final validation/onBlur handlers)
+    el.blur();
+}
+
+// --------------------------------------------------------------------
+// Example Usage:
+// --------------------------------------------------------------------
+
+const targetInput = document.getElementById('my-controlled-input');
+// OR
+// const targetInput = document.querySelector('input[name="email"]');
+
+if (targetInput) {
+    simulateTyping(targetInput, 'hello@example.com');
+}
+```
