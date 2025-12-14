@@ -1,5 +1,5 @@
 ---
-title: EspHome
+title: EspHome debugger
 ---
 
 # Esp32 128 pins debug inputs
