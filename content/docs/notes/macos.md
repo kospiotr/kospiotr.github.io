@@ -1,5 +1,5 @@
 ---
-title: Macos
+title: MAC OS
 ---
 
 # Apps
