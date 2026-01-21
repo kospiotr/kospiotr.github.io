@@ -8,6 +8,6 @@
     "@cloudflare/pages-plugin-static-forms": "^1.0.3"
   },
   "devDependencies": {
-    "wrangler": "^4.3.0"
+    "wrangler": "^4.59.1"
   }
 }
