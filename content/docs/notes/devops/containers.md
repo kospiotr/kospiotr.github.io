@@ -94,6 +94,18 @@ To push images to your private registry hosted by gcr, you need to tag the image
 2. Create symlink: `mklink "C:\Program Files\RedHat\Podman\docker.exe" "C:\Program Files\RedHat\Podman\podman.exe"`
 3. Test: `docker version`
 
+In order to create manual shim for docker (alias often don't work): 
+
+```bash
+mkdir -p ~/bin
+cat <<'EOF' > ~/bin/docker
+#!/usr/bin/env bash
+exec podman "$@"
+EOF
+chmod +x ~/bin/docker
+export PATH="$HOME/bin:$PATH"
+```
+
 # Recipes
 
 ## Build with maven
