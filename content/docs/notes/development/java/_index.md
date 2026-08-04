@@ -1,4 +1,0 @@
-+++
-title = 'Java'
-BookCollapseSection = true
-+++
