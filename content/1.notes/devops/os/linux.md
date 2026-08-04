@@ -1,5 +1,5 @@
 ---
-title: Unix
+title: Linux
 ---
 
 # Commands
