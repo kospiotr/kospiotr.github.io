@@ -28,6 +28,13 @@ export default defineNuxtConfig({
     cloudflare: {
       deployConfig: true,
       wrangler: {
+        d1_databases: [
+          {
+            binding: 'DB',
+            database_name: 'kospiotr-github-io',
+            database_id: '5fa17ab6-ff38-422b-b694-d6e7d43e9214'
+          }
+        ]
       },
     },
     prerender: {
