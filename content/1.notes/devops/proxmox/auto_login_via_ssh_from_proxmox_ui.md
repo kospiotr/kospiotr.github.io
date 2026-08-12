@@ -1,3 +1,6 @@
+---
+title: Auto login via SSH from Proxmox UI
+---
 
 ```
 GETTY_OVERRIDE="/etc/systemd/system/container-getty@1.service.d/override.conf"
