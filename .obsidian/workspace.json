@@ -11,10 +11,14 @@
             "id": "4ba37c6ba622efb8",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "content/1.notes/devops/proxmox/Issue_TASK_ERROR_device_dev_dri_card1_does not exist.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "Issue_TASK_ERROR_device_dev_dri_card1_does not exist"
             }
           }
         ]
@@ -95,6 +99,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "content/1.notes/devops/proxmox/Issue_TASK_ERROR_device_dev_dri_card1_does not exist.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -113,6 +118,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "content/1.notes/devops/proxmox/Issue_TASK_ERROR_device_dev_dri_card1_does not exist.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
@@ -155,6 +161,7 @@
             "state": {
               "type": "outline",
               "state": {
+                "file": "content/1.notes/devops/proxmox/Issue_TASK_ERROR_device_dev_dri_card1_does not exist.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -178,9 +185,18 @@
       "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
       "command-palette:Open command palette": false,
-      "bases:Create new base": false
+      "bases:Create new base": false,
+      "obsidian-git:Open Git source control": false
     }
   },
   "active": "4ba37c6ba622efb8",
-  "lastOpenFiles": []
+  "lastOpenFiles": [
+    "content/1.notes/devops/proxmox.md",
+    "content/1.notes/devops/proxmox/Issue_TASK_ERROR_device_dev_dri_card1_does not exist.md",
+    "content/1.notes/devops/proxmox/Arr.md",
+    "content/1.notes/devops/proxmox/Auto login via SSH from Proxmox UI.md",
+    "content/1.notes/devops/proxmox/Mount USB drive to LXC container.md",
+    "content/1.notes/devops/proxmox/Installation.md",
+    "content/1.notes/devops/proxmox"
+  ]
 }
