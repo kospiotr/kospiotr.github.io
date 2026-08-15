@@ -1,5 +1,5 @@
 ---
-title: Installation
+title: Proxmox
 ---
 - Tutorial: https://www.youtube.com/watch?v=lFzWDJcRsqo
 - Script: https://community-scripts.org/scripts/post-pve-install
