@@ -43,8 +43,15 @@ pct exec "$CTID" -- bash -c '
 msg_ok "Dokploy installed"
 ```
 
+
+# Publish
+Map MAC to static IP in your router
+Add the DNS name to the IP in the router: dokploy.home
+Add the new tunel to point dokploy.pkosmowski.pl to dokploy.home:3000
+Secure access to the public domain following instructions: https://www.youtube.com/watch?v=XQXFEV1BIjc&t=309s
 # Configuration
 1) Domain: app.pkosmowski.pl
 2) Project: test
 3) Service: hello
 	1) Deploy -> Provider -> Git
+	2) 
