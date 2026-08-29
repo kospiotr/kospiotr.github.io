@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "content/1.notes/homelab/proxmox.md",
+                "file": "content/1.notes/homelab/proxmox/dokploy.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "proxmox"
+              "title": "dokploy"
             }
           }
         ]
@@ -176,7 +176,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "content/1.notes/homelab/proxmox.md"
+                "file": "content/1.notes/homelab/proxmox/dokploy.md"
               },
               "icon": "lucide-info",
               "title": "File properties"
@@ -203,8 +203,8 @@
   },
   "active": "7068a848735d9dbd",
   "lastOpenFiles": [
-    "content/1.notes/homelab/proxmox/_ proxmox.md",
     "content/1.notes/homelab/proxmox.md",
+    "content/1.notes/homelab/proxmox/_ proxmox.md",
     "content/1.notes/homelab/proxmox/dokploy.md",
     "content/1.notes/homelab/proxmox/kubernetes.md",
     "content/1.notes/homelab",
