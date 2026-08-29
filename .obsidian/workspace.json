@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "content/1.notes/homelab/proxmox/dokploy.md",
+                "file": "content/1.notes/devops/curl.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "dokploy"
+              "title": "curl"
             }
           }
         ]
@@ -176,7 +176,7 @@
             "state": {
               "type": "file-properties",
               "state": {
-                "file": "content/1.notes/homelab/proxmox/dokploy.md"
+                "file": "content/1.notes/devops/curl.md"
               },
               "icon": "lucide-info",
               "title": "File properties"
@@ -203,9 +203,11 @@
   },
   "active": "7068a848735d9dbd",
   "lastOpenFiles": [
+    "content/1.notes/devops/linux.md",
+    "content/1.notes/devops/curl.md",
+    "content/1.notes/homelab/proxmox/dokploy.md",
     "content/1.notes/homelab/proxmox.md",
     "content/1.notes/homelab/proxmox/_ proxmox.md",
-    "content/1.notes/homelab/proxmox/dokploy.md",
     "content/1.notes/homelab/proxmox/kubernetes.md",
     "content/1.notes/homelab",
     "content/1.notes/homelab/proxmox/auto_login_via_ssh_from_proxmox_ui.md",
