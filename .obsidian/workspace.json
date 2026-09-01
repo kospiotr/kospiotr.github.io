@@ -203,6 +203,13 @@
   },
   "active": "7068a848735d9dbd",
   "lastOpenFiles": [
+    "content/1.notes/homelab/proxmox/coudflare.md",
+    "content/1.notes/devops/proxmox/dokploy.md",
+    "content/1.notes/devops/proxmox/docker.md",
+    "content/1.notes/devops/proxmox",
+    "app/components/content/ProsePre.vue",
+    "app/components/content/Mermaid.vue",
+    "app/components/AppContentNavigation.vue",
     "content/1.notes/homelab/_ proxmox 1.md",
     "content/1.notes/homelab/proxmox/_ proxmox.md",
     "content/1.notes/devops/curl.md",
