@@ -14,6 +14,7 @@ mode=generated var_docker_socket="a" var_cpu="2" var_ram="8192" var_disk="16" va
 ```
 pct set $CT_ID -mp0 /mnt/usb-01,mp=/data
 pct exec $CT_ID -- ls -la /data
+pct reboot $CT_ID
 ```
 
 ## Install App
