@@ -16,6 +16,16 @@ pct set $CT_ID -mp0 /mnt/usb-01,mp=/data
 pct exec $CT_ID -- ls -la /data
 ```
 
+## Install App
+
+Instructions: https://www.filestash.app/docs/install-and-upgrade/
+
+```
+pct exec $CT_ID -- curl -o filestash.bin https://downloads.filestash.app/latest/filestash_linux_$(uname -m).bin
+pct exec $CT_ID -- chmod +x filestash.bin
+pct exec $CT_ID -- ./filestash.bin
+```
+
 ## Run app on boot
 
 Prepare service:
@@ -42,15 +52,10 @@ EOF'
 
 Install and run service
 ```
-pct exec $CT_ID -- bash -c 'cat > /tmp/setup.sh <<'"'"'EOF'"'"'
-#!/bin/bash
-/etc/systemd/system/myapp.service
-
-echo "Starting setup..."
-apt-get update
-apt-get install -y curl
-
-echo "Setup complete!"
-EOF
-bash /tmp/setup.sh'
+pct exec $CT_ID -- bash -c '
+systemctl daemon-reload
+systemctl enable --now filestash.service
+'
 ```
+
+
